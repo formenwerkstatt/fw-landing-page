@@ -24,7 +24,7 @@ export default {
           title: "Beratung & Design",
           description: "Profitieren Sie von unserer Erfahrung",
           paragraph:
-            'Jede Form ist anders, da die Geometrie des Teils und das zu spritzende Material maßgeblichen Einfluss nehmen.Mit stets aktueller CAD/CAM-Software im eigenen Haus entsteht Ihre Form - gut durchdacht, in kurzer Zeit, zum guten Preis. Vor allem wenn Ihr Produkt perfekte Oberflächen benötigt, profitieren Sie von unserem "Alles aus einer Hand"-Konzept, inkl. Hochglanzpolitur und Laserbeschriftungen.',
+            'Jede Form ist anders, da die Geometrie des Teils und das zu spritzende Material maßgeblichen Einfluss nehmen. Mit stets aktueller CAD/CAM-Software im eigenen Haus entsteht Ihre Form - gut durchdacht, in kurzer Zeit, zum guten Preis. Vor allem wenn Ihr Produkt perfekte Oberflächen benötigt, profitieren Sie von unserem "Alles aus einer Hand"-Konzept, inkl. Hochglanzpolitur und Laserbeschriftungen.',
           nestedList: [
             {
               title: "Wir haben Erfahrung mit Werkzeugen aus dem Bereich:",
@@ -88,14 +88,8 @@ export default {
                 "Boy 22 M: 220 kN Schließkraft, präzise Kleinteileproduktion",
               ],
             },
-            {
-              title: 'Überspritzen ("Overmolding") und Einlegemolding',
-              list: [
-                " Ideal zur Integration von Etiketten oder anderen Einlagen in das Werkzeug.",
-              ],
-            },
           ],
-          cta: "Brauchen Sie hochwertige Probenahme und kleine Produktionsläufe? Kontaktieren Sie unser Team, um zu erfahren, wie wir Ihr Projekt unterstützen können.",
+          cta: "Kontaktieren Sie unser Team, um zu erfahren, wie wir Ihr Projekt unterstützen können.",
         },
       ],
     },
@@ -111,31 +105,28 @@ export default {
             "Unsere Hochgeschwindigkeits-CNC-Fräsmaschinen produzieren selbst die komplexesten Geometrien mit unvergleichlicher Präzision. Egal, ob Sie mit Stahl, Aluminium oder anderen Materialien arbeiten, unsere Geräte gewährleisten enge Toleranzen und makellose Oberflächen.",
           nestedList: [
             {
-              title: "Hauptgeräte:",
+              title: "Maschine:",
               list: [
-                "Deckel Maho CNC-Maschinen: Siemens-gesteuert für detailliertes und genaues Fräsen",
-                "Mikron HSM 500: Hochgeschwindigkeitsfräsen für feine Details, bis zu 30.000 U/min",
-              ],
-            },
-            {
-              title: "Fähigkeiten:",
-              list: [
-                "Max. Teilegröße: 840 x 500 x 500 mm",
-                "24 bis 36 Werkzeugpositionen für komplexe Aufgaben",
+                "Fräsmaschine CNC DMG MORI M2: Verfahrwege x1100 y550 z510 mm Tisch 1400 x 600 mm Werkzeugwechsler 24 fach",
+                "Fräs-Bearbeitungszentrum Deckel Maho DMC63V: Verfahrwege x630 x500 z500 mm Siemens CNC 810",
+                "Fräs-Bearbeitungszentrum Deckel Maho DMC835V: Verfahrwege x830 y500 z500 mm Siemens CNC 840",
+                "HSC Fräsmaschine Mikron HSM 500. Verfahrwege x500 y400 z400 mm Haidenhein 530",
+                "Werkzeugfräsmaschine DECKEL FP5 CNC Dialog 4Verfahrwege x700 y600 z450 mm",
               ],
             },
           ],
-          cta: "Kontaktieren Sie uns für weitere Details darüber, wie unsere Fräsdienstleistungen Ihren Bedürfnissen gerecht werden können.",
+          cta: "Kontaktieren Sie uns, um weitere Informationen zu erhalten, wie unsere Fräsdienste Ihre Anforderungen erfüllen können.",
         },
         {
           title: "Drehen",
           description: "CNC, NC und konventionell",
           paragraph:
-            "Wir bieten CNC-, NC- und konventionelles Drehen an, um eine breite Palette von Aufgaben zu bewältigen, von kleinen Präzisionsteilen bis hin zu großen Komponenten. Mit Ausrüstung wie der Gildemeister NEF 400 stellen wir sicher, dass jeder Drehauftrag mit höchster Genauigkeit ausgeführt wird.",
+            "Wir bieten CNC-, NC- und konventionelles Drehen, um eine breite Palette von Aufgaben zu erledigen, von kleinen Präzisionsteilen bis hin zu großen Komponenten. Mit Geräten wie dem Gildemeister NEF 400 stellen wir sicher, dass jeder Drehauftrag mit größter Genauigkeit abgeschlossen wird.",
           nestedList: [
             {
-              title: "Ausrüstung:",
+              title: "Maschine:",
               list: [
+                "CNC Dreh Fräsmaschine DMG MORI CLX450: C+Y Achse, 12fach Revolver Drehdrm. 450mm",
                 "Gildemeister NEF 400: Ø350 x 650 mm Bearbeitungsbereich, 12 Werkzeugpositionen",
                 "Colchester Triumph: Ø400 x 1000 mm Bearbeitungsbereich",
               ],
@@ -144,66 +135,83 @@ export default {
               title: "Fähigkeiten:",
               list: [
                 "Max. Spindeldrehzahlen: 6.000 U/min",
-                "Präzisionsdrehbearbeitung bis zu wenigen Mikrometern",
+                "Präzisionsdrehen bis auf wenige Mikrometer",
               ],
             },
           ],
-          cta: "Benötigen Sie Experten-Drehdienste? Melden Sie sich noch heute für eine Beratung!",
+          cta: "Brauchen Sie Experten für Dreharbeiten? Kontaktieren Sie uns noch heute für eine Beratung!",
         },
         {
-          title: "Senkerodieren",
+          title: "Senkerodieren (EDM)",
           description: "Wenn traditionelle Bearbeitung an ihre Grenzen stößt",
           paragraph:
-            "Wir verwenden elektroerosive Bearbeitung (EDM), um komplexe Geometrien in harten Metallen zu erstellen. Unsere fortschrittlichen CNC-gesteuerten EDM-Maschinen gewährleisten Präzision bis ins kleinste Detail.",
+            "Wo die Zerspanung an ihre Grenzen kommt, lassen wir die Funken brodeln: Mit unseren CNC-Erodiermaschinen und der individuellen Elektroden-Fertigung, senk-erodieren wir filigrane Stellen in Formen. Unsere fortschrittlichen CNC-gesteuerten EDM- Maschinen gewährleisten Präzision bis ins kleinste Detail.",
           nestedList: [
             {
-              title: "Technische Fähigkeiten:",
+              title: "Maschine",
+              list: [
+                "Senkerodiermaschine CNC Zimmer & Kreim ZK850, Elektrodenwechsler 16fach: Verfahrwege x565 xy400",
+                "Senkerodiermaschine CNC Zimmer & Kreim ZK600, Elektrodenwechsler 50fach",
+              ],
+            },
+            {
+              title: "Technische Fähigkeiten",
               list: [
                 "Werkstückgröße bis zu 840 x 600 mm",
                 "Individuelle Elektrodenherstellung für hohe Detailgenauigkeit",
-                "Gewichtskapazität bis zu 600 kg",
+                "Tragfähigkeit bis zu 600 kg",
               ],
             },
           ],
           cta: "Interessiert an weiteren Informationen? Kontaktieren Sie uns, um mehr darüber zu erfahren, wie EDM für Ihr Projekt funktionieren kann.",
         },
         {
-          title: "Drahterodieren",
+          title: "Drath-EDM",
           description: "Wenn traditionelle Bearbeitung an ihre Grenzen stößt",
           paragraph:
-            "Unsere Drahterodiermaschinen schneiden selbst durch die härtesten Metalle mit extremer Präzision und verwenden einen dünnen Draht, um komplizierte Formen und Designs zu erstellen.",
+            "Unsere Draht-EDM-Maschinen schneiden selbst die härtesten Metalle mit extremer Präzision und verwenden einen dünnen Draht, um komplizierte Formen und Designs zu erstellen.",
           nestedList: [
+            {
+              title: "Maschine:",
+              list: [
+                "Drahterodiermaschine Mitsubishi MV2400R: Verfahrwege 600/400/310mm",
+              ]
+            },
             {
               title: "Hauptmerkmale:",
               list: [
-                "Präzisionsschneiden für komplexe Geometrien",
-                "Fähig, große Werkstücke zu bearbeiten",
+                "Präzises Schneiden für komplexe Geometrien",
+                "Fähigkeiten zue Handhabung großer Werkstücke",
               ],
             },
           ],
-          cta: "Bereit, Ihr Projekt auf die nächste Stufe zu heben? Wenden Sie sich noch heute an unsere Drahterodier-Experten!",
+          cta: "Bereit, Ihr Projekt auf die nächste Stufe zu heben? Wenden Sie sich noch heute an unsere Draht-EDM- Experten!",
         },
         {
           title: "Laserschweißen",
           description: "Schweißen mit Lasertechnologie",
           paragraph:
-            "Mit der neuesten Lasertechnologie führen wir präzise Schweißarbeiten zur Wiederherstellung und Reparatur von Formen durch. Ob es sich um fehlendes Material oder strukturelle Schäden handelt, unser Laserschweißen gewährleistet starke, genaue Reparaturen.",
+            "Mit der neuesten Lasertechnologie führen wir präzise Schweißarbeiten durch, um Werkzeuge wiederherzustellen und zu reparieren. Egal, ob es sich um fehlendes Material oder strukturelle Schäden handelt, unser Laser-Schweißen gewährleistet starke und präzise Reparaturen.",
           nestedList: [
             {
-              title: "Laserpräzision:",
+              title: "Maschine:",
+              list: ["Laserauftragschweißen TRUMPF HAAS LASER"],
+            },
+            {
+              title: "Laser-Präzision:",
               list: [
-                "Schweißnähte so fein wie 0,1 mm",
-                "Schweißen von Aluminium, Stahl, Edelstahl und Titan",
+                "Schweißnähte bis zu 0,1 mm",
+                "Schweißen von Aluminium, Stahl, rostfreiem Stahl und Titan",
               ],
             },
           ],
-          cta: "Kontaktieren Sie uns, um zu besprechen, wie Laserschweißen die Lebensdauer Ihrer Formen verlängern kann.",
+          cta: "Kontaktieren Sie uns, um zu besprechen, wie Laserschweißen die Lebensdauer Ihrer Werkzeuge verlängern kann.",
         },
         {
           title: "Lasergravieren",
           description: "Präzises Ätzen für bleibende Eindrücke",
           paragraph:
-            "Logos, Seriennummern und individuelle Texte werden mit unserem Trumpf-Gravierlaser präzise in Ihre Formen oder Produkte eingraviert. Mit der Fähigkeit, Teile bis zu 800 kg zu bearbeiten, ermöglicht unser flexibler Laserarm tiefe Gravuren auch in den schwierigsten Bereichen.",
+            "Logos, Seriennummern und benutzerdefinierte Texte werden präzise in Ihre Werkzeuge oder Produkte mit unserem Trumpf-Gravur Laser eingraviert. Mit der Fähigkeit, Teile bis zu 800 kg zu handhaben, ermöglicht unser flexibler Laserarm eine tiefe Gravur selbst in den schwierigsten Bereichen.",
           nestedList: [
             {
               title: "Anwendungen:",
@@ -217,108 +225,101 @@ export default {
         },
         {
           title: "Hochglanzpolieren",
-          description: "Verwandlung von Oberflächen in makellose Spiegel",
+          description:
+            "Makellose Oberflächen am Produkt benötigen eine Hochglanzpolitur in der Form.",
           paragraph:
-            "Perfekte Oberflächen beginnen mit unseren Hochglanzpolierdiensten. Wir sind spezialisiert auf die Erstellung spiegelglatter Oberflächen für Spritzguss- und Druckgussformen und stellen sicher, dass Ihre Teile scharfe Kanten und makellose Oberflächen haben.",
+            "Sie ist die anspruchsvollste aller Oberflächenbearbeitungen. Unter Einsatz aktueller, teils selbst entwickelter Verfahren polieren wir Ihre Werkzeuge.Hochglanzpolituren für Spritz- und Druckgussformen, bei Einhaltung der Konturgeometrie mit scharfen Kanten, sind für uns nicht nur selbstverständlich, sondern unser Stolz.",
           nestedList: [
             {
-              title: "Expertenpolieren für:",
+              title: " Beispiele für Hochglanzpolitur:",
               list: [
                 "Gehäuseteile",
                 "Haushaltsartikel",
                 "Kosmetikverpackungen",
-                "Spielzeug und Geschenkartikel",
-              ],
-            },
-            {
-              title: "Zusätzliche Dienstleistungen:",
-              list: [
-                'Kritische Konturbereiche erhalten spezielle "Entformungspolierung"',
-                "Feinläppen zur Oberflächenrauheitsreduzierung",
+                "Spielwaren und Geschenke",
               ],
             },
           ],
-          cta: "Kontaktieren Sie uns noch heute, um zu besprechen, wie unser Hochglanzpolieren das Aussehen Ihres Produkts verbessern kann.",
+          cta: "Kontaktieren Sie uns noch heute, um zu besprechen, wie unsere Hochglanzpolitur das Erscheinungsbild Ihres Produkts verbessern kann.",
         },
         {
           title: "Flachschleifen",
           description: "Mit modernster Präzision",
           paragraph:
-            "Flachschleifen ist wesentlich für die Erzielung flacher, glatter Oberflächen auf Ihren Formen und Werkzeugen. Unsere hochmodernen Maschinen können große Werkstücke mit einer Präzision bis zu Mikrometern bearbeiten.",
+            "Flachschleifen ist entscheidend, um flache, glatte Oberflächen an Ihren Werkzeugen und Formen zu erreichen. Unsere hochmodernen Maschinen können große Werkstücke mit einer Präzision von Mikrometern bearbeiten.",
           nestedList: [
+            {
+              title: "Maschine:",
+              list: [
+                "Flachschleifmaschine ELB OPTIMAL: Verfahrwege x600 y400 mm",
+              ],
+            },
             {
               title: "Fähigkeiten:",
               list: [
-                "Große Arbeitsbereiche bis zu 1000mm",
-                "Präzisionsschleifen zur Reduzierung der Oberflächenrauheit",
-              ],
-            },
-            {
-              title: "Zusätzliche Dienstleistungen:",
-              list: [
-                'Kritische Konturbereiche erhalten spezielle "Entformungspolierung"',
-                "Feinläppen zur Oberflächenrauheitsreduzierung",
+                "Große Werkstücke bis zu 1000 mm",
+                "Präzises Schleifen zur Reduzierung der Oberflächenrauhigkeit",
               ],
             },
           ],
-          cta: "Benötigen Sie Präzisionsschleifen? Melden Sie sich, um mehr über unsere Dienstleistungen zu erfahren.",
+          cta: "Brauchen Sie präzises Schleifen? Wenden Sie sich an uns, um mehr über unsere Dienstleistungen zu erfahren.",
         },
       ],
     },
 
     reparatur: {
-      title: "Reparatur",
+      title: "Lohnfertigung & Reparatur und Geometrieänderung",
       paragraph: "Unsere Reparatur- und Wartungsdienste",
       subServices: [
         {
           title: "Renovierung",
-          description: "Verlängern Sie die Lebensdauer Ihrer Formen",
+          description:
+            "Verlängern Sie die Lebensdauer Ihrer Werkzeuge mit unseren Reparaturdiensten.",
           paragraph:
-            "Wir sind darauf spezialisiert, abgenutzte Formen und Werkzeuge in ihren ursprünglichen Zustand zurückzuversetzen und sicherzustellen, dass sie weiterhin optimale Leistung liefern können.",
+            "Wir sind auf die Wiederherstellung abgenutzter Formen und Werkzeuge in ihren ursprünglichen Zustand spezialisiert und führen Änderungen in der Geometrie durch.",
           nestedList: [
             {
               title: "Fähigkeiten:",
               list: [
-                "Vollständige Formenrenovierung",
-                "Materialwiederherstellung durch Schweißen und Bearbeitung",
+                "Vollständige Werkzeug Überarbeitung",
+                "Material Wiederherstellung durch Schweißen und Bearbeitung",
               ],
             },
           ],
-          cta: "Interessiert an der Renovierung Ihrer Werkzeuge? Kontaktieren Sie unser Team für Expertenrenovierungsdienste.",
+          cta: "Interessiert an der Renovierung Ihrer Werkzeuge? Kontaktieren Sie unser Team für professionelle Renovierungsdienste.",
         },
         {
           title: "Überholung",
           description: "Eine komplette Überholung Ihrer Formen",
           paragraph:
-            "Eine vollständige Überholung beinhaltet das Zerlegen, Inspizieren und Reparieren Ihrer Formen, um sie wieder in Höchstform zu bringen. Wir konzentrieren uns darauf, Verschleiß, Abnutzung und alle zugrunde liegenden Probleme zu beheben, die die zukünftige Produktion beeinträchtigen könnten.",
+            "Eine vollständige Überholung umfasst das Zerlegen, Prüfen und Reparieren Ihrer Werkzeuge, um sie wieder auf Höchstleistung zu bringen. Wir konzentrieren uns darauf, Abnutzung, Schäden und alle zugrunde liegenden Probleme zu beheben, die die zukünftige Produktion beeinträchtigen könnten.",
           nestedList: [
             {
               title: "Unser Prozess",
               list: [
-                "Vollständige Formenzerlegung",
-                "Detaillierte Inspektion auf Schäden oder Verschleiß",
-                "Reparaturen und Upgrades nach Bedarf",
+                "Vollständige Demontage des Werkzeugs",
+                "Detaillierte Inspektion auf Schäden oder Abnutzung",
+                "Reparaturen und Verbesserungen nach Bedarf",
               ],
             },
           ],
-          cta: "Möchten Sie Ihre Formen überholen lassen? Melden Sie sich für weitere Details.",
+          cta: "Möchten Sie Ihre Werkzeuge überholen? Wenden Sie sich für weitere Informationen an uns.",
         },
         {
-          title: "Formenreparatur",
-          description: "Stellen Sie Ihre Formen wieder her",
+          title: "Werkzeugreparatur",
+          description: "Werkzeuge wider wie Neu!",
           paragraph:
-            "Unsere Formenreparaturdienste behandeln alles von Oberflächenschäden bis hin zu mechanischen Problemen. Ob Sie kleinere Reparaturen oder einen kompletten Wiederaufbau benötigen, unser Team verfügt über das Fachwissen, um Ihre Formen in einen neuwertigen Zustand zu versetzen.",
+            "Unser Werkzeug Reparaturdienste behandelt alles, von Oberflächenschäden bis zu mechanischen Problemen. Egal, ob Sie kleinere Reparaturen oder einen kompletten Neubau benötigen, unser Team hat die Expertise, um Ihre Werkzeuge in neuwertigen Zustand zu versetzen.",
           nestedList: [
             {
               title: "Dienstleistungen umfassen:",
               list: [
-                "Oberflächenpolieren zur Kratzerreparatur",
-                "Laserschweißen für strukturelle Integrität",
-                "Detaillierte Inspektion und Prüfung",
+                "Auftrag von Material durch das Laserschweißen",
+                "Nacharbeit durch alle Fertigungsverfahren",
               ],
             },
           ],
-          cta: "Kontaktieren Sie uns für schnelle und zuverlässige Formenreparaturdienste.",
+          cta: "Kontaktieren Sie uns für schnelle und zuverlässige Werkzeugreparaturen.",
         },
       ],
     },

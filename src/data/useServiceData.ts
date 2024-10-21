@@ -80,19 +80,12 @@ const useServicesData = (): Services[] => {
           title: t("formtechnik.subServices.2.title"),
           description: t("formtechnik.subServices.2.description"),
           images: TEMP_IMAGES,
-          path: "/abmusterung-und-kleinserienfertigung",
+          path: "/abmusterung-und-kleinserienproduktion",
           paragraph: t("formtechnik.subServices.2.paragraph"),
           nestedList: [
             {
               title: t("formtechnik.subServices.2.nestedList.0.title"),
-              list: [
-                t("formtechnik.subServices.2.nestedList.0.list.0"),
-                t("formtechnik.subServices.2.nestedList.0.list.1"),
-              ],
-            },
-            {
-              title: t("formtechnik.subServices.2.nestedList.1.title"),
-              list: [t("formtechnik.subServices.2.nestedList.1.list.0")],
+              list: [t("formtechnik.subServices.2.nestedList.0.list.0")],
             },
           ],
           cta: t("formtechnik.subServices.2.cta"),
@@ -118,13 +111,9 @@ const useServicesData = (): Services[] => {
               list: [
                 t("fertigung.subServices.0.nestedList.0.list.0"),
                 t("fertigung.subServices.0.nestedList.0.list.1"),
-              ],
-            },
-            {
-              title: t("fertigung.subServices.0.nestedList.1.title"),
-              list: [
-                t("fertigung.subServices.0.nestedList.1.list.0"),
-                t("fertigung.subServices.0.nestedList.1.list.1"),
+                t("fertigung.subServices.0.nestedList.0.list.2"),
+                t("fertigung.subServices.0.nestedList.0.list.3"),
+                t("fertigung.subServices.0.nestedList.0.list.4"),
               ],
             },
           ],
@@ -142,6 +131,7 @@ const useServicesData = (): Services[] => {
               list: [
                 t("fertigung.subServices.1.nestedList.0.list.0"),
                 t("fertigung.subServices.1.nestedList.0.list.1"),
+                t("fertigung.subServices.1.nestedList.0.list.2"),
               ],
             },
             {
@@ -166,7 +156,14 @@ const useServicesData = (): Services[] => {
               list: [
                 t("fertigung.subServices.2.nestedList.0.list.0"),
                 t("fertigung.subServices.2.nestedList.0.list.1"),
-                t("fertigung.subServices.2.nestedList.0.list.2"),
+              ],
+            },
+            {
+              title: t("fertigung.subServices.2.nestedList.1.title"),
+              list: [
+                t("fertigung.subServices.2.nestedList.1.list.0"),
+                t("fertigung.subServices.2.nestedList.1.list.1"),
+                t("fertigung.subServices.2.nestedList.1.list.2"),
               ],
             },
           ],
@@ -181,10 +178,13 @@ const useServicesData = (): Services[] => {
           nestedList: [
             {
               title: t("fertigung.subServices.3.nestedList.0.title"),
+              list: [t("fertigung.subServices.3.nestedList.0.list.0")],
+            },
+            {
+              title: t("fertigung.subServices.3.nestedList.1.title"),
               list: [
-                t("fertigung.subServices.3.nestedList.0.list.0"),
-                t("fertigung.subServices.3.nestedList.0.list.1"),
-                t("fertigung.subServices.3.nestedList.0.list.2"),
+                t("fertigung.subServices.3.nestedList.1.list.0"),
+                t("fertigung.subServices.3.nestedList.1.list.1"),
               ],
             },
           ],
@@ -194,14 +194,18 @@ const useServicesData = (): Services[] => {
           title: t("fertigung.subServices.4.title"),
           description: t("fertigung.subServices.4.description"),
           images: TEMP_IMAGES,
-          path: "/laserschwiessen",
+          path: "/laserschweissen",
           paragraph: t("fertigung.subServices.4.paragraph"),
           nestedList: [
             {
               title: t("fertigung.subServices.4.nestedList.0.title"),
+              list: [t("fertigung.subServices.4.nestedList.0.list.0")],
+            },
+            {
+              title: t("fertigung.subServices.4.nestedList.1.title"),
               list: [
-                t("fertigung.subServices.4.nestedList.0.list.0"),
-                t("fertigung.subServices.4.nestedList.0.list.1"),
+                t("fertigung.subServices.4.nestedList.1.list.0"),
+                t("fertigung.subServices.4.nestedList.1.list.1"),
               ],
             },
           ],
@@ -240,13 +244,6 @@ const useServicesData = (): Services[] => {
                 t("fertigung.subServices.6.nestedList.0.list.3"),
               ],
             },
-            {
-              title: t("fertigung.subServices.6.nestedList.1.title"),
-              list: [
-                t("fertigung.subServices.6.nestedList.1.list.0"),
-                t("fertigung.subServices.6.nestedList.1.list.1"),
-              ],
-            },
           ],
           cta: t("fertigung.subServices.6.cta"),
         },
@@ -259,10 +256,7 @@ const useServicesData = (): Services[] => {
           nestedList: [
             {
               title: t("fertigung.subServices.7.nestedList.0.title"),
-              list: [
-                t("fertigung.subServices.7.nestedList.0.list.0"),
-                t("fertigung.subServices.7.nestedList.0.list.1"),
-              ],
+              list: [t("fertigung.subServices.7.nestedList.0.list.0")],
             },
             {
               title: t("fertigung.subServices.7.nestedList.1.title"),
@@ -321,7 +315,7 @@ const useServicesData = (): Services[] => {
           title: t("reparatur.subServices.2.title"),
           description: t("reparatur.subServices.2.description"),
           images: TEMP_IMAGES,
-          path: "/formen-reparatur",
+          path: "/werkzeug-reparatur",
           paragraph: t("reparatur.subServices.2.paragraph"),
           nestedList: [
             {
@@ -329,7 +323,6 @@ const useServicesData = (): Services[] => {
               list: [
                 t("reparatur.subServices.2.nestedList.0.list.0"),
                 t("reparatur.subServices.2.nestedList.0.list.1"),
-                t("reparatur.subServices.2.nestedList.0.list.2"),
               ],
             },
           ],
