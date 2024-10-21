@@ -17,6 +17,7 @@ export type subService = {
   description: string;
   images: string[];
   path: string;
+  iconName: IconName;
   paragraph: string;
   nestedList: bulletList[];
   cta: string;
@@ -26,6 +27,20 @@ type bulletList = {
   title: string;
   list: string[];
 };
+
+export type IconName = 
+  | "gear"
+  | "design"
+  | "tools"
+  | "manufacture"
+  | "machine"
+  | "edm"
+  | "laser"
+  | "polish"
+  | "renovation"
+  | "overhaul"
+  | "repair"
+
 
 export type Jobs = {
   title: string;

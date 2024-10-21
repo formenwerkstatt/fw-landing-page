@@ -2,22 +2,7 @@ import { Services } from "@/types";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
 import Link from "next/link";
-import { RxGear } from "react-icons/rx";
-
-import { MdOutlineDesignServices } from "react-icons/md";
-import { FaTools } from "react-icons/fa";
-import { GiFactoryArm } from "react-icons/gi";
-
-import { GiSewingMachine } from "react-icons/gi";
-import { GiElectricalResistance } from "react-icons/gi";
-import { GiTargetLaser } from "react-icons/gi";
-import { HiOutlineSparkles } from "react-icons/hi2";
-
-import { GiRecycle } from "react-icons/gi";
-
-import { LiaToolsSolid } from "react-icons/lia";
-import { PiToolboxBold } from "react-icons/pi";
-import { GiAutoRepair } from "react-icons/gi";
+import ServiceIcon from "./ServiceIcon";
 
 const SingleService = ({ service }: { service: Services }) => {
   const { title, image, paragraph, tags, subServices } = service;
@@ -74,7 +59,8 @@ const SingleService = ({ service }: { service: Services }) => {
                 "w-full", // Ensure items take full width of grid cell
               )}
             >
-              <RxGear
+              <ServiceIcon
+                iconname={subService.iconName}
                 className={cn(
                   "h-12 w-12",
                   "md:h-16 md:w-16",

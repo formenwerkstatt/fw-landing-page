@@ -25,6 +25,7 @@ const useServicesData = (): Services[] => {
           description: t("formtechnik.subServices.0.description"),
           images: TEMP_IMAGES,
           path: "/beratung-und-design",
+          iconName: "design",
           paragraph: t("formtechnik.subServices.0.paragraph"),
           nestedList: [
             {
@@ -58,6 +59,7 @@ const useServicesData = (): Services[] => {
           description: t("formtechnik.subServices.1.description"),
           images: TEMP_IMAGES,
           path: "/werkzeugherstellung",
+          iconName: "gear",
           paragraph: t("formtechnik.subServices.1.paragraph"),
           nestedList: [
             {
@@ -81,6 +83,7 @@ const useServicesData = (): Services[] => {
           description: t("formtechnik.subServices.2.description"),
           images: TEMP_IMAGES,
           path: "/abmusterung-und-kleinserienproduktion",
+          iconName: "manufacture",
           paragraph: t("formtechnik.subServices.2.paragraph"),
           nestedList: [
             {
@@ -104,6 +107,7 @@ const useServicesData = (): Services[] => {
           description: t("fertigung.subServices.0.description"),
           images: TEMP_IMAGES,
           path: "/fraesen",
+          iconName: "machine",
           paragraph: t("fertigung.subServices.0.paragraph"),
           nestedList: [
             {
@@ -124,6 +128,7 @@ const useServicesData = (): Services[] => {
           description: t("fertigung.subServices.1.description"),
           images: TEMP_IMAGES,
           path: "/drehen",
+          iconName: "machine",
           paragraph: t("fertigung.subServices.1.paragraph"),
           nestedList: [
             {
@@ -149,6 +154,7 @@ const useServicesData = (): Services[] => {
           description: t("fertigung.subServices.2.description"),
           images: TEMP_IMAGES,
           path: "/senkerodieren",
+          iconName: "edm",
           paragraph: t("fertigung.subServices.2.paragraph"),
           nestedList: [
             {
@@ -174,6 +180,7 @@ const useServicesData = (): Services[] => {
           description: t("fertigung.subServices.3.description"),
           images: TEMP_IMAGES,
           path: "/drahterodieren",
+          iconName: "edm",
           paragraph: t("fertigung.subServices.3.paragraph"),
           nestedList: [
             {
@@ -195,6 +202,7 @@ const useServicesData = (): Services[] => {
           description: t("fertigung.subServices.4.description"),
           images: TEMP_IMAGES,
           path: "/laserschweissen",
+          iconName: "laser",
           paragraph: t("fertigung.subServices.4.paragraph"),
           nestedList: [
             {
@@ -216,6 +224,7 @@ const useServicesData = (): Services[] => {
           description: t("fertigung.subServices.5.description"),
           images: TEMP_IMAGES,
           path: "/lasergravieren",
+          iconName: "laser",
           paragraph: t("fertigung.subServices.5.paragraph"),
           nestedList: [
             {
@@ -233,6 +242,7 @@ const useServicesData = (): Services[] => {
           description: t("fertigung.subServices.6.description"),
           images: TEMP_IMAGES,
           path: "/hochglanzpolieren",
+          iconName: "polish",
           paragraph: t("fertigung.subServices.6.paragraph"),
           nestedList: [
             {
@@ -252,6 +262,7 @@ const useServicesData = (): Services[] => {
           description: t("fertigung.subServices.7.description"),
           images: TEMP_IMAGES,
           path: "/flachschleifen",
+          iconName: "polish",
           paragraph: t("fertigung.subServices.7.paragraph"),
           nestedList: [
             {
@@ -281,6 +292,7 @@ const useServicesData = (): Services[] => {
           description: t("reparatur.subServices.0.description"),
           images: TEMP_IMAGES,
           path: "/renovierung",
+          iconName: "renovation",
           paragraph: t("reparatur.subServices.0.paragraph"),
           nestedList: [
             {
@@ -298,6 +310,7 @@ const useServicesData = (): Services[] => {
           description: t("reparatur.subServices.1.description"),
           images: TEMP_IMAGES,
           path: "/uberholung",
+          iconName: "overhaul",
           paragraph: t("reparatur.subServices.1.paragraph"),
           nestedList: [
             {
@@ -316,6 +329,7 @@ const useServicesData = (): Services[] => {
           description: t("reparatur.subServices.2.description"),
           images: TEMP_IMAGES,
           path: "/werkzeug-reparatur",
+          iconName: "repair",
           paragraph: t("reparatur.subServices.2.paragraph"),
           nestedList: [
             {
