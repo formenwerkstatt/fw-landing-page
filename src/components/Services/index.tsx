@@ -21,13 +21,13 @@ const Services = () => {
           width={"full"}
         />
       </div>
-      <div className={cn("flex flex-col gap-4 ")}>
+      <article className={cn("flex flex-col gap-4 ")}>
         {servicesData.map((service) => (
           <div key={service.title} className="w-full">
             <SingleService service={service} />
           </div>
         ))}
-      </div>
+      </article>
 
       <div className="absolute left-0 top-0 z-[-1] scale-[-1] opacity-30 lg:opacity-100">
         <svg

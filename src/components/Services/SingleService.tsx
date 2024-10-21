@@ -38,40 +38,45 @@ const SingleService = ({ service }: { service: Services }) => {
 
       {/* Hover Overlay */}
       <div className="absolute inset-0 z-30 flex items-center justify-center bg-white bg-opacity-60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        <div
-          className={cn(
-            "w-5/6",
-            "md:w-4/5 lg:w-3/4",
-            subServices.length > 3
-              ? "grid grid-cols-2 gap-6"
-              : "flex flex-col justify-around gap-4",
-          )}
-        >
-          {subServices.map((subService) => (
-            <Link
-              key={subService.title}
-              href={`/services${subService.path}`}
-              className={cn(
-                "flex items-center gap-4",
-                "text-lg md:text-xl lg:text-2xl",
-                "rounded-xl bg-primary px-6 py-4 text-white",
-                "transition-transform duration-300 hover:scale-105",
-                "w-full", // Ensure items take full width of grid cell
-              )}
-            >
-              <ServiceIcon
-                iconname={subService.iconName}
+        <div className="w-11/12 px-4 md:w-4/5 lg:w-3/4">
+          <div
+            className={cn(
+              "grid gap-4",
+              // Mobile: 1 column for very small screens, 2 columns for larger phones
+              "grid-cols-1 sm:grid-cols-2",
+              // Tablet and up: 3 or 4 columns depending on number of items
+              "md:grid-cols-3 lg:grid-cols-4",
+              // If 3 or fewer items, use flex layout on larger screens
+              subServices.length <= 3 &&
+                "md:flex md:grid-cols-none md:justify-around",
+            )}
+          >
+            {subServices.map((subService) => (
+              <Link
+                key={subService.title}
+                href={`/services${subService.path}`}
                 className={cn(
-                  "h-12 w-12",
-                  "md:h-16 md:w-16",
-                  "lg:h-20 lg:w-20",
+                  // Base styles
+                  "flex md:flex-col items-center gap-2 md:gap-4",
+                  "rounded-xl bg-primary px-4 py-3 md:px-6 md:py-4",
+                  "text-white",
+                  "transition-transform duration-300 hover:scale-105",
+                  // Text sizing
+                  "text-base sm:text-lg md:text-xl lg:text-2xl",
+                  // Full width within grid/flex container
+                  "w-full",
                 )}
-              />
-              <span className="flex flex-grow items-center">
-                {subService.title}
-              </span>
-            </Link>
-          ))}
+              >
+                <ServiceIcon
+                  iconname={subService.iconName}
+                  className="size-8 sm:size-10 md:size-16 lg:size-24"
+                />
+                <span className="flex flex-grow items-center text-center">
+                  {subService.title}
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </div>
