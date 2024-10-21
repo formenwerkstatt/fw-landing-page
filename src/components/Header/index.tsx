@@ -68,21 +68,19 @@ const Header = () => {
 
   return (
     <header
-      className={`header left-0 top-0 z-40 flex w-full items-center ${
+      className={`left-0 top-0 z-40 flex w-full items-center ${
         sticky
           ? "fixed z-[9999] bg-white !bg-opacity-80 shadow-sticky backdrop-blur-sm transition dark:bg-gray-dark dark:shadow-sticky-dark"
           : "absolute bg-transparent"
       }`}
     >
       <div className="container">
-        <div className="relative -mx-4 flex items-center justify-between">
+        <div className="relative flex items-center justify-between">
           <div className="w-60 max-w-full px-4 xl:mr-12">
             <Link
               onClick={() => setNavbarOpen(false)}
               href="/"
-              className={`header-logo block w-full ${
-                sticky ? "py-5 lg:py-2" : "py-8"
-              }`}
+              className={`block w-full py-4`}
             >
               <Image src="/logo.svg" alt="logo" width={150} height={100} />
             </Link>

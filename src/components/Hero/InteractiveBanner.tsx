@@ -1,23 +1,43 @@
 "use client";
 import { Suspense, useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, ThreeEvent, MeshProps } from "@react-three/fiber";
+import { Mesh } from "three";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import { cn } from "@/utils/cn";
+import { useI18n } from "@/locales/client";
 import Loading from "../Common/Loading";
 
-export default function InteractiveBanner() {
-  const [isOverlayVisible, setIsOverlayVisible] = useState(true);
+const SCENES = [
+  { no: 0, title: "scene 0" },
+  { no: 1, title: "scene 1" },
+  { no: 2, title: "scene 2" },
+];
 
+export default function InteractiveBanner() {
+  const [isOverlayVisible, setIsOverlayVisible] = useState<boolean>(true);
+  const [sceneNo, setSceneNo] = useState<number>(0);
+
+  const currentScene = SCENES[sceneNo];
+
+  const t = useI18n();
   return (
     <>
-      {/* THREE FIBER WRAPPER*/}
-
       <div
         className={cn(
-          "relative h-[80dvh] w-full",
+          "relative h-[80dvh] w-full ",
           "bg-gradient-to-b from-slate-300 via-transparent to-slate-400",
         )}
       >
+        <h1
+          className={cn(
+            `${isOverlayVisible ? "text-white" : "text-primary"}`,
+            "text-2xl font-medium  sm:text-3xl",
+            // "absolute top-0 z-20",
+          )}
+        >
+          Formenwerkstatt <span className="font-medium">{t("slogan")}</span>
+        </h1>
+        <pre>{currentScene.title}</pre>
         {isOverlayVisible && (
           <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/70">
             <button
@@ -29,7 +49,40 @@ export default function InteractiveBanner() {
           </div>
         )}
         <ThreeFiber />
-        <Controls handleOverlayClick={setIsOverlayVisible} />
+
+        {/* CONTROLS */}
+        <ControlButton
+          className="absolute right-4 top-4 size-10 rounded-full text-xl"
+          text="X"
+          handleClick={() => setIsOverlayVisible(true)}
+        />
+        <ControlButton
+          className="absolute bottom-4 right-4 size-10 rounded-full text-xl"
+          text="?"
+          handleClick={() => setIsOverlayVisible(true)}
+        />
+
+        <div
+          className={cn(
+            "absolute bottom-4 left-[50%] translate-x-[-50%]",
+            "flex gap-4",
+          )}
+        >
+          {sceneNo > 0 && (
+            <ControlButton
+              className={cn("size-10 rounded-lg text-xl")}
+              text="◄"
+              handleClick={() =>
+                setSceneNo((sceneNo - 1 + SCENES.length) % SCENES.length)
+              }
+            />
+          )}
+          <ControlButton
+            className={cn("size-10 rounded-lg text-xl")}
+            text="►"
+            handleClick={() => setSceneNo((sceneNo + 1) % SCENES.length)}
+          />
+        </div>
       </div>
     </>
   );
@@ -47,22 +100,21 @@ function ThreeFiber() {
         intensity={Math.PI}
       />
       <pointLight position={[-10, 10, -10]} decay={0} intensity={Math.PI} />
-      <Dog />
-      <Box position={[5, 0, 0]} />
+      <Box position={[0, 0, 0]} />
       <OrbitControls />
     </Canvas>
   );
 }
 
-function Box(props: any) {
-  const ref = useRef<any>(null);
+function Box(props: MeshProps) {
+  const ref = useRef<Mesh>(null);
   const [hovered, hover] = useState(false);
   const [clicked, click] = useState(false);
 
   useFrame((state, delta) => {
     if (ref.current) {
-      ref.current.rotation.x += delta;
-      ref.current.rotation.y += delta / 4;
+      ref.current.rotation.x += delta / 20; //Rotation around X Axis - Vertical Rotation
+      ref.current.rotation.y += delta; //Rotation around Y Axis - Horizontal Rotation
     }
   });
 
@@ -75,7 +127,7 @@ function Box(props: any) {
       onPointerOver={(event) => (event.stopPropagation(), hover(true))}
       onPointerOut={(event) => hover(false)}
     >
-      <boxGeometry args={[1, 1, 1]} />
+      <boxGeometry args={[2, 2, 2]} />
       <meshStandardMaterial color={hovered ? "orange" : "steelblue"} />
     </mesh>
   );
@@ -87,36 +139,26 @@ function Dog() {
   return <primitive object={scene} scale={[1, 1, 1]} position={[0, 0, 0]} />;
 }
 
-function Controls({
-  handleOverlayClick,
+function ControlButton({
+  className,
+  text,
+  handleClick,
 }: {
-  handleOverlayClick: (value: boolean) => void;
+  className: string;
+  text: string;
+  handleClick: () => void;
 }) {
   return (
-    <>
-      <button
-        className={cn(
-          "size-12 rounded-full bg-primary text-2xl text-white opacity-50",
-          "dark:bg-white dark:text-black",
-          "transition-opacity duration-300 hover:opacity-100",
-          "absolute bottom-4 right-4",
-        )}
-        onClick={() => {}}
-      >
-        ?
-      </button>
-
-      <button
-        className={cn(
-          "size-10 rounded-full bg-primary text-xl text-white opacity-30",
-          "dark:bg-white dark:text-black",
-          "transition-opacity duration-300 hover:opacity-100",
-          "absolute right-4 top-4",
-        )}
-        onClick={() => handleOverlayClick(true)}
-      >
-        X
-      </button>
-    </>
+    <button
+      className={cn(
+        " bg-primary  text-white opacity-30",
+        "dark:bg-white dark:text-black",
+        "transition-opacity duration-300 hover:opacity-100",
+        `${className}`,
+      )}
+      onClick={handleClick}
+    >
+      {text}
+    </button>
   );
 }
