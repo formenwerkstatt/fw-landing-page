@@ -17,7 +17,7 @@ export default function JobCard({
         {/* Image */}
         <div className="relative block aspect-[5/4] w-full">
           <Image
-            src={"/images/testimonials/auth-01.png"}
+            src={""}
             alt="image"
             fill
             className="object-cover"

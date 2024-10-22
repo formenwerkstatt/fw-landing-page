@@ -22,7 +22,7 @@ export default function Gallery({
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
   return (
-    <section className=" relative pb-16 md:pb-20 lg:pb-28">
+    <section className=" relative pb-12">
       <div className="container">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
@@ -30,7 +30,7 @@ export default function Gallery({
               className="mx-auto max-w-[full] overflow-hidden rounded-md"
               data-wow-delay=".15s"
             >
-              <div className="h-[60dvh] w-full">
+              <div className=" w-full">
                 <Swiper
                   style={
                     {

@@ -4,12 +4,16 @@ import Breadcrumb from "@/components/Common/Breadcrumb";
 import SectionTitle from "@/components/Common/SectionTitle";
 import Video from "@/components/Video";
 import ImageAccordion from "@/components/Common/ImageAccordion";
+import Gallery from "@/components/Common/Gallery";
 
 export const metadata: Metadata = {
   title: `Über Uns | Formen Werkstatt`,
-  description: "This is About Page for Startup Nextjs Template",
+  description: "",
   // other metadata
 };
+
+const TITLE = "Über Uns";
+const IMAGES = ["", "", ""];
 
 export default async function AboutPage() {
   const t = await getScopedI18n("about");
@@ -18,7 +22,8 @@ export default async function AboutPage() {
     <>
       <Breadcrumb pageName={t("title")} description={t("paragraph")} />
 
-      <Video />
+      {/* <Video /> */}
+      <Gallery serviceTitle={TITLE} images={IMAGES} />
 
       <section
         id="uber-uns"
@@ -33,7 +38,6 @@ export default async function AboutPage() {
           />
           <ImageAccordion />
         </div>
-
       </section>
     </>
   );

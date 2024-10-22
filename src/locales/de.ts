@@ -268,7 +268,7 @@ export default {
     },
 
     reparatur: {
-      title: "Lohnfertigung & Reparatur und Geometrieänderung",
+      title: "Reparatur und Geometrieänderung",
       paragraph: "Unsere Reparatur- und Wartungsdienste",
       subServices: [
         {
@@ -348,8 +348,8 @@ export default {
   },
 
   jobs: {
-    title: "",
-    paragraph: "",
+    title: "Jobs",
+    paragraph: "bei Formenwerkstatt",
     ads: [
       { title: "", image: "", description: "", paragraph: "" },
       { title: "", image: "", description: "", paragraph: "" },

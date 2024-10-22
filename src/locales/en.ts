@@ -268,7 +268,7 @@ export default {
     },
 
     reparatur: {
-      title: "Contract Manufacturing & Repair and Geometry Modification",
+      title: "Repair and Geometry Modification",
       paragraph: "Our repair and maintenance services",
       subServices: [
         {
@@ -348,8 +348,8 @@ export default {
   },
 
   jobs: {
-    title: "",
-    paragraph: "",
+    title: "Jobs",
+    paragraph: "The next step of your career starts here",
     ads: [
       { title: "", image: "", description: "", paragraph: "" },
       { title: "", image: "", description: "", paragraph: "" },

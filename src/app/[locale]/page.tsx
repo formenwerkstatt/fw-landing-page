@@ -5,7 +5,7 @@ import Hero from "@/components/Hero";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Formen Werkstatt",
+  title: "Formenwerkstatt GmbH | Startseite",
   description: "Wir bringen Ihre Ideen in Form",
   // other metadata
 };

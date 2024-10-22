@@ -23,7 +23,8 @@ const Footer = () => {
                 <Image src="/logo.svg" alt="logo" width={200} height={100} />
               </Link>
               <p className="text-base leading-relaxed text-body-color dark:text-body-color-dark">
-                Sudetenstraße 105 <br /> 64385 Reichelsheim
+                Formenwerkstatt <br /> Sudetenstraße 105 <br /> 64385
+                Reichelsheim
               </p>
             </div>
           </div>
@@ -42,7 +43,7 @@ const Footer = () => {
                     </h4>
                     <ul className="flex flex-col gap-3">
                       {service.subServices.map((subService) => (
-                        <li key={subService.title} className="mx-2">
+                        <li key={subService.title} >
                           <Link
                             href={`/services${subService.path}`}
                             className="text-base text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
