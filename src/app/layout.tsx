@@ -15,7 +15,9 @@ export default function RootLayout({ children }: { children: ReactElement }) {
   return (
     <html lang={locale} suppressHydrationWarning={false}>
       <head />
-      <body className={`bg-[#FCFCFC] dark:bg-black ${titillium.className}`}>
+      <body
+        className={`bg-[#FCFCFC] dark:bg-black ${titillium.className}`}
+      >
         <Providers>{children}</Providers>
       </body>
     </html>

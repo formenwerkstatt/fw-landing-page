@@ -5,15 +5,13 @@ import SectionTitle from "@/components/Common/SectionTitle";
 import Video from "@/components/Video";
 import ImageAccordion from "@/components/Common/ImageAccordion";
 import Gallery from "@/components/Common/Gallery";
+import { galleryImages } from "@/data/galleryImages";
 
 export const metadata: Metadata = {
   title: `Über Uns | Formen Werkstatt`,
   description: "",
   // other metadata
 };
-
-const TITLE = "Über Uns";
-const IMAGES = ["", "", ""];
 
 export default async function AboutPage() {
   const t = await getScopedI18n("about");
@@ -23,7 +21,6 @@ export default async function AboutPage() {
       <Breadcrumb pageName={t("title")} description={t("paragraph")} />
 
       {/* <Video /> */}
-      <Gallery serviceTitle={TITLE} images={IMAGES} />
 
       <section
         id="uber-uns"

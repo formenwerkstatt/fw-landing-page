@@ -28,7 +28,7 @@ type bulletList = {
   list: string[];
 };
 
-export type IconName = 
+export type IconName =
   | "gear"
   | "design"
   | "tools"
@@ -39,21 +39,22 @@ export type IconName =
   | "polish"
   | "renovation"
   | "overhaul"
-  | "repair"
-
+  | "repair";
 
 export type Jobs = {
   title: string;
   paragraph: string;
+  sectionTitle: string;
+  sectionParagraph: string;
+  sectionList: string[];
   ads: Ad[];
 };
 
 type Ad = {
   title: string;
-  slug: string;
-  image: string;
-  description: string;
   paragraph: string;
+  content: bulletList[];
+  cta: string;
 };
 
 export type Brand = {

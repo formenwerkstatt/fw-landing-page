@@ -4,6 +4,7 @@ import Gallery from "@/components/Common/Gallery";
 import RelatedPost from "@/components/Services/RelatedPost";
 import SharePost from "@/components/Services/SharePost";
 import SubserviceContent from "@/components/Services/SubserviceContent";
+import { galleryImages } from "@/data/galleryImages";
 import useServicesData from "@/data/useServiceData";
 import { subService } from "@/types";
 import { useParams, useRouter } from "next/navigation";
@@ -35,13 +36,13 @@ export default function ServicePage() {
     return null;
   }
 
-  const { title, description, images } = subservice;
+  const { title, description } = subservice;
 
   return (
     <>
       <Breadcrumb pageName={title} description={description} />
 
-      <Gallery serviceTitle={title} images={images} />
+      <Gallery serviceTitle={title} images={galleryImages} />
 
       <section className="overflow-hidden pb-[120px] ">
         <div className="container">
@@ -52,14 +53,18 @@ export default function ServicePage() {
             <div className="w-full px-4 lg:w-4/12">
               <div className="mb-10 rounded-lg bg-white shadow-three dark:bg-gray-dark dark:shadow-none">
                 <h3 className="border-b border-body-color border-opacity-10 px-8 py-4 text-lg font-semibold text-black dark:border-white dark:border-opacity-10 dark:text-white">
-                  Related Posts
+                  Services
                 </h3>
                 <ul className="p-4">
                   {relatedPosts.map((service, index) => (
                     <li key={service.title + index}>
                       <RelatedPost
                         title={service.title}
-                        image="/images/blog/post-01.jpg"
+                        image={
+                          galleryImages[
+                            Math.floor(Math.random() * galleryImages.length)
+                          ]
+                        }
                         path={`/services/${service.path}`}
                         description={service.description}
                       />

@@ -1,6 +1,6 @@
 import { subService } from "@/types";
 import AboutSectionTwo from "../About/AboutSectionTwo";
-import AboutSectionOne from "../About/AboutSectionOne";
+import AboutSectionOne from "../Common/ImageSection";
 import Link from "next/link";
 
 export default function SubserviceContent({

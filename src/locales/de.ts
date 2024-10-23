@@ -1,5 +1,7 @@
 export default {
   slogan: "Wir bringen Ihre Ideen in Form",
+  cta: "Zum Demo",
+  help: "Verwenden Sie Gesten oder die Maus, um sich umzusehen, zu blättern und zu zoomen.",
 
   menu: {
     home: "Startseite",
@@ -175,7 +177,7 @@ export default {
               title: "Maschine:",
               list: [
                 "Drahterodiermaschine Mitsubishi MV2400R: Verfahrwege 600/400/310mm",
-              ]
+              ],
             },
             {
               title: "Hauptmerkmale:",
@@ -350,9 +352,55 @@ export default {
   jobs: {
     title: "Jobs",
     paragraph: "bei Formenwerkstatt",
+    sectionTitle: "Treten Sie unserem Expertenteam",
+    sectionParagraph:
+      "In unserer Werkstatt im Odenwald bieten wir den kompletten Produktionsprozess für Formen an - von Rohstahl bis hin zu perfekt gefertigten Bauteilen. Als vertrauenswürdiger B2B-Partner legen wir Wert auf Präzision, Effizienz und termingerechte Lieferung. Wenn Sie ein erfahrener Ingenieur sind, der sich für CNC-Bearbeitung, Fräsen, Drehen und Formenreparatur begeistert, könnte unser Team perfekt zu Ihnen passen. Entdecken Sie die untenstehenden Stellenangebote und werden Sie Teil eines Unternehmens, das Fachwissen und Zuverlässigkeit schätzt.",
+    sectionList: [
+      "Ein dynamisches Arbeitsumfeld, das Innovation und Exzellenz in der Formenherstellung fördert.",
+      "Praktische Erfahrung mit modernster CNC- und Lasertechnologie.",
+      "Ein teamorientiertes Umfeld, das Wachstum und Weiterentwicklung unterstützt.",
+    ],
     ads: [
-      { title: "", image: "", description: "", paragraph: "" },
-      { title: "", image: "", description: "", paragraph: "" },
+      {
+        title: "Initiative Bewerbung",
+        paragraph:
+          "Zur Verstärkung unseres Teams suchen wir eine/n erfahrene/n Mitarbeiterin/Mitarbeiter für unseren Werkzeug- und Formenbau in Vollzeit.",
+        content: [
+          {
+            title:
+              "Das könnten bald Ihre anspruchsvollen und spannenden Aufgabengebiete sein:",
+            bullets: [
+              "Umbau und Instandhaltung unserer hochwertigen Spritzgießwerkzeuge",
+              "Unterstützung der Abteilung Spritzguss hinsichtlich kleinerer Reparaturen an Spritzgießwerkzeugen während der Produktion",
+              "Alle anfallenden Arbeiten an der verlängerten Werkbank (schleifen, polieren, einpassen etc.)",
+              "Wartung und Reparatur von einfachen Montageautomaten",
+              "einfache Zuarbeiten",
+            ],
+          },
+          {
+            title: "Das können Sie von uns erwarten:",
+            bullets: [
+              "ein unbefristetes Arbeitsverhältnis",
+              "selbstständiges Arbeiten, anspruchsvolle Aufgaben",
+              "Verantwortung in einem erfolgreichen Unternehmen",
+              "ein konstruktives, produktives und sehr innovatives Arbeitsumfeld",
+              "flache Hierarchien, kurze Entscheidungs- und Kommunikationswege",
+              "ein angenehmes familiäres Arbeitsklima und ein faires Miteinander in einem engagierten Team - kreative Wohlfühlatmosphäre",
+              "leistungsgerechte Entlohnung",
+              "geregelte Arbeitszeiten im 1-Schichtbetrieb",
+            ],
+          },
+          {
+            title: "What you should bring:",
+            bullets: [
+              "Berufserfahrung in den genannten Bereichen des Werkzeug- und Formenbaus",
+              "handwerkliches Geschick, schnelle Auffassungsgabe, gutes technisches und mechanisches Verständnis",
+              "Teamfähigkeit, Zuverlässigkeit, Pünktlichkeit und Zeitmanagement, Sorgfalt",
+            ],
+          },
+        ],
+        cta: "Haben wir dein Interesse geweckt? Wir freuen uns auf deine Bewerbung.Wenn Sie daran interessiert sind, in unserem Team eine verantwortungsvolle Aufgabe zu übernehmen, freuen wir uns auch über Ihre aussagekräftige Initiativbewerbung.",
+      },
     ],
   },
 } as const;

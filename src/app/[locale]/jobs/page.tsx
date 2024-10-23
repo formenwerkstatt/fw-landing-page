@@ -1,11 +1,12 @@
 "use client";
 import Breadcrumb from "@/components/Common/Breadcrumb";
-import SectionTitle from "@/components/Common/SectionTitle";
-import JobCard from "@/components/Common/JobCard";
 import useJobsData from "@/data/useJobsData";
+import ImageSection from "@/components/Common/ImageSection";
 
 export default function Jobs() {
   const jobs = useJobsData();
+
+  const ad = jobs.ads[0];
 
   return (
     <>
@@ -16,22 +17,45 @@ export default function Jobs() {
         className="relative bg-gray-light py-16 dark:bg-bg-color-dark md:py-20 lg:py-28"
       >
         <div className="container">
-          <SectionTitle
-            title="title"
-            paragraph="description"
-            width="full"
-            center
+          <ImageSection
+            title={jobs.sectionTitle}
+            paragraph={jobs.sectionParagraph}
+            list={jobs.sectionList}
+            src="/images/enhance.webp"
           />
+          <article className="mt-8 ">
+            <h3 className="text-balanced mb-8 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl md:text-4xl">
+              {ad.paragraph}
+            </h3>
+            <ul className="mx-auto w-5/6 list-none">
+              {ad.content.map((item, index) => (
+                <li
+                  key={index}
+                  className="mb-8 text-lg text-body-color md:text-lg"
+                >
+                  {item.title}
 
-          <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 md:gap-x-6 xl:grid-cols-3">
-            {jobs.ads.map((ad) => (
-              <JobCard key={ad.slug} slug={ad.slug} />
-            ))}
-          </div>
+                  <ul className="list-disc pl-6">
+                    {item.list.map((bullet) => (
+                      <li
+                        key={bullet}
+                        className="py-1 text-base !leading-relaxed text-body-color md:text-lg"
+                      >
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+            <p className="mb-8  text-lg  text-body-color md:text-lg">
+              {ad.cta}
+            </p>
+            <p className="mb-8  text-center text-xl font-bold text-body-color md:text-lg">
+              info@formenwerkstatt.de
+            </p>
+          </article>
         </div>
-
-        {/* <AboutSectionOne />
-        <AboutSectionTwo /> */}
       </section>
     </>
   );

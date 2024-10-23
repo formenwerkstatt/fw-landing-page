@@ -1,14 +1,6 @@
 import { useScopedI18n } from "@/locales/client";
 import { Services } from "@/types";
-
-const TEMP_IMAGES = [
-  "/images/blog/blog-details-01.jpg",
-  "/images/blog/blog-details-02.jpg",
-  "/images/blog/blog-details-01.jpg",
-  "/images/blog/blog-details-02.jpg",
-  "/images/blog/blog-details-01.jpg",
-  "/images/blog/blog-details-02.jpg",
-];
+import { galleryImages } from "./galleryImages";
 
 const useServicesData = (): Services[] => {
   const t = useScopedI18n("services");
@@ -23,7 +15,7 @@ const useServicesData = (): Services[] => {
         {
           title: t("formtechnik.subServices.0.title"),
           description: t("formtechnik.subServices.0.description"),
-          images: TEMP_IMAGES,
+          images: galleryImages,
           path: "/beratung-und-design",
           iconName: "design",
           paragraph: t("formtechnik.subServices.0.paragraph"),
@@ -57,7 +49,7 @@ const useServicesData = (): Services[] => {
         {
           title: t("formtechnik.subServices.1.title"),
           description: t("formtechnik.subServices.1.description"),
-          images: TEMP_IMAGES,
+          images: galleryImages,
           path: "/werkzeugherstellung",
           iconName: "gear",
           paragraph: t("formtechnik.subServices.1.paragraph"),
@@ -81,7 +73,7 @@ const useServicesData = (): Services[] => {
         {
           title: t("formtechnik.subServices.2.title"),
           description: t("formtechnik.subServices.2.description"),
-          images: TEMP_IMAGES,
+          images: galleryImages,
           path: "/abmusterung-und-kleinserienproduktion",
           iconName: "manufacture",
           paragraph: t("formtechnik.subServices.2.paragraph"),
@@ -100,12 +92,12 @@ const useServicesData = (): Services[] => {
       title: t("fertigung.title"),
       paragraph: t("fertigung.paragraph"),
       image: "/images/in-house.webp",
-      tags: TEMP_IMAGES,
+      tags: galleryImages,
       subServices: [
         {
           title: t("fertigung.subServices.0.title"),
           description: t("fertigung.subServices.0.description"),
-          images: TEMP_IMAGES,
+          images: galleryImages,
           path: "/fraesen",
           iconName: "machine",
           paragraph: t("fertigung.subServices.0.paragraph"),
@@ -126,7 +118,7 @@ const useServicesData = (): Services[] => {
         {
           title: t("fertigung.subServices.1.title"),
           description: t("fertigung.subServices.1.description"),
-          images: TEMP_IMAGES,
+          images: galleryImages,
           path: "/drehen",
           iconName: "machine",
           paragraph: t("fertigung.subServices.1.paragraph"),
@@ -152,7 +144,7 @@ const useServicesData = (): Services[] => {
         {
           title: t("fertigung.subServices.2.title"),
           description: t("fertigung.subServices.2.description"),
-          images: TEMP_IMAGES,
+          images: galleryImages,
           path: "/senkerodieren",
           iconName: "edm",
           paragraph: t("fertigung.subServices.2.paragraph"),
@@ -178,7 +170,7 @@ const useServicesData = (): Services[] => {
         {
           title: t("fertigung.subServices.3.title"),
           description: t("fertigung.subServices.3.description"),
-          images: TEMP_IMAGES,
+          images: galleryImages,
           path: "/drahterodieren",
           iconName: "edm",
           paragraph: t("fertigung.subServices.3.paragraph"),
@@ -200,7 +192,7 @@ const useServicesData = (): Services[] => {
         {
           title: t("fertigung.subServices.4.title"),
           description: t("fertigung.subServices.4.description"),
-          images: TEMP_IMAGES,
+          images: galleryImages,
           path: "/laserschweissen",
           iconName: "laser",
           paragraph: t("fertigung.subServices.4.paragraph"),
@@ -222,7 +214,7 @@ const useServicesData = (): Services[] => {
         {
           title: t("fertigung.subServices.5.title"),
           description: t("fertigung.subServices.5.description"),
-          images: TEMP_IMAGES,
+          images: galleryImages,
           path: "/lasergravieren",
           iconName: "laser",
           paragraph: t("fertigung.subServices.5.paragraph"),
@@ -240,7 +232,7 @@ const useServicesData = (): Services[] => {
         {
           title: t("fertigung.subServices.6.title"),
           description: t("fertigung.subServices.6.description"),
-          images: TEMP_IMAGES,
+          images: galleryImages,
           path: "/hochglanzpolieren",
           iconName: "polish",
           paragraph: t("fertigung.subServices.6.paragraph"),
@@ -260,7 +252,7 @@ const useServicesData = (): Services[] => {
         {
           title: t("fertigung.subServices.7.title"),
           description: t("fertigung.subServices.7.description"),
-          images: TEMP_IMAGES,
+          images: galleryImages,
           path: "/flachschleifen",
           iconName: "polish",
           paragraph: t("fertigung.subServices.7.paragraph"),
@@ -290,7 +282,7 @@ const useServicesData = (): Services[] => {
         {
           title: t("reparatur.subServices.0.title"),
           description: t("reparatur.subServices.0.description"),
-          images: TEMP_IMAGES,
+          images: galleryImages,
           path: "/renovierung",
           iconName: "renovation",
           paragraph: t("reparatur.subServices.0.paragraph"),
@@ -308,7 +300,7 @@ const useServicesData = (): Services[] => {
         {
           title: t("reparatur.subServices.1.title"),
           description: t("reparatur.subServices.1.description"),
-          images: TEMP_IMAGES,
+          images: galleryImages,
           path: "/uberholung",
           iconName: "overhaul",
           paragraph: t("reparatur.subServices.1.paragraph"),
@@ -327,7 +319,7 @@ const useServicesData = (): Services[] => {
         {
           title: t("reparatur.subServices.2.title"),
           description: t("reparatur.subServices.2.description"),
-          images: TEMP_IMAGES,
+          images: galleryImages,
           path: "/werkzeug-reparatur",
           iconName: "repair",
           paragraph: t("reparatur.subServices.2.paragraph"),

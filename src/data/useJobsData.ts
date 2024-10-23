@@ -7,20 +7,47 @@ const useJobsData = (): Jobs => {
   return {
     title: t("title"),
     paragraph: t("paragraph"),
+    sectionTitle: t("sectionTitle"),
+    sectionParagraph: t("sectionParagraph"),
+    sectionList: [t("sectionList.0"), t("sectionList.1"), t("sectionList.2")],
     ads: [
       {
         title: t("ads.0.title"),
-        slug: "jobs",
-        image: t("ads.0.image"),
-        description: t("ads.0.description"),
         paragraph: t("ads.0.paragraph"),
-      },
-      {
-        title: t("ads.1.title"),
-        slug: "jobs",
-        image: t("ads.1.image"),
-        description: t("ads.1.description"),
-        paragraph: t("ads.1.paragraph"),
+        cta: t("ads.0.cta"),
+        content: [
+          {
+            title: t("ads.0.content.0.title"),
+            list: [
+              t("ads.0.content.0.bullets.0"),
+              t("ads.0.content.0.bullets.1"),
+              t("ads.0.content.0.bullets.2"),
+              t("ads.0.content.0.bullets.3"),
+              t("ads.0.content.0.bullets.4"),
+            ],
+          },
+          {
+            title: t("ads.0.content.1.title"),
+            list: [
+              t("ads.0.content.1.bullets.0"),
+              t("ads.0.content.1.bullets.1"),
+              t("ads.0.content.1.bullets.2"),
+              t("ads.0.content.1.bullets.3"),
+              t("ads.0.content.1.bullets.4"),
+              t("ads.0.content.1.bullets.5"),
+              t("ads.0.content.1.bullets.6"),
+              t("ads.0.content.1.bullets.7"),
+            ],
+          },
+          {
+            title: t("ads.0.content.2.title"),
+            list: [
+              t("ads.0.content.2.bullets.0"),
+              t("ads.0.content.2.bullets.1"),
+              t("ads.0.content.2.bullets.2"),
+            ],
+          },
+        ],
       },
     ],
   };

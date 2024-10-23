@@ -1,11 +1,11 @@
 "use client";
-import { Suspense, useRef, useState } from "react";
-import { Canvas, useFrame, ThreeEvent, MeshProps } from "@react-three/fiber";
+import { useRef, useState } from "react";
+import { Canvas, useFrame, MeshProps, useLoader } from "@react-three/fiber";
 import { Mesh } from "three";
 import { OrbitControls, useGLTF } from "@react-three/drei";
+import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
 import { cn } from "@/utils/cn";
 import { useI18n } from "@/locales/client";
-import Loading from "../Common/Loading";
 
 const SCENES = [
   { no: 0, title: "scene 0" },
@@ -15,6 +15,7 @@ const SCENES = [
 
 export default function InteractiveBanner() {
   const [isOverlayVisible, setIsOverlayVisible] = useState<boolean>(true);
+  const [isHelpVisible, setIsHelpVisible] = useState<boolean>(false);
   const [sceneNo, setSceneNo] = useState<number>(0);
 
   const currentScene = SCENES[sceneNo];
@@ -28,28 +29,41 @@ export default function InteractiveBanner() {
           "bg-gradient-to-b from-slate-300 via-transparent to-slate-400",
         )}
       >
-        <h1
-          className={cn(
-            `${isOverlayVisible ? "text-white" : "text-primary"}`,
-            "text-2xl font-medium  sm:text-3xl",
-            // "absolute top-0 z-20",
-          )}
-        >
-          Formenwerkstatt <span className="font-medium">{t("slogan")}</span>
-        </h1>
-        <pre>{currentScene.title}</pre>
-        {isOverlayVisible && (
-          <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/70">
+        {isOverlayVisible ? (
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-12 bg-black/70">
+            <h1
+              className={cn(
+                `${isOverlayVisible ? "text-white" : "text-primary"}`,
+                "text-2xl font-medium  sm:text-3xl",
+              )}
+            >
+              Formenwerkstatt
+            </h1>
+            <p className="text-2xl font-medium text-white sm:text-3xl">
+              {t("slogan")}
+            </p>
             <button
               onClick={() => setIsOverlayVisible(false)}
               className="rounded-lg bg-white px-6 py-3 text-lg font-semibold text-black transition-transform hover:scale-105"
             >
-              Click to Explore 3D Scene
+              {t("cta")}
             </button>
           </div>
+        ) : (
+          <ThreeFiber />
         )}
-        <ThreeFiber />
 
+        {isHelpVisible && (
+          <div
+            className={cn(
+              "w-[200px] text-balance bg-white text-center text-black",
+              "rounded-lg p-4",
+              "absolute bottom-[10%] right-4  shadow-lg",
+            )}
+          >
+            <p>{t("help")}</p>
+          </div>
+        )}
         {/* CONTROLS */}
         <ControlButton
           className="absolute right-4 top-4 size-10 rounded-full text-xl"
@@ -59,30 +73,8 @@ export default function InteractiveBanner() {
         <ControlButton
           className="absolute bottom-4 right-4 size-10 rounded-full text-xl"
           text="?"
-          handleClick={() => setIsOverlayVisible(true)}
+          handleClick={() => setIsHelpVisible(!isHelpVisible)}
         />
-
-        <div
-          className={cn(
-            "absolute bottom-4 left-[50%] translate-x-[-50%]",
-            "flex gap-4",
-          )}
-        >
-          {sceneNo > 0 && (
-            <ControlButton
-              className={cn("size-10 rounded-lg text-xl")}
-              text="◄"
-              handleClick={() =>
-                setSceneNo((sceneNo - 1 + SCENES.length) % SCENES.length)
-              }
-            />
-          )}
-          <ControlButton
-            className={cn("size-10 rounded-lg text-xl")}
-            text="►"
-            handleClick={() => setSceneNo((sceneNo + 1) % SCENES.length)}
-          />
-        </div>
       </div>
     </>
   );
@@ -100,7 +92,10 @@ function ThreeFiber() {
         intensity={Math.PI}
       />
       <pointLight position={[-10, 10, -10]} decay={0} intensity={Math.PI} />
-      <Box position={[0, 0, 0]} />
+
+      {/* <Box position={[0, 0, 0]} /> */}
+      <Caliper />
+
       <OrbitControls />
     </Canvas>
   );
@@ -129,6 +124,31 @@ function Box(props: MeshProps) {
     >
       <boxGeometry args={[2, 2, 2]} />
       <meshStandardMaterial color={hovered ? "orange" : "steelblue"} />
+    </mesh>
+  );
+}
+
+function Caliper() {
+  const ref = useRef<Mesh>(null);
+
+  useFrame((state, delta) => {
+    if (ref.current) {
+      // ref.current.rotation.x += delta / 20; //Rotation around X Axis - Vertical Rotation
+      ref.current.rotation.y += delta; //Rotation around Y Axis - Horizontal Rotation
+    }
+  });
+
+  const geometry = useLoader(STLLoader, "./models/caliper.stl");
+
+  return (
+    <mesh
+      ref={ref}
+      geometry={geometry}
+      position={[0, 2.3, 0]}
+      scale={[0.2, 0.2, 0.2]}
+      rotation={[0, 0, 30]}
+    >
+      <meshStandardMaterial color="gray" wireframe={false} />
     </mesh>
   );
 }

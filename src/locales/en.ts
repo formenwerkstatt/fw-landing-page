@@ -1,5 +1,9 @@
+import { title } from "process";
+
 export default {
   slogan: "We bring your ideas to life",
+  cta: "To the Demo",
+  help: "Use gestures or mouse to look around, scroll and zoom",
 
   menu: {
     home: "Home",
@@ -342,7 +346,7 @@ export default {
 
   about: {
     title: "About Us",
-    paragraph: "Mold Workshop, where innovation meets precision.",
+    paragraph: "Formenwerkstatt, where innovation meets precision.",
     description:
       "In the heart of Reichelsheim, Odenwald, we specialize in turning your ideas into tangible results. Our fully equipped facility enables us to offer a comprehensive range of services from mold-making to high-precision machining.",
   },
@@ -350,9 +354,55 @@ export default {
   jobs: {
     title: "Jobs",
     paragraph: "The next step of your career starts here",
+    sectionTitle: "Join Our Expert Team",
+    sectionParagraph:
+      "At our Odenwald-based workshop, we specialize in the complete process of mold production—ranging from raw steel to perfectly finished parts. As a trusted B2B partner, we take pride in our precision, efficiency, and commitment to on-time delivery. If you are an experienced engineer passionate about CNC machining, milling, turning, and mold repair, our team might be the perfect fit for you. Explore the opportunities below and become part of a company that values expertise and reliability.",
+    sectionList: [
+      "A dynamic work environment focused on innovation and excellence in mold production.",
+      "Hands-on experience with the latest CNC and laser engraving technology.",
+      "A team-oriented atmosphere that encourages growth and development.",
+    ],
     ads: [
-      { title: "", image: "", description: "", paragraph: "" },
-      { title: "", image: "", description: "", paragraph: "" },
+      {
+        title: "Unsolicited Application",
+        paragraph:
+          "To strengthen our team, we are looking for an experienced full-time employee for our tool and mold-making department.",
+        content: [
+          {
+            title:
+              "These could soon be your demanding and exciting areas of responsibility:",
+            bullets: [
+              "Modification and maintenance of our high-quality injection molding tools",
+              "Support for the injection molding department with minor repairs to injection molding tools during production",
+              "All tasks related to the extended workbench (grinding, polishing, fitting, etc.)",
+              "Maintenance and repair of simple assembly machines",
+              "Basic assistance tasks",
+            ],
+          },
+          {
+            title: "What you can expect from us:",
+            bullets: [
+              "A permanent employment contract",
+              "Independent work with challenging tasks",
+              "Responsibility in a successful company",
+              "A constructive, productive, and highly innovative work environment",
+              "Flat hierarchies, short decision-making, and communication paths",
+              "A pleasant, family-like working atmosphere and fair interaction within a dedicated team - a creative feel-good atmosphere",
+              "Performance-based compensation",
+              "Regular working hours in a single-shift operation",
+            ],
+          },
+          {
+            title: "What you should bring:",
+            bullets: [
+              "Professional experience in the mentioned areas of tool and mold making",
+              "Craftsmanship, quick comprehension, good technical and mechanical understanding",
+              "Teamwork skills, reliability, punctuality, time management, and diligence",
+            ],
+          },
+        ],
+        cta: "Have we sparked your interest? We look forward to your application. If you are interested in taking on a responsible role in our team, we also welcome your unsolicited application with a detailed profile.",
+      },
     ],
   },
 } as const;
