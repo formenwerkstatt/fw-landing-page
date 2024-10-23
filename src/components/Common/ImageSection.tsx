@@ -48,11 +48,10 @@ export default function ImageSection({
             <div className=" w-full px-12 lg:w-1/2">
               <div className="relative mx-auto aspect-square w-full  lg:mr-0">
                 <Image
-                  className="rounded-br-[25%] rounded-tl-[25%]"
+                  className="rounded-br-[25%] rounded-tl-[25%] object-cover"
                   src={src}
                   alt="descriptive-image"
                   fill
-                  objectFit="cover"
                 />
               </div>
             </div>

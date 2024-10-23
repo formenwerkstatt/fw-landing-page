@@ -1,22 +1,34 @@
 "use client";
+import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
-import "swiper/css/free-mode";
+import "swiper/css/pagination";
 import "swiper/css/navigation";
-import "swiper/css/thumbs";
-import { FreeMode, Navigation, Thumbs } from "swiper/modules";
-import { useState } from "react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
 
-export default function Gallery({
-  serviceTitle,
-  images,
-}: {
-  serviceTitle: string;
+interface GalleryProps {
   images: string[];
-}) {
-  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
+}
+
+export default function Gallery({ images }: GalleryProps) {
+  const progressCircle = useRef<SVGSVGElement | null>(null);
+  const progressContent = useRef<HTMLSpanElement | null>(null);
+
+  const onAutoplayTimeLeft = (
+    _s: SwiperType,
+    time: number,
+    progress: number
+  ): void => {
+    if (progressCircle.current && progressContent.current) {
+      progressCircle.current.style.setProperty(
+        "--progress",
+        String(1 - progress)
+      );
+      progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
+    }
+  };
 
   return (
     <section className="relative pb-12">
@@ -24,56 +36,42 @@ export default function Gallery({
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
             <div
-              className="mx-auto h-[100vh] max-w-[full] overflow-hidden rounded-md"
+              className="mx-auto h-[60dvh] max-w-[full] overflow-hidden rounded-md"
               data-wow-delay=".15s"
             >
               <Swiper
-                style={
-                  {
-                    "--swiper-pagination-color": "#fff",
-                    "--swiper-navigation-color": "#fff",
-                  } as React.CSSProperties
-                }
-                loop={true}
-                spaceBetween={10}
+                spaceBetween={30}
+                centeredSlides={true}
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: false,
+                }}
+                pagination={{
+                  clickable: true,
+                }}
                 navigation={true}
-                thumbs={{ swiper: thumbsSwiper }}
-                modules={[FreeMode, Navigation, Thumbs]}
-                className="mySwiper2"
+                modules={[Autoplay, Pagination, Navigation]}
+                onAutoplayTimeLeft={onAutoplayTimeLeft}
+                className="mySwiper"
               >
                 {images.map((image, index) => (
-                  <SwiperSlide key={image + index}>
-                    <Image
-                      src={image}
-                      alt={serviceTitle + "-big-swiper-image"}
-                      width={768}
-                      height={432}
-                      className="h-full w-full object-contain"
-                    />
+                  <SwiperSlide key={`${image}-${index}`}>
+                    <div className="relative size-full">
+                      <Image
+                        src={image}
+                        alt={`Gallery image ${index + 1}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
                   </SwiperSlide>
                 ))}
-              </Swiper>
-              <Swiper
-                onSwiper={setThumbsSwiper}
-                loop={true}
-                spaceBetween={10}
-                slidesPerView={4}
-                freeMode={true}
-                watchSlidesProgress={true}
-                modules={[FreeMode, Navigation, Thumbs]}
-                className="mySwiper mt-4"
-              >
-                {images.map((image, index) => (
-                  <SwiperSlide key={image + index}>
-                    <Image
-                      src={image}
-                      alt={serviceTitle + "-small-swiper-image"}
-                      width={768}
-                      height={432}
-                      className="h-full w-full object-cover"
-                    />
-                  </SwiperSlide>
-                ))}
+                <div className="autoplay-progress" slot="container-end">
+                  <svg viewBox="0 0 48 48" ref={progressCircle}>
+                    <circle cx="24" cy="24" r="20"></circle>
+                  </svg>
+                  <span ref={progressContent}></span>
+                </div>
               </Swiper>
             </div>
           </div>

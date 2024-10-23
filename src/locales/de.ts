@@ -1,5 +1,5 @@
 export default {
-  slogan: "Wir bringen Ihre Ideen in Form",
+  slogan: "der Werkzeugmacher aus dem Odenwald",
   cta: "Zum Demo",
   help: "Verwenden Sie Gesten oder die Maus, um sich umzusehen, zu blättern und zu zoomen.",
 
@@ -168,7 +168,7 @@ export default {
           cta: "Interessiert an weiteren Informationen? Kontaktieren Sie uns, um mehr darüber zu erfahren, wie EDM für Ihr Projekt funktionieren kann.",
         },
         {
-          title: "Drath-EDM",
+          title: "Draht-EDM",
           description: "Wenn traditionelle Bearbeitung an ihre Grenzen stößt",
           paragraph:
             "Unsere Draht-EDM-Maschinen schneiden selbst die härtesten Metalle mit extremer Präzision und verwenden einen dünnen Draht, um komplizierte Formen und Designs zu erstellen.",
@@ -347,6 +347,10 @@ export default {
     paragraph: "Formen Werkstatt, wo Innovation auf Präzision trifft.",
     description:
       "Im Herzen von Reichelsheim, Odenwald, sind wir darauf spezialisiert, Ihre Ideen in greifbare Ergebnisse zu verwandeln. Unser voll ausgestattetes Werk ermöglicht es uns, ein umfassendes Dienstleistungsangebot von der Formenherstellung bis hin zur hochpräzisen Maschinenbearbeitung anzubieten. ",
+    sectionTitle: "Team Formenwerkstatt",
+    sectionParagraph:
+      "In unserem Unternehmen sind wir stolz auf ein Team, das Erfahrung, handwerkliches Geschick und eine Leidenschaft für Präzision vereint. Jedes Mitglied bringt einzigartige Fähigkeiten mit, von anspruchsvollen Werkzeugänderungen bis hin zur Feinabstimmung von Spritzgießformen, um sicherzustellen, dass jedes Projekt mit höchster Qualität umgesetzt wird. Wir arbeiten in einer kollegialen, familiären Atmosphäre, in der offene Kommunikation und Wertschätzung großgeschrieben werden. Unser Ziel ist es, nicht nur Erwartungen zu erfüllen, sondern sie zu übertreffen und qualitativ hochwertige Lösungen pünktlich zu liefern. Lernen Sie die Menschen kennen, die dies möglich machen—engagierte Fachkräfte, die von Innovation und einem Streben nach Perfektion angetrieben werden.",
+    cta: "Kontaktieren Sie uns, um zu besprechen, wie wir Ihr Werkzeugkonzept präzise und effizient umsetzen können.",
   },
 
   jobs: {

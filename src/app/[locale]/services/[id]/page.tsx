@@ -42,7 +42,7 @@ export default function ServicePage() {
     <>
       <Breadcrumb pageName={title} description={description} />
 
-      <Gallery serviceTitle={title} images={galleryImages} />
+      <Gallery images={galleryImages} />
 
       <section className="overflow-hidden pb-[120px] ">
         <div className="container">

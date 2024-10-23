@@ -34,14 +34,11 @@ export default function InteractiveBanner() {
             <h1
               className={cn(
                 `${isOverlayVisible ? "text-white" : "text-primary"}`,
-                "text-2xl font-medium  sm:text-3xl",
+                "text-4xl font-bold",
               )}
             >
-              Formenwerkstatt
-            </h1>
-            <p className="text-2xl font-medium text-white sm:text-3xl">
               {t("slogan")}
-            </p>
+            </h1>
             <button
               onClick={() => setIsOverlayVisible(false)}
               className="rounded-lg bg-white px-6 py-3 text-lg font-semibold text-black transition-transform hover:scale-105"

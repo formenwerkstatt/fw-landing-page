@@ -1,5 +1,3 @@
-import { title } from "process";
-
 export default {
   slogan: "We bring your ideas to life",
   cta: "To the Demo",
@@ -81,7 +79,7 @@ export default {
           cta: "Ready to get started? Contact us today for more information.",
         },
         {
-          title: "Sampling & Small Series Production",
+          title: "Sampling & Mass Production",
           description: "We don't stop at tool production",
           paragraph:
             "Once your tool has been manufactured, we conduct comprehensive sampling to ensure functionality, followed by small series production.",
@@ -347,8 +345,12 @@ export default {
   about: {
     title: "About Us",
     paragraph: "Formenwerkstatt, where innovation meets precision.",
+    sectionTitle: "Team Formenwerkstatt",
+    sectionParagraph:
+      "At our company, we take pride in a team that combines experience, craftsmanship, and a passion for precision. Each member brings a unique set of skills, from advanced tool modifications to fine-tuning injection molds, ensuring that every project is executed with excellence. We work in a collaborative, family-like environment, where communication is open, and every opinion is valued. Our goal is to not only meet but exceed expectations, delivering high-quality solutions on time, every time. Meet the people who make this possible—dedicated professionals driven by innovation and a commitment to excellence.",
     description:
       "In the heart of Reichelsheim, Odenwald, we specialize in turning your ideas into tangible results. Our fully equipped facility enables us to offer a comprehensive range of services from mold-making to high-precision machining.",
+    cta: "Contact us to discuss how we can implement your tool concept precisely and efficiently.",
   },
 
   jobs: {
