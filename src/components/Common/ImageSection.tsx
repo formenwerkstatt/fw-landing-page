@@ -40,7 +40,7 @@ export default function ImageSection({
                 title={title}
                 paragraph={paragraph}
                 mb={"40px"}
-                width={`${!src && "60%"}`}
+                width={`${!src && "full"}`}
                 center={center}
               />
 

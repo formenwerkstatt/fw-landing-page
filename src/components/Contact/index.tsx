@@ -12,23 +12,21 @@ export default async function Contact() {
   const t2 = await getScopedI18n("about");
 
   return (
-    <section id="contact" className="overflow-hidden py-16 md:pb-20 lg:pb-24">
-      <div className="container">
-        <div className={cn("-mx-4 mb-24 flex flex-wrap")}>
-          <ContactCard />
+    <>
+      <div className={cn("mb-24 flex flex-wrap")}>
+        <ContactCard />
 
-          {/* <div className={cn(" w-full px-4 pb-4 ")}>
-            <Map center={[49.707556892870045, 8.84701398118458]} zoom={16} />
-          </div> */}
-        </div>
-        <ImageSection
-          title="info@formenwerkstatt.de"
-          paragraph={t2("cta")}
-          list={[t2("ctaList.0"), t2("ctaList.1"), t2("ctaList.2")]}
-          src=""
-          center
-        />
+        {/* <div className={cn(" w-full px-4 pb-4 ")}>
+     <Map center={[49.707556892870045, 8.84701398118458]} zoom={16} />
+   </div> */}
       </div>
-    </section>
+      <ImageSection
+        title="info@formenwerkstatt.de"
+        paragraph={t2("cta")}
+        list={[t2("ctaList.0"), t2("ctaList.1"), t2("ctaList.2")]}
+        src=""
+        center
+      />
+    </>
   );
 }
