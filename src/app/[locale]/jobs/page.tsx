@@ -2,6 +2,7 @@
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import useJobsData from "@/data/useJobsData";
 import ImageSection from "@/components/Common/ImageSection";
+import { cn } from "@/utils/cn";
 
 export default function Jobs() {
   const jobs = useJobsData();
@@ -15,12 +16,18 @@ export default function Jobs() {
         id="jobs"
         className="relative bg-gray-light py-16 dark:bg-bg-color-dark md:py-20 lg:py-28"
       >
-        <div className="container">
+        <div
+          className={cn(
+            "absolute left-0 right-0 top-0 z-[1] h-[90dvh] w-full opacity-25",
+            "bg-[url(/video/shape.svg)] bg-cover bg-center bg-no-repeat",
+          )}
+        ></div>
+        <div className="container relative">
           <ImageSection
             title={jobs.sectionTitle}
             paragraph={jobs.sectionParagraph}
             list={jobs.sectionList}
-            src="/images/enhance.webp"
+            src="/images/gallery/workshop-01.jpg"
           />
           <article className="mt-8 ">
             <h3 className="text-balanced mb-8 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl md:text-4xl">

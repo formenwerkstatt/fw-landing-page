@@ -31,6 +31,7 @@ export default function ImageSection({
 }: ImageSectionProps) {
   return (
     <section id="service-info-1">
+      
       <div className="container">
         <div className="border-b border-body-color/[.15] pb-16 dark:border-white/[.15] md:pb-20 lg:pb-28">
           <div className="-mx-4 flex flex-wrap items-center">
@@ -59,7 +60,7 @@ export default function ImageSection({
               <div className=" w-full px-12 lg:w-1/2">
                 <div className="relative mx-auto aspect-square w-full  lg:mr-0">
                   <Image
-                    className="rounded-br-[25%] rounded-tl-[25%] object-cover"
+                    className="rounded-br-[20%] rounded-tl-[20%] object-cover"
                     src={src}
                     alt="descriptive-image"
                     fill

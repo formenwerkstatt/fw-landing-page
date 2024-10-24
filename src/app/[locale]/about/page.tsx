@@ -25,7 +25,7 @@ export default async function AboutPage() {
 
       <Gallery images={galleryImages} />
 
-      <section className="relative py-16 md:pb-20 lg:py-24">
+      <section className="relative bg-gray-light py-16  dark:bg-bg-color-dark md:pb-20 lg:py-24">
         <div className="container">
           <SectionTitle
             title={t("sectionTitle")}

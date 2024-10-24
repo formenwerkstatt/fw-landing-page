@@ -31,7 +31,7 @@ export default function Gallery({ images }: GalleryProps) {
   };
 
   return (
-    <section className="relative pb-12">
+    <section className="relative pb-12 ">
       <div className="container">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
@@ -50,6 +50,7 @@ export default function Gallery({ images }: GalleryProps) {
                   clickable: true,
                 }}
                 navigation={true}
+                loop={true}
                 modules={[Autoplay, Pagination, Navigation]}
                 onAutoplayTimeLeft={onAutoplayTimeLeft}
                 className="mySwiper"
