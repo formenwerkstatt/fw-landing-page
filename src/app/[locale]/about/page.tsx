@@ -6,6 +6,7 @@ import ImageAccordion from "@/components/Common/ImageAccordion";
 import SectionTitle from "@/components/Common/SectionTitle";
 import { galleryImages } from "@/data/galleryImages";
 import Gallery from "@/components/Common/Gallery";
+import ImageSection from "@/components/Common/ImageSection";
 
 export const metadata: Metadata = {
   title: `Über Uns | Formen Werkstatt`,
@@ -32,17 +33,16 @@ export default async function AboutPage() {
             center
             width="80%"
           />
-
           <div className="relative  mb-24 items-center justify-center">
             <ImageAccordion />
           </div>
-
-          <p className="text-center text-base !leading-relaxed text-body-color md:text-lg">
-            {t("cta")}
-          </p>
-          <p className="mt-8 text-center text-base font-bold !leading-relaxed text-body-color md:text-lg">
-            info@formenwerkstatt.de
-          </p>
+          <ImageSection
+            title="info@formenwerkstatt.de"
+            paragraph={t("cta")}
+            list={[t("ctaList.0"), t("ctaList.1"), t("ctaList.2")]}
+            src=""
+            center
+          />
         </div>
       </section>
     </>

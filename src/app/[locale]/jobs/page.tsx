@@ -5,7 +5,6 @@ import ImageSection from "@/components/Common/ImageSection";
 
 export default function Jobs() {
   const jobs = useJobsData();
-
   const ad = jobs.ads[0];
 
   return (
@@ -27,7 +26,7 @@ export default function Jobs() {
             <h3 className="text-balanced mb-8 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl md:text-4xl">
               {ad.paragraph}
             </h3>
-            <ul className="mx-auto w-5/6 list-none">
+            <ul className="mx-auto mb-28 w-5/6 list-none">
               {ad.content.map((item, index) => (
                 <li
                   key={index}
@@ -48,12 +47,14 @@ export default function Jobs() {
                 </li>
               ))}
             </ul>
-            <p className="mb-8  text-lg  text-body-color md:text-lg">
-              {ad.cta}
-            </p>
-            <p className="mb-8  text-center text-xl font-bold text-body-color md:text-lg">
-              info@formenwerkstatt.de
-            </p>
+
+            <ImageSection
+              title="info@formenwerkstatt.de"
+              paragraph={ad.cta}
+              list={[]}
+              src=""
+              center
+            />
           </article>
         </div>
       </section>

@@ -6,6 +6,7 @@ interface ImageSectionProps {
   paragraph: string;
   list: string[];
   src: string;
+  center?: boolean;
 }
 
 const checkIcon = (
@@ -26,18 +27,27 @@ export default function ImageSection({
   paragraph,
   list,
   src,
+  center = false,
 }: ImageSectionProps) {
   return (
     <section id="service-info-1">
       <div className="container">
         <div className="border-b border-body-color/[.15] pb-16 dark:border-white/[.15] md:pb-20 lg:pb-28">
           <div className="-mx-4 flex flex-wrap items-center">
-            <div className="w-full px-4 lg:w-1/2">
-              <SectionTitle title={title} paragraph={paragraph} mb={"40px"} />
+            <div className={` px-4  ${src ? "lg:w-1/2" : "w-full"}`}>
+              <SectionTitle
+                title={title}
+                paragraph={paragraph}
+                mb={"40px"}
+                width={`${!src && "60%"}`}
+                center={center}
+              />
 
               <div className="mb-12 lg:mb-0" data-wow-delay=".15s">
                 <div className="flex flex-wrap">
-                  <div className="w-full px-3 sm:w-1/2 lg:w-full ">
+                  <div
+                    className={`${src ? "w-full sm:w-1/2 lg:w-full" : "mx-auto"}`}
+                  >
                     {list &&
                       list.map((text) => <List key={text} text={text} />)}
                   </div>
@@ -45,16 +55,18 @@ export default function ImageSection({
               </div>
             </div>
 
-            <div className=" w-full px-12 lg:w-1/2">
-              <div className="relative mx-auto aspect-square w-full  lg:mr-0">
-                <Image
-                  className="rounded-br-[25%] rounded-tl-[25%] object-cover"
-                  src={src}
-                  alt="descriptive-image"
-                  fill
-                />
+            {src && (
+              <div className=" w-full px-12 lg:w-1/2">
+                <div className="relative mx-auto aspect-square w-full  lg:mr-0">
+                  <Image
+                    className="rounded-br-[25%] rounded-tl-[25%] object-cover"
+                    src={src}
+                    alt="descriptive-image"
+                    fill
+                  />
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

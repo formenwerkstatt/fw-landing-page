@@ -8,7 +8,7 @@ export default function ContactCard() {
   const t = useScopedI18n("contact");
 
   return (
-    <div className="relative z-10 h-full rounded-sm bg-white p-8 shadow-two dark:bg-gray-dark dark:shadow-none">
+    <aside className="relative z-10 h-full rounded-sm bg-white p-8 shadow-two dark:bg-gray-dark dark:shadow-none ">
       <h3 className="mb-4 text-2xl font-bold text-black dark:text-white">
         Formen Werkstatt
       </h3>
@@ -17,7 +17,7 @@ export default function ContactCard() {
       </p>
       <div className="mb-6">
         <p className="mb-4 text-base text-body-color dark:text-white">
-          <strong>{t("phone")}</strong> +49 (0) 6164-913017
+          <strong>{t("phone")}:</strong> +49 (0) 6164-913017
         </p>
         <p className="text-base text-body-color dark:text-white">
           <strong>Email:</strong> info@formenwerkstatt.de
@@ -247,6 +247,6 @@ export default function ContactCard() {
           </svg>
         </span>
       </div>
-    </div>
+    </aside>
   );
 }

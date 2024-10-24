@@ -6,7 +6,6 @@ import { ReactElement } from "react";
 import { Providers } from "./providers";
 import { getCurrentLocale } from "@/locales/server";
 
-const inter = Inter({ subsets: ["latin"] });
 const titillium = Titillium_Web({ subsets: ["latin"], weight: ["400", "700"] });
 
 export default function RootLayout({ children }: { children: ReactElement }) {
@@ -15,9 +14,7 @@ export default function RootLayout({ children }: { children: ReactElement }) {
   return (
     <html lang={locale} suppressHydrationWarning={false}>
       <head />
-      <body
-        className={`bg-[#FCFCFC] dark:bg-black ${titillium.className}`}
-      >
+      <body className={`bg-[#FCFCFC] dark:bg-black ${titillium.className}`}>
         <Providers>{children}</Providers>
       </body>
     </html>

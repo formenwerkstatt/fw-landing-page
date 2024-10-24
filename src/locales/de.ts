@@ -351,6 +351,11 @@ export default {
     sectionParagraph:
       "In unserem Unternehmen sind wir stolz auf ein Team, das Erfahrung, handwerkliches Geschick und eine Leidenschaft für Präzision vereint. Jedes Mitglied bringt einzigartige Fähigkeiten mit, von anspruchsvollen Werkzeugänderungen bis hin zur Feinabstimmung von Spritzgießformen, um sicherzustellen, dass jedes Projekt mit höchster Qualität umgesetzt wird. Wir arbeiten in einer kollegialen, familiären Atmosphäre, in der offene Kommunikation und Wertschätzung großgeschrieben werden. Unser Ziel ist es, nicht nur Erwartungen zu erfüllen, sondern sie zu übertreffen und qualitativ hochwertige Lösungen pünktlich zu liefern. Lernen Sie die Menschen kennen, die dies möglich machen—engagierte Fachkräfte, die von Innovation und einem Streben nach Perfektion angetrieben werden.",
     cta: "Kontaktieren Sie uns, um zu besprechen, wie wir Ihr Werkzeugkonzept präzise und effizient umsetzen können.",
+    ctaList: [
+      "Zuverlässige und pünktliche Lieferung, damit Ihre Projekte im Zeitplan bleiben",
+      "Persönliche und direkte Kommunikation, bei der Ihnen stets ein kompetenter Ansprechpartner zur Verfügung steht",
+      "Hochwertige Handwerkskunst und präzises Engineering für optimale Ergebnisse",
+    ],
   },
 
   jobs: {
