@@ -20,7 +20,7 @@ export default function InteractiveBanner() {
         )}
       >
         {isOverlayVisible ? (
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-12 bg-black/70">
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-12 bg-black/70 px-6 text-center">
             <h1
               className={cn(
                 `${isOverlayVisible ? "text-white" : "text-primary"}`,

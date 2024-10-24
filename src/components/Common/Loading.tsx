@@ -1,12 +1,13 @@
 import { cn } from "@/utils/cn";
 
-export default function Loading({ color = "black" }: { color?: string }) {
+export default function Loading() {
   return (
     <section
       className={cn(
-        "animate-ping text-4xl",
+        "animate-bounce text-4xl",
+        "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform",
         "flex items-center justify-center",
-        `text-${color}`,
+        `text-black dark:text-white`,
       )}
     >
       <p>Loading...</p>

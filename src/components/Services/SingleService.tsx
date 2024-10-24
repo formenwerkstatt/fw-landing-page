@@ -56,14 +56,11 @@ const SingleService = ({ service }: { service: Services }) => {
                 key={subService.title}
                 href={`/services${subService.path}`}
                 className={cn(
-                  // Base styles
-                  "flex md:flex-col items-center gap-2 md:gap-4",
+                  "flex items-center gap-2 md:flex-col md:gap-4",
                   "rounded-xl bg-primary px-4 py-3 md:px-6 md:py-4",
                   "text-white",
                   "transition-transform duration-300 hover:scale-105",
-                  // Text sizing
                   "text-base sm:text-lg md:text-xl lg:text-2xl",
-                  // Full width within grid/flex container
                   "w-full",
                 )}
               >

@@ -18,10 +18,34 @@ export default function ThreeFiber() {
       <pointLight position={[-10, 10, -10]} decay={0} intensity={Math.PI} />
 
       {/* <Box position={[0, 0, 0]} /> */}
+
       <Caliper />
 
       <OrbitControls />
     </Canvas>
+  );
+}
+
+function Caliper() {
+  const { scene } = useGLTF("./models/caliper.glb");
+
+  const ref = useRef<Mesh>(null);
+
+  useFrame((state, delta) => {
+    if (ref.current) {
+      // ref.current.rotation.x += delta / 20; //Rotation around X Axis - Vertical Rotation
+      ref.current.rotation.y += delta; //Rotation around Y Axis - Horizontal Rotation
+    }
+  });
+
+  return (
+    <primitive
+      ref={ref}
+      object={scene}
+      scale={[0.2, 0.2, 0.2]}
+      position={[0, 2, 0]}
+      rotation={[0.57, 0, 30]}
+    />
   );
 }
 
@@ -50,35 +74,4 @@ function Box(props: MeshProps) {
       <meshStandardMaterial color={hovered ? "orange" : "steelblue"} />
     </mesh>
   );
-}
-
-function Caliper() {
-  const ref = useRef<Mesh>(null);
-
-  useFrame((state, delta) => {
-    if (ref.current) {
-      // ref.current.rotation.x += delta / 20; //Rotation around X Axis - Vertical Rotation
-      ref.current.rotation.y += delta; //Rotation around Y Axis - Horizontal Rotation
-    }
-  });
-
-  const geometry = useLoader(STLLoader, "./models/caliper.stl");
-
-  return (
-    <mesh
-      ref={ref}
-      geometry={geometry}
-      position={[0, 2.3, 0]}
-      scale={[0.2, 0.2, 0.2]}
-      rotation={[0, 0, 30]}
-    >
-      <meshStandardMaterial color="gray" wireframe={false} />
-    </mesh>
-  );
-}
-
-function Dog() {
-  const { scene } = useGLTF("./models/dog.glb");
-
-  return <primitive object={scene} scale={[1, 1, 1]} position={[0, 0, 0]} />;
 }
