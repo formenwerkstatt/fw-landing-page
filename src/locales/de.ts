@@ -404,7 +404,7 @@ export default {
             ],
           },
           {
-            title: "What you should bring:",
+            title: "Was Sie mitbringen sollten:",
             bullets: [
               "Berufserfahrung in den genannten Bereichen des Werkzeug- und Formenbaus",
               "handwerkliches Geschick, schnelle Auffassungsgabe, gutes technisches und mechanisches Verständnis",
