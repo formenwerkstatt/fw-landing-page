@@ -18,7 +18,7 @@ export default function AdsComponent() {
   useEffect(() => {
     // Trigger pageview on route change
     const url = `${pathname}${searchParams?.toString() ? `?${searchParams.toString()}` : ""}`;
-    window.gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ADS_ID, {
+    window.gtag("config", process.env.NEXT_GOOGLE_ADS_ID, {
       page_path: url,
     });
   }, [pathname, searchParams]);
@@ -26,7 +26,7 @@ export default function AdsComponent() {
   return (
     <>
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_GOOGLE_ADS_ID}`}
         strategy="afterInteractive"
       />
       <Script id="google-analytics" strategy="afterInteractive">
@@ -34,7 +34,7 @@ export default function AdsComponent() {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}');
+          gtag('config', '${process.env.NEXT_GOOGLE_ADS_ID}');
         `}
       </Script>
     </>
