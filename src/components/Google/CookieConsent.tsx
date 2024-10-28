@@ -6,18 +6,17 @@ import { useEffect, useState } from "react";
 const setCookie = (name: string, value: string, days: number) => {
   const expirationDate = new Date();
   expirationDate.setDate(expirationDate.getDate() + days);
-  
-  const cookieValue = encodeURIComponent(value) + 
-    "; expires=" + expirationDate.toUTCString() + 
+  const cookieValue =
+    encodeURIComponent(value) +
+    "; expires=" +
+    expirationDate.toUTCString() +
     "; path=/; SameSite=Lax; Secure";
-  
   document.cookie = name + "=" + cookieValue;
 };
 
 const getCookie = (name: string): string | null => {
   const nameEQ = name + "=";
-  const cookies = document.cookie.split(';');
-  
+  const cookies = document.cookie.split(";");
   for (let i = 0; i < cookies.length; i++) {
     let cookie = cookies[i].trim();
     if (cookie.indexOf(nameEQ) === 0) {
@@ -27,7 +26,43 @@ const getCookie = (name: string): string | null => {
   return null;
 };
 
-export default function CookieConsent() {
+// Google Analytics helper functions
+const initializeGA = (measurementId: string) => {
+  // Load Google Analytics script
+  const script = document.createElement("script");
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+  script.async = true;
+  document.head.appendChild(script);
+
+  // Initialize gtag
+  window.dataLayer = window.dataLayer || [];
+  function gtag(...args: any[]) {
+    window.dataLayer.push(args);
+  }
+  gtag("js", new Date());
+  gtag("config", measurementId, {
+    cookie_flags: "SameSite=None;Secure",
+  });
+};
+
+const disableGA = () => {
+  // Disable GA tracking
+  (window as any)["ga-disable-" + process.env.NEXT_GOOGLE_ANALYTICS_ID] = true;
+  
+  // Remove GA cookies
+  setCookie("_ga", "", -1);
+  setCookie("_ga_" + process.env.NEXT_GOOGLE_ANALYTICS_ID?.replace("G-", ""), "", -1);
+  setCookie("_gid", "", -1);
+  setCookie("_gat", "", -1);
+};
+
+interface CookieConsentProps {
+  measurementId?: string;
+}
+
+export default function CookieConsent({ 
+  measurementId = process.env.NEXT_GOOGLE_ANALYTICS_ID 
+}: CookieConsentProps) {
   const [showBanner, setShowBanner] = useState(false);
   const t = useI18n();
 
@@ -36,19 +71,30 @@ export default function CookieConsent() {
     const consent = getCookie("cookie-consent");
     if (!consent) {
       setShowBanner(true);
+    } else if (consent === "accepted" && measurementId) {
+      // Initialize GA if consent was previously given
+      initializeGA(measurementId);
     }
-  }, []);
+  }, [measurementId]);
 
   const handleAccept = () => {
     // Set cookie with 365 days expiration
     setCookie("cookie-consent", "accepted", 365);
     setShowBanner(false);
+    
+    // Initialize GA when user accepts
+    if (measurementId) {
+      initializeGA(measurementId);
+    }
   };
 
   const handleReject = () => {
     // Set cookie with rejected status
     setCookie("cookie-consent", "rejected", 365);
     setShowBanner(false);
+    
+    // Disable GA tracking and remove cookies
+    disableGA();
   };
 
   if (!showBanner) return null;
@@ -76,4 +122,12 @@ export default function CookieConsent() {
       </div>
     </div>
   );
+}
+
+// Add type definition for window.dataLayer
+declare global {
+  interface Window {
+    dataLayer: any[];
+    gtag: (...args: any[]) => void;
+  }
 }
