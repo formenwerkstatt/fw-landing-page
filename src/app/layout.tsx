@@ -5,6 +5,9 @@ import "leaflet/dist/leaflet.css";
 import { ReactElement } from "react";
 import { Providers } from "./providers";
 import { getCurrentLocale } from "@/locales/server";
+import AdsComponent from "@/components/Google/AdsComponent";
+import { AnalyticsComponent } from "@/components/Google/AnalyticsComponent";
+import CookieConsent from "@/components/Google/CookieConsent";
 
 const titillium = Titillium_Web({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -16,6 +19,8 @@ export default function RootLayout({ children }: { children: ReactElement }) {
       <head />
       <body className={`bg-[#FCFCFC] dark:bg-black ${titillium.className}`}>
         <Providers>{children}</Providers>
+        <AdsComponent />
+        <AnalyticsComponent />
       </body>
     </html>
   );

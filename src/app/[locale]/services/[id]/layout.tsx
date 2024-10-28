@@ -15,7 +15,6 @@ export async function generateMetadata({
       str = str.slice(0, i + 1) + str[i + 1].toUpperCase() + str.slice(i + 2);
     }
   }
-  console.log(str);
 
   return {
     title: `${str} | Formen Werkstatt`,

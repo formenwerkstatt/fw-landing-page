@@ -4,7 +4,7 @@ import Breadcrumb from "@/components/Common/Breadcrumb";
 import ImageAccordion from "@/components/Common/ImageAccordion";
 
 import SectionTitle from "@/components/Common/SectionTitle";
-import { galleryImages } from "@/data/galleryImages";
+import {galleryImages} from "@/data/galleryImages";
 import Gallery from "@/components/Common/Gallery";
 import ImageSection from "@/components/Common/ImageSection";
 

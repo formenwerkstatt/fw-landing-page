@@ -40,7 +40,7 @@ const Footer = () => {
               <div className="flex flex-wrap lg:flex-nowrap">
                 {servicesData?.map((service) => (
                   <div key={service.title} className="mb-2 w-full sm:w-1/2">
-                    <h4 className="mb-2 text-base font-semibold text-body-color dark:text-body-color-dark">
+                    <h4 className="mb-2 text-lg   text-body-color dark:text-body-color-dark">
                       {service.title}
                     </h4>
                     <ul className="flex flex-col gap-2">

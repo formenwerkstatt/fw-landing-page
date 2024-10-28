@@ -2,6 +2,10 @@ export default {
   slogan: "We bring your ideas to life",
   cta: "To the Demo",
   help: "Use gestures or mouse to look around, scroll and zoom",
+  cookie:
+    "This website uses cookies to provide you with a better service. By continuing to use the site, you consent to its use.",
+  accept: "OK",
+  reject: "Reject",
 
   menu: {
     home: "Home",
@@ -351,11 +355,11 @@ export default {
     description:
       "In the heart of Reichelsheim, Odenwald, we specialize in turning your ideas into tangible results. Our fully equipped facility enables us to offer a comprehensive range of services from mold-making to high-precision machining.",
     cta: "Contact us to discuss how we can implement your tool concept precisely and efficiently.",
-    ctaList:[
+    ctaList: [
       "Reliable and punctual delivery, ensuring your projects stay on schedule",
       "Personal and accessible communication, with a knowledgeable representative always available to assist you",
       "High-quality craftsmanship and precision engineering for optimal results",
-    ]
+    ],
   },
 
   jobs: {

@@ -4,7 +4,7 @@ import Gallery from "@/components/Common/Gallery";
 import RelatedPost from "@/components/Services/RelatedPost";
 import SharePost from "@/components/Services/SharePost";
 import SubserviceContent from "@/components/Services/SubserviceContent";
-import { galleryImages } from "@/data/galleryImages";
+import { allImages, galleryImages } from "@/data/galleryImages";
 import useServicesData from "@/data/useServiceData";
 import { subService } from "@/types";
 import { useParams, useRouter } from "next/navigation";
@@ -61,7 +61,7 @@ export default function ServicePage() {
                       <RelatedPost
                         title={service.title}
                         image={
-                          galleryImages[
+                          allImages[
                             Math.floor(Math.random() * galleryImages.length)
                           ]
                         }

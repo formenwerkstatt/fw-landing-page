@@ -3,6 +3,7 @@ import { lazy, useState, Suspense } from "react";
 import { cn } from "@/utils/cn";
 import { useI18n } from "@/locales/client";
 import Loading from "../Common/Loading";
+import Image from "next/image";
 
 const ThreeFiber = lazy(() => import("./ThreeFiber"));
 
@@ -20,50 +21,62 @@ export default function InteractiveBanner() {
         )}
       >
         {isOverlayVisible ? (
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-12 bg-black/70 px-6 text-center">
-            <h1
-              className={cn(
-                `${isOverlayVisible ? "text-white" : "text-primary"}`,
-                "text-4xl font-bold",
-              )}
-            >
-              {t("slogan")}
-            </h1>
-            <button
-              onClick={() => setIsOverlayVisible(false)}
-              className="rounded-lg bg-white px-6 py-3 text-lg font-semibold text-black transition-transform hover:scale-105"
-            >
-              {t("cta")}
-            </button>
+          <div
+            className={cn(
+              "absolute inset-0 z-10 size-full",
+              "flex flex-col items-center justify-center gap-12 px-6",
+              "text-center",
+              "relative bg-black/50",
+            )}
+          >
+            <Image
+              src="/logo.svg"
+              alt="Background Logo"
+              fill
+              className="absolute object-cover opacity-10"
+              priority
+            />
+
+            {/* Content overlay */}
+            <div className="relative z-20">
+              <h1 className={cn(`mb-4 text-white`, "text-4xl font-bold")}>
+                {t("slogan")}
+              </h1>
+              <button
+                onClick={() => setIsOverlayVisible(false)}
+                className="rounded-lg bg-white px-6 py-3 text-lg font-semibold text-black transition-transform hover:scale-105"
+              >
+                {t("cta")}
+              </button>
+            </div>
           </div>
         ) : (
           <Suspense fallback={<Loading />}>
             <ThreeFiber />
+            {isHelpVisible && (
+              <div
+                className={cn(
+                  "w-[200px] text-balance bg-white text-center text-black",
+                  "rounded-lg p-4",
+                  "absolute bottom-[10%] right-4  shadow-lg",
+                )}
+              >
+                <p>{t("help")}</p>
+              </div>
+            )}
+            {/* CONTROLS */}
+            <ControlButton
+              className="absolute right-4 top-4 size-10 rounded-full text-xl"
+              text="X"
+              handleClick={() => setIsOverlayVisible(true)}
+            />
+            <ControlButton
+              className="absolute bottom-4 right-4 size-10 rounded-full text-xl"
+              text="?"
+              handleClick={() => setIsHelpVisible(!isHelpVisible)}
+            />
           </Suspense>
         )}
-
-        {isHelpVisible && (
-          <div
-            className={cn(
-              "w-[200px] text-balance bg-white text-center text-black",
-              "rounded-lg p-4",
-              "absolute bottom-[10%] right-4  shadow-lg",
-            )}
-          >
-            <p>{t("help")}</p>
-          </div>
-        )}
-        {/* CONTROLS */}
-        <ControlButton
-          className="absolute right-4 top-4 size-10 rounded-full text-xl"
-          text="X"
-          handleClick={() => setIsOverlayVisible(true)}
-        />
-        <ControlButton
-          className="absolute bottom-4 right-4 size-10 rounded-full text-xl"
-          text="?"
-          handleClick={() => setIsHelpVisible(!isHelpVisible)}
-        />
       </div>
     </>
   );

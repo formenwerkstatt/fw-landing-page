@@ -1,6 +1,7 @@
-const images = [
+export const allImages = [
   "/images/gallery/machine-dmg-01.jpg",
   "/images/gallery/machine-dmg-02.jpg",
+  "/images/gallery/machine-dmg-03.jpg",
   "/images/gallery/macro-machine-01.jpg",
   "/images/gallery/macro-machine-02.jpg",
   "/images/gallery/macro-machine-03.jpg",
@@ -26,4 +27,7 @@ const images = [
   "/images/gallery/workshop-03.jpg",
 ];
 
-export const galleryImages = images.sort(() => 0.5 - Math.random());
+export const galleryImages: string[] = Array.from(
+  { length: 10 },
+  () => allImages[Math.floor(Math.random() * allImages.length)],
+);

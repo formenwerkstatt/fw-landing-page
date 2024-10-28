@@ -1,25 +1,25 @@
 import { cn } from "@/utils/cn";
 import Image from "next/image";
+import { BsPersonFill } from "react-icons/bs";
 
 const persons = [
   {
     id: "1",
-    url: "/images/sparks.webp",
+    url: "",
     name: "Bektas Isik",
-    role: "Founder",
+    role: "Geschäfftsführer",
   },
-
   {
     id: "2",
-    url: "/images/sparks.webp",
-    name: "Belgin Isik",
-    role: "Founder",
+    url: "",
+    name: "Huseyin Isik",
+    role: "Prokuristin",
   },
   {
     id: "3",
-    url: "/images/sparks.webp",
-    name: "Huseyin Isik",
-    role: "Founder",
+    url: "",
+    name: "Belgin Isik",
+    role: "Prokuristin",
   },
 ];
 
@@ -41,7 +41,7 @@ export default function ImageAccordion() {
             <div className="absolute inset-0 z-10 flex  flex-col justify-end p-3 text-white">
               <h4
                 className={cn(
-                  "text-xl font-medium transition duration-200 ease-[cubic-bezier(.5,.85,.25,1.8)] ",
+                  "text-2xl font-medium transition duration-200 ease-[cubic-bezier(.5,.85,.25,1.8)] ",
                   "group-focus-within/article:translate-y-0 group-focus-within/article:opacity-100 group-focus-within/article:delay-300 group-hover/article:translate-y-0 group-hover/article:opacity-100 group-hover/article:delay-300 ",
                   "md:translate-y-2 md:truncate md:whitespace-nowrap md:opacity-0",
                 )}
@@ -59,13 +59,19 @@ export default function ImageAccordion() {
               </span>
             </div>
 
-            <Image
-              className="h-72 w-full object-cover md:h-[420px]"
-              src={person.url}
-              width="960"
-              height="480"
-              alt={person.name}
-            />
+            {person.url ? (
+              <Image
+                className={cn("h-72 w-full object-cover md:h-[420px]")}
+                src={person.url}
+                width="960"
+                height="480"
+                alt={`picture of ${person.name} ${person.role}`}
+              />
+            ) : (
+              <div className="w-full bg-gradient-to-b from-primary/25 md:h-[420px]">
+                <BsPersonFill className="m-auto size-full text-gray-dark/10 dark:text-gray-light/10" />
+              </div>
+            )}
           </article>
         );
       })}
