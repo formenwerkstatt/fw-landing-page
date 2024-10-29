@@ -21,7 +21,7 @@ export default function SubLayout({
         {children}
         <ScrollToTop />
         <Footer />
-        <CookieConsent />
+        {/* <CookieConsent /> */}
       </main>
     </I18nProviderClient>
   );

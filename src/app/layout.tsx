@@ -19,8 +19,8 @@ export default function RootLayout({ children }: { children: ReactElement }) {
       <head />
       <body className={`bg-[#FCFCFC] dark:bg-black ${titillium.className}`}>
         <Providers>{children}</Providers>
-        <AdsComponent />
-        <AnalyticsComponent />
+        {/* <AdsComponent />
+        <AnalyticsComponent /> */}
       </body>
     </html>
   );
