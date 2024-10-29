@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import Loading from "@/components/Common/Loading";
-import CookieConsent from "@/components/Google/CookieConsent";
+import CookieConsent from "@/components/Google/Analytics";
 
 export default function SubLayout({
   children,
