@@ -8,6 +8,7 @@ import { getCurrentLocale } from "@/locales/server";
 import AdsComponent from "@/components/Google/AdsComponent";
 import { AnalyticsComponent } from "@/components/Google/AnalyticsComponent";
 import CookieConsent from "@/components/Google/CookieConsent";
+import { ConsentBanner } from "@/components/Google/ConsentBanner";
 
 const titillium = Titillium_Web({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: { children: ReactElement }) {
         <Providers>{children}</Providers>
         {/* <AdsComponent />
         <AnalyticsComponent /> */}
+        <ConsentBanner />
       </body>
     </html>
   );
