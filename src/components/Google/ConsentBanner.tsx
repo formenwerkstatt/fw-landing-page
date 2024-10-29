@@ -1,11 +1,11 @@
-// consentManager.ts
-import { useEffect, useState } from 'react';
+"use client";
+import { useEffect, useState } from "react";
 
 interface ConsentConfig {
-  analytics_storage?: 'granted' | 'denied';
-  ad_storage?: 'granted' | 'denied';
-  ad_user_data?: 'granted' | 'denied';
-  ad_personalization?: 'granted' | 'denied';
+  analytics_storage?: "granted" | "denied";
+  ad_storage?: "granted" | "denied";
+  ad_user_data?: "granted" | "denied";
+  ad_personalization?: "granted" | "denied";
   region?: string[];
 }
 
@@ -19,12 +19,12 @@ const setCookie = (name: string, value: string, days: number) => {
 const getCookie = (name: string): string | null => {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop()?.split(';').shift() || null;
+  if (parts.length === 2) return parts.pop()?.split(";").shift() || null;
   return null;
 };
 
 const updateConsentState = (consent: ConsentConfig) => {
-  window.gtag('consent', 'update', consent);
+  window.gtag("consent", "update", consent);
 };
 
 // Consent mode initialization
@@ -36,12 +36,12 @@ export const initializeConsentMode = () => {
   }
 
   // Set default consent state
-  gtag('consent', 'default', {
-    'ad_storage': 'denied',
-    'analytics_storage': 'denied',
-    'ad_user_data': 'denied',
-    'ad_personalization': 'denied',
-    'region': ['EE-EEA', 'GB']
+  gtag("consent", "default", {
+    ad_storage: "denied",
+    analytics_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+    region: ["EE-EEA", "GB"],
   });
 };
 
@@ -55,13 +55,13 @@ export const Analytics = () => {
     initializeConsentMode();
 
     // Check existing consent
-    const consentCookie = getCookie('cookie-consent');
-    if (consentCookie === 'granted') {
+    const consentCookie = getCookie("cookie-consent");
+    if (consentCookie === "granted") {
       updateConsentState({
-        analytics_storage: 'granted',
-        ad_storage: 'granted',
-        ad_user_data: 'granted',
-        ad_personalization: 'granted'
+        analytics_storage: "granted",
+        ad_storage: "granted",
+        ad_user_data: "granted",
+        ad_personalization: "granted",
       });
     }
   }, []);
@@ -72,7 +72,7 @@ export const Analytics = () => {
       <script
         async
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-        />
+      />
       <script
         dangerouslySetInnerHTML={{
           __html: `
@@ -82,8 +82,8 @@ export const Analytics = () => {
             gtag('config', '${GA_ID}', {
               page_path: window.location.pathname,
             });
-            ${ADS_ID ? `gtag('config', '${ADS_ID}');` : ''}
-          `
+            ${ADS_ID ? `gtag('config', '${ADS_ID}');` : ""}
+          `,
         }}
       />
     </>
@@ -93,9 +93,9 @@ export const Analytics = () => {
 // Consent Banner Component
 export const ConsentBanner = () => {
   const [showBanner, setShowBanner] = useState(true);
-  
+
   useEffect(() => {
-    const existingConsent = getCookie('cookie-consent');
+    const existingConsent = getCookie("cookie-consent");
     if (existingConsent) {
       setShowBanner(false);
     }
@@ -103,27 +103,27 @@ export const ConsentBanner = () => {
 
   const handleAccept = () => {
     // Update consent state
-    window.gtag('consent', 'update', {
-      'analytics_storage': 'granted',
-      'ad_storage': 'granted',
-      'ad_user_data': 'granted',
-      'ad_personalization': 'granted'
+    window.gtag("consent", "update", {
+      analytics_storage: "granted",
+      ad_storage: "granted",
+      ad_user_data: "granted",
+      ad_personalization: "granted",
     });
-    
-    setCookie('cookie-consent', 'granted', 365);
+
+    setCookie("cookie-consent", "granted", 365);
     setShowBanner(false);
   };
 
   const handleReject = () => {
     // Keep consent denied
-    window.gtag('consent', 'update', {
-      'analytics_storage': 'denied',
-      'ad_storage': 'denied',
-      'ad_user_data': 'denied',
-      'ad_personalization': 'denied'
+    window.gtag("consent", "update", {
+      analytics_storage: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
     });
-    
-    setCookie('cookie-consent', 'denied', 365);
+
+    setCookie("cookie-consent", "denied", 365);
     setShowBanner(false);
   };
 
@@ -134,7 +134,8 @@ export const ConsentBanner = () => {
       <div className="mx-auto max-w-4xl">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-sm text-white">
-            We use cookies to enhance your browsing experience and analyze our traffic.
+            We use cookies to enhance your browsing experience and analyze our
+            traffic.
           </p>
           <div className="flex gap-4">
             <button
@@ -155,4 +156,3 @@ export const ConsentBanner = () => {
     </div>
   );
 };
-
