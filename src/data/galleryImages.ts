@@ -27,7 +27,9 @@ export const allImages = [
   "/images/gallery/workshop-03.jpg",
 ];
 
-export const galleryImages: string[] = Array.from(
-  { length: 10 },
-  () => allImages[Math.floor(Math.random() * allImages.length)],
-);
+function getRandomUniqueItems<T>(array: T[], count: number): T[] {
+  const shuffled = array.slice().sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+}
+
+export const galleryImages: string[] = getRandomUniqueItems(allImages, 10);

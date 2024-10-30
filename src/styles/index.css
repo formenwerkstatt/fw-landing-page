@@ -33,6 +33,13 @@
   }
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  /* outline: solid 2px lime; */
+}
+
 /* SWIPER CLASSES */
 .swiper {
   width: 100%;
