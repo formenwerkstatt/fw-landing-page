@@ -4,7 +4,7 @@ import Breadcrumb from "@/components/Common/Breadcrumb";
 import ImageAccordion from "@/components/Common/ImageAccordion";
 
 import SectionTitle from "@/components/Common/SectionTitle";
-import {galleryImages} from "@/data/galleryImages";
+import { allImages } from "@/data/galleryImages";
 import Gallery from "@/components/Common/Gallery";
 import ImageSection from "@/components/Common/ImageSection";
 
@@ -23,7 +23,7 @@ export default async function AboutPage() {
 
       {/* <Video /> */}
 
-      <Gallery images={galleryImages} />
+      <Gallery images={allImages} />
 
       <section className="relative bg-gray-light py-16  dark:bg-bg-color-dark md:pb-20 lg:py-24">
         <div className="container">

@@ -1,12 +1,18 @@
 "use client";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import Gallery from "@/components/Common/Gallery";
+import ParallelGallery from "@/components/Services/ParallelGallery";
 import RelatedPost from "@/components/Services/RelatedPost";
 import SharePost from "@/components/Services/SharePost";
 import SubserviceContent from "@/components/Services/SubserviceContent";
-import { allImages, galleryImages } from "@/data/galleryImages";
+import {
+  allImages,
+  galleryImages,
+  getRandomUniqueItems,
+} from "@/data/galleryImages";
 import useServicesData from "@/data/useServiceData";
 import { subService } from "@/types";
+import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -36,13 +42,15 @@ export default function ServicePage() {
     return null;
   }
 
-  const { title, description } = subservice;
+  const { title, description, iconName } = subservice;
 
   return (
     <>
       <Breadcrumb pageName={title} description={description} />
 
-      <Gallery images={galleryImages} />
+      {/* <Gallery images={galleryImages} /> */}
+
+      <ParallelGallery iconName={iconName} />
 
       <section className="overflow-hidden pb-[120px] ">
         <div className="container">
@@ -60,11 +68,7 @@ export default function ServicePage() {
                     <li key={service.title + index}>
                       <RelatedPost
                         title={service.title}
-                        image={
-                          allImages[
-                            Math.floor(Math.random() * galleryImages.length)
-                          ]
-                        }
+                        iconName={service.iconName}
                         path={`/services/${service.path}`}
                         description={service.description}
                       />

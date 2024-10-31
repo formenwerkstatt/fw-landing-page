@@ -1,14 +1,15 @@
 import { cn } from "@/utils/cn";
 import Image from "next/image";
 import Link from "next/link";
+import ServiceIcon from "./ServiceIcon";
 
 const RelatedPost = ({
-  image,
+  iconName,
   path,
   title,
   description,
 }: {
-  image: string;
+  iconName: string;
   path: string;
   title: string;
   description: string;
@@ -21,9 +22,9 @@ const RelatedPost = ({
         "border-2 border-transparent transition duration-300 hover:border-primary/70 hover:bg-primary/10 hover:shadow-lg ",
       )}
     >
-      <div className="mr-5 lg:mb-3 xl:mb-0">
-        <div className="relative h-[60px] w-[70px] overflow-hidden rounded-md sm:h-[75px] sm:w-[85px]">
-          <Image src={image} alt={title} fill />
+      <div className="mr-5 lg:mb-3 xl:mb-0 ">
+        <div className="relative h-[70px] w-[70px] overflow-hidden rounded-md bg-primary/50 p-2 text-white sm:h-[85px] sm:w-[85px]">
+          <ServiceIcon iconname={iconName} className="size-full" />
         </div>
       </div>
       <div className="w-full">

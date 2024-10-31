@@ -99,7 +99,7 @@ const useServicesData = (): Services[] => {
           description: t("fertigung.subServices.0.description"),
           images: galleryImages,
           path: "/fraesen",
-          iconName: "machine",
+          iconName: "milling",
           paragraph: t("fertigung.subServices.0.paragraph"),
           nestedList: [
             {
@@ -120,7 +120,7 @@ const useServicesData = (): Services[] => {
           description: t("fertigung.subServices.1.description"),
           images: galleryImages,
           path: "/drehen",
-          iconName: "machine",
+          iconName: "turning",
           paragraph: t("fertigung.subServices.1.paragraph"),
           nestedList: [
             {
@@ -172,7 +172,7 @@ const useServicesData = (): Services[] => {
           description: t("fertigung.subServices.3.description"),
           images: galleryImages,
           path: "/drahterodieren",
-          iconName: "edm",
+          iconName: "wire-edm",
           paragraph: t("fertigung.subServices.3.paragraph"),
           nestedList: [
             {
@@ -194,7 +194,7 @@ const useServicesData = (): Services[] => {
           description: t("fertigung.subServices.4.description"),
           images: galleryImages,
           path: "/laserschweissen",
-          iconName: "laser",
+          iconName: "welding",
           paragraph: t("fertigung.subServices.4.paragraph"),
           nestedList: [
             {
@@ -254,7 +254,7 @@ const useServicesData = (): Services[] => {
           description: t("fertigung.subServices.7.description"),
           images: galleryImages,
           path: "/flachschleifen",
-          iconName: "polish",
+          iconName: "grinding",
           paragraph: t("fertigung.subServices.7.paragraph"),
           nestedList: [
             {
