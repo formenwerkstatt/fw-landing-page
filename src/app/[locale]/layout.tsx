@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import Loading from "@/components/Common/Loading";
+import { ConsentBanner } from "@/components/Google/Analytics";
 
 export default function SubLayout({
   children,
@@ -20,6 +21,7 @@ export default function SubLayout({
         {children}
         <ScrollToTop />
         <Footer />
+        <ConsentBanner />
       </main>
     </I18nProviderClient>
   );
