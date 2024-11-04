@@ -54,7 +54,8 @@ const SingleService = ({ service }: { service: Services }) => {
                 className={cn(
                   "flex flex-1 items-center gap-4",
                   "rounded-xl bg-primary px-4 py-3 md:px-6 md:py-4",
-                  "transition-transform duration-300 hover:scale-105",
+                  "transition-transform duration-300 ",
+                  "hover:scale-105  hover:border-2 hover:border-gray-light hover:bg-gray-dark ",
                   "text-base text-white sm:text-lg md:text-xl lg:text-2xl",
                   "min-w-fit",
                 )}

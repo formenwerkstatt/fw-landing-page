@@ -194,7 +194,7 @@ const useServicesData = (): Services[] => {
           description: t("fertigung.subServices.4.description"),
           images: galleryImages,
           path: "/laserschweissen",
-          iconName: "welding",
+          iconName: "laser",
           paragraph: t("fertigung.subServices.4.paragraph"),
           nestedList: [
             {
@@ -283,7 +283,7 @@ const useServicesData = (): Services[] => {
           title: t("reparatur.subServices.0.title"),
           description: t("reparatur.subServices.0.description"),
           images: galleryImages,
-          path: "/renovierung",
+          path: "/optimierung",
           iconName: "renovation",
           paragraph: t("reparatur.subServices.0.paragraph"),
           nestedList: [

@@ -15,6 +15,10 @@ export const allImages = [
   "/images/gallery/macro-part-07.jpg",
   "/images/gallery/macro-part-08.jpg",
   "/images/gallery/macro-part-09.jpg",
+  "/images/gallery/macro-part-10.jpg",
+  "/images/gallery/macro-part-11.jpg",
+  "/images/gallery/macro-part-12.jpg",
+  "/images/gallery/macro-part-13.jpg",
   "/images/gallery/macro-sparks.jpg",
   "/images/gallery/senk-01.jpg",
   "/images/gallery/senk-02.jpg",
@@ -43,13 +47,13 @@ export function parallelGalleryImages(iconName: string) {
       ];
     case "gear":
       return [
-        "/images/gallery/macro-machine-04.jpg",
-        "/images/gallery/macro-part-06.jpg",
+        "/images/gallery/macro-part-13.jpg",
+        "/images/gallery/macro-part-10.jpg",
       ];
     case "manufacture":
       return [
-        "/images/gallery/macro-part-09.jpg",
-        "/images/gallery/macro-part-01.jpg",
+        "/images/gallery/macro-part-12.jpg",
+        "/images/gallery/macro-part-11.jpg",
       ];
     case "milling":
       return [
@@ -65,7 +69,7 @@ export function parallelGalleryImages(iconName: string) {
       return ["/images/gallery/senk-06.jpg", "/images/gallery/senk-02.jpg"];
     case "wire-edm":
       return [
-        "/images/gallery/22machine-mitsu-02.jpg",
+        "/images/gallery/macro-machine-06.jpg",
         "/images/gallery/macro-part-05.jpg",
       ];
     case "welding":
@@ -73,7 +77,10 @@ export function parallelGalleryImages(iconName: string) {
     case "laser":
       return ["/images/gallery/macro-part-02.jpg"];
     case "polish":
-      return ["/images/gallery/macro-part-07.jpg"];
+      return [
+        "/images/gallery/macro-part-07.jpg",
+        "/images/gallery/macro-part-06.jpg",
+      ];
     case "grinding":
       return ["/images/gallery/macro-sparks.jpg"];
     case "renovation":

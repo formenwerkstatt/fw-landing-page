@@ -82,8 +82,8 @@ export default function ServiceIcon({ iconname, className }: ServiceIconProps) {
 
 function IconContainer({ src, className }: { src: string; className: string }) {
   return (
-    <div className={cn(`${className} relative`)}>
-      <Image src={src} alt="icon" fill />
+    <div className={cn(`${className} relative `)}>
+      <Image src={src} alt="icon" fill  />
     </div>
   );
 }

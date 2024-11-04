@@ -278,7 +278,7 @@ export default {
       paragraph: "Unsere Reparatur- und Wartungsdienste",
       subServices: [
         {
-          title: "Renovierung",
+          title: "Optimierung",
           description:
             "Verlängern Sie die Lebensdauer Ihrer Werkzeuge mit unseren Reparaturdiensten.",
           paragraph:

@@ -36,7 +36,7 @@ export default function ParallelGallery({ iconName }: { iconName: string }) {
                 alt={`Parallelogram image ${index + 1}`}
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 50vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 50vw "
               />
             </div>
           </div>

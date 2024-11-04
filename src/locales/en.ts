@@ -278,7 +278,7 @@ export default {
       paragraph: "Our repair and maintenance services",
       subServices: [
         {
-          title: "Renovation",
+          title: "Optimization",
           description:
             "Extend the life of your tools with our repair services.",
           paragraph:
