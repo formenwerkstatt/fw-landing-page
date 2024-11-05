@@ -41,10 +41,7 @@ export const galleryImages: string[] = getRandomUniqueItems(allImages, 5);
 export function parallelGalleryImages(iconName: string) {
   switch (iconName) {
     case "design":
-      return [
-        "/images/gallery/workshop-02.jpg",
-        "/images/gallery/workshop-03.jpg",
-      ];
+      return [];
     case "gear":
       return [
         "/images/gallery/macro-part-13.jpg",

@@ -1,10 +1,21 @@
 import { useRef, useState } from "react";
-import { Canvas, useFrame, MeshProps, useLoader } from "@react-three/fiber";
-import { Mesh } from "three";
-import { OrbitControls, useGLTF } from "@react-three/drei";
-import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
+import { Canvas, useFrame, MeshProps } from "@react-three/fiber";
+import { Group, Mesh } from "three";
+import { Clone, OrbitControls, useGLTF } from "@react-three/drei";
+
+const RADIUS = 8;
+const arr = [0, 1, 2];
+
+interface ModelProps {
+  model: string;
+  position: [number, number, number];
+  rotation?: [number, number, number];
+  scale?: [number, number, number];
+}
 
 export default function ThreeFiber() {
+  useGLTF.preload("/models/caliper.glb");
+
   return (
     <Canvas>
       <ambientLight intensity={Math.PI / 2} />
@@ -17,34 +28,50 @@ export default function ThreeFiber() {
       />
       <pointLight position={[-10, 10, -10]} decay={0} intensity={Math.PI} />
 
-      {/* <Box position={[0, 0, 0]} /> */}
+      {arr.map((item, index) => {
+        const angle = (Math.PI / (arr.length - 1)) * index;
 
-      <Caliper />
+        const posX = -RADIUS * Math.cos(angle);
+        const posZ = -RADIUS * Math.sin(angle);
+
+        return index % 2 !== 0 ? (
+          <Model
+            key={item}
+            model="/models/caliper.glb"
+            position={[posX, 1.5, posZ]}
+          />
+        ) : (
+          <Box position={[posX, 0, posZ - 2]} key={item} />
+        );
+      })}
 
       <OrbitControls />
     </Canvas>
   );
 }
 
-function Caliper() {
-  const { scene } = useGLTF("./models/caliper.glb");
-
-  const ref = useRef<Mesh>(null);
+function Model({
+  model,
+  position = [0, 2, 0],
+  rotation = [0.57, 0, 30],
+  scale = [0.2, 0.2, 0.2],
+}: ModelProps) {
+  const { scene } = useGLTF(model);
+  const ref = useRef<Group>(null);
 
   useFrame((state, delta) => {
     if (ref.current) {
-      // ref.current.rotation.x += delta / 20; //Rotation around X Axis - Vertical Rotation
-      ref.current.rotation.y += delta; //Rotation around Y Axis - Horizontal Rotation
+      ref.current.rotation.y += delta / 2;
     }
   });
 
   return (
-    <primitive
+    <Clone
       ref={ref}
       object={scene}
-      scale={[0.2, 0.2, 0.2]}
-      position={[0, 2, 0]}
-      rotation={[0.57, 0, 30]}
+      scale={scale}
+      position={position}
+      rotation={rotation}
     />
   );
 }
@@ -56,7 +83,7 @@ function Box(props: MeshProps) {
 
   useFrame((state, delta) => {
     if (ref.current) {
-      ref.current.rotation.x += delta / 20; //Rotation around X Axis - Vertical Rotation
+      // ref.current.rotation.x += delta / 20; //Rotation around X Axis - Vertical Rotation
       ref.current.rotation.y += delta; //Rotation around Y Axis - Horizontal Rotation
     }
   });
