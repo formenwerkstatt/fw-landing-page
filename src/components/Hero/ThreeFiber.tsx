@@ -1,104 +1,167 @@
-import { useRef, useState } from "react";
-import { Canvas, useFrame, MeshProps } from "@react-three/fiber";
-import { Group, Mesh } from "three";
-import { Clone, OrbitControls, useGLTF } from "@react-three/drei";
+import { useState, useRef, useEffect } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Group, Vector3 } from "three";
+import { Clone, OrbitControls, Text, useGLTF } from "@react-three/drei";
+import { FaArrowsRotate } from "react-icons/fa6";
+import { BiExpand } from "react-icons/bi";
+import ControlButton from "./ControlButton";
 
-const RADIUS = 8;
-const arr = [0, 1, 2];
+export default function ThreeFiberScene() {
+  const [isAnimating, setIsAnimating] = useState(true);
+  const [isReset, setIsReset] = useState(true);
+  const modelPositions = useRef([
+    new Vector3(0, 0.5, 0),
+    new Vector3(0, 0, 0),
+    new Vector3(0, 0, 2),
+    new Vector3(0, 0, -2),
+    new Vector3(0, 2, 0),
+  ]);
+  const resetPositions = useRef([
+    new Vector3(0, 0, 0),
+    new Vector3(0, 0, 0),
+    new Vector3(0, 0, 0),
+    new Vector3(0, 0, 0),
+    new Vector3(0, 0, 0),
+  ]);
 
-interface ModelProps {
-  model: string;
-  position: [number, number, number];
-  rotation?: [number, number, number];
-  scale?: [number, number, number];
-}
+  const handleButtonClick = () => {
+    setIsAnimating((prev) => !prev);
+  };
 
-export default function ThreeFiber() {
-  useGLTF.preload("/models/caliper.glb");
+  const handleResetClick = () => {
+    setIsReset((prev) => !prev);
+  };
 
   return (
-    <Canvas>
-      <ambientLight intensity={Math.PI / 2} />
-      <spotLight
-        position={[10, 10, 10]}
-        angle={0.15}
-        penumbra={1}
-        decay={0}
-        intensity={Math.PI}
-      />
-      <pointLight position={[-10, 10, -10]} decay={0} intensity={Math.PI} />
+    <>
+      <Canvas>
+        <ambientLight intensity={Math.PI / 2} />
+        <spotLight
+          position={[10, 10, 10]}
+          angle={0.15}
+          penumbra={1}
+          decay={0}
+          intensity={Math.PI}
+        />
+        <spotLight
+          position={[-10, 10, 10]}
+          angle={0.15}
+          penumbra={1}
+          decay={0}
+          intensity={Math.PI}
+        />
+        <pointLight position={[-10, 10, -10]} decay={0} intensity={Math.PI} />
+        <Scene
+          isAnimating={isAnimating}
+          isReset={isReset}
+          modelPositions={modelPositions.current}
+          resetPositions={resetPositions.current}
+        />
+        <OrbitControls />
+      </Canvas>
+      <div className="absolute right-16 top-4 flex gap-2 text-white">
+        <ControlButton
+          className="flex items-center justify-center "
+          handleClick={handleButtonClick}
+        >
+          <FaArrowsRotate />
+        </ControlButton>
+        <ControlButton
+          className="flex items-center justify-center "
+          handleClick={handleResetClick}
+        >
+          <BiExpand />
+        </ControlButton>
+      </div>
+    </>
+  );
+}
 
-      {arr.map((item, index) => {
-        const angle = (Math.PI / (arr.length - 1)) * index;
+function Scene({
+  isAnimating,
+  isReset,
+  modelPositions,
+  resetPositions,
+}: {
+  isAnimating: boolean;
+  isReset: boolean;
+  modelPositions: Vector3[];
+  resetPositions: Vector3[];
+}) {
+  const modelGroupRef = useRef<Group>(null);
+  const [modelRotation, setModelRotation] = useState(0);
 
-        const posX = -RADIUS * Math.cos(angle);
-        const posZ = -RADIUS * Math.sin(angle);
+  useFrame((state, delta) => {
+    if (modelGroupRef.current) {
+      // Rotate the entire model group
+      setModelRotation(
+        (prevRotation) => prevRotation + (delta / 2) * (isAnimating ? 1 : 0),
+      );
+      modelGroupRef.current.rotation.y = modelRotation;
 
-        return index % 2 !== 0 ? (
-          <Model
-            key={item}
-            model="/models/caliper.glb"
-            position={[posX, 1.5, posZ]}
-          />
-        ) : (
-          <Box position={[posX, 0, posZ - 2]} key={item} />
+      modelGroupRef.current.position.lerp(
+        isReset ? new Vector3(0, 0, 0) : new Vector3(0, 0, 1),
+        0.03,
+      );
+
+      // Update the position of each model within the group
+      modelPositions.forEach((pos, index) => {
+        modelGroupRef.current?.children[index].position.lerp(
+          isReset ? resetPositions[index] : pos,
+          0.03,
         );
-      })}
+      });
+    }
+  });
 
-      <OrbitControls />
-    </Canvas>
+  return (
+    <>
+      <group ref={modelGroupRef} position={[0, -0.5, 0]}>
+        {modelPositions.map((pos, index) => (
+          <>
+            <Model
+              key={index}
+              position={pos}
+              model={`/models/mold-${index + 1}.glb`}
+            />
+            {/* <Text
+              maxWidth={1}
+              anchorX="left"
+              anchorY="top"
+              position={[index, 0, 0]}
+              rotation={[0, 0, 0]}
+              fontSize={1}
+              color="black"
+            >
+              {`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`}
+            </Text> */}
+          </>
+        ))}
+      </group>
+    </>
   );
 }
 
 function Model({
   model,
-  position = [0, 2, 0],
-  rotation = [0.57, 0, 30],
-  scale = [0.2, 0.2, 0.2],
-}: ModelProps) {
+  position = new Vector3(),
+}: {
+  model: string;
+  position?: Vector3;
+}) {
   const { scene } = useGLTF(model);
   const ref = useRef<Group>(null);
 
-  useFrame((state, delta) => {
-    if (ref.current) {
-      ref.current.rotation.y += delta / 2;
-    }
-  });
-
   return (
-    <Clone
-      ref={ref}
-      object={scene}
-      scale={scale}
-      position={position}
-      rotation={rotation}
-    />
-  );
-}
-
-function Box(props: MeshProps) {
-  const ref = useRef<Mesh>(null);
-  const [hovered, hover] = useState(false);
-  const [clicked, click] = useState(false);
-
-  useFrame((state, delta) => {
-    if (ref.current) {
-      // ref.current.rotation.x += delta / 20; //Rotation around X Axis - Vertical Rotation
-      ref.current.rotation.y += delta; //Rotation around Y Axis - Horizontal Rotation
-    }
-  });
-
-  return (
-    <mesh
-      {...props}
-      ref={ref}
-      scale={clicked ? 1.5 : 1}
-      onClick={(event) => click(!clicked)}
-      onPointerOver={(event) => (event.stopPropagation(), hover(true))}
-      onPointerOut={(event) => hover(false)}
-    >
-      <boxGeometry args={[2, 2, 2]} />
-      <meshStandardMaterial color={hovered ? "orange" : "steelblue"} />
-    </mesh>
+    <>
+      <Clone
+        ref={ref}
+        object={scene}
+        position={position}
+        rotation={[0, 0, 0]}
+        scale={new Vector3(10, 10, 10)}
+        castShadow
+      />
+    </>
   );
 }

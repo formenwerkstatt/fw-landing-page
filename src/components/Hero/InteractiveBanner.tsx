@@ -4,6 +4,7 @@ import { cn } from "@/utils/cn";
 import { useI18n } from "@/locales/client";
 import Loading from "../Common/Loading";
 import Image from "next/image";
+import ControlButton from "./ControlButton";
 
 const ThreeFiber = lazy(() => import("./ThreeFiber"));
 
@@ -66,12 +67,12 @@ export default function InteractiveBanner() {
             )}
             {/* CONTROLS */}
             <ControlButton
-              className="absolute right-4 top-4 size-10 rounded-full text-xl"
+              className="absolute right-4 top-4 size-10 "
               text="X"
               handleClick={() => setIsOverlayVisible(true)}
             />
             <ControlButton
-              className="absolute bottom-4 right-4 size-10 rounded-full text-xl"
+              className="absolute bottom-4 right-4 size-10"
               text="?"
               handleClick={() => setIsHelpVisible(!isHelpVisible)}
             />
@@ -82,26 +83,4 @@ export default function InteractiveBanner() {
   );
 }
 
-function ControlButton({
-  className,
-  text,
-  handleClick,
-}: {
-  className: string;
-  text: string;
-  handleClick: () => void;
-}) {
-  return (
-    <button
-      className={cn(
-        " bg-primary  text-white opacity-30",
-        "dark:bg-white dark:text-black",
-        "transition-opacity duration-300 hover:opacity-100",
-        `${className}`,
-      )}
-      onClick={handleClick}
-    >
-      {text}
-    </button>
-  );
-}
+
