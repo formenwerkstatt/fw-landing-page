@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import Loading from "@/components/Common/Loading";
-import { ConsentBanner } from "@/components/Google/Analytics";
+import { Analytics, ConsentBanner } from "@/components/Google/Analytics";
 
 export default function SubLayout({
   children,
@@ -16,6 +16,8 @@ export default function SubLayout({
 }) {
   return (
     <I18nProviderClient locale={params.locale} fallback={<Loading />}>
+      <Analytics />
+      <ConsentBanner />
       <main className="size-full">
         <Header />
         {children}
