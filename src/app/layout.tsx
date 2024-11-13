@@ -25,7 +25,7 @@ export default function RootLayout({ children }: { children: ReactElement }) {
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
-          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}');`}
+          gtag('config', 'GTM-TB3ZTBCB');`}
         </Script>
       </head>
       <body className={`bg-[#FCFCFC] dark:bg-black ${titillium.className}`}>
