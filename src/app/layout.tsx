@@ -27,11 +27,11 @@ export default function RootLayout({ children }: { children: ReactElement }) {
           gtag('js', new Date());
 
           gtag('config', 'AW-846006351');
+
         `}
         </Script>
       </head>
       <body className={`bg-[#FCFCFC] dark:bg-black ${titillium.className}`}>
-      
         <Providers>{children}</Providers>
       </body>
     </html>

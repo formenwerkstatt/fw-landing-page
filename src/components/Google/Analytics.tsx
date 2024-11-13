@@ -122,7 +122,7 @@ const getCookie = (name: string): string | null => {
 
 // Enhanced Analytics Component with initialization verification
 export function Analytics() {
-  const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
+  const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_TAG_ID;
   const [isInitialized, setIsInitialized] = useState(false);
   const pathname = usePathname();
   const locale = useCurrentLocale();
@@ -224,7 +224,7 @@ export function ConsentBanner() {
     setShowBanner(false);
 
     if (window.gtag) {
-      window.gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID, {
+      window.gtag("config", process.env.NEXT_PUBLIC_GOOGLE_TAG_ID, {
         page_path: window.location.pathname,
       });
     }
