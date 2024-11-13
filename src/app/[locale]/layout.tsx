@@ -21,7 +21,6 @@ export default function SubLayout({
         {children}
         <ScrollToTop />
         <Footer />
-        <ConsentBanner />
       </main>
     </I18nProviderClient>
   );
