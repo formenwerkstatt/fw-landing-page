@@ -5,8 +5,8 @@ import "leaflet/dist/leaflet.css";
 import { ReactElement } from "react";
 import { Providers } from "./providers";
 import { getCurrentLocale } from "@/locales/server";
-import { Analytics } from "@/components/Google/Analytics";
 import Script from "next/script";
+import GoogleAnalytics from "@/components/Google/Analytics";
 
 const titillium = Titillium_Web({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -15,22 +15,9 @@ export default function RootLayout({ children }: { children: ReactElement }) {
 
   return (
     <html lang={locale} suppressHydrationWarning={false}>
-      <head>
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=AW-846006351`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', 'AW-846006351');
-
-        `}
-        </Script>
-      </head>
+      <GoogleAnalytics
+        GA_MEASUREMENT_ID={`${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+      />
       <body className={`bg-[#FCFCFC] dark:bg-black ${titillium.className}`}>
         <Providers>{children}</Providers>
       </body>
