@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { useI18n } from "@/locales/client";
+import { useCurrentLocale, useI18n } from "@/locales/client";
 
 // Type definitions
 type ConsentState = "granted" | "denied";
@@ -125,11 +125,12 @@ export function Analytics() {
   const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
   const [isInitialized, setIsInitialized] = useState(false);
   const pathname = usePathname();
+  const locale = useCurrentLocale();
 
   // Initialize analytics
   useEffect(() => {
-    if (!GA_ID) {
-      console.error("Google Analytics ID is not configured");
+    if (!GA_ID || !locale) {
+      console.error("Google Analytics ID or locale is not configured");
       return;
     }
 
@@ -167,7 +168,7 @@ export function Analytics() {
         script.parentNode.removeChild(script);
       }
     };
-  }, [GA_ID]);
+  }, [GA_ID, locale]);
 
   // Track page views
   useEffect(() => {
