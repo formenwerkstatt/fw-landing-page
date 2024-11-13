@@ -1,5 +1,5 @@
 import { createI18nMiddleware } from "next-international/middleware";
-import { NextRequest } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 
 const I18nMiddleware = createI18nMiddleware({
   locales: ["en", "de"],
@@ -8,7 +8,14 @@ const I18nMiddleware = createI18nMiddleware({
 });
 
 export function middleware(request: NextRequest) {
-  return I18nMiddleware(request);
+  const response = I18nMiddleware(request);
+
+  // Add security headers to all responses
+  response.headers.set("X-Content-Type-Options", "nosniff");
+  response.headers.set("X-Frame-Options", "DENY");
+  response.headers.set("X-XSS-Protection", "1; mode=block");
+
+  return response;
 }
 
 export const config = {

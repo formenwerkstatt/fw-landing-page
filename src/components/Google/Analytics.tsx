@@ -39,7 +39,6 @@ const initializeAnalytics = (GA_ID: string): Promise<boolean> => {
       return;
     }
 
-    // Verify GA_ID format
     if (!GA_ID || !GA_ID.startsWith("G-")) {
       console.error(
         "Invalid Google Analytics ID format. Expected format: G-XXXXXXXXXX",
@@ -47,6 +46,15 @@ const initializeAnalytics = (GA_ID: string): Promise<boolean> => {
       resolve(false);
       return;
     }
+
+    // Set default consent state before initializing analytics
+    const defaultConsent: ConsentUpdate = {
+      analytics_storage: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+    };
+    gtag("consent", "default", { ...defaultConsent, region: ["EE-EEA", "GB"] });
 
     // Initialize dataLayer
     window.dataLayer = window.dataLayer || [];
@@ -63,19 +71,6 @@ const initializeAnalytics = (GA_ID: string): Promise<boolean> => {
       }
     };
 
-    // Set default consent state
-    const defaultConsent: ConsentUpdate = {
-      analytics_storage: "denied",
-      ad_storage: "denied",
-      ad_user_data: "denied",
-      ad_personalization: "denied",
-    };
-
-    gtag("consent", "default", {
-      ...defaultConsent,
-      region: ["EE-EEA", "GB"],
-    });
-
     // Initialize gtag with page view tracking
     gtag("js", new Date());
     gtag("config", GA_ID, {
@@ -83,7 +78,6 @@ const initializeAnalytics = (GA_ID: string): Promise<boolean> => {
       debug_mode: process.env.NODE_ENV === "development",
     });
 
-    // Verify initialization
     setTimeout(() => {
       if (window.dataLayer && window.dataLayer.length > 0) {
         if (process.env.NODE_ENV === "development") {
@@ -148,7 +142,6 @@ export function Analytics() {
       const initialized = await initializeAnalytics(GA_ID);
       setIsInitialized(initialized);
 
-      // Check existing consent and update if necessary
       const consentCookie = getCookie("cookie-consent");
       if (consentCookie === "granted" && initialized) {
         const grantedConsent: ConsentUpdate = {
@@ -194,8 +187,8 @@ export function Analytics() {
 export function ConsentBanner() {
   const [showBanner, setShowBanner] = useState(false);
   const t = useI18n();
+
   useEffect(() => {
-    // Only show banner after a short delay to prevent flash
     const timer = setTimeout(() => {
       const existingConsent = getCookie("cookie-consent");
       setShowBanner(!existingConsent);
@@ -228,6 +221,12 @@ export function ConsentBanner() {
     updateConsent(consentUpdate);
     setCookie("cookie-consent", "granted", 365);
     setShowBanner(false);
+
+    if (window.gtag) {
+      window.gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID, {
+        page_path: window.location.pathname,
+      });
+    }
   };
 
   const handleReject = () => {
