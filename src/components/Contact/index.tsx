@@ -10,7 +10,7 @@ export default async function Contact() {
 
   return (
     <>
-      <div className={cn("mb-24 flex ")}>
+      <div className={cn("mb-24 flex flex-wrap")}>
         <ContactCard />
         {/* <MapComponent /> */}
         <div className="w-full px-4 pb-4">
