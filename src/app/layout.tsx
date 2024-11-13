@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: ReactElement }) {
     <html lang={locale} suppressHydrationWarning={false}>
       <head>
         <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
+          src={`https://www.googletagmanager.com/gtag/js?id=GTM-TB3ZTBCB`}
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -31,7 +31,7 @@ export default function RootLayout({ children }: { children: ReactElement }) {
       <body className={`bg-[#FCFCFC] dark:bg-black ${titillium.className}`}>
         <noscript>
           <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
+            src={`https://www.googletagmanager.com/ns.html?id=GTM-TB3ZTBCB`}
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
