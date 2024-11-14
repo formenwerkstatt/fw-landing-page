@@ -2,7 +2,7 @@ import { Inter, Titillium_Web } from "next/font/google";
 import "node_modules/react-modal-video/css/modal-video.css";
 import "@/styles/index.css";
 import "leaflet/dist/leaflet.css";
-import { ReactElement } from "react";
+import { ReactElement, Suspense } from "react";
 import { Providers } from "./providers";
 import { getCurrentLocale } from "@/locales/server";
 import Script from "next/script";
@@ -16,9 +16,12 @@ export default function RootLayout({ children }: { children: ReactElement }) {
 
   return (
     <html lang={locale} suppressHydrationWarning={false}>
-      <GoogleAnalytics
-        GA_MEASUREMENT_ID={`${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
-      />
+      <head />
+      <Suspense fallback={null}>
+        <GoogleAnalytics
+          GA_MEASUREMENT_ID={`${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+        />
+      </Suspense>
       <CookieBanner />
       <body className={`bg-[#FCFCFC] dark:bg-black ${titillium.className}`}>
         <Providers>{children}</Providers>

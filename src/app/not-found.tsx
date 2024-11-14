@@ -1,12 +1,19 @@
 import { redirect } from "next/navigation";
-import { getCurrentLocale, getStaticParams } from "@/locales/server";
+import { getCurrentLocale, getI18n } from "@/locales/server";
 import { setStaticParamsLocale } from "next-international/server";
 
 export default async function NotFound() {
-  const ehe = getStaticParams();
+  try {
+    // Set the default locale for static generation
+    setStaticParamsLocale("de");
 
-  setStaticParamsLocale("de");
-  const locale = getCurrentLocale();
+    // Get current locale if needed
+    const locale = getCurrentLocale();
 
-  redirect(`/error`);
+    // Redirect to error page
+    redirect(`/de/error`);
+  } catch (error) {
+    // Fallback redirect
+    redirect(`/de/error`);
+  }
 }

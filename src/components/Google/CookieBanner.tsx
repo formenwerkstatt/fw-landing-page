@@ -17,7 +17,10 @@ export default function CookieBanner() {
     const newValue = cookieConsent ? "granted" : "denied";
 
     window.gtag("consent", "update", {
+      ad_personalization: newValue,
       analytics_storage: newValue,
+      ad_user_data: newValue,
+      ad_storage: newValue,
     });
 
     setLocalStorage("cookie_consent", cookieConsent);
