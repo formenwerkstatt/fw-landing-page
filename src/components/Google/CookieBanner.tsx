@@ -1,60 +1,64 @@
 "use client";
-
 import Link from "next/link";
 import { getLocalStorage, setLocalStorage } from "@/utils/storageHelper";
 import { useState, useEffect } from "react";
+import { useI18n } from "@/locales/client";
 
 export default function CookieBanner() {
-  const [cookieConsent, setCookieConsent] = useState(false);
+  const [cookieConsent, setCookieConsent] = useState<boolean | null>(null);
+
+  const t = useI18n();
 
   useEffect(() => {
     const storedCookieConsent = getLocalStorage("cookie_consent", null);
-
     setCookieConsent(storedCookieConsent);
-  }, [setCookieConsent]);
+  }, []);
 
   useEffect(() => {
-    const newValue = cookieConsent ? "granted" : "denied";
+    if (cookieConsent !== null) {
+      const newValue = cookieConsent ? "granted" : "denied";
 
-    window.gtag("consent", "update", {
-      ad_personalization: newValue,
-      analytics_storage: newValue,
-      ad_user_data: newValue,
-      ad_storage: newValue,
-    });
+      // Check if gtag is available
+      if (typeof window !== "undefined" && window.gtag) {
+        try {
+          window.gtag("consent", "update", {
+            analytics_storage: newValue,
+            ad_storage: newValue,
+            ad_user_data: newValue,
+            ad_personalization: newValue,
+          });
+          console.log("Successfully updated gtag consent");
+        } catch (error) {
+          console.error("Error updating gtag consent:", error);
+        }
+      } else {
+        console.warn("Google Analytics not initialized yet");
+      }
 
-    setLocalStorage("cookie_consent", cookieConsent);
+      setLocalStorage("cookie_consent", cookieConsent);
+    }
   }, [cookieConsent]);
-  return (
-    <div
-      className={`fixed bottom-0 left-0 right-0
-                  z-50 mx-auto my-10 flex 
-                  max-w-max flex-col items-center justify-between gap-4 rounded-lg bg-gray-700 px-3 py-3  
-                  shadow sm:flex-row md:max-w-screen-sm md:px-4
-                  ${cookieConsent !== null ? "hidden" : "flex"}`}
-    >
-      <div className="text-cente text-white-200">
-        <Link href="/info/cookies">
-          <p>
-            We use <span className="font-bold text-sky-400">cookies</span> on
-            our site.
-          </p>
-        </Link>
-      </div>
 
-      <div className="flex gap-2">
-        <button
-          className="rounded-md border-gray-900 px-5 py-2 text-gray-300"
-          onClick={() => setCookieConsent(false)}
-        >
-          Decline
-        </button>
-        <button
-          className="text-white-200 rounded-lg bg-gray-900 px-5 py-2"
-          onClick={() => setCookieConsent(true)}
-        >
-          Allow Cookies
-        </button>
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-50 w-full bg-gray-dark p-4 shadow-lg">
+      <div className="mx-auto max-w-4xl">
+        <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+          <p className="text-sm text-white">{t("cookie")}</p>
+          <div className="flex gap-4">
+            <button
+              onClick={() => setCookieConsent(false)}
+              className="rounded border border-white px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white hover:text-gray-900"
+            >
+              {t("reject")}
+            </button>
+            <button
+              onClick={() => setCookieConsent(true)}
+              className="rounded bg-white px-4 py-2 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-100"
+            >
+              {t("accept")}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

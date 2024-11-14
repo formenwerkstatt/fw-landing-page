@@ -1,35 +1,24 @@
 "use client";
-
 import Script from "next/script";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
-import { pageview } from "@/utils/gtagHelper";
 
-export default function GoogleAnalytics({
-  GA_MEASUREMENT_ID,
-}: {
-  GA_MEASUREMENT_ID: string;
-}) {
+export default function GoogleAnalytics({ GA_MEASUREMENT_ID }: { GA_MEASUREMENT_ID: string }) {
   const pathname = usePathname();
-  // Moving useSearchParams inside an effect to avoid the suspense requirement
-  useEffect(() => {
-    try {
-      if (typeof window !== 'undefined') {
-        const searchParams = new URLSearchParams(window.location.search);
-        const url = pathname + searchParams.toString();
-        pageview(GA_MEASUREMENT_ID, url);
-      }
-    } catch (error) {
-      if (process.env.NODE_ENV === 'development') {
-        console.error('Analytics error:', error);
-      }
-    }
-  }, [pathname, GA_MEASUREMENT_ID]);
+  const searchParams = useSearchParams();
 
-  // Don't render during SSR
-  if (typeof window === 'undefined') {
-    return null;
-  }
+  // Initialize gtag
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      if (window.gtag) {
+        window.gtag("config", GA_MEASUREMENT_ID, {
+          page_path: url,
+        });
+      }
+    };
+
+    handleRouteChange(`${pathname}?${searchParams}`);
+  }, [pathname, searchParams, GA_MEASUREMENT_ID]);
 
   return (
     <>
@@ -46,19 +35,33 @@ export default function GoogleAnalytics({
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            gtag('consent', 'default', {
-              'ad_personalization': 'denied',
-              'analytics_storage': 'denied',
-              'ad_user_data': 'denied',
-              'ad_storage': 'denied',
-            });
-
             gtag('config', '${GA_MEASUREMENT_ID}', {
               page_path: window.location.pathname,
+              cookie_flags: 'SameSite=None;Secure'
+            });
+            
+            // Initialize consent mode
+            gtag('consent', 'default', {
+              'analytics_storage': 'denied',
+              'ad_storage': 'denied',
+              'ad_user_data': 'denied',
+              'ad_personalization': 'denied'
             });
           `,
         }}
       />
     </>
   );
+}
+
+// Add this type declaration at the top of your file or in a separate .d.ts file
+declare global {
+  interface Window {
+    gtag: (
+      command: string,
+      action: string,
+      params?: Record<string, any>
+    ) => void;
+    dataLayer: any[];
+  }
 }

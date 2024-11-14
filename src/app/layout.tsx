@@ -5,9 +5,7 @@ import "leaflet/dist/leaflet.css";
 import { ReactElement, Suspense } from "react";
 import { Providers } from "./providers";
 import { getCurrentLocale } from "@/locales/server";
-import Script from "next/script";
 import GoogleAnalytics from "@/components/Google/Analytics";
-import CookieBanner from "@/components/Google/CookieBanner";
 
 const titillium = Titillium_Web({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -17,13 +15,12 @@ export default function RootLayout({ children }: { children: ReactElement }) {
   return (
     <html lang={locale} suppressHydrationWarning={false}>
       <head />
-      <Suspense fallback={null}>
-        <GoogleAnalytics
-          GA_MEASUREMENT_ID={`${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
-        />
-      </Suspense>
-      <CookieBanner />
       <body className={`bg-[#FCFCFC] dark:bg-black ${titillium.className}`}>
+        <Suspense fallback={null}>
+          <GoogleAnalytics
+            GA_MEASUREMENT_ID={`${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+          />
+        </Suspense>
         <Providers>{children}</Providers>
       </body>
     </html>

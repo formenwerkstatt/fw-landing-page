@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import Loading from "@/components/Common/Loading";
+import CookieBanner from "@/components/Google/CookieBanner";
 
 export default function SubLayout({
   children,
@@ -16,7 +17,7 @@ export default function SubLayout({
   return (
     <I18nProviderClient locale={params.locale} fallback={<Loading />}>
       <main className="size-full">
-     
+        <CookieBanner />
         <Header />
         {children}
         <ScrollToTop />
