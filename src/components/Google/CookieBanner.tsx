@@ -39,6 +39,8 @@ export default function CookieBanner() {
     }
   }, [cookieConsent]);
 
+  if (cookieConsent !== null) return null; //If some animations would be added to the component delete this and use CSS to hide
+
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 w-full bg-gray-dark p-4 shadow-lg">
       <div className="mx-auto max-w-4xl">
