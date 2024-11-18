@@ -29,6 +29,9 @@ export const allImages = [
   "/images/gallery/workshop-01.jpg",
   "/images/gallery/workshop-02.jpg",
   "/images/gallery/workshop-03.jpg",
+  "/images/gallery/edm-frasen.png",
+  "/images/gallery/laser-close.png",
+  "/images/gallery/lasers.png",
 ];
 
 export function getRandomUniqueItems<T>(array: T[], count: number): T[] {
@@ -70,7 +73,7 @@ export function parallelGalleryImages(iconName: string) {
         "/images/gallery/macro-part-05.jpg",
       ];
     case "welding":
-      return ["/images/gallery/macro-part-02.jpg"];
+      return ["/images/gallery/lasers.png", "/images/gallery/laser-close.png"];
     case "laser":
       return ["/images/gallery/macro-part-02.jpg"];
     case "polish":
@@ -82,21 +85,18 @@ export function parallelGalleryImages(iconName: string) {
       return ["/images/gallery/macro-sparks.jpg"];
     case "renovation":
       return [
-        "/images/gallery/workshop-03.jpg",
+        "/images/gallery/edm-frasen.png",
         "/images/gallery/workshop-02.jpg",
-        "/images/gallery/workshop-01.jpg",
       ];
     case "overhaul":
       return [
-        "/images/gallery/workshop-03.jpg",
+        "/images/gallery/edm-frasen.png",
         "/images/gallery/workshop-02.jpg",
-        "/images/gallery/workshop-01.jpg",
       ];
     case "repair":
       return [
-        "/images/gallery/workshop-03.jpg",
+        "/images/gallery/edm-frasen.png",
         "/images/gallery/workshop-02.jpg",
-        "/images/gallery/workshop-01.jpg",
       ];
     default:
       return [];

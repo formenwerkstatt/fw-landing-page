@@ -194,7 +194,7 @@ const useServicesData = (): Services[] => {
           description: t("fertigung.subServices.4.description"),
           images: galleryImages,
           path: "/laserschweissen",
-          iconName: "laser",
+          iconName: "welding",
           paragraph: t("fertigung.subServices.4.paragraph"),
           nestedList: [
             {
@@ -260,13 +260,6 @@ const useServicesData = (): Services[] => {
             {
               title: t("fertigung.subServices.7.nestedList.0.title"),
               list: [t("fertigung.subServices.7.nestedList.0.list.0")],
-            },
-            {
-              title: t("fertigung.subServices.7.nestedList.1.title"),
-              list: [
-                t("fertigung.subServices.7.nestedList.1.list.0"),
-                t("fertigung.subServices.7.nestedList.1.list.1"),
-              ],
             },
           ],
           cta: t("fertigung.subServices.7.cta"),

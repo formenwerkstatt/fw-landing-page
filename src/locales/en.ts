@@ -260,13 +260,6 @@ export default {
                 "Surface grinding machine ELB OPTIMAL: Travel paths x600 y400 mm",
               ],
             },
-            {
-              title: "Capabilities:",
-              list: [
-                "Large workpieces up to 1000 mm",
-                "Precise grinding to reduce surface roughness",
-              ],
-            },
           ],
           cta: "Need precise grinding? Contact us to learn more about our services.",
         },

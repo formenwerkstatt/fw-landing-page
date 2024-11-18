@@ -260,13 +260,6 @@ export default {
                 "Flachschleifmaschine ELB OPTIMAL: Verfahrwege x600 y400 mm",
               ],
             },
-            {
-              title: "Fähigkeiten:",
-              list: [
-                "Große Werkstücke bis zu 1000 mm",
-                "Präzises Schleifen zur Reduzierung der Oberflächenrauhigkeit",
-              ],
-            },
           ],
           cta: "Brauchen Sie präzises Schleifen? Wenden Sie sich an uns, um mehr über unsere Dienstleistungen zu erfahren.",
         },
@@ -332,7 +325,7 @@ export default {
   },
 
   contact: {
-    title: "Contact Us",
+    title: "Kontakt",
     paragraph:
       "Wir würden uns freuen, von Ihnen zu hören! Ob Sie eine Frage haben, ein Angebot benötigen oder ein neues Projekt besprechen möchten, zögern Sie nicht, uns zu kontaktieren.",
     phone: "Telefon",

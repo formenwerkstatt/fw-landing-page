@@ -1,13 +1,12 @@
 import { parallelGalleryImages } from "@/data/galleryImages";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 
 export default function ParallelGallery({ iconName }: { iconName: string }) {
   const serviceImages: string[] = parallelGalleryImages(iconName);
 
   return (
     <section className="py-12">
-      <div className="flex justify-center gap-8">
+      <div className="flex w-full justify-center gap-8 overflow-hidden">
         {serviceImages.length === 0 && (
           <div className="group relative h-[60dvh] w-full skew-x-[-15deg] transform overflow-hidden shadow-lg">
             <div

@@ -4,8 +4,11 @@ import useServicesData from "@/data/useServiceData";
 import { cn } from "@/utils/cn";
 import SharePost from "../Services/SharePost";
 
-const Footer = () => {
+import { useI18n } from "@/locales/client";
+
+export default function Footer() {
   const servicesData = useServicesData();
+  const t = useI18n();
 
   return (
     <footer className="relative z-10 bg-white pt-16 dark:bg-gray-dark md:pt-20 lg:pt-24">
@@ -35,7 +38,7 @@ const Footer = () => {
           <div className="grid w-full ">
             <div className="mb-10 lg:mb-0">
               <h3 className="mb-6 text-xl font-bold text-black dark:text-white">
-                Services
+                {t("menu.services")}
               </h3>
               <div className="flex flex-wrap lg:flex-nowrap">
                 {servicesData?.map((service) => (
@@ -65,7 +68,7 @@ const Footer = () => {
           <div className="w-full ">
             <div className="mb-10 lg:mb-0">
               <h3 className="mb-6 text-xl font-bold text-black dark:text-white">
-                Support & Help
+                Support
               </h3>
               <ul className="mb-8 space-y-4">
                 <li>
@@ -73,7 +76,7 @@ const Footer = () => {
                     href="/contact"
                     className="text-base text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                   >
-                    Contact
+                    {t("contact.title")}
                   </Link>
                 </li>
                 <li>
@@ -81,7 +84,7 @@ const Footer = () => {
                     href="/about"
                     className="text-base text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                   >
-                    About
+                    {t("about.title")}
                   </Link>
                 </li>
                 <li>
@@ -298,6 +301,4 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

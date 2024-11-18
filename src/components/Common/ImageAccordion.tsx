@@ -12,14 +12,14 @@ const persons = [
   {
     id: "2",
     url: "",
-    name: "Huseyin Isik",
+    name: "Belgin Isik",
     role: "Prokuristin",
   },
   {
     id: "3",
     url: "",
-    name: "Belgin Isik",
-    role: "Prokuristin",
+    name: "Huseyin Isik",
+    role: "Geschäfftsführer",
   },
 ];
 
