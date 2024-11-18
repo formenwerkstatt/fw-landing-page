@@ -215,7 +215,7 @@ export default {
         },
         {
           title: "Lasergravieren",
-          description: "Präzises Ätzen für bleibende Eindrücke",
+          description: "Präzises Abtragen für bleibende Eindrücke",
           paragraph:
             "Logos, Seriennummern und benutzerdefinierte Texte werden präzise in Ihre Werkzeuge oder Produkte mit unserem Trumpf-Gravur Laser eingraviert. Mit der Fähigkeit, Teile bis zu 800 kg zu handhaben, ermöglicht unser flexibler Laserarm eine tiefe Gravur selbst in den schwierigsten Bereichen.",
           nestedList: [
