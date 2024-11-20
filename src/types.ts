@@ -15,9 +15,8 @@ export type Services = {
 export type subService = {
   title: string;
   description: string;
-  images: string[];
   path: string;
-  iconName:  string;  
+  iconName: string;
   paragraph: string;
   nestedList: bulletList[];
   cta: string;
@@ -43,8 +42,6 @@ type Ad = {
   content: bulletList[];
   cta: string;
 };
-
-
 
 export type Brand = {
   id: number;

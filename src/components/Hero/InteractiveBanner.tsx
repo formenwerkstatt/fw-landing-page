@@ -27,11 +27,11 @@ export default function InteractiveBanner() {
               "absolute inset-0 z-10 size-full",
               "flex flex-col items-center justify-center gap-12 px-6",
               "text-center",
-              "relative bg-black/50",
+              "relative bg-gray-400/50 dark:bg-black/50",
             )}
           >
             <Image
-              src="/logo.svg"
+              src="/images/gallery/workshop-01.jpg"
               alt="Background Logo"
               fill
               className="absolute object-cover opacity-10"
@@ -39,7 +39,7 @@ export default function InteractiveBanner() {
             />
 
             {/* Content overlay */}
-            <div className="relative z-20">
+            <div className="relative z-20 ">
               <h1 className={cn(`mb-4 text-white`, "text-4xl font-bold")}>
                 {t("slogan")}
               </h1>
@@ -82,5 +82,3 @@ export default function InteractiveBanner() {
     </>
   );
 }
-
-

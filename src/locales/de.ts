@@ -271,28 +271,18 @@ export default {
       paragraph: "Unsere Reparatur- und Wartungsdienste",
       subServices: [
         {
-          title: "Optimierung",
-          description:
-            "Verlängern Sie die Lebensdauer Ihrer Werkzeuge mit unseren Reparaturdiensten.",
+          title: "Werkzeug- reparatur, überholung & optimierung ",
+          description: "Werkzeuge wider wie Neu!",
           paragraph:
-            "Wir sind auf die Wiederherstellung abgenutzter Formen und Werkzeuge in ihren ursprünglichen Zustand spezialisiert und führen Änderungen in der Geometrie durch.",
+            "Unser Werkzeug Reparaturdienste behandelt alles, von Oberflächenschäden bis zu mechanischen Problemen. Egal, ob Sie kleinere Reparaturen oder einen kompletten Neubau benötigen, unser Team hat die Expertise, um Ihre Werkzeuge in neuwertigen Zustand zu versetzen.",
           nestedList: [
             {
-              title: "Fähigkeiten:",
+              title: "Dienstleistungen umfassen",
               list: [
-                "Vollständige Werkzeug Überarbeitung",
-                "Material Wiederherstellung durch Schweißen und Bearbeitung",
+                "Auftrag von Material durch das Laserschweißen",
+                "Nacharbeit durch alle Fertigungsverfahren",
               ],
             },
-          ],
-          cta: "Interessiert an der Renovierung Ihrer Werkzeuge? Kontaktieren Sie unser Team für professionelle Renovierungsdienste.",
-        },
-        {
-          title: "Überholung",
-          description: "Eine komplette Überholung Ihrer Formen",
-          paragraph:
-            "Eine vollständige Überholung umfasst das Zerlegen, Prüfen und Reparieren Ihrer Werkzeuge, um sie wieder auf Höchstleistung zu bringen. Wir konzentrieren uns darauf, Abnutzung, Schäden und alle zugrunde liegenden Probleme zu beheben, die die zukünftige Produktion beeinträchtigen könnten.",
-          nestedList: [
             {
               title: "Unser Prozess",
               list: [
@@ -301,20 +291,11 @@ export default {
                 "Reparaturen und Verbesserungen nach Bedarf",
               ],
             },
-          ],
-          cta: "Möchten Sie Ihre Werkzeuge überholen? Wenden Sie sich für weitere Informationen an uns.",
-        },
-        {
-          title: "Werkzeugreparatur",
-          description: "Werkzeuge wider wie Neu!",
-          paragraph:
-            "Unser Werkzeug Reparaturdienste behandelt alles, von Oberflächenschäden bis zu mechanischen Problemen. Egal, ob Sie kleinere Reparaturen oder einen kompletten Neubau benötigen, unser Team hat die Expertise, um Ihre Werkzeuge in neuwertigen Zustand zu versetzen.",
-          nestedList: [
             {
-              title: "Dienstleistungen umfassen:",
+              title: "Fähigkeiten",
               list: [
-                "Auftrag von Material durch das Laserschweißen",
-                "Nacharbeit durch alle Fertigungsverfahren",
+                "Vollständige Werkzeug Überarbeitung",
+                "Material Wiederherstellung durch Schweißen und Bearbeitung",
               ],
             },
           ],

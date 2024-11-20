@@ -271,28 +271,18 @@ export default {
       paragraph: "Our repair and maintenance services",
       subServices: [
         {
-          title: "Optimization",
-          description:
-            "Extend the life of your tools with our repair services.",
+          title: "Repair / Overhaul / Refurbishment",
+          description: "Tools like new again!",
           paragraph:
-            "We specialize in restoring worn molds and tools to their original condition and making modifications to the geometry.",
+            "Our tool repair services handle everything from surface damage to mechanical problems. Whether you need minor repairs or a complete rebuild, our team has the expertise to restore your tools to like-new condition.",
           nestedList: [
             {
-              title: "Capabilities:",
+              title: "Services include",
               list: [
-                "Complete tool refurbishment",
-                "Material restoration through welding and machining",
+                "Material deposition through laser welding",
+                "Rework through all manufacturing processes",
               ],
             },
-          ],
-          cta: "Interested in renovating your tools? Contact our team for professional renovation services.",
-        },
-        {
-          title: "Overhaul",
-          description: "A complete overhaul of your molds",
-          paragraph:
-            "A complete overhaul includes disassembling, inspecting, and repairing your tools to bring them back to peak performance. We focus on addressing wear, damage, and any underlying issues that could affect future production.",
-          nestedList: [
             {
               title: "Our Process",
               list: [
@@ -301,20 +291,11 @@ export default {
                 "Repairs and improvements as needed",
               ],
             },
-          ],
-          cta: "Want to overhaul your tools? Contact us for more information.",
-        },
-        {
-          title: "Tool Repair",
-          description: "Tools like new again!",
-          paragraph:
-            "Our tool repair services handle everything from surface damage to mechanical problems. Whether you need minor repairs or a complete rebuild, our team has the expertise to restore your tools to like-new condition.",
-          nestedList: [
             {
-              title: "Services include:",
+              title: "Capabilities",
               list: [
-                "Material deposition through laser welding",
-                "Rework through all manufacturing processes",
+                "Complete tool refurbishment",
+                "Material restoration through welding and machining",
               ],
             },
           ],

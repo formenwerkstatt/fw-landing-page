@@ -34,13 +34,6 @@ export const allImages = [
   "/images/gallery/lasers.png",
 ];
 
-export function getRandomUniqueItems<T>(array: T[], count: number): T[] {
-  const shuffled = array.slice().sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
-}
-
-export const galleryImages: string[] = getRandomUniqueItems(allImages, 5);
-
 export function parallelGalleryImages(iconName: string) {
   switch (iconName) {
     case "design":
@@ -62,8 +55,8 @@ export function parallelGalleryImages(iconName: string) {
       ];
     case "turning":
       return [
-        "/images/gallery/macro-machine-05.jpg",
         "/images/gallery/macro-machine-04.jpg",
+        "/images/gallery/edm-frasen.png",
       ];
     case "edm":
       return ["/images/gallery/senk-06.jpg", "/images/gallery/senk-02.jpg"];
@@ -83,16 +76,7 @@ export function parallelGalleryImages(iconName: string) {
       ];
     case "grinding":
       return ["/images/gallery/macro-sparks.jpg"];
-    case "renovation":
-      return [
-        "/images/gallery/edm-frasen.png",
-        "/images/gallery/workshop-02.jpg",
-      ];
-    case "overhaul":
-      return [
-        "/images/gallery/edm-frasen.png",
-        "/images/gallery/workshop-02.jpg",
-      ];
+
     case "repair":
       return [
         "/images/gallery/edm-frasen.png",

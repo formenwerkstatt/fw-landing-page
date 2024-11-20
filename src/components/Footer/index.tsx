@@ -13,98 +13,96 @@ export default function Footer() {
   return (
     <footer className="relative z-10 bg-white pt-16 dark:bg-gray-dark md:pt-20 lg:pt-24">
       <div className="container mx-auto px-4">
-        <div
-          className={cn(
-            "",
-            "flex flex-wrap",
-            " xl:grid xl:grid-cols-[auto_auto_auto]",
-          )}
-        >
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-[1fr_3fr_0.5fr]">
           {/* Logo and Address Section */}
-          <div className="mb-10 w-full  ">
-            <div className="mb-10 max-w-[360px]">
-              <Link href="/" className="mb-6 inline-block">
-                <Image src="/logo.svg" alt="logo" width={180} height={100} />
-              </Link>
-              <p className="mb-8 text-base leading-relaxed text-body-color dark:text-body-color-dark">
-                Formenwerkstatt <br /> Sudetenstraße 105 <br /> 64385
-                Reichelsheim
-              </p>
-              <SharePost />
-            </div>
+          <div className="space-y-6">
+            <Link href="/" className="inline-block">
+              <Image src="/logo.svg" alt="logo" width={180} height={100} />
+            </Link>
+            <p className="text-base leading-relaxed text-body-color dark:text-body-color-dark">
+              Formenwerkstatt <br /> Sudetenstraße 105 <br /> 64385 Reichelsheim
+            </p>
+            <SharePost />
           </div>
 
           {/* Services Section */}
-          <div className="grid w-full ">
-            <div className="mb-10 lg:mb-0">
-              <h3 className="mb-6 text-xl font-bold text-black dark:text-white">
-                {t("menu.services")}
-              </h3>
-              <div className="flex flex-wrap lg:flex-nowrap">
-                {servicesData?.map((service) => (
-                  <div key={service.title} className="mb-2 w-full sm:w-1/2">
-                    <h4 className="mb-2 text-lg   text-body-color dark:text-body-color-dark">
-                      {service.title}
-                    </h4>
-                    <ul className="flex flex-col gap-2">
-                      {service.subServices.map((subService) => (
-                        <li key={subService.title}>
-                          <Link
-                            href={`/services${subService.path}`}
-                            className=" text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
-                          >
-                            {subService.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
+          <div className="space-y-6">
+            <h3 className="text-xl font-bold text-black dark:text-white">
+              {t("menu.services")}
+            </h3>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {servicesData?.map((service, index) => (
+                <div
+                  key={service.title}
+                  className={cn(
+                    "space-y-4",
+                    index === 1 && "sm:col-span-2 lg:col-span-1",
+                  )}
+                >
+                  <h4 className="text-lg font-semibold text-body-color dark:text-body-color-dark">
+                    {service.title}
+                  </h4>
+                  <ul
+                    className={cn(
+                      "space-y-2",
+                      index === 1 && "grid grid-cols-2 gap-x-4 gap-y-2",
+                    )}
+                  >
+                    {service.subServices.map((subService) => (
+                      <li key={subService.title}>
+                        <Link
+                          href={`/services${subService.path}`}
+                          className="text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+                        >
+                          {subService.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Support & Help Section */}
-          <div className="w-full ">
-            <div className="mb-10 lg:mb-0">
-              <h3 className="mb-6 text-xl font-bold text-black dark:text-white">
-                Support
-              </h3>
-              <ul className="mb-8 space-y-4">
-                <li>
-                  <Link
-                    href="/contact"
-                    className="text-base text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
-                  >
-                    {t("contact.title")}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/about"
-                    className="text-base text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
-                  >
-                    {t("about.title")}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/datenschutz"
-                    className="text-base text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
-                  >
-                    Datenschutz
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/impressum"
-                    className="text-base text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
-                  >
-                    Impressum
-                  </Link>
-                </li>
-              </ul>
-            </div>
+          <div className="space-y-6">
+            <h3 className="text-xl font-bold text-black dark:text-white">
+              Support
+            </h3>
+            <ul className="space-y-4">
+              <li>
+                <Link
+                  href="/contact"
+                  className="text-base text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+                >
+                  {t("contact.title")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about"
+                  className="text-base text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+                >
+                  {t("about.title")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/datenschutz"
+                  className="text-base text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+                >
+                  Datenschutz
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/impressum"
+                  className="text-base text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+                >
+                  Impressum
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
 

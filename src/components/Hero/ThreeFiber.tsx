@@ -100,7 +100,7 @@ function Scene({
       modelGroupRef.current.rotation.y = modelRotation;
 
       modelGroupRef.current.position.lerp(
-        isReset ? new Vector3(0, 0, 0) : new Vector3(0, 0, 1),
+        isReset ? new Vector3(0, 0, 0) : new Vector3(0, 0, 0),
         0.03,
       );
 

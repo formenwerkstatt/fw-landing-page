@@ -3,13 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, useRef, RefObject } from "react";
+import { FaChevronDown } from "react-icons/fa";
 import ThemeToggler from "./ThemeToggler";
 import { useChangeLocale, useCurrentLocale } from "@/locales/client";
 import useMenuData from "@/data/useMenuData";
 import useServiceData from "@/data/useServiceData";
 import { cn } from "@/utils/cn";
 
-const Header = () => {
+export default function Header() {
   const menuData = useMenuData();
   const serviceData = useServiceData();
 
@@ -152,14 +153,7 @@ const Header = () => {
                           >
                             {menuItem.title}
                             <span className="pl-3">
-                              <svg width="25" height="24" viewBox="0 0 25 24">
-                                <path
-                                  fillRule="evenodd"
-                                  clipRule="evenodd"
-                                  d="M6.29289 8.8427C6.68342 8.45217 7.31658 8.45217 7.70711 8.8427L12 13.1356L16.2929 8.8427C16.6834 8.45217 17.3166 8.45217 17.7071 8.8427C18.0976 9.23322 18.0976 9.86639 17.7071 10.2569L12 15.964L6.29289 10.2569C5.90237 9.86639 5.90237 9.23322 6.29289 8.8427Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
+                              <FaChevronDown />
                             </span>
                           </p>
                           <div
@@ -287,6 +281,4 @@ const Header = () => {
       </div>
     </header>
   );
-};
-
-export default Header;
+}
