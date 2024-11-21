@@ -82,6 +82,43 @@ module.exports = {
       dropShadow: {
         three: "0px 5px 15px rgba(6, 8, 15, 0.05)",
       },
+
+      keyframes: {
+        "slide-in-left": {
+          "0%": { transform: "translateX(-100%)", opacity: "0" },
+          "100%": { transform: "translateX(0)", opacity: "1" },
+        },
+        "slide-in-right": {
+          "0%": { transform: "translateX(100%)", opacity: "0" },
+          "100%": { transform: "translateX(0)", opacity: "1" },
+        },
+        "slide-in-top": {
+          "0%": { transform: "translateY(0)", opacity: "0" },
+          "100%": { transform: "translateY(100%)", opacity: "1" },
+        },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        "pop-in": {
+          "0%": { transform: "scale(0.9)", opacity: "0" },
+          "100%": { transform: "scale(1)", opacity: "1" },
+        },
+        "stagger-in": {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+      },
+
+      animation: {
+        "slide-in-left": "slide-in-left 0.7s ease-out",
+        "slide-in-right": "slide-in-right 0.7s ease-out",
+        "slide-in-top": "slide-in-top 0.7s ease-out",
+        "fade-in": "fade-in 0.5s ease-in",
+        "fade-in-delayed": "fade-in 0.5s ease-in 0.3s both",
+        "pop-in": "pop-in 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        "stagger-in": "stagger-in 0.5s ease-out",
+      },
     },
   },
   plugins: [],

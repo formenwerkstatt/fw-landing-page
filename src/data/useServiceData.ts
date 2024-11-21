@@ -8,7 +8,7 @@ const useServicesData = (): Services[] => {
     {
       title: t("formtechnik.title"),
       paragraph: t("formtechnik.paragraph"),
-      image: "/images/mold-close.webp",
+      image: "/images/sparks.webp",
       tags: ["formentechnik"],
       subServices: [
         {
@@ -87,7 +87,7 @@ const useServicesData = (): Services[] => {
     {
       title: t("fertigung.title"),
       paragraph: t("fertigung.paragraph"),
-      image: "/images/in-house.webp",
+      image: "/images/gallery/edm-frasen.png",
       tags: ["fertigung"],
       subServices: [
         {

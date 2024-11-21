@@ -30,7 +30,7 @@ export default function Footer() {
             <h3 className="text-xl font-bold text-black dark:text-white">
               {t("menu.services")}
             </h3>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-[1fr_1.5fr_1fr]">
               {servicesData?.map((service, index) => (
                 <div
                   key={service.title}
@@ -44,8 +44,7 @@ export default function Footer() {
                   </h4>
                   <ul
                     className={cn(
-                      "space-y-2",
-                      index === 1 && "grid grid-cols-2 gap-x-4 gap-y-2",
+                      index === 1 ? "grid grid-cols-2 gap-4 " : "space-y-4",
                     )}
                   >
                     {service.subServices.map((subService) => (

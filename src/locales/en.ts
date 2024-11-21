@@ -7,6 +7,8 @@ export default {
   accept: "OK",
   reject: "Reject",
 
+  details: "View Details",
+
   menu: {
     home: "Home",
     about: "About Us",
@@ -267,11 +269,11 @@ export default {
     },
 
     reparatur: {
-      title: "Repair and Geometry Modification",
+      title: "Repair",
       paragraph: "Our repair and maintenance services",
       subServices: [
         {
-          title: "Repair / Overhaul / Refurbishment",
+          title: "Overhaul / Refurbishment & Geometry Modifications",
           description: "Tools like new again!",
           paragraph:
             "Our tool repair services handle everything from surface damage to mechanical problems. Whether you need minor repairs or a complete rebuild, our team has the expertise to restore your tools to like-new condition.",

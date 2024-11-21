@@ -34,7 +34,7 @@ export default function InteractiveBanner() {
               src="/images/gallery/workshop-01.jpg"
               alt="Background Logo"
               fill
-              className="absolute object-cover opacity-10"
+              className="absolute object-cover opacity-50"
               priority
             />
 
