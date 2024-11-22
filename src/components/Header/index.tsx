@@ -167,7 +167,8 @@ export default function Header() {
                         href={menuItem.path}
                         className={cn(
                           `flex rounded-lg p-2 text-xl lg:mr-0 lg:inline-flex lg:px-2 lg:py-6`,
-                          "transition duration-300 hover:bg-primary hover:text-white",
+                          !isSmallScreen &&
+                            "transition duration-300 hover:bg-primary/50 hover:text-white",
                           cleanPathname === menuItem.path &&
                             "bg-primary/10 text-primary",
                         )}
@@ -182,7 +183,8 @@ export default function Header() {
                             "flex cursor-pointer items-center justify-between py-2",
                             "text-xl text-dark  hover:text-primary dark:text-white/70 dark:hover:text-white",
                             " lg:inline-flex lg:px-2 lg:py-6",
-                            "rounded-lg transition duration-300 hover:bg-primary hover:text-white ",
+                            !isSmallScreen &&
+                              "rounded-lg transition duration-300 hover:bg-primary/50 hover:text-white ",
                           )}
                         >
                           {menuItem.title}
@@ -192,8 +194,9 @@ export default function Header() {
                           className={cn(
                             `mt-4 w-[60dvw] max-w-max rounded-sm bg-white dark:bg-dark `,
                             `lg:absolute lg:rounded-lg lg:px-4 lg:py-2 lg:shadow-lg`,
-
-                            `${openSubmenuIndex === index ? "flex  flex-col lg:flex-row  lg:gap-4" : "hidden"}`,
+                            openSubmenuIndex === index
+                              ? "flex  flex-col lg:flex-row  lg:gap-4"
+                              : "hidden",
                           )}
                         >
                           {serviceData.map((serviceItem) => (
