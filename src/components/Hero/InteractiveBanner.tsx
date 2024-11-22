@@ -57,7 +57,7 @@ export default function InteractiveBanner() {
             <div
               className={cn(
                 "relative z-50 w-full py-12",
-                "bg-gradient-to-t from-transparent via-primary/70 to-transparent",
+                "bg-gradient-to-t from-transparent via-primary/40 to-transparent",
               )}
             >
               <h1 className={cn(`mb-4 text-gray-light`, "text-4xl font-bold")}>
