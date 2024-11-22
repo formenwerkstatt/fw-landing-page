@@ -27,7 +27,7 @@ export default function Jobs() {
             title={jobs.sectionTitle}
             paragraph={jobs.sectionParagraph}
             list={jobs.sectionList}
-            src="/images/gallery/workshop-01.jpg"
+            src="/images/gallery/workshop-02.jpg"
           />
           <article className="mt-8 ">
             <h3 className="text-balanced mb-8 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl md:text-4xl">

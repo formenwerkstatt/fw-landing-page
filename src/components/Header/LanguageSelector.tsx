@@ -13,7 +13,7 @@ export default function LanguageSelector({
   setNavbarOpen,
 }: LanguageProps) {
   return (
-    <div className="flex items-center space-x-2 rounded border border-gray-300 bg-gray-100 p-1 dark:border-gray-600 dark:bg-gray-800">
+    <div className="flex items-center  rounded-md border border-gray-300 bg-gray-100  dark:border-gray-600 dark:bg-gray-800">
       <button
         className={cn(
           "rounded-sm px-4 py-2 text-sm font-medium",

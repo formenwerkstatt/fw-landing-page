@@ -19,6 +19,7 @@ const Services = () => {
           title={t("title")}
           paragraph={t("paragraph")}
           width={"full"}
+          isHomepage
         />
       </div>
       <article className={cn("flex flex-col gap-4 ")}>

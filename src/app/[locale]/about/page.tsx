@@ -33,9 +33,9 @@ export default async function AboutPage() {
             center
             width="80%"
           />
-          <div className="relative  mb-24 items-center justify-center">
-            <ImageAccordion />
-          </div>
+
+          <ImageAccordion />
+
           <ImageSection
             title="info@formenwerkstatt.de"
             paragraph={t("cta")}

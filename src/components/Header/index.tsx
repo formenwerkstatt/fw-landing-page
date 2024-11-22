@@ -14,9 +14,9 @@ import LanguageSelector from "./LanguageSelector";
 export default function Header() {
   const menuData = useMenuData();
   const serviceData = useServiceData();
-
   const locale = useCurrentLocale();
   const pathname = usePathname();
+  const cleanPathname = pathname.replace(`/${locale}`, "");
   const changeLocale = useChangeLocale();
 
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -58,7 +58,7 @@ export default function Header() {
   };
 
   const handleResize = () => {
-    const smallScreen = window.innerWidth < 1024;
+    const smallScreen = window.innerWidth < 992; //992px is the lg media query
     setIsSmallScreen(smallScreen);
     if (!smallScreen) {
       setNavbarOpen(false);
@@ -94,12 +94,12 @@ export default function Header() {
           : "absolute bg-transparent"
       }`}
     >
-      <div className="container">
+      <div className="container ">
         <div
           ref={navbarRef}
           className="relative flex items-center justify-between"
         >
-          <div className="w-60 max-w-full px-4 xl:mr-12">
+          <div className="w-60 max-w-full px-4 ">
             <Link
               onClick={() => {
                 setNavbarOpen(false);
@@ -111,146 +111,145 @@ export default function Header() {
               <Image src="/logo.svg" alt="logo" width={150} height={100} />
             </Link>
           </div>
-          <div className="flex w-full items-center justify-between px-4">
-            <div>
-              <button
-                onClick={toggleNavbar}
-                id="navbarToggler"
-                aria-label="Mobile Menu"
-                className="absolute right-4 top-1/2 z-50 block translate-y-[-50%] rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
-              >
-                <span
-                  className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
-                    navbarOpen ? " top-[7px] rotate-45" : ""
-                  }`}
-                />
-                <span
-                  className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
-                    navbarOpen ? "opacity-0" : ""
-                  }`}
-                />
-                <span
-                  className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
-                    navbarOpen ? " top-[-8px] -rotate-45" : ""
-                  }`}
-                />
-              </button>
-              <nav
-                id="navbarCollapse"
-                className={cn(
-                  `navbar absolute right-0 rounded border-[.5px] border-body-color/50 bg-white px-6 py-4 duration-300`,
-                  `dark:border-body-color/20 dark:bg-dark lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100`,
-                  `${
-                    navbarOpen && isSmallScreen
-                      ? "visibility top-[70%] w-full opacity-100"
-                      : "invisible top-[120%] opacity-0"
-                  }`,
-                  `${
-                    isSmallScreen
-                      ? "max-h-[calc(100vh-120px)] overflow-y-auto"
-                      : "overflow-visible"
-                  }`,
-                )}
-              >
-                <ul className="block lg:flex lg:space-x-12">
-                  {menuData.map((menuItem, index) => (
-                    <li
-                      key={index}
-                      className="group relative"
-                      onMouseEnter={() => handleMouseEnter(index)}
-                    >
-                      {menuItem.path ? (
-                        <Link
-                          onClick={() => {
-                            setNavbarOpen(false);
-                            setOpenSubmenuIndex(null);
-                          }}
-                          href={menuItem.path}
-                          className={`flex py-2 text-xl lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${
-                            pathname === menuItem.path
-                              ? "text-primary dark:text-white"
-                              : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                          }`}
+          <div className="flex w-full items-center justify-between ">
+            <button
+              onClick={toggleNavbar}
+              id="navbarToggler"
+              aria-label="Mobile Menu"
+              className="absolute right-4 top-1/2 z-50 block translate-y-[-50%] rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
+            >
+              <span
+                className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
+                  navbarOpen ? " top-[7px] rotate-45" : ""
+                }`}
+              />
+              <span
+                className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
+                  navbarOpen ? "opacity-0" : ""
+                }`}
+              />
+              <span
+                className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
+                  navbarOpen ? " top-[-8px] -rotate-45" : ""
+                }`}
+              />
+            </button>
+            <nav
+              id="navbarCollapse"
+              className={cn(
+                `navbar absolute right-0 rounded border-[.5px] border-body-color/50 bg-white px-6 py-4 duration-300`,
+                `dark:border-body-color/20 dark:bg-dark lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100`,
+                `${
+                  navbarOpen && isSmallScreen
+                    ? "visibility top-[70%] w-full opacity-100"
+                    : "invisible top-[120%] opacity-0"
+                }`,
+                `${
+                  isSmallScreen
+                    ? "max-h-[calc(100vh-120px)] overflow-y-auto"
+                    : "overflow-visible"
+                }`,
+              )}
+            >
+              <ul className="block gap-4 lg:flex">
+                {menuData.map((menuItem, index) => (
+                  <li
+                    key={index}
+                    className="group relative"
+                    onMouseEnter={() => handleMouseEnter(index)}
+                  >
+                    {menuItem.path ? (
+                      <Link
+                        onClick={() => {
+                          setNavbarOpen(false);
+                          setOpenSubmenuIndex(null);
+                        }}
+                        href={menuItem.path}
+                        className={cn(
+                          `flex rounded-lg p-2 text-xl lg:mr-0 lg:inline-flex lg:px-2 lg:py-6`,
+                          "transition duration-300 hover:bg-primary hover:text-white",
+                          cleanPathname === menuItem.path &&
+                            "bg-primary/10 text-primary",
+                        )}
+                      >
+                        {menuItem.title}
+                      </Link>
+                    ) : (
+                      <>
+                        <button
+                          onClick={() => toggleSubmenu(index)}
+                          className={cn(
+                            "flex cursor-pointer items-center justify-between py-2",
+                            "text-xl text-dark  hover:text-primary dark:text-white/70 dark:hover:text-white",
+                            " lg:inline-flex lg:px-2 lg:py-6",
+                            "rounded-lg transition duration-300 hover:bg-primary hover:text-white ",
+                          )}
                         >
                           {menuItem.title}
-                        </Link>
-                      ) : (
-                        <>
-                          <p
-                            onClick={() => toggleSubmenu(index)}
-                            className={cn(
-                              "flex cursor-pointer items-center justify-between py-2",
-                              "text-xl text-dark  hover:text-primary dark:text-white/70 dark:hover:text-white",
-                              "lg:mr-0 lg:inline-flex lg:px-0 lg:py-6",
-                            )}
-                          >
-                            {menuItem.title}
-                            <FaChevronDown className="ml-2 text-sm" />
-                          </p>
-                          <div
-                            className={cn(
-                              `min-w-min max-w-max rounded-sm bg-white dark:bg-dark`,
-                              `lg:absolute  lg:rounded-lg lg:shadow-lg`,
-                              "lg:border-2 lg:border-primary/10 lg:p-4 lg:dark:border-primary/20",
-                              `${openSubmenuIndex === index ? "flex flex-col lg:flex-row lg:gap-4" : "hidden"}`,
-                            )}
-                          >
-                            {serviceData.map((serviceItem) => (
-                              <div
-                                key={serviceItem.title}
+                          <FaChevronDown className="ml-2 text-sm" />
+                        </button>
+                        <div
+                          className={cn(
+                            `mt-4 w-[60dvw] max-w-max rounded-sm bg-white dark:bg-dark `,
+                            `lg:absolute lg:rounded-lg lg:px-4 lg:py-2 lg:shadow-lg`,
+
+                            `${openSubmenuIndex === index ? "flex  flex-col lg:flex-row  lg:gap-4" : "hidden"}`,
+                          )}
+                        >
+                          {serviceData.map((serviceItem) => (
+                            <div
+                              key={serviceItem.title}
+                              className={cn(
+                                "rounded-md p-2",
+
+                                serviceItem.subServices.length > 5 &&
+                                  "grid grid-cols-[auto_auto] ",
+                              )}
+                            >
+                              <p
                                 className={cn(
-                                  "rounded-md p-2",
-                                  "rounded-md border-2 border-transparent",
-                                  "hover:border-primary/30 hover:border-opacity-100",
-                                  serviceItem.subServices.length > 5 &&
-                                    "grid grid-cols-[auto_auto] ",
+                                  "col-span-2 cursor-default  px-1 text-lg text-dark dark:text-white",
                                 )}
                               >
-                                <p
-                                  className={cn(
-                                    "col-span-2 cursor-default rounded px-1 text-lg text-dark dark:text-white",
-                                  )}
-                                >
-                                  {serviceItem.title}
-                                </p>
-                                {serviceItem.subServices.map(
-                                  (subService) =>
-                                    subService.path && (
-                                      <Link
-                                        onClick={() => {
-                                          setNavbarOpen(false);
-                                          setOpenSubmenuIndex(null);
-                                        }}
-                                        href={`/services${subService.path}`}
-                                        key={subService.title}
-                                        className={cn(
-                                          "block px-2 py-1.5 text-sm text-dark transition hover:bg-primary/30 dark:text-white",
-                                        )}
-                                      >
-                                        {subService.title}
-                                      </Link>
-                                    ),
-                                )}
-                              </div>
-                            ))}
-                          </div>
-                        </>
-                      )}
-                    </li>
-                  ))}
-
-                  {/* Language Selector inside navbar for small screens */}
-                  <li className="flex items-center justify-end lg:hidden">
-                    <LanguageSelector
-                      locale={locale}
-                      changeLocale={changeLocale}
-                      setNavbarOpen={setNavbarOpen}
-                    />
-                    <ThemeToggler />
+                                {serviceItem.title}
+                              </p>
+                              {serviceItem.subServices.map(
+                                (subService) =>
+                                  subService.path && (
+                                    <Link
+                                      onClick={() => {
+                                        setNavbarOpen(false);
+                                        setOpenSubmenuIndex(null);
+                                      }}
+                                      href={`/services${subService.path}`}
+                                      key={subService.title}
+                                      className={cn(
+                                        "block rounded-md px-4 py-2 text-sm text-dark transition hover:bg-primary/10 dark:text-white",
+                                      )}
+                                    >
+                                      {subService.title}
+                                    </Link>
+                                  ),
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </>
+                    )}
                   </li>
-                </ul>
-              </nav>
-            </div>
+                ))}
+
+                {/* Language Selector inside navbar for small screens */}
+                <li className="flex items-center justify-end lg:hidden">
+                  <LanguageSelector
+                    locale={locale}
+                    changeLocale={changeLocale}
+                    setNavbarOpen={setNavbarOpen}
+                  />
+                  <ThemeToggler />
+                </li>
+              </ul>
+            </nav>
 
             <div className="hidden items-center justify-end pr-16 lg:flex lg:pr-0">
               <LanguageSelector

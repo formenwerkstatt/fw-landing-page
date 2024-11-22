@@ -8,6 +8,12 @@ import ControlButton from "./ControlButton";
 
 const ThreeFiber = lazy(() => import("./ThreeFiber"));
 
+const imageList = [
+  "/images/beratung.png",
+  "/images/gallery/machine-dmg-02.jpg",
+  "/images/gallery/macro-part-11.jpg",
+];
+
 export default function InteractiveBanner() {
   const [isOverlayVisible, setIsOverlayVisible] = useState<boolean>(true);
   const [isHelpVisible, setIsHelpVisible] = useState<boolean>(false);
@@ -25,27 +31,41 @@ export default function InteractiveBanner() {
           <div
             className={cn(
               "absolute inset-0 z-10 size-full",
-              "flex flex-col items-center justify-center gap-12 px-6",
+              "flex flex-col items-center justify-center gap-12 ",
               "text-center",
               "relative bg-gray-400/50 dark:bg-black/50",
             )}
           >
-            <Image
-              src="/images/gallery/workshop-01.jpg"
-              alt="Background Logo"
-              fill
-              className="absolute object-cover opacity-50"
-              priority
-            />
+            <div
+              id="img-wrapper"
+              className="absolute inset-0 flex overflow-hidden opacity-10 "
+            >
+              {imageList.map((img, index) => (
+                <div key={img} className="relative flex-1">
+                  <Image
+                    src={img}
+                    alt={`HeroBackground-${index + 1}`}
+                    fill
+                    className="object-cover transition-transform duration-700 hover:scale-105  "
+                    priority
+                  />
+                </div>
+              ))}
+            </div>
 
             {/* Content overlay */}
-            <div className="relative z-20 ">
-              <h1 className={cn(`mb-4 text-white`, "text-4xl font-bold")}>
+            <div
+              className={cn(
+                "relative z-50 w-full py-12",
+                "bg-gradient-to-t from-transparent via-primary/70 to-transparent",
+              )}
+            >
+              <h1 className={cn(`mb-4 text-gray-light`, "text-4xl font-bold")}>
                 {t("slogan")}
               </h1>
               <button
                 onClick={() => setIsOverlayVisible(false)}
-                className="rounded-lg bg-white px-6 py-3 text-lg font-semibold text-black transition-transform hover:scale-105"
+                className="animate-pulse rounded-lg bg-gray-light  px-6 py-3 text-lg font-semibold text-gray-dark duration-1000"
               >
                 {t("cta")}
               </button>

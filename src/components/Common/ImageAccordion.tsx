@@ -25,7 +25,7 @@ const persons = [
 
 export default function ImageAccordion() {
   return (
-    <article className="group mx-auto mb-10 mt-3 flex  justify-center gap-2 max-md:flex-col">
+    <article className="group mx-auto mb-10 mt-3 flex justify-center gap-2 max-md:flex-col">
       {persons.map((person) => {
         return (
           <article
@@ -61,14 +61,13 @@ export default function ImageAccordion() {
 
             {person.url ? (
               <Image
-                className={cn("h-72 w-full object-cover md:h-[420px]")}
+                className={cn("h-72 w-full object-cover md:h-[50dvh]")}
                 src={person.url}
-                width="960"
-                height="480"
+                fill
                 alt={`picture of ${person.name} ${person.role}`}
               />
             ) : (
-              <div className="w-full bg-gradient-to-b from-primary/25 md:h-[420px]">
+              <div className="w-full bg-gradient-to-b from-primary/25 md:h-[50dvh]">
                 <BsPersonFill className="m-auto size-full text-gray-dark/10 dark:text-gray-light/10" />
               </div>
             )}

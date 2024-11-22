@@ -8,7 +8,7 @@ export default function ParallelGallery({ iconName }: { iconName: string }) {
     <section className="py-12">
       <div className="flex w-full justify-center gap-8 overflow-hidden">
         {serviceImages.length === 0 && (
-          <div className="group relative h-[60dvh] w-full skew-x-[-15deg] transform overflow-hidden shadow-lg">
+          <div className="group relative h-[70svh] w-full skew-x-[-15deg] transform overflow-hidden shadow-lg">
             <div
               className="pointer-events-none absolute inset-0 z-10 
             size-full 

@@ -48,6 +48,10 @@ module.exports = {
         },
       },
 
+      backgroundImage: {
+        "custom-radial": "radial-gradient(circle, var(--tw-gradient-stops))",
+      },
+
       fontSize: {
         xs: "0.875rem",
         sm: "1rem",

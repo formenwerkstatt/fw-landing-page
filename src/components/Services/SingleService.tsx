@@ -5,13 +5,15 @@ import Link from "next/link";
 import ServiceIcon from "./ServiceIcon";
 import { useState, useEffect, useRef } from "react";
 import { useI18n } from "@/locales/client";
+import { useRouter } from "next/navigation";
+import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 
 export default function SingleService({ service }: { service: Services }) {
   const { title, image, paragraph, subServices } = service;
+  const router = useRouter();
 
   const [overlayActive, setOverlayActive] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [detailsActive, setDetailsActive] = useState(false);
 
   const serviceRef = useRef<HTMLDivElement>(null);
 
@@ -40,11 +42,15 @@ export default function SingleService({ service }: { service: Services }) {
       )}
     >
       <div
-        onClick={() => setOverlayActive((prev) => !prev)}
-        onMouseEnter={() => setDetailsActive(true)}
-        onMouseLeave={() => setDetailsActive(false)}
+        onClick={() => {
+          if (subServices.length > 1) {
+            setOverlayActive((prev) => !prev);
+          } else {
+            router.push("/services/" + subServices[0].path);
+          }
+        }}
         className={cn(
-          "relative block h-[75dvh] w-full overflow-hidden",
+          "relative block h-[66svh] w-full overflow-hidden",
           "scale-95 opacity-0 transition-all duration-700",
           isVisible && "scale-100 opacity-100",
         )}
@@ -63,35 +69,33 @@ export default function SingleService({ service }: { service: Services }) {
             isVisible && "animate-slide-in-left",
           )}
         >
-          <h3 className="animate-fade-in mb-4 border-b border-body-color text-5xl font-bold text-white lg:text-7xl">
+          <h3 className="mb-4 animate-fade-in border-b border-body-color text-5xl font-bold text-white lg:text-7xl">
             {title}
           </h3>
-          <p className="animate-fade-in-delayed mb-6 text-2xl font-medium text-white lg:text-3xl">
+          <p className="mb-6 animate-fade-in-delayed text-2xl font-medium text-white lg:text-3xl">
             {paragraph}
           </p>
         </div>
-        {detailsActive && (
-          <div
-            className={cn(
-              "absolute right-0 top-2/3 w-1/2  rounded-xl px-6 py-6",
-              "bg-gradient-to-r from-primary/95 to-transparent",
-              "animate-slide-in-right transition-all duration-700",
-            )}
-          >
-            <span className="animate-pop-in text-xl font-medium text-white transition-transform duration-300  lg:text-2xl">
-              {t("details")}
-            </span>
-          </div>
-        )}
+        <div
+          className={cn(
+            "absolute right-0 top-2/3 w-1/2  rounded-xl px-6 py-6",
+            "bg-gradient-to-r from-primary/95 to-transparent",
+            isVisible && "animate-slide-in-right transition-all duration-1000",
+          )}
+        >
+          <span className=" text-xl font-medium text-white  lg:text-2xl">
+            {t("details")}
+          </span>
+        </div>
       </div>
 
       {overlayActive && (
         <div
-          className="animate-fade-in absolute inset-0 z-30 flex items-center justify-center bg-white bg-opacity-60 transition-opacity duration-500 dark:bg-opacity-50"
+          className="absolute inset-0 z-30 flex animate-fade-in items-center justify-center bg-white bg-opacity-60 transition-opacity duration-500 dark:bg-opacity-50"
           onClick={() => setOverlayActive(false)}
         >
           <div className="w-11/12 px-4 md:w-4/5 lg:w-3/4">
-            <div className="animate-stagger-in flex flex-wrap justify-center gap-4">
+            <div className="flex animate-stagger-in flex-wrap justify-center gap-4">
               {subServices.map((subService, index) => (
                 <Link
                   key={subService.title}
