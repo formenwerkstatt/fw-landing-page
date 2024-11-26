@@ -62,7 +62,7 @@ export default function SwiperRelatedPosts({
               <RelatedPost
                 title={service.title}
                 iconName={service.iconName}
-                path={`/services/${service.path}`}
+                path={`/services${service.path}`}
                 description={service.description}
               />
             </SwiperSlide>
