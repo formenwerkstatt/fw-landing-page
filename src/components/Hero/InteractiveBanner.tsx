@@ -38,7 +38,7 @@ export default function InteractiveBanner() {
           >
             <div
               id="img-wrapper"
-              className="absolute inset-0 flex overflow-hidden opacity-10 "
+              className="absolute inset-0 flex overflow-hidden opacity-30 "
             >
               {imageList.map((img, index) => (
                 <div key={img} className="relative flex-1">
