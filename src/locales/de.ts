@@ -174,7 +174,7 @@ export default {
           cta: "Interessiert an weiteren Informationen? Kontaktieren Sie uns, um mehr darüber zu erfahren, wie EDM für Ihr Projekt funktionieren kann.",
         },
         {
-          title: "Draht-EDM",
+          title: "Drahterodieren",
           description: "Wenn traditionelle Bearbeitung an ihre Grenzen stößt",
           paragraph:
             "Unsere Draht-EDM-Maschinen schneiden selbst die härtesten Metalle mit extremer Präzision und verwenden einen dünnen Draht, um komplizierte Formen und Designs zu erstellen.",

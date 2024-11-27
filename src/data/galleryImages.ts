@@ -67,7 +67,7 @@ export function parallelGalleryImages(iconName: string) {
       return ["/images/gallery/senk-06.jpg", "/images/senk-edm.png"];
     case "wire-edm":
       return [
-        "/images/gallery/macro-machine-06.jpg",
+        "/images/macro-02.png",
         "/images/gallery/macro-part-05.jpg",
       ];
     case "welding":
