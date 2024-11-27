@@ -52,9 +52,9 @@ export default {
             {
               title: "Moderne Software & Technologie:",
               list: [
-                "SolidWorks, Siemens NX CAD/CAM-Integration",
+                "SolidWorks, DCAM, Siemens NX CAD/CAM-Integration",
                 "Importformate: STEP, DXF und mehr",
-                "Individuelle CNC-Fräsprogramme mit Siemens NX CAM",
+                "Individuelle CNC-programme mit Siemens NX CAM",
               ],
             },
           ],
