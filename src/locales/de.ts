@@ -275,7 +275,7 @@ export default {
         {
           title:
             "Werkzeugreparatur, überholung, optimierung und Geometrieänderung",
-          description: "Werkzeuge wider wie Neu!",
+          description: "Werkzeuge wieder wie Neu!",
           paragraph:
             "Unser Werkzeug Reparaturdienste behandelt alles, von Oberflächenschäden bis zu mechanischen Problemen. Egal, ob Sie kleinere Reparaturen oder einen kompletten Neubau benötigen, unser Team hat die Expertise, um Ihre Werkzeuge in neuwertigen Zustand zu versetzen.",
           nestedList: [
