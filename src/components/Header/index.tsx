@@ -167,8 +167,7 @@ export default function Header() {
                         href={menuItem.path}
                         className={cn(
                           `flex rounded-lg p-2 text-xl lg:mr-0 lg:inline-flex lg:px-2 lg:py-6`,
-                          !isSmallScreen &&
-                            "transition duration-300 hover:bg-primary/50 hover:text-white",
+                          "transition duration-300 hover:text-primary",
                           cleanPathname === menuItem.path &&
                             "bg-primary/10 text-primary",
                         )}
