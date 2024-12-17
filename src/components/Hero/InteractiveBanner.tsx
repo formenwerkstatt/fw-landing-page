@@ -60,7 +60,7 @@ export default function InteractiveBanner() {
                 "bg-gradient-to-t from-transparent via-primary/40 to-transparent",
               )}
             >
-              <h1 className={cn(`mb-4 text-gray-light`, "text-4xl font-bold")}>
+              <h1 className={cn(`mb-4 text-gray-light`, "text-6xl font-bold",)}>
                 {t("slogan")}
               </h1>
               <button

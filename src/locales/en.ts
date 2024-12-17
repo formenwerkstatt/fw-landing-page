@@ -17,6 +17,49 @@ export default {
     services: "Services",
   },
 
+  homeArticle: {
+    title: "Save Costs and Ensure Quality",
+    introduction:
+      "As experts in tool repair and tool manufacturing, we provide fast, reliable, and cost-effective solutions for businesses across all industries. With our extensive expertise and cutting-edge technologies, we minimize production downtime while delivering top-quality results – at a fraction of the cost of buying new tools.",
+    sections: [
+      {
+        title: "Tool Repair",
+        list: [
+          "Repairing your tools saves costs and minimizes downtime. Our processes ensure your tools work like new again.",
+          "Cost Savings: Repair costs are only 30-50% of the price of a new tool.",
+          "Guaranteed Quality: Restored tools achieve the same durability and precision as new ones.",
+          "Versatile Techniques: From resharpening and laser welding to component replacements, we find the best solution.",
+          "Fast Results: Our optimized processes reduce production downtime to a minimum.",
+        ],
+      },
+      {
+        title: "Tool Manufacturing",
+        list: [
+          "We manufacture tools tailored to your needs. With state-of-the-art technology, we deliver precision and innovation.",
+          "Custom Design: Using CAD software like Siemens NX or SolidWorks, we create customized solutions.",
+          "Advanced Manufacturing: CNC milling, turning, sinker EDM, and polishing deliver optimal results.",
+          "Sustainability Focus: Tools can be repaired, resharpened, or coated to extend their lifespan.",
+        ],
+      },
+      {
+        title: "Additional Services",
+        list: [
+          "Our additional services help extend the lifecycle of your tools even further.",
+          "Resharpening Service: Significantly extends your tool's lifecycle.",
+          "Tool Reconfiguration: Standard tools are converted into specialized tools.",
+          "Coatings: Innovative surface treatments ensure maximum precision and durability.",
+        ],
+      },
+    ],
+    benefits: [
+      "Family-Owned: Personalized service and decades of experience.",
+      "Efficiency: Quick results thanks to optimized processes.",
+      "Comprehensive Solutions: From development to repair, everything under one roof.",
+    ],
+    callToAction:
+      "Contact us today - together, we'll keep your tools performing at their best!",
+  },
+
   ourServices: {
     title: "Our Core Areas",
     paragraph:

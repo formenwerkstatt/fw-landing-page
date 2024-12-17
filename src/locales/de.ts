@@ -23,6 +23,49 @@ export default {
       "Ob etablierter Spritzgießbetrieb oder junges Startup Ihre Wünsche in puncto Formenbau werden aus einer Hand bedient. Es muss keine Spritzgießform sein - wir drehen, fräsen, erodieren, schleifen und schweißen Einzelteile bis Kleinserien nach Ihren Anforderungen.",
   },
 
+  homeArticle: {
+    title: "Kosten sparen und Qualität sichern",
+    introduction:
+      "Als Experten für Werkzeugreparatur und Werkzeugherstellung bieten wir schnelle, zuverlässige und kosteneffiziente Lösungen für Unternehmen aller Branchen. Mit unserer umfassenden Expertise und modernsten Technologien sorgen wir dafür, dass Ihre Produktionsausfälle minimiert werden und Sie höchste Qualität erhalten - zum Bruchteil der Kosten eines Neukaufs.",
+    sections: [
+      {
+        title: "Werkzeugreparatur",
+        list: [
+          "Mit der Reparatur Ihrer Werkzeuge sparen Sie Kosten und minimieren Ausfallzeiten. Unsere Verfahren stellen sicher, dass Ihre Werkzeuge wieder wie neu funktionieren.",
+          "Kostenersparnis: Reparaturkosten liegen bei nur 30-50 % des Neupreises.",
+          "Garantierte Qualität: Nach der Reparatur erreichen Ihre Werkzeuge die gleiche Standzeit und Präzision wie Neuwerkzeuge.",
+          "Vielfältige Verfahren: Ob Nachschleifen, Laserschweißen oder Austausch von Einzelteilen - wir finden die beste Lösung.",
+          "Schnelle Ergebnisse: Unsere optimierten Prozesse reduzieren Produktionsausfälle auf ein Minimum.",
+        ],
+      },
+      {
+        title: "Werkzeugherstellung",
+        list: [
+          "Wir fertigen Werkzeuge, die individuell auf Ihre Anforderungen abgestimmt sind. Mit modernster Technik liefern wir Präzision und Innovation.",
+          "Individuelles Design: Mit CAD-Software wie Siemens NX oder SolidWorks entwickeln wir maßgeschneiderte Lösungen.",
+          "Fortschrittliche Fertigung: CNC-Fräsen, Drehen, Senkerodieren und Polieren sorgen für optimale Ergebnisse.",
+          "Nachhaltigkeit im Fokus: Werkzeuge können repariert, nachgeschärft oder beschichtet werden, um ihre Lebensdauer zu verlängern.",
+        ],
+      },
+      {
+        title: "Ergänzende Services",
+        list: [
+          "Unsere zusätzlichen Services helfen Ihnen, die Lebensdauer Ihrer Werkzeuge weiter zu verlängern.",
+          "Nachschleifservice: Verlängert die Lebensdauer Ihrer Werkzeuge erheblich.",
+          "Umschleifen: Standardwerkzeuge werden zu Sonderwerkzeugen umfunktioniert.",
+          "Beschichtungen: Innovative Oberflächenbehandlungen sorgen für maximale Präzision und Haltbarkeit.",
+        ],
+      },
+    ],
+    benefits: [
+      "Familienunternehmen: Persönlicher Service und langjährige Erfahrung.",
+      "Effizienz: Schnelle Ergebnisse durch optimierte Abläufe.",
+      "Ganzheitliche Lösungen: Von der Entwicklung bis zur Reparatur - alles aus einer Hand.",
+    ],
+    callToAction:
+      "Kontaktieren Sie uns noch heute - gemeinsam sorgen wir dafür, dass Ihre Werkzeuge immer in Bestform bleiben!",
+  },
+
   services: {
     formtechnik: {
       title: "Formentechnik",

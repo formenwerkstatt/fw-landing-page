@@ -27,6 +27,14 @@ type bulletList = {
   list: string[];
 };
 
+export type Article = {
+  title: string;
+  introduction: string;
+  sections: bulletList[];
+  benefits: string[];
+  callToAction: string;
+};
+
 export type Jobs = {
   title: string;
   paragraph: string;

@@ -6,7 +6,6 @@ import ServiceIcon from "./ServiceIcon";
 import { useState, useEffect, useRef } from "react";
 import { useI18n } from "@/locales/client";
 import { useRouter } from "next/navigation";
-import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 
 export default function SingleService({ service }: { service: Services }) {
   const { title, image, paragraph, subServices } = service;
@@ -50,7 +49,7 @@ export default function SingleService({ service }: { service: Services }) {
           }
         }}
         className={cn(
-          "relative block h-[66svh] w-full overflow-hidden",
+          "relative block h-[80dvh] w-full overflow-hidden",
           "scale-95 opacity-0 transition-all duration-700",
           isVisible && "scale-100 opacity-100",
         )}
@@ -94,7 +93,7 @@ export default function SingleService({ service }: { service: Services }) {
           className="absolute inset-0 z-30 flex animate-fade-in items-center justify-center bg-white bg-opacity-60 transition-opacity duration-500 dark:bg-opacity-50"
           onClick={() => setOverlayActive(false)}
         >
-          <div className="w-11/12 px-4 md:w-4/5 lg:w-3/4">
+          <div className="w-full px-4 md:w-4/5 lg:w-3/4">
             <div className="flex animate-stagger-in flex-wrap justify-center gap-4">
               {subServices.map((subService, index) => (
                 <Link

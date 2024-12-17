@@ -4,6 +4,7 @@ import useServicesData from "@/data/useServiceData";
 import { useScopedI18n } from "@/locales/client";
 import SingleService from "./SingleService";
 import { cn } from "@/utils/cn";
+import HomeArticle from "../HomeArticle";
 
 const Services = () => {
   const servicesData = useServicesData();
@@ -18,17 +19,19 @@ const Services = () => {
         <SectionTitle
           title={t("title")}
           paragraph={t("paragraph")}
-          width={"full"}
+          width="full"
           isHomepage
         />
       </div>
-      <article className={cn("flex flex-col gap-4 ")}>
+      <section className={cn("mb-24 flex flex-col gap-4")}>
         {servicesData.map((service) => (
           <div key={service.title} className="w-full">
             <SingleService service={service} />
           </div>
         ))}
-      </article>
+      </section>
+
+      <HomeArticle />
 
       <div className="absolute left-0 top-0 z-[-1] scale-[-1] opacity-30 lg:opacity-100">
         <svg
