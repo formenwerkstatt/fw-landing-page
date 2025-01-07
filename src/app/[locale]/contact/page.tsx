@@ -5,11 +5,24 @@ import { getScopedI18n } from "@/locales/server";
 import MapComponent from "@/components/Google/MapComponent";
 
 export const metadata: Metadata = {
-  title: "Kontakt | Formenwerkstatt",
-  description: "Kontakt Formenwerkstatt",
-  // other metadata
+  title: `Kontakt | Erreichen Sie uns bei Fragen oder Anregungen`,
+  description: "Wie kann man Formenwerkstatt erreichen? Erreichen Sie uns fŭr die Beste Preis und schnellste Lieferung aus dem Odenwald.",
+  alternates: {
+    canonical: "https://www.formenwerkstatt.de/contact",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
-
 const ContactPage = async () => {
   const t = await getScopedI18n("contact");
 

@@ -1,4 +1,25 @@
 import Breadcrumb from "@/components/Common/Breadcrumb";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: `Impressum | Formenwerkstatt`,
+  description: "Impressum | Info von Formenwerkstatt",
+  alternates: {
+    canonical: "https://www.formenwerkstatt.de/impressum",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
 
 export default function Impressum() {
   return (

@@ -8,7 +8,6 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { subService } from "@/types";
 import RelatedPost from "@/components/Services/RelatedPost";
-import { cn } from "@/utils/cn";
 
 interface SwiperRelatedPostsProps {
   relatedPosts: subService[];

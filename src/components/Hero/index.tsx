@@ -1,5 +1,4 @@
 import InteractiveBanner from "./InteractiveBanner";
-import Loading from "../Common/Loading";
 import { cn } from "@/utils/cn";
 
 export default async function Hero() {

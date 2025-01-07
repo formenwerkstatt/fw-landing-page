@@ -1,4 +1,25 @@
 import Breadcrumb from "@/components/Common/Breadcrumb";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: `Datenschutz | Formenwerkstatt`,
+  description: "Datenschutzerklärung | Formenwerkstatt",
+  alternates: {
+    canonical: "https://www.formenwerkstatt.de/datenschutz",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
 
 export default function Datenschutz() {
   return (

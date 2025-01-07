@@ -1,7 +1,6 @@
 "use client";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import ParallelGallery from "@/components/Services/ParallelGallery";
-import RelatedPost from "@/components/Services/RelatedPost";
 import SharePost from "@/components/Services/SharePost";
 import SubserviceContent from "@/components/Services/SubserviceContent";
 import useServicesData from "@/data/useServiceData";

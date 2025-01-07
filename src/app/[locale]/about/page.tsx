@@ -9,9 +9,23 @@ import Gallery from "@/components/Common/Gallery";
 import ImageSection from "@/components/Common/ImageSection";
 
 export const metadata: Metadata = {
-  title: `Über Uns | Formen Werkstatt`,
-  description: "",
-  // other metadata
+  title: `Über Uns | Erfahren Sie mehr über die Formenwerkstatt`,
+  description: "Erfahren Sie mehr über das Unternehmen Formenwerkstatt. Erreichen Sie uns fŭr die Beste Preis und schnellste Lieferung aus dem Odenwald.",
+  alternates: {
+    canonical: "https://www.formenwerkstatt.de/about",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default async function AboutPage() {

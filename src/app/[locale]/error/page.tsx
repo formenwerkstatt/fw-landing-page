@@ -2,9 +2,23 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Error Page ",
-  description: "This is Contact Page for Startup Nextjs Template",
-  // other metadata
+  title: `Error | Formenwerkstatt`,
+  description: "Tut uns leid, die Seite konnte nicht gefunden werden | Formenwerkstatt",
+  alternates: {
+    canonical: "https://www.formenwerkstatt.de/error",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 const ErrorPage = () => {
