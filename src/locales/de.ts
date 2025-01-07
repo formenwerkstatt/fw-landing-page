@@ -1,6 +1,7 @@
 export default {
   slogan: "der Werkzeugmacher aus dem Odenwald",
-  cta: "Zum Demo",
+  landingDescription:
+    "Erreichen Sie uns für die Beste Preis und schnellste liefern unter:",
   help: "Verwenden Sie Gesten oder die Maus, um sich umzusehen, zu blättern und zu zoomen.",
   cookie:
     "Diese Webseite verwendet Cookies, um Ihnen einen besseren Service bieten zu können. Durch die weitere Nutzung der Seite stimmen Sie der Verwendung zu.",

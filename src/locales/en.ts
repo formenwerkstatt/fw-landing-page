@@ -1,6 +1,6 @@
 export default {
   slogan: "We bring your ideas to life",
-  cta: "To the Demo",
+  landingDescription: "Contact us for the best prices and fastest delivery at:",
   help: "Use gestures or mouse to look around, scroll and zoom",
   cookie:
     "This website uses cookies to provide you with a better service. By continuing to use the site, you consent to its use.",

@@ -4,8 +4,8 @@ import { I18nProviderClient } from "@/locales/client";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
-import Loading from "@/components/Common/Loading";
 import CookieBanner from "@/components/Google/CookieBanner";
+import StaticBanner from "@/components/Hero/StaticBanner";
 
 export default function SubLayout({
   children,
@@ -15,7 +15,7 @@ export default function SubLayout({
   params: { locale: string };
 }) {
   return (
-    <I18nProviderClient locale={params.locale} fallback={<Loading />}>
+    <I18nProviderClient locale={params.locale} fallback={<StaticBanner />}>
       <main className="size-full">
         <CookieBanner />
         <Header />
