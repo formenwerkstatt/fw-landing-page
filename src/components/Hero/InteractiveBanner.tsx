@@ -9,26 +9,10 @@ import Link from "next/link";
 
 const ThreeFiber = lazy(() => import("./ThreeFiber"));
 
-const IMAGELIST = [
-  {
-    src: "/images/beratung.png",
-    alt: "Beratung und Consulting für CNC-Fertigung",
-  },
-  {
-    src: "/images/gallery/machine-dmg-02.jpg",
-    alt: "DMG CNC Maschine in der Formenwerkstatt",
-  },
-  {
-    src: "/images/gallery/macro-part-11.jpg",
-    alt: "Präzise gefertigtes CNC-Teil im Detail",
-  },
-];
-
 export default function InteractiveBanner() {
   const [isOverlayVisible, setIsOverlayVisible] = useState<boolean>(true);
   const [isHelpVisible, setIsHelpVisible] = useState<boolean>(false);
-  const currentHour = new Date().getHours();
-  const imageIndex = currentHour % IMAGELIST.length;
+
   const t = useI18n();
 
   return (
@@ -50,8 +34,8 @@ export default function InteractiveBanner() {
           {/* Full-width image container */}
           <div className="absolute inset-0 w-full">
             <Image
-              src={IMAGELIST[imageIndex].src}
-              alt={IMAGELIST[imageIndex].alt}
+              src="/images/beratung.png"
+              alt= "Beratung und Consulting für CNC-Fertigung"
               fill
               className="object-cover opacity-30"
               priority
