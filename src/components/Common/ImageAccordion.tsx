@@ -5,19 +5,19 @@ import { BsPersonFill } from "react-icons/bs";
 const persons = [
   {
     id: "1",
-    url: "",
+    url: "/images/bektas.png",
     name: "Bektas Isik",
     role: "Geschäfftsführer",
   },
   {
     id: "2",
-    url: "",
+    url: "/images/belgin.png",
     name: "Belgin Isik",
     role: "Prokuristin",
   },
   {
     id: "3",
-    url: "",
+    url: "/images/huseyin.png",
     name: "Huseyin Isik",
     role: "Geschäfftsführer",
   },
@@ -60,12 +60,14 @@ export default function ImageAccordion() {
             </div>
 
             {person.url ? (
-              <Image
-                className={cn("h-72 w-full object-cover md:h-[50dvh]")}
-                src={person.url}
-                fill
-                alt={`picture of ${person.name} ${person.role}`}
-              />
+              <div className="h-96 w-full md:h-[50dvh]">
+                <Image
+                  src={person.url}
+                  fill
+                  style={{ objectFit: "cover" }}
+                  alt={`picture of ${person.name} ${person.role}`}
+                />
+              </div>
             ) : (
               <div className="w-full bg-gradient-to-b from-primary/25 md:h-[50dvh]">
                 <BsPersonFill className="m-auto size-full text-gray-dark/10 dark:text-gray-light/10" />
