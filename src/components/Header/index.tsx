@@ -241,6 +241,18 @@ export default function Header() {
                   </li>
                 ))}
 
+                <li className="">
+                  <Link
+                    className={cn(
+                      "w-full bg-primary text-white ",
+                      `flex rounded-lg p-2 text-xl lg:mr-0 lg:inline-flex lg:px-2 lg:py-6`,
+                    )}
+                    href="/shop"
+                  >
+                    SHOP
+                  </Link>
+                </li>
+
                 {/* Language Selector inside navbar for small screens */}
                 <li className="flex items-center justify-end lg:hidden">
                   <LanguageSelector

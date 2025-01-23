@@ -63,7 +63,7 @@ export default function ServiceIcon({ iconname, className }: ServiceIconProps) {
       case "grinding":
         return (
           <IconContainer
-            className={className}
+            className={className }
             src="/icons/industrial-robot.svg"
           />
         );
