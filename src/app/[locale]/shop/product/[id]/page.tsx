@@ -1,25 +1,45 @@
-"use client";
 import Breadcrumb from "@/components/Common/Breadcrumb";
-import { products } from "../../products";
-import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { cn } from "@/utils/cn";
+import { Product, Review } from "@/types";
+import Link from "next/link";
 
-export default function ProductDetailsPage() {
-  const { id } = useParams();
-  const router = useRouter();
-  const product = products.find((item) => `${item.id}` === `${id}`);
+export default async function ProductDetailsPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const { id } = params;
 
-  if (!product) {
-    router.push("/error");
-    return null;
-  }
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/`,
+  );
+  const data = await response.json();
+
+  const product = data.products.find((product: Product) => product.id === id);
+
+  const averageRating =
+    product.reviews.reduce(
+      (acc: number, review: Review) => acc + review.rating,
+      0,
+    ) / product.reviews.length;
 
   return (
     <>
       <Breadcrumb pageName={""} description={""} showLink={false} />
 
-      <section className="container mb-24 grid grid-cols-[auto_auto] gap-16">
+      <div className="container mb-8">
+        <Link
+          href="/shop"
+          className={cn(
+            "rounded-lg bg-primary px-4 py-2 text-lg font-bold text-white transition duration-300 hover:bg-blue-600",
+          )}
+        >
+          {`< Shop`}
+        </Link>
+      </div>
+
+      <section className="container mb-12 grid grid-cols-[auto_auto] gap-16">
         <div>
           <Image
             src={product.imgUrl}
@@ -29,33 +49,45 @@ export default function ProductDetailsPage() {
           />
         </div>
 
-        <div className="bg-slate-200">
-          <h2>{product.name}</h2>
-          <p>{product.description}</p>
-          <p>{product.price} €</p>
+        <div className="flex flex-col justify-between rounded-lg bg-gray-light p-6 shadow-lg dark:bg-gray-dark">
+          <h2 className="mb-4 text-3xl font-bold">{product.name}</h2>
+          <p className="mb-4 ">{product.description}</p>
 
-          <button className={cn("bg-red-200 px-4 py-2")}>BUY NOW</button>
-        </div>
+          <p>
+            <span className="font-semibold">Rating: </span>
+            {averageRating ? averageRating : "No ratings"} Stars
+          </p>
 
-        <div className="container col-span-2">
-          <h3>Related Products</h3>
-          <div className=" flex flex-wrap gap-24">
-            {products.map((item, index) =>
-              index < 3 ? (
-                <div key={item.id}>
-                  <Image
-                    src={item.imgUrl}
-                    width={150}
-                    height={150}
-                    alt={item.description}
-                  />
-                  <h4>{item.name}</h4>
-                  <p>{item.price} €</p>
-                </div>
-              ) : null,
+          <p>
+            <span className="font-semibold">Stock: </span>
+            {product.stock < 10 ? "Contact us for availability" : "In Stock"}
+          </p>
+
+          <p className="mb-6 text-right text-3xl font-semibold ">
+            {product.price} €
+          </p>
+          <button
+            className={cn(
+              "rounded-lg bg-primary px-6 py-3 text-xl font-semibold text-white transition duration-300 hover:bg-blue-600",
             )}
-          </div>
+          >
+            BUY NOW
+          </button>
         </div>
+      </section>
+      <section className="container mb-24  bg-gray-light p-6 shadow-lg dark:bg-gray-dark">
+        <h3 className="mb-4 text-2xl font-bold">Reviews</h3>
+        {product.reviews ? (
+          product.reviews.map((review: Review) => (
+            <div key={review.username} className="mb-4">
+              <h4 className="font-semibold">{review.username}</h4>
+              <p>{review.comment}</p>
+              <p>{review.rating} stars</p>
+            </div>
+          ))
+        ) : (
+          <p>No reviews</p>
+        )}
       </section>
     </>
   );

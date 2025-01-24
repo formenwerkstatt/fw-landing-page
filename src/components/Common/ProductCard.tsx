@@ -1,18 +1,9 @@
+import { Product } from "@/types";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
 import Link from "next/link";
 
-interface Product {
-  product: {
-    id: number;
-    name: string;
-    price: number;
-    description: string;
-    imgUrl: string;
-  };
-}
-
-export default function ProductCard({ product }: Product) {
+export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link
       href={`/shop/product/${product.id}`}
@@ -20,10 +11,10 @@ export default function ProductCard({ product }: Product) {
         "flex flex-col rounded-lg",
         "hover:bg-primary/10 dark:hover:bg-primary/20",
         "animate-pop-in",
-        "transition duration-1000",
+        "transition duration-300",
       )}
     >
-      <div className={cn("")}>
+      <div>
         <Image
           src={product.imgUrl}
           width={300}
@@ -35,7 +26,7 @@ export default function ProductCard({ product }: Product) {
       <div className={cn("flex justify-between p-4")}>
         <div className="mr-12 flex-grow">
           <h3 className="line-clamp-1 text-lg font-bold text-black dark:text-white ">
-            {product.name}
+            {product.name} ({product.stock})
           </h3>
           <p className="line-clamp-2 text-sm text-gray-600">
             {product.description}

@@ -51,6 +51,24 @@ type Ad = {
   cta: string;
 };
 
+export type Product = {
+  id?: string;
+  name: string;
+  description: string;
+  price: number;
+  imgUrl: string;
+  stock: number;
+  reviews?: Review[];
+};
+
+export type Review = {
+  id?: string;
+  username: string;
+  rating: number;
+  comment: string;
+  createdAt: Date;
+};
+
 export type Brand = {
   id: number;
   name: string;
