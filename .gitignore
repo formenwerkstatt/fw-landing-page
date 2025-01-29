@@ -33,3 +33,6 @@ yarn-error.log*
 
 service-key.json
 admin
+
+firebase-debug.log
+firestore-debug.log

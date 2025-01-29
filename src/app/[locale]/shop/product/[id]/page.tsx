@@ -3,10 +3,9 @@ import ReviewForm from "@/components/Shop/ReviewForm";
 import Image from "next/image";
 import { cn } from "@/utils/cn";
 import { Product, Review } from "@/types";
-import Link from "next/link";
-import Loading from "@/components/Common/Loading";
 import Reviews from "@/components/Shop/Reviews";
 import { getCollection, getDocument } from "@/app/actions";
+import { redirect } from "next/navigation";
 
 export default async function ProductDetailsPage({
   params,
@@ -23,32 +22,25 @@ export default async function ProductDetailsPage({
       ? (
           filteredReviews.reduce((acc, review) => acc + review.rating, 0) /
           filteredReviews.length
-        ).toFixed(2)
+        ).toFixed(1)
       : 0;
 
   if (!product) {
-    return <Loading />;
+    redirect("/error");
   }
 
   return (
     <>
-      <Breadcrumb pageName={""} description={""} showLink={false} />
+      <Breadcrumb pageName={"Shop"} description={""} showLink={true} />
 
-      <section className="container mb-12 grid grid-cols-[auto_auto] gap-16 ">
-        <div>
-          <Link
-            href="/shop"
-            className={cn(
-              "rounded-lg bg-primary px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-600 ",
-            )}
-          >
-            {`< Shop`}
-          </Link>
+      <section className="container mb-12 grid grid-cols-[auto_auto] gap-8 px-0">
+        <div className="relative h-full w-full overflow-hidden shadow-lg">
           <Image
-            className="w-full rounded-lg p-4"
+            className="h-full w-full object-cover"
             src={product.imgUrl}
-            width={300}
-            height={300}
+            // width={300}
+            // height={300}
+            fill
             alt={product.description}
           />
         </div>

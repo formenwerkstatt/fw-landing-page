@@ -33,7 +33,7 @@ export default function ReviewForm({ productId }: { productId: string }) {
   }
 
   return (
-    <section className="container mb-8 rounded-lg bg-gray-light py-4 shadow-lg dark:bg-gray-dark">
+    <section className="container mb-8 rounded-lg bg-gray-light py-6 shadow-lg dark:bg-gray-dark">
       {hideForm ? (
         <div className="space-y-8 text-center text-xl">
           <p>You liked what you saw?</p>

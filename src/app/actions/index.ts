@@ -1,5 +1,4 @@
 'use server';
-
 import { adminDb } from '@/firebase/firebaseAdminConfig';
 import { FirestoreDocument } from '@/firebase/firebaseAdminConfig';
 import admin from 'firebase-admin';
