@@ -1,5 +1,7 @@
 import admin from "firebase-admin";
 
+export type FirestoreDocument<T> = T & { id: string };
+
 if (!admin.apps.length) {
   const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT_KEY as string;
 
@@ -10,3 +12,4 @@ if (!admin.apps.length) {
 }
 
 export const adminDb = admin.firestore();
+

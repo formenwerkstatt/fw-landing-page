@@ -14,6 +14,7 @@ export default function SubLayout({
   children: ReactElement;
   params: { locale: string };
 }) {
+
   return (
     <I18nProviderClient locale={params.locale} fallback={<StaticBanner />}>
       <main className="size-full">

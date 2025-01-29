@@ -52,21 +52,36 @@ type Ad = {
 };
 
 export type Product = {
-  id?: string;
+  id: string;
   name: string;
   description: string;
   price: number;
   imgUrl: string;
   stock: number;
-  reviews?: Review[];
 };
 
 export type Review = {
-  id?: string;
+  id: string;
+  productId: string;
+  userId: string;
   username: string;
   rating: number;
   comment: string;
-  createdAt: Date;
+};
+
+export type CartItem = {
+  productId: string;
+  name: string;
+  price: number;
+  quantity: number;
+  imgUrl: string;
+};
+
+export type UserState = {
+  id: string;
+  cart: CartItem[];
+  total: number;
+  lastUpdated: Date;
 };
 
 export type Brand = {
