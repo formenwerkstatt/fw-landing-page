@@ -1,8 +1,12 @@
 import Breadcrumb from "@/components/Common/Breadcrumb";
+import ReviewForm from "@/components/Shop/ReviewForm";
 import Image from "next/image";
 import { cn } from "@/utils/cn";
 import { Product, Review } from "@/types";
 import Link from "next/link";
+import Loading from "@/components/Common/Loading";
+import Reviews from "@/components/Shop/Reviews";
+import { getCollection, getDocument } from "@/app/actions";
 
 export default async function ProductDetailsPage({
   params,
@@ -11,37 +15,37 @@ export default async function ProductDetailsPage({
 }) {
   const { id } = params;
 
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/`,
-  );
-  const data = await response.json();
-
-  const product = data.products.find((product: Product) => product.id === id);
-
+  const product = await getDocument<Product>("products", id);
+  const reviews = await getCollection<Review>("reviews");
+  const filteredReviews = reviews.filter((review) => review.productId === id);
   const averageRating =
-    product.reviews.reduce(
-      (acc: number, review: Review) => acc + review.rating,
-      0,
-    ) / product.reviews.length;
+    filteredReviews.length > 0
+      ? (
+          filteredReviews.reduce((acc, review) => acc + review.rating, 0) /
+          filteredReviews.length
+        ).toFixed(2)
+      : 0;
+
+  if (!product) {
+    return <Loading />;
+  }
 
   return (
     <>
       <Breadcrumb pageName={""} description={""} showLink={false} />
 
-      <div className="container mb-8">
-        <Link
-          href="/shop"
-          className={cn(
-            "rounded-lg bg-primary px-4 py-2 text-lg font-bold text-white transition duration-300 hover:bg-blue-600",
-          )}
-        >
-          {`< Shop`}
-        </Link>
-      </div>
-
-      <section className="container mb-12 grid grid-cols-[auto_auto] gap-16">
+      <section className="container mb-12 grid grid-cols-[auto_auto] gap-16 ">
         <div>
+          <Link
+            href="/shop"
+            className={cn(
+              "rounded-lg bg-primary px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-600 ",
+            )}
+          >
+            {`< Shop`}
+          </Link>
           <Image
+            className="w-full rounded-lg p-4"
             src={product.imgUrl}
             width={300}
             height={300}
@@ -54,12 +58,14 @@ export default async function ProductDetailsPage({
           <p className="mb-4 ">{product.description}</p>
 
           <p>
-            <span className="font-semibold">Rating: </span>
-            {averageRating ? averageRating : "No ratings"} Stars
+            <span className="font-semibold">
+              Rating: {filteredReviews.length}{" "}
+            </span>
+            {averageRating ? averageRating : "No ratings"}/5 Stars
           </p>
 
           <p>
-            <span className="font-semibold">Stock: </span>
+            <span className="font-semibold">Stock: {product.stock} </span>
             {product.stock < 10 ? "Contact us for availability" : "In Stock"}
           </p>
 
@@ -75,20 +81,8 @@ export default async function ProductDetailsPage({
           </button>
         </div>
       </section>
-      <section className="container mb-24  bg-gray-light p-6 shadow-lg dark:bg-gray-dark">
-        <h3 className="mb-4 text-2xl font-bold">Reviews</h3>
-        {product.reviews ? (
-          product.reviews.map((review: Review) => (
-            <div key={review.username} className="mb-4">
-              <h4 className="font-semibold">{review.username}</h4>
-              <p>{review.comment}</p>
-              <p>{review.rating} stars</p>
-            </div>
-          ))
-        ) : (
-          <p>No reviews</p>
-        )}
-      </section>
+      <ReviewForm productId={id} />
+      <Reviews reviews={filteredReviews} />
     </>
   );
 }

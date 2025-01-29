@@ -23,6 +23,15 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "src/components/Hero/InteractiveBanner.tsx", "src/components/Hero/ThreeFiber.tsx"],
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/components/Hero/InteractiveBanner.tsx",
+    "src/components/Hero/ThreeFiber.tsx",
+    "src/app/[locale]/admin/mockData.js",
+    "src/app/actions/index.ts"
+  ],
   "exclude": ["node_modules"]
 }

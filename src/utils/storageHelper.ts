@@ -1,5 +1,6 @@
 import "client-only";
 
+
 export function getLocalStorage(key: string, defaultValue: any) {
   const stickyValue = localStorage.getItem(key);
 
@@ -11,3 +12,4 @@ export function getLocalStorage(key: string, defaultValue: any) {
 export function setLocalStorage(key: string, value: any) {
   localStorage.setItem(key, JSON.stringify(value));
 }
+

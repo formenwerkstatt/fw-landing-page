@@ -1,4 +1,4 @@
-import {  Titillium_Web } from "next/font/google";
+import { Titillium_Web } from "next/font/google";
 import "node_modules/react-modal-video/css/modal-video.css";
 import "@/styles/index.css";
 import "leaflet/dist/leaflet.css";
@@ -9,8 +9,13 @@ import GoogleAnalytics from "@/components/Google/Analytics";
 
 const titillium = Titillium_Web({ subsets: ["latin"], weight: ["400", "700"] });
 
-export default function RootLayout({ children }: { children: ReactElement }) {
-  const locale = getCurrentLocale();
+export default async function RootLayout({
+  children,
+}: {
+  children: ReactElement;
+}) {
+  const locale = await getCurrentLocale();
+
 
   return (
     <html lang={locale} suppressHydrationWarning={false}>
