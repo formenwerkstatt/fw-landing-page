@@ -8,10 +8,14 @@ export default async function ShopPage() {
 
   return (
     <>
-      <Breadcrumb pageName="Shop" description="Formenwerkstatt Shop" />
+      <Breadcrumb
+        pageName="Shop"
+        description="Formenwerkstatt Shop"
+        showLink={false}
+      />
 
       {products && (
-        <section className="container mb-24 grid grid-cols-2 gap-16 md:grid-cols-3">
+        <section className="container mb-24 grid gap-16 md:grid-cols-2 lg:grid-cols-3 ">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

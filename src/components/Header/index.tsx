@@ -10,6 +10,7 @@ import useMenuData from "@/data/useMenuData";
 import useServiceData from "@/data/useServiceData";
 import { cn } from "@/utils/cn";
 import LanguageSelector from "./LanguageSelector";
+import Cart from "../Shop/Cart";
 
 export default function Header() {
   const menuData = useMenuData();
@@ -251,6 +252,10 @@ export default function Header() {
                   >
                     SHOP
                   </Link>
+                </li>
+
+                <li className="">
+                  <Cart />
                 </li>
 
                 {/* Language Selector inside navbar for small screens */}

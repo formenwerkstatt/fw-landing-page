@@ -71,19 +71,18 @@ export type Review = {
   createdAt?: string;
 };
 
+export type UserState = {
+  id: string;
+  cart: CartItem[];
+  lastUpdated: string;
+};
+
 export type CartItem = {
   productId: string;
   name: string;
   price: number;
   quantity: number;
   imgUrl: string;
-};
-
-export type UserState = {
-  id: string;
-  cart: CartItem[];
-  total: number;
-  lastUpdated: Date;
 };
 
 export type Brand = {

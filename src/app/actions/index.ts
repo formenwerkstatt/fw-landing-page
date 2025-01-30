@@ -2,6 +2,7 @@
 
 import { adminDb } from "@/firebase/firebaseAdminConfig";
 import { FirestoreDocument } from "@/firebase/firebaseAdminConfig";
+import dateToLocale from "@/utils/dateToLocale";
 import admin from "firebase-admin";
 
 // Helper function to serialize Firestore data
@@ -11,13 +12,7 @@ function serializeData<T>(data: admin.firestore.DocumentData | undefined): T {
   const serialized = Object.entries(data).reduce(
     (acc, [key, value]) => {
       if (value instanceof admin.firestore.Timestamp) {
-        acc[key] = value.toDate().toLocaleString("en-GB", {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-        });
+        acc[key] = dateToLocale(value.toDate());
       } else if (value && typeof value === "object" && !Array.isArray(value)) {
         acc[key] = serializeData(value);
       } else {
@@ -70,7 +65,6 @@ export async function addDocument<T extends admin.firestore.DocumentData>(
     ...serializedData,
   };
 }
-
 
 export async function updateDocument<T>(
   collectionName: string,

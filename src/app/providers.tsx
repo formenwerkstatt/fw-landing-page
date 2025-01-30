@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { ThemeProvider } from "next-themes";
 import { UserState } from "@/types";
 import { v4 as uuidv4 } from "uuid";
+import dateToLocale from "@/utils/dateToLocale";
 
 const USER_KEY = "fw_user";
 
@@ -16,8 +17,7 @@ export const createUser = (): UserState => {
   const user: UserState = {
     id: uuidv4(),
     cart: [],
-    total: 0,
-    lastUpdated: new Date(),
+    lastUpdated: dateToLocale(new Date()),
   };
   localStorage.setItem(USER_KEY, JSON.stringify(user));
   return user;
@@ -50,7 +50,11 @@ function UserProvider({ children }: { children: React.ReactNode }) {
   const updateUser = (updates: Partial<UserState>) => {
     setUser((prev) => {
       if (!prev) return null;
-      const updated = { ...prev, ...updates, lastUpdated: new Date() };
+      const updated = {
+        ...prev,
+        ...updates,
+        lastUpdated: dateToLocale(new Date()),
+      };
       localStorage.setItem("fw_user", JSON.stringify(updated));
       return updated;
     });

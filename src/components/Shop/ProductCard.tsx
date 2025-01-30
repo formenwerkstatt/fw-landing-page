@@ -38,17 +38,18 @@ export default async function ProductCard({ product }: { product: Product }) {
           className="h-auto w-full rounded-t-xl object-cover"
         />
       </div>
-      <div className={cn("flex flex-1 justify-between p-4")}>
+
+      <div className={cn("flex justify-between p-4")}>
         <div className="mr-12 flex-grow">
           <h3 className="line-clamp-1 text-xl font-bold text-black dark:text-white ">
-            {product.name} ({product.stock})
+            {product.name}
           </h3>
           <p className="line-clamp-2 text-sm text-gray-600">
             {product.description}
           </p>
         </div>
 
-        <div className="flex flex-col justify-between text-right">
+        <div className="hidden flex-col justify-between text-right lg:flex">
           <p className=" text-sm">
             {averageRating === 0 ? "No Ratings" : `${averageRating} / 5`}
           </p>
