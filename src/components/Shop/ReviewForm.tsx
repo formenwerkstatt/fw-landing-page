@@ -1,14 +1,24 @@
-"use client";
-import { addDocument } from "@/app/actions";
+import { addDocument, updateDocument } from "@/app/actions";
 import { useUser } from "@/app/providers";
+import { Review } from "@/types";
+import { cn } from "@/utils/cn";
 import { useState } from "react";
 
-export default function ReviewForm({ productId }: { productId: string }) {
+type ReviewFormProps = {
+  productId: string;
+  review?: Review;
+  handleCancel: () => void;
+};
+
+export default function ReviewForm({
+  productId,
+  review,
+  handleCancel,
+}: ReviewFormProps) {
   const { user } = useUser();
-  const [rating, setRating] = useState(5);
-  const [comment, setComment] = useState("");
-  const [username, setUsername] = useState("");
-  const [hideForm, setHideForm] = useState(true);
+  const [rating, setRating] = useState(review?.rating ?? 5);
+  const [comment, setComment] = useState(review?.comment ?? "");
+  const [username, setUsername] = useState(review?.username ?? "");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -22,7 +32,11 @@ export default function ReviewForm({ productId }: { productId: string }) {
 
     try {
       if (data.username.length > 1 && data.comment.length > 1) {
-        await addDocument("reviews", data);
+        if (review) {
+          await updateDocument("reviews", review.id, data);
+        } else {
+          await addDocument("reviews", data);
+        }
         window.location.reload();
       } else {
         window.alert("Failed to add review. Please fill out all fields.");
@@ -33,74 +47,65 @@ export default function ReviewForm({ productId }: { productId: string }) {
   }
 
   return (
-    <section className="container mb-8 rounded-lg bg-gray-light py-6 shadow-lg dark:bg-gray-dark">
-      {hideForm ? (
-        <div className="space-y-8 text-center text-xl">
-          <p>You liked what you saw?</p>
-          <p>Leave a review!</p>
-          <button
-            onClick={() => setHideForm(false)}
-            className="rounded-lg bg-primary px-4 py-2 text-lg text-white"
-          >
-            Add Review
-          </button>
-        </div>
-      ) : (
-        <form
-          onSubmit={(e) => handleSubmit(e)}
-          className="mx-auto flex max-w-2xl flex-col gap-4"
-        >
-          <div className="flex flex-col">
-            <label htmlFor="username" className="mb-2">
-              Username:
-            </label>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="rounded border border-gray-300 p-2"
-            />
-          </div>
-          <div className="flex flex-col">
-            <label htmlFor="rating" className="mb-2">
-              Rating (1-5):
-            </label>
-            <input
-              type="number"
-              min={1}
-              max={5}
-              value={rating}
-              onChange={(e) => setRating(Number(e.target.value))}
-              className="rounded border border-gray-300 p-2"
-            />
-          </div>
-          <div className="flex flex-col">
-            <label htmlFor="comment" className="mb-2">
-              Comment:
-            </label>
-            <textarea
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-              className="min-h-[100px] rounded border border-gray-300 p-2"
-            />
-          </div>
-          <div className="flex justify-around">
-            <button
-              type="button"
-              onClick={() => setHideForm(true)}
-              className=" rounded-lg border-none bg-red-500 p-3 text-white"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="rounded-lg border-none bg-blue-500 p-3 text-white"
-            >
-              Submit Review
-            </button>
-          </div>
-        </form>
+    <form
+      onSubmit={(e) => handleSubmit(e)}
+      className={cn(
+        "fixed inset-0 top-24 z-50 m-auto p-4",
+        "h-min max-w-md max-h-[60dvh] overflow-auto",
+        "flex flex-col gap-4",
+        "rounded-lg bg-gray-light p-4 shadow-lg dark:bg-gray-dark",
       )}
-    </section>
+    >
+      <div className="flex  items-center">
+        <label htmlFor="rating" className="mb-2">
+          Rating:
+        </label>
+        <div className="flex space-x-1">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <button
+              key={star}
+              type="button"
+              onClick={() => setRating(star)}
+              className={`text-3xl ${star <= rating ? "text-primary" : "text-gray-300"}`}
+            >
+              ★
+            </button>
+          ))}
+        </div>
+        <p>{rating}/5</p>
+      </div>
+
+      <input
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        className="rounded border border-gray-300 p-2"
+      />
+
+      <div className="flex flex-col">
+        <textarea
+          value={comment}
+          placeholder="Type your review here..."
+          onChange={(e) => setComment(e.target.value)}
+          className="min-h-[100px] rounded border border-gray-300 p-2 "
+        />
+      </div>
+      <div className="flex justify-around">
+        <button
+          type="button"
+          onClick={handleCancel}
+          className=" rounded-lg border-none bg-red-500 p-3 text-white"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          className="rounded-lg border-none bg-blue-500 p-3 text-white"
+        >
+          Submit Review
+        </button>
+      </div>
+    </form>
   );
 }

@@ -1,10 +1,14 @@
-"use client";
 import { deleteDocument } from "@/app/actions";
 import { useUser } from "@/app/providers";
 import { Review } from "@/types";
 import { useState } from "react";
 
-export default function Reviews({ reviews }: { reviews: Review[] }) {
+type ReviewsProps = {
+  reviews: Review[];
+  handleEdit: (review: Review) => void;
+}
+
+export default function Reviews({ reviews, handleEdit }: ReviewsProps) {
   const { user } = useUser();
   const [visibleReviews, setVisibleReviews] = useState(3);
 
@@ -13,9 +17,10 @@ export default function Reviews({ reviews }: { reviews: Review[] }) {
       setVisibleReviews((prev) => prev + 3);
     } else {
       setVisibleReviews(3);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }
+
   async function handleDelete(id: string) {
     try {
       const result = await deleteDocument("reviews", id);
@@ -37,23 +42,43 @@ export default function Reviews({ reviews }: { reviews: Review[] }) {
           reviews.slice(0, visibleReviews).map((review) => (
             <div
               key={review.id}
-              className="mx-auto mb-4 flex justify-between rounded-lg bg-white p-4 shadow-md"
+              className="mx-auto mb-4 flex justify-between rounded-lg bg-white dark:bg-slate-800 p-4 shadow-md"
             >
               <div>
                 <p className="font-semibold ">{review.username}</p>
                 <p className="text-lg">{review.comment}</p>
-                <p className="mt-8 text-sm">
-                  Created at {new Date().toLocaleDateString()}
-                </p>
+                <p className="mt-8 text-sm">{review.createdAt}</p>
               </div>
 
               <div>
-                <p className="mb-4 text-center text-xl">
-                  {review.rating} stars
-                </p>
+                <div className="flex items-center gap-2">
+                  <span className="font-semibold">Rating:</span>
+                  <div className="flex">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <div key={star} className="relative">
+                        <div className="text-xl text-gray-300">★</div>
+
+                        <div
+                          className={
+                            "absolute inset-0 overflow-hidden text-xl text-primary"
+                          }
+                          style={{
+                            width: `${Math.max(0, Math.min(100, (review.rating - (star - 1)) * 100))}%`,
+                          }}
+                        >
+                          ★
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <p>{review.rating ? review.rating : "N/A"} /5</p>
+                </div>
                 {review.userId === user?.id && (
                   <>
-                    <button className=" mr-2 rounded-lg border-none bg-primary p-3 text-white">
+                    <button
+                       onClick={() => handleEdit( review )}
+                      className=" mr-2 rounded-lg border-none bg-primary p-3 text-white"
+                    >
                       Edit
                     </button>
                     <button

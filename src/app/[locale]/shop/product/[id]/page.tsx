@@ -1,11 +1,10 @@
 import Breadcrumb from "@/components/Common/Breadcrumb";
-import ReviewForm from "@/components/Shop/ReviewForm";
 import Image from "next/image";
 import { cn } from "@/utils/cn";
 import { Product, Review } from "@/types";
-import Reviews from "@/components/Shop/Reviews";
 import { getCollection, getDocument } from "@/app/actions";
 import { redirect } from "next/navigation";
+import ReviewWrapper from "@/components/Shop/ReviewWrapper";
 
 export default async function ProductDetailsPage({
   params,
@@ -19,10 +18,12 @@ export default async function ProductDetailsPage({
   const filteredReviews = reviews.filter((review) => review.productId === id);
   const averageRating =
     filteredReviews.length > 0
-      ? (
-          filteredReviews.reduce((acc, review) => acc + review.rating, 0) /
-          filteredReviews.length
-        ).toFixed(1)
+      ? parseFloat(
+          (
+            filteredReviews.reduce((acc, review) => acc + review.rating, 0) /
+            filteredReviews.length
+          ).toFixed(1),
+        )
       : 0;
 
   if (!product) {
@@ -31,10 +32,10 @@ export default async function ProductDetailsPage({
 
   return (
     <>
-      <Breadcrumb pageName={"Shop"} description={""} showLink={true} />
+      <Breadcrumb pageName={"Shop"} description={"Formenwerkstatt Shop"} showLink={true} />
 
-      <section className="container mb-12 grid grid-cols-[auto_auto] gap-8 px-0">
-        <div className="relative h-full w-full overflow-hidden shadow-lg">
+      <section className="container mb-12 grid grid-cols-[1fr_1.5fr] gap-8 px-0">
+        <div className="relative h-full max-w-full overflow-hidden shadow-lg">
           <Image
             className="h-full w-full object-cover"
             src={product.imgUrl}
@@ -47,17 +48,42 @@ export default async function ProductDetailsPage({
 
         <div className="flex flex-col justify-between rounded-lg bg-gray-light p-6 shadow-lg dark:bg-gray-dark">
           <h2 className="mb-4 text-3xl font-bold">{product.name}</h2>
-          <p className="mb-4 ">{product.description}</p>
-
-          <p>
-            <span className="font-semibold">
-              Rating: {filteredReviews.length}{" "}
-            </span>
-            {averageRating ? averageRating : "No ratings"}/5 Stars
+          <p className="mb-4 ">
+            {product.description} Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Ut vehicula mauris eget sem tincidunt varius. Nam
+            volutpat bibendum elit, vel tempor elit dapibus eget. Nam elit dui,
+            venenatis sed lectus vel, dignissim mattis mauris. Vivamus malesuada
+            id dolor et eleifend. Nam eget aliquet turpis, et sagittis purus.
+            Integer vel sapien in diam mollis tristique vitae ut sem.
+            Suspendisse quis lorem sit amet odio maximus fermentum finibus vel
+            leo. Nunc lacinia faucibus orci non condimentum.{" "}
           </p>
 
+          <div className="flex items-center gap-2">
+            <span className="font-semibold">Rating:</span>
+            <div className="flex">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <div key={star} className="relative">
+                  <div className="text-xl text-gray-300">★</div>
+
+                  <div
+                    className={
+                      "absolute inset-0 overflow-hidden text-xl text-primary"
+                    }
+                    style={{
+                      width: `${Math.max(0, Math.min(100, (averageRating - (star - 1)) * 100))}%`,
+                    }}
+                  >
+                    ★
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p>{averageRating ? averageRating : "N/A"} /5</p>
+          </div>
+
           <p>
-            <span className="font-semibold">Stock: {product.stock} </span>
+            <span className="font-semibold">Stock: </span>
             {product.stock < 10 ? "Contact us for availability" : "In Stock"}
           </p>
 
@@ -73,8 +99,8 @@ export default async function ProductDetailsPage({
           </button>
         </div>
       </section>
-      <ReviewForm productId={id} />
-      <Reviews reviews={filteredReviews} />
+
+      <ReviewWrapper reviews={filteredReviews} />
     </>
   );
 }

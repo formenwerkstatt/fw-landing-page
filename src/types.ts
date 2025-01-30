@@ -58,6 +58,7 @@ export type Product = {
   price: number;
   imgUrl: string;
   stock: number;
+  createdAt?: string;
 };
 
 export type Review = {
@@ -67,6 +68,7 @@ export type Review = {
   username: string;
   rating: number;
   comment: string;
+  createdAt?: string;
 };
 
 export type CartItem = {
