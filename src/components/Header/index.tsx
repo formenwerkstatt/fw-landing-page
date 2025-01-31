@@ -4,15 +4,17 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 import { FaChevronDown } from "react-icons/fa";
+import { TiShoppingCart } from "react-icons/ti";
 import ThemeToggler from "./ThemeToggler";
 import { useChangeLocale, useCurrentLocale } from "@/locales/client";
 import useMenuData from "@/data/useMenuData";
 import useServiceData from "@/data/useServiceData";
 import { cn } from "@/utils/cn";
 import LanguageSelector from "./LanguageSelector";
-import Cart from "../Shop/Cart";
+import { useUser } from "@/app/providers";
 
 export default function Header() {
+  const { user } = useUser();
   const menuData = useMenuData();
   const serviceData = useServiceData();
   const locale = useCurrentLocale();
@@ -25,6 +27,8 @@ export default function Header() {
   const [openSubmenuIndex, setOpenSubmenuIndex] = useState<number | null>(null);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const navbarRef = useRef<HTMLDivElement>(null);
+
+  if (!user) return null;
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -167,10 +171,9 @@ export default function Header() {
                         }}
                         href={menuItem.path}
                         className={cn(
-                          `flex rounded-lg p-2 text-xl lg:mr-0 lg:inline-flex lg:px-2 lg:py-6`,
-                          "transition duration-300 hover:text-primary",
-                          cleanPathname === menuItem.path &&
-                            "bg-primary/10 text-primary",
+                          `flex rounded-lg p-2 text-xl lg:mr-0 lg:inline-flex lg:px-4 lg:py-4`,
+                          "transition duration-300 hover:bg-primary/10 hover:text-primary",
+                          cleanPathname === menuItem.path && "bg-primary/10 ",
                         )}
                       >
                         {menuItem.title}
@@ -182,9 +185,9 @@ export default function Header() {
                           className={cn(
                             "flex cursor-pointer items-center justify-between py-2",
                             "text-xl text-dark  hover:text-primary dark:text-white/70 dark:hover:text-white",
-                            " lg:inline-flex lg:px-2 lg:py-6",
+                            " lg:inline-flex lg:px-4 lg:py-4",
                             !isSmallScreen &&
-                              "rounded-lg transition duration-300 hover:bg-primary/50 hover:text-white ",
+                              "rounded-lg transition duration-300 hover:bg-primary/10  ",
                           )}
                         >
                           {menuItem.title}
@@ -242,20 +245,31 @@ export default function Header() {
                   </li>
                 ))}
 
-                <li className="">
+                <li>
                   <Link
                     className={cn(
-                      "w-full bg-primary text-white ",
-                      `flex rounded-lg p-2 text-xl lg:mr-0 lg:inline-flex lg:px-2 lg:py-6`,
+                      `flex rounded-lg p-2 text-xl lg:mr-0 lg:inline-flex lg:px-4 lg:py-4`,
+                      "transition duration-300 hover:bg-primary/10 hover:text-primary",
+                      cleanPathname === "/shop" && "bg-primary/10 ",
                     )}
                     href="/shop"
                   >
-                    SHOP
+                    Shop
                   </Link>
                 </li>
 
-                <li className="">
-                  <Cart />
+                <li>
+                  <Link
+                    className={cn(
+                      `flex items-center rounded-lg p-2 text-xl lg:mr-0 lg:inline-flex lg:px-4 lg:py-4`,
+                      "transition duration-300 hover:bg-primary/10 hover:text-primary",
+                      cleanPathname === "/shop/checkout" && "bg-primary/10 ",
+                    )}
+                    href="/shop/checkout"
+                  >
+                    <TiShoppingCart />
+                    {user.cart.length > 0 ? user.cart.length : 0}
+                  </Link>
                 </li>
 
                 {/* Language Selector inside navbar for small screens */}

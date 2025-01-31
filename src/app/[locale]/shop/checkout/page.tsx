@@ -1,86 +1,151 @@
 "use client";
 import { useUser } from "@/app/providers";
 import Breadcrumb from "@/components/Common/Breadcrumb";
+import QuantityCounter from "@/components/Shop/QuantityCounter";
 import { CartItem } from "@/types";
+import { cn } from "@/utils/cn";
 import Image from "next/image";
-import { useState } from "react";
+import Link from "next/link";
+import { FaRegTrashCan } from "react-icons/fa6";
 
 export default function Checkout() {
-  const { user, updateUser } = useUser();
-  const [quantity, setQuantity] = useState(1);
+  const { user, updateUser, isUpdating } = useUser();
 
   if (!user) return null;
 
+  const totalPrice = parseFloat(
+    user.cart
+      .reduce((acc, item) => acc + item.price * item.quantity, 0)
+      .toFixed(2),
+  );
+
   function handleRemoveFromCart(item: CartItem) {
     if (!user) return;
-    updateUser({
-      cart: user.cart.filter(
-        (cartItem) => cartItem.productId !== item.productId,
-      ),
-    });
+
+    if (window.confirm("Are you sure you want to remove this item?")) {
+      updateUser({
+        cart: user.cart.filter((cartItem) => cartItem.itemId !== item.itemId),
+      });
+    }
+  }
+
+  function setQuantity(quantity: number, item: CartItem) {
+    if (!user) return;
+
+    if (quantity === 0) {
+      handleRemoveFromCart(item);
+    } else {
+      updateUser({
+        cart: user.cart.map((cartItem) =>
+          cartItem.itemId === item.itemId
+            ? { ...cartItem, quantity }
+            : cartItem,
+        ),
+      });
+    }
   }
 
   return (
     <>
       <Breadcrumb
-        pageName="Shop"
-        description="Formenwerkstatt Shop"
+        pageName="Cart"
+        description="Last stop before paying"
         showLink={false}
       />
 
-      <section className="container mb-24">
-        <h2 className="text-2xl font-semibold">CART</h2>
-        {user.cart.length === 0 ? (
-          <p>No items yet!</p>
-        ) : (
-          user.cart.map((item) => (
-            <div
-              key={item.productId}
-              className="mb-4 flex items-center justify-between text-lg"
-            >
-              <div className="flex  items-center gap-4">
-                <Image
-                  src={item.imgUrl}
-                  alt={item.name}
-                  width={300}
-                  height={300}
-                  className="h-20 w-20 rounded-lg object-cover"
-                />
-              </div>
-
-              <h3>{item.name}</h3>
-              <p>{item.price}</p>
-              <div className="flex items-center">
-                <button
-                  className="rounded-l-lg bg-primary px-2 text-xl font-semibold text-white hover:bg-blue-600"
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                >
-                  -
-                </button>
-                <input
-                  type="number"
-                  className=" rounded-none border border-gray-300 text-center"
-                  value={item.quantity}
-                  onChange={(e) =>
-                    setQuantity(Math.max(1, Number(e.target.value)))
-                  }
-                  min="1"
-                />
-                <button
-                  className="rounded-r-lg bg-primary px-2 text-xl font-semibold text-white hover:bg-blue-600"
-                  onClick={() => setQuantity(quantity + 1)}
-                >
-                  +
-                </button>
-              </div>
-              <button
-                onClick={() => handleRemoveFromCart(item)}
-                className="rounded-lg bg-red-500 px-4 py-2 text-white"
+      <section
+        className={cn(
+          "container mb-24 grid gap-8",
+          user.cart.length > 0 && "lg:grid-cols-[3fr_1fr]",
+        )}
+      >
+        <div className="flex flex-col gap-4">
+          {user.cart.length === 0 ? (
+            <div className="flex h-[40dvh] flex-col items-center justify-center gap-12">
+              <p className="text-center text-3xl">No items yet!</p>
+              <Link
+                href="/shop"
+                className="rounded-lg bg-primary px-4 py-2 text-lg text-white"
               >
-                Remove
-              </button>
+                Back to Shop
+              </Link>
             </div>
-          ))
+          ) : (
+            user.cart.map((item) => (
+              <div
+                key={item.productId}
+                className={cn(
+                  "flex flex-wrap gap-4 md:flex-nowrap md:justify-between",
+                  "rounded-lg bg-gray-light p-4 shadow-lg dark:bg-gray-dark",
+                )}
+              >
+                <div className="flex gap-8">
+                  <Image
+                    className="h-24 w-24 rounded-lg object-cover"
+                    src={item.imgUrl}
+                    alt={item.name}
+                    width={300}
+                    height={300}
+                  />
+                  <h3 className="text-lg">{item.name}</h3>
+                </div>
+
+                <div className="flex flex-1 flex-col gap-4 text-right md:flex-none">
+                  <p className="text-2xl font-semibold">{item.price} €</p>
+
+                  <div className="flex justify-between gap-8">
+                    <QuantityCounter
+                      setQuantity={(newQuantity) =>
+                        setQuantity(newQuantity, item)
+                      }
+                      quantity={item.quantity}
+                      isUpdating={isUpdating}
+                      small
+                    />
+
+                    <button
+                      onClick={() => handleRemoveFromCart(item)}
+                      className={cn(
+                        "rounded-full  text-2xl text-gray-300  ",
+                        isUpdating &&
+                          "pointer-events-none cursor-wait bg-gray-200",
+                        "hover:text-gray-dark",
+                      )}
+                    >
+                      <FaRegTrashCan />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+
+        {user.cart.length > 0 && (
+          <div
+            className={cn(
+              "flex h-[40dvh] w-full flex-col justify-between p-4 text-center",
+              "rounded-xl bg-gray-light dark:bg-gray-dark",
+              "shadow-xl dark:shadow-none",
+              isUpdating && "bg-gray-200",
+            )}
+          >
+            <h2 className=" text-2xl font-bold">Total</h2>
+
+            <p className=" text-3xl font-semibold">{totalPrice} €</p>
+            <p>
+              MvSt. inkl. <br />
+              <span className="font-semibold">
+                {(totalPrice * 1.19).toFixed(2)} €
+              </span>
+            </p>
+            <button
+              onClick={() => alert("Checkout not implemented")}
+              className="rounded-lg bg-primary px-4 py-2 text-xl text-white"
+            >
+              Checkout
+            </button>
+          </div>
         )}
       </section>
     </>

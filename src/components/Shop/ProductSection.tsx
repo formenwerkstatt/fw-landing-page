@@ -4,6 +4,8 @@ import { Product } from "@/types";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import QuantityCounter from "./QuantityCounter";
 
 export default function ProductSection({
   product,
@@ -14,28 +16,46 @@ export default function ProductSection({
 }) {
   const [quantity, setQuantity] = useState(1);
 
-  const { user, updateUser } = useUser();
+  const { user, updateUser, isUpdating } = useUser();
 
   function handleAddToCart(product: Product) {
     if (!user) return;
-    const newCartItem = {
-      productId: product.id,
-      name: product.name,
-      price: product.price,
-      quantity,
-      imgUrl: product.imgUrl,
-    };
 
-    updateUser({
-      cart: [...user.cart, newCartItem],
-    });
+    const existingItemIndex = user.cart.findIndex(
+      (item) => item.productId === product.id,
+    );
+
+    if (existingItemIndex !== -1) {
+      const updatedCart = [...user.cart];
+      updatedCart[existingItemIndex] = {
+        ...updatedCart[existingItemIndex],
+        quantity: updatedCart[existingItemIndex].quantity + quantity,
+      };
+
+      updateUser({
+        cart: updatedCart,
+      });
+    } else {
+      const newCartItem = {
+        itemId: uuidv4(),
+        productId: product.id,
+        name: product.name,
+        price: product.price,
+        quantity,
+        imgUrl: product.imgUrl,
+      };
+
+      updateUser({
+        cart: [...user.cart, newCartItem],
+      });
+    }
   }
 
   return (
     <section
       className={cn(
         "container mb-8 px-0",
-        "grid grid-cols-none grid-rows-[1fr_3fr] gap-8 lg:grid-cols-[1fr_1.5fr] lg:grid-rows-none",
+        "grid grid-cols-none grid-rows-[1fr_1.2fr] gap-8 lg:grid-cols-[1fr_1.5fr] lg:grid-rows-none",
       )}
     >
       <div className="relative overflow-hidden shadow-lg">
@@ -51,18 +71,9 @@ export default function ProductSection({
 
       <div className="flex flex-col justify-between rounded-lg bg-gray-light p-6 shadow-lg dark:bg-gray-dark">
         <h2 className="mb-4 text-3xl font-bold">{product.name}</h2>
-        <p className="mb-4 ">
-          {product.description} Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit. Ut vehicula mauris eget sem tincidunt varius. Nam
-          volutpat bibendum elit, vel tempor elit dapibus eget. Nam elit dui,
-          venenatis sed lectus vel, dignissim mattis mauris. Vivamus malesuada
-          id dolor et eleifend. Nam eget aliquet turpis, et sagittis purus.
-          Integer vel sapien in diam mollis tristique vitae ut sem. Suspendisse
-          quis lorem sit amet odio maximus fermentum finibus vel leo. Nunc
-          lacinia faucibus orci non condimentum.{" "}
-        </p>
+        <p className="mb-4 text-lg">{product.description}</p>
 
-        <div className="flex items-center gap-2">
+        <div className="mb-4 flex items-center gap-2 text-lg">
           <span className="font-semibold">Rating:</span>
           <div className="flex">
             {[1, 2, 3, 4, 5].map((star) => (
@@ -85,33 +96,17 @@ export default function ProductSection({
           <p>{averageRating ? averageRating : "N/A"} /5</p>
         </div>
 
-        <p>
+        <p className="text-lg">
           <span className="font-semibold">Stock: </span>
           {product.stock < 10 ? "Contact us for availability" : "In Stock"}
         </p>
 
-        <div className="flex items-center justify-between py-4">
-          <div className="flex items-center">
-            <button
-              className="rounded-l-lg bg-primary px-2 text-xl font-semibold text-white hover:bg-blue-600"
-              onClick={() => setQuantity(Math.max(1, quantity - 1))}
-            >
-              -
-            </button>
-            <input
-              type="number"
-              className=" rounded-none border border-gray-300 text-center"
-              value={quantity}
-              onChange={(e) => setQuantity(Math.max(1, Number(e.target.value)))}
-              min="1"
-            />
-            <button
-              className="rounded-r-lg bg-primary px-2 text-xl font-semibold text-white hover:bg-blue-600"
-              onClick={() => setQuantity(quantity + 1)}
-            >
-              +
-            </button>
-          </div>
+        <div className="mt-8 flex items-center justify-between py-4">
+          <QuantityCounter
+            setQuantity={setQuantity}
+            quantity={quantity}
+            isUpdating={isUpdating}
+          />
           <p className=" text-right text-3xl font-semibold ">
             {product.price} €
           </p>
@@ -120,7 +115,9 @@ export default function ProductSection({
           onClick={() => handleAddToCart(product)}
           className={cn(
             "rounded-lg bg-primary px-6 py-3 text-xl font-semibold text-white transition duration-300 hover:bg-blue-600",
+            isUpdating && "pointer-events-none cursor-wait bg-gray-200",
           )}
+          disabled={isUpdating}
         >
           Add to Cart
         </button>

@@ -14,7 +14,22 @@ export default async function ProductDetailsPage({
 
   const product = await getDocument<Product>("products", id);
   const reviews = await getCollection<Review>("reviews");
-  const filteredReviews = reviews.filter((review) => review.productId === id);
+
+  function createdAtToDate(dateStr: string) {
+    if (!dateStr) return 0;
+    const [date, time] = dateStr.split(", ");
+    const [day, month, year] = date.split(".");
+    const [hours, minutes] = time.split(":");
+    return new Date(+year, +month - 1, +day, +hours, +minutes).getTime();
+  }
+
+  const filteredReviews = reviews
+    .filter((review) => review.productId === id)
+    .sort(
+      (a, b) =>
+        createdAtToDate(b.createdAt ?? "") - createdAtToDate(a.createdAt ?? ""),
+    );
+
   const averageRating =
     filteredReviews.length > 0
       ? parseFloat(

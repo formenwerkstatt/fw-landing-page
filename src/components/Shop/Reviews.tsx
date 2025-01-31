@@ -1,7 +1,9 @@
 import { deleteDocument } from "@/app/actions";
 import { useUser } from "@/app/providers";
 import { Review } from "@/types";
+import { cn } from "@/utils/cn";
 import { useState } from "react";
+import { FaRegTrashCan } from "react-icons/fa6";
 
 type ReviewsProps = {
   reviews: Review[];
@@ -71,25 +73,27 @@ export default function Reviews({ reviews, handleEdit }: ReviewsProps) {
               </div>
             </div>
 
-            <p>{review.comment}</p>
+            <p className="text-lg">{review.comment}</p>
 
             <div className="flex items-center justify-between">
+              <p className="text-gray-600">Created at {review.createdAt}</p>
               {review.userId === user?.id && (
                 <>
-                  <p className=" text-sm">Created at {review.createdAt}</p>
-
-                  <div>
+                  <div className="flex items-center gap-4">
                     <button
                       onClick={() => handleEdit(review)}
-                      className=" mr-2 rounded-lg border-none bg-primary p-3 text-white"
+                      className=" mr-2 rounded-lg border-none bg-primary py-1 px-2 text-white"
                     >
                       Edit
                     </button>
                     <button
                       onClick={() => handleDelete(review.id)}
-                      className=" rounded-lg border-none bg-red-500 p-3 text-white"
+                      className={cn(
+                        "rounded-full text-2xl text-gray-300",
+                        "hover:text-gray-dark",
+                      )}
                     >
-                      Delete
+                      <FaRegTrashCan />
                     </button>
                   </div>
                 </>

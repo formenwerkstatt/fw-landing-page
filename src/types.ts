@@ -78,6 +78,7 @@ export type UserState = {
 };
 
 export type CartItem = {
+  itemId: string;
   productId: string;
   name: string;
   price: number;

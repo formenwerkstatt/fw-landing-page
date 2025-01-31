@@ -26,9 +26,11 @@ export const createUser = (): UserState => {
 const UserContext = createContext<{
   user: UserState | null;
   updateUser: (updates: Partial<UserState>) => void;
+  isUpdating: boolean;
 }>({
   user: null,
   updateUser: () => {},
+  isUpdating: false,
 });
 
 export const useUser = () => {
@@ -41,27 +43,35 @@ export const useUser = () => {
 
 function UserProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<UserState | null>(null);
+  const [isUpdating, setIsUpdating] = useState(false);
 
   useEffect(() => {
     const storedUser = getStoredUser();
     setUser(storedUser || createUser());
   }, []);
 
-  const updateUser = (updates: Partial<UserState>) => {
-    setUser((prev) => {
-      if (!prev) return null;
-      const updated = {
-        ...prev,
-        ...updates,
-        lastUpdated: dateToLocale(new Date()),
-      };
-      localStorage.setItem("fw_user", JSON.stringify(updated));
-      return updated;
+  async function updateUser(updates: Partial<UserState>): Promise<void> {
+    setIsUpdating(true);
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        setUser((prev) => {
+          if (!prev) return null;
+          const updated = {
+            ...prev,
+            ...updates,
+            lastUpdated: dateToLocale(new Date()),
+          };
+          localStorage.setItem("fw_user", JSON.stringify(updated));
+          resolve();
+          return updated;
+        });
+        setIsUpdating(false);
+      }, 500);
     });
-  };
+  }
 
   return (
-    <UserContext.Provider value={{ user, updateUser }}>
+    <UserContext.Provider value={{ user, updateUser, isUpdating }}>
       {children}
     </UserContext.Provider>
   );
