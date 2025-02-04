@@ -32,7 +32,7 @@ yarn-error.log*
 .vercel
 
 service-key.json
-(admin)
+admin
 
 firebase-debug.log
 firestore-debug.log
