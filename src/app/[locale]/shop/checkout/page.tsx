@@ -1,15 +1,30 @@
 "use client";
+import { addDocument, getCollection } from "@/app/actions";
 import { useUser } from "@/app/providers";
 import Breadcrumb from "@/components/Common/Breadcrumb";
+import CheckoutForm from "@/components/Shop/CheckoutForm";
+import OrderHistory from "@/components/Shop/OrderHistory";
 import QuantityCounter from "@/components/Shop/QuantityCounter";
-import { CartItem } from "@/types";
+import { CartItem, Order } from "@/types";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { FaRegTrashCan } from "react-icons/fa6";
 
 export default function Checkout() {
   const { user, updateUser, isUpdating } = useUser();
+  const [paymentForm, setPaymentForm] = useState(false);
+  const [orders, setOrders] = useState<Order[]>([]);
+  const userOrders = orders.filter((order) => order.userId === user?.id);
+
+  useEffect(() => {
+    async function fetchOrders() {
+      const fetchedOrders = (await getCollection("orders")) as Order[];
+      setOrders(fetchedOrders);
+    }
+    fetchOrders();
+  }, []);
 
   if (!user) return null;
 
@@ -19,12 +34,38 @@ export default function Checkout() {
       .toFixed(2),
   );
 
+  async function handleAddOrder(formData: any) {
+    if (!user) return null;
+    if (window.confirm("Do you confirm the payment?")) {
+      const newOrder = {
+        userId: user.id,
+        personalInfo: {
+          name: `${formData.firstName} ${formData.lastName}`,
+          email: formData.email,
+          phone: formData.phone,
+          address: `${formData.streetAddress}, ${formData.postalCode}, ${formData.city},`,
+        },
+        status: "pending",
+        items: user.cart,
+      };
+
+      const addedOrder = await addDocument("orders", newOrder);
+
+      setOrders((prev) => [...prev, addedOrder as Order]);
+
+      updateUser({
+        cart: [],
+      });
+
+      setPaymentForm(false);
+    }
+  }
   function handleRemoveFromCart(item: CartItem) {
     if (!user) return;
 
     if (window.confirm("Are you sure you want to remove this item?")) {
       updateUser({
-        cart: user.cart.filter((cartItem) => cartItem.itemId !== item.itemId),
+        cart: user.cart.filter((cartItem) => cartItem.id !== item.id),
       });
     }
   }
@@ -37,9 +78,7 @@ export default function Checkout() {
     } else {
       updateUser({
         cart: user.cart.map((cartItem) =>
-          cartItem.itemId === item.itemId
-            ? { ...cartItem, quantity }
-            : cartItem,
+          cartItem.id === item.id ? { ...cartItem, quantity } : cartItem,
         ),
       });
     }
@@ -62,7 +101,7 @@ export default function Checkout() {
         <div className="flex flex-col gap-4">
           {user.cart.length === 0 ? (
             <div className="flex h-[40dvh] flex-col items-center justify-center gap-12">
-              <p className="text-center text-3xl">No items yet!</p>
+              <p className="text-center text-3xl">Your cart is empty</p>
               <Link
                 href="/shop"
                 className="rounded-lg bg-primary px-4 py-2 text-lg text-white"
@@ -140,7 +179,7 @@ export default function Checkout() {
               </span>
             </p>
             <button
-              onClick={() => alert("Checkout not implemented")}
+              onClick={() => setPaymentForm(true)}
               className="rounded-lg bg-primary px-4 py-2 text-xl text-white"
             >
               Checkout
@@ -148,6 +187,15 @@ export default function Checkout() {
           </div>
         )}
       </section>
+
+      <OrderHistory orders={userOrders} />
+
+      {paymentForm && (
+        <CheckoutForm
+          handleSubmit={handleAddOrder}
+          setConfirmOrder={setPaymentForm}
+        />
+      )}
     </>
   );
 }

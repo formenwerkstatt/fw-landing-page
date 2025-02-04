@@ -1,27 +1,14 @@
-import { getCollection, getDocument } from "@/app/actions";
-import { Product, Review } from "@/types";
+import { Product } from "@/types";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function ProductCard({ product }: { product: Product }) {
-  const reviews = await getCollection<Review>("reviews");
-  const filteredReviews = reviews.filter(
-    (review) => review.productId === product.id,
-  );
-  const averageRating =
-    filteredReviews.length > 0
-      ? (
-          filteredReviews.reduce((acc, review) => acc + review.rating, 0) /
-          filteredReviews.length
-        ).toFixed(1)
-      : 0;
-
   return (
     <Link
       href={`/shop/product/${product.id}`}
       className={cn(
-        "flex flex-col rounded-xl",
+        "flex flex-col rounded-xl overflow-hidden",
         "bg-white dark:bg-gray-dark",
         "shadow-lg dark:shadow-none",
         "hover:scale-105 hover:shadow-xl",
@@ -29,13 +16,12 @@ export default async function ProductCard({ product }: { product: Product }) {
         "transition duration-300",
       )}
     >
-      <div>
+      <div className="relative w-full h-96 ">
         <Image
-          src={product.imgUrl}
-          width={300}
-          height={300}
+          src={product.imgUrl[0]}
           alt={product.description}
-          className="h-auto w-full rounded-t-xl object-cover"
+          fill
+          className="w-full object-cover"
         />
       </div>
 
@@ -50,9 +36,6 @@ export default async function ProductCard({ product }: { product: Product }) {
         </div>
 
         <div className="hidden flex-col justify-between text-right lg:flex">
-          <p className=" text-sm">
-            {averageRating === 0 ? "No Ratings" : `${averageRating} / 5`}
-          </p>
           <p className="whitespace-nowrap  text-xl font-bold ">
             {product.price}€
           </p>

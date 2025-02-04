@@ -56,19 +56,17 @@ export type Product = {
   name: string;
   description: string;
   price: number;
-  imgUrl: string;
+  imgUrl: string[];
   stock: number;
+  reviews: Review[];
   createdAt?: string;
 };
 
 export type Review = {
-  id: string;
-  productId: string;
-  userId: string;
-  username: string;
+  userName: string;
   rating: number;
-  comment: string;
-  createdAt?: string;
+  text: string;
+  createdAt: string;
 };
 
 export type UserState = {
@@ -77,8 +75,30 @@ export type UserState = {
   lastUpdated: string;
 };
 
+export type Order = {
+  id: string;
+  userId: string;
+  personalInfo: {
+    name: string;
+    email: string;
+    phone: string;
+    address: string;
+  };
+  status: OrderStatus;
+  items: CartItem[];
+  createdAt: string;
+};
+
+export type OrderStatus =
+  | "pending"
+  | "confirmed"
+  | "shipped"
+  | "delivered"
+  | "canceled";
+
+
 export type CartItem = {
-  itemId: string;
+  id: string;
   productId: string;
   name: string;
   price: number;

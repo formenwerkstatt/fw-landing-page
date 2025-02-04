@@ -10,7 +10,8 @@ import ImageSection from "@/components/Common/ImageSection";
 
 export const metadata: Metadata = {
   title: `Über Uns | Erfahren Sie mehr über die Formenwerkstatt`,
-  description: "Erfahren Sie mehr über das Unternehmen Formenwerkstatt. Erreichen Sie uns fŭr die Beste Preis und schnellste Lieferung aus dem Odenwald.",
+  description:
+    "Erfahren Sie mehr über das Unternehmen Formenwerkstatt. Erreichen Sie uns fŭr die Beste Preis und schnellste Lieferung aus dem Odenwald.",
   alternates: {
     canonical: "https://www.formenwerkstatt.de/about",
   },
@@ -36,8 +37,20 @@ export default async function AboutPage() {
       <Breadcrumb pageName={t("title")} description={t("paragraph")} />
 
       {/* <Video /> */}
-
-      <Gallery images={allImages} />
+      <section className="relative pb-12">
+        <div className="container">
+          <div className="-mx-4 flex flex-wrap">
+            <div className="w-full px-4">
+              <div
+                className="mx-auto h-[60dvh] max-w-[full] overflow-hidden rounded-md"
+                data-wow-delay=".15s"
+              >
+                <Gallery images={allImages} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="relative bg-gray-light py-16  dark:bg-bg-color-dark md:pb-20 lg:py-24">
         <div className="container">

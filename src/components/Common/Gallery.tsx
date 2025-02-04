@@ -10,13 +10,21 @@ import Image from "next/image";
 
 interface GalleryProps {
   images: string[];
+  showBg?: boolean;
+  autoplay?: boolean;
+  centeredSlides?: boolean;
 }
 
-export default function Gallery({ images }: GalleryProps) {
+export default function Gallery({
+  images,
+  showBg = true,
+  autoplay = true,
+}: GalleryProps) {
   const progressCircle = useRef<SVGSVGElement | null>(null);
   const progressContent = useRef<HTMLSpanElement | null>(null);
   const [isImageModalOpen, setIsImageModalOpen] = React.useState(false);
   const [selectedImage, setSelectedImage] = React.useState<string>("");
+  const swiperRef = useRef<SwiperType | null>(null);
 
   // Close modal on escape key press
   useEffect(() => {
@@ -51,61 +59,57 @@ export default function Gallery({ images }: GalleryProps) {
 
   return (
     <>
-      <section className="relative pb-12">
-        <div className="container">
-          <div className="-mx-4 flex flex-wrap">
-            <div className="w-full px-4">
-              <div
-                className="mx-auto h-[60dvh] max-w-[full] overflow-hidden rounded-md"
-                data-wow-delay=".15s"
-              >
-                <Swiper
-                  spaceBetween={30}
-                  centeredSlides={true}
-                  autoplay={{
-                    delay: 3000,
-                    disableOnInteraction: false,
-                  }}
-                  pagination={{
-                    clickable: true,
-                  }}
-                  navigation={true}
-                  loop={true}
-                  modules={[Autoplay, Pagination, Navigation]}
-                  onAutoplayTimeLeft={onAutoplayTimeLeft}
-                  className="mySwiper"
-                >
-                  {images.map((image, index) => (
-                    <SwiperSlide key={`${image}-${index}`}>
-                      <button
-                        onClick={() => {
-                          setSelectedImage(image);
-                          setIsImageModalOpen(true);
-                        }}
-                        className="relative size-full"
-                      >
-                        <Image
-                          src={image}
-                          alt={`Gallery image ${index + 1}`}
-                          fill
-                          className="object-cover"
-                        />
-                      </button>
-                    </SwiperSlide>
-                  ))}
-                  <div className="autoplay-progress" slot="container-end">
-                    <svg viewBox="0 0 48 48" ref={progressCircle}>
-                      <circle cx="24" cy="24" r="20"></circle>
-                    </svg>
-                    <span ref={progressContent}></span>
-                  </div>
-                </Swiper>
-              </div>
-            </div>
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={
+          autoplay
+            ? {
+                delay: 3000,
+                disableOnInteraction: false,
+              }
+            : false
+        }
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        loop={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        onAutoplayTimeLeft={onAutoplayTimeLeft}
+        className="mySwiper"
+      >
+        {images.map((image, index) => (
+          <SwiperSlide key={`${image}-${index}`}>
+            <button
+              onClick={() => {
+                setSelectedImage(image);
+                setIsImageModalOpen(true);
+              }}
+              className="relative size-full"
+            >
+              <Image
+                src={image}
+                alt={`Gallery image ${index + 1}`}
+                fill
+                className="object-cover"
+              />
+            </button>
+          </SwiperSlide>
+        ))}
+        {autoplay && (
+          <div className="autoplay-progress" slot="container-end">
+            <svg viewBox="0 0 48 48" ref={progressCircle}>
+              <circle cx="24" cy="24" r="20"></circle>
+            </svg>
+            <span ref={progressContent}></span>
           </div>
-        </div>
+        )}
+      </Swiper>
+
+      {showBg && (
         <div className="absolute bottom-0 left-0 right-0 z-[-1] h-full w-full bg-[url(/video/shape.svg)] bg-cover bg-center bg-no-repeat"></div>
-      </section>
+      )}
 
       {/* Custom Modal */}
       {isImageModalOpen && (

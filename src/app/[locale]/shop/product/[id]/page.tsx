@@ -1,9 +1,10 @@
-import { Product, Review } from "@/types";
-import { getCollection, getDocument } from "@/app/actions";
+import { Product } from "@/types";
+import { getDocument } from "@/app/actions";
 import { redirect } from "next/navigation";
 import Breadcrumb from "@/components/Common/Breadcrumb";
-import ReviewWrapper from "@/components/Shop/ReviewWrapper";
 import ProductSection from "@/components/Shop/ProductSection";
+import SectionTitle from "@/components/Common/SectionTitle";
+import Reviews from "@/components/Shop/Reviews";
 
 export default async function ProductDetailsPage({
   params,
@@ -13,33 +14,6 @@ export default async function ProductDetailsPage({
   const { id } = params;
 
   const product = await getDocument<Product>("products", id);
-  const reviews = await getCollection<Review>("reviews");
-
-  function createdAtToDate(dateStr: string) {
-    if (!dateStr) return 0;
-    const [date, time] = dateStr.split(", ");
-    const [day, month, year] = date.split(".");
-    const [hours, minutes] = time.split(":");
-    return new Date(+year, +month - 1, +day, +hours, +minutes).getTime();
-  }
-
-  const filteredReviews = reviews
-    .filter((review) => review.productId === id)
-    .sort(
-      (a, b) =>
-        createdAtToDate(b.createdAt ?? "") - createdAtToDate(a.createdAt ?? ""),
-    );
-
-  const averageRating =
-    filteredReviews.length > 0
-      ? parseFloat(
-          (
-            filteredReviews.reduce((acc, review) => acc + review.rating, 0) /
-            filteredReviews.length
-          ).toFixed(1),
-        )
-      : 0;
-
   if (!product) {
     redirect("/error");
   }
@@ -52,9 +26,22 @@ export default async function ProductDetailsPage({
         showLink={false}
       />
 
-      <ProductSection product={product} averageRating={averageRating} />
+      <ProductSection product={product} />
 
-      <ReviewWrapper reviews={filteredReviews} />
+      <SectionTitle
+        title={product.name}
+        paragraph={product.description}
+        width="full"
+        center
+      />
+
+      <section className="container mb-8">
+        <h3 className="mb-4 text-2xl font-semibold">
+          Reviews for {product.name}
+        </h3>
+      </section>
+
+      <Reviews product={product} />
     </>
   );
 }

@@ -66,7 +66,7 @@ function UserProvider({ children }: { children: React.ReactNode }) {
           return updated;
         });
         setIsUpdating(false);
-      }, 500);
+      }, 300);
     });
   }
 
