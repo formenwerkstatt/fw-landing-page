@@ -1,10 +1,11 @@
 "use client";
 import { addDocument, getCollection } from "@/app/actions";
+import { createOrder } from "@/app/actions/orders";
 import { useUser } from "@/app/providers";
 import Breadcrumb from "@/components/Common/Breadcrumb";
-import CheckoutForm from "@/components/Shop/CheckoutForm";
 import OrderHistory from "@/components/Shop/OrderHistory";
 import QuantityCounter from "@/components/Shop/QuantityCounter";
+import { createCheckoutUrl } from "@/lib/shopify";
 import { CartItem, Order } from "@/types";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
@@ -18,13 +19,13 @@ export default function Checkout() {
   const [orders, setOrders] = useState<Order[]>([]);
   const userOrders = orders.filter((order) => order.userId === user?.id);
 
-  useEffect(() => {
-    async function fetchOrders() {
-      const fetchedOrders = (await getCollection("orders")) as Order[];
-      setOrders(fetchedOrders);
-    }
-    fetchOrders();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchOrders() {
+  //     const fetchedOrders = (await getCollection("orders")) as Order[];
+  //     setOrders(fetchedOrders);
+  //   }
+  //   fetchOrders();
+  // }, []);
 
   if (!user) return null;
 
@@ -33,6 +34,19 @@ export default function Checkout() {
       .reduce((acc, item) => acc + item.price * item.quantity, 0)
       .toFixed(2),
   );
+
+  const handleCheckout = async () => {
+    if (user?.cart.length < 1) return;
+
+    try {
+      const checkoutUrl = await createCheckoutUrl(user.cart);
+      window.location.href = checkoutUrl;
+    } catch (error) {
+      console.error("Checkout error:", error);
+    } finally {
+      console.log("Checkout done");
+    }
+  };
 
   async function handleAddOrder(formData: any) {
     if (!user) return null;
@@ -49,9 +63,10 @@ export default function Checkout() {
         items: user.cart,
       };
 
-      const addedOrder = await addDocument("orders", newOrder);
+      // const addedOrder = await addDocument("orders", newOrder);
+      const addedOrder = await createOrder(newOrder as Order);
 
-      setOrders((prev) => [...prev, addedOrder as Order]);
+      setOrders((prev) => [...prev, addedOrder]);
 
       updateUser({
         cart: [],
@@ -60,6 +75,7 @@ export default function Checkout() {
       setPaymentForm(false);
     }
   }
+
   function handleRemoveFromCart(item: CartItem) {
     if (!user) return;
 
@@ -178,11 +194,12 @@ export default function Checkout() {
                 {(totalPrice * 1.19).toFixed(2)} €
               </span>
             </p>
+            {/* <Checkout /> */}
             <button
-              onClick={() => setPaymentForm(true)}
-              className="rounded-lg bg-primary px-4 py-2 text-xl text-white"
+              onClick={handleCheckout}
+              className="flex bg-primary text-white"
             >
-              Checkout
+              Proceed to Checkout
             </button>
           </div>
         )}
@@ -190,12 +207,12 @@ export default function Checkout() {
 
       <OrderHistory orders={userOrders} />
 
-      {paymentForm && (
+      {/* {paymentForm && (
         <CheckoutForm
           handleSubmit={handleAddOrder}
           setConfirmOrder={setPaymentForm}
         />
-      )}
+      )} */}
     </>
   );
 }

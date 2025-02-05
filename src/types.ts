@@ -58,9 +58,23 @@ export type Product = {
   price: number;
   imgUrl: string[];
   stock: number;
-  reviews: Review[];
   createdAt?: string;
 };
+
+export interface ShopifyProduct {
+  id: string;
+  title: string;
+  body_html: string;
+  vendor: string;
+  product_type: string;
+  created_at: string;
+  variants: {
+    id: string;
+    price: string;
+    inventory_quantity: number;
+  }[];
+  images: { src: string }[];
+}
 
 export type Review = {
   userName: string;
@@ -73,6 +87,15 @@ export type UserState = {
   id: string;
   cart: CartItem[];
   lastUpdated: string;
+};
+
+export type CartItem = {
+  id: string;
+  productId: string;
+  name: string;
+  price: number;
+  quantity: number;
+  imgUrl: string;
 };
 
 export type Order = {
@@ -95,16 +118,6 @@ export type OrderStatus =
   | "shipped"
   | "delivered"
   | "canceled";
-
-
-export type CartItem = {
-  id: string;
-  productId: string;
-  name: string;
-  price: number;
-  quantity: number;
-  imgUrl: string;
-};
 
 export type Brand = {
   id: number;

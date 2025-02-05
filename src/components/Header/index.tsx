@@ -28,8 +28,7 @@ export default function Header() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const navbarRef = useRef<HTMLDivElement>(null);
 
-  if (!user) return null;
-
+  
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -40,23 +39,25 @@ export default function Header() {
         setOpenSubmenuIndex(null);
       }
     };
-
+    
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
+  
   useEffect(() => {
     handleResize();
     window.addEventListener("resize", handleResize);
     window.addEventListener("scroll", handleStickyNavbar);
-
+    
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleStickyNavbar);
     };
   }, []);
+  
+  if (!user) return null;
 
   const handleStickyNavbar = () => {
     setSticky(window.scrollY >= 80);
@@ -245,7 +246,7 @@ export default function Header() {
                   </li>
                 ))}
 
-                <li>
+                {/* <li>
                   <Link
                     className={cn(
                       `flex rounded-lg p-2 text-xl lg:mr-0 lg:inline-flex lg:px-4 lg:py-4`,
@@ -270,7 +271,7 @@ export default function Header() {
                     <TiShoppingCart />
                     {user.cart.length > 0 ? user.cart.length : 0}
                   </Link>
-                </li>
+                </li> */}
 
                 {/* Language Selector inside navbar for small screens */}
                 <li className="flex items-center justify-end lg:hidden">

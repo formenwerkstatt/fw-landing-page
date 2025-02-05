@@ -1,5 +1,5 @@
-import { X, Send, CreditCard, User, Home } from "lucide-react";
-import { FormEvent, useState } from "react";
+import { X, Send, User, Home } from "lucide-react";
+import { useState } from "react";
 import { useEffect, useRef } from "react";
 
 interface CheckoutFormProps {

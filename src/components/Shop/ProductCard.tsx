@@ -8,7 +8,7 @@ export default async function ProductCard({ product }: { product: Product }) {
     <Link
       href={`/shop/product/${product.id}`}
       className={cn(
-        "flex flex-col rounded-xl overflow-hidden",
+        "flex flex-col overflow-hidden rounded-xl",
         "bg-white dark:bg-gray-dark",
         "shadow-lg dark:shadow-none",
         "hover:scale-105 hover:shadow-xl",
@@ -16,11 +16,12 @@ export default async function ProductCard({ product }: { product: Product }) {
         "transition duration-300",
       )}
     >
-      <div className="relative w-full h-96 ">
+      <div className="relative h-96 w-full ">
         <Image
           src={product.imgUrl[0]}
           alt={product.description}
           fill
+          sizes="33vw"
           className="w-full object-cover"
         />
       </div>

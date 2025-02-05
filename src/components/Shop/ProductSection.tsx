@@ -15,37 +15,33 @@ export default function ProductSection({ product }: { product: Product }) {
   function handleAddToCart(product: Product) {
     if (!user) return;
 
-    if (
-      window.confirm("Are you sure you want to add this item to your cart?")
-    ) {
-      const existingItemIndex = user.cart.findIndex(
-        (item) => item.productId === product.id,
-      );
+    const existingItemIndex = user.cart.findIndex(
+      (item) => item.productId === product.id,
+    );
 
-      if (existingItemIndex !== -1) {
-        const updatedCart = [...user.cart];
-        updatedCart[existingItemIndex] = {
-          ...updatedCart[existingItemIndex],
-          quantity: updatedCart[existingItemIndex].quantity + quantity,
-        };
+    if (existingItemIndex !== -1) {
+      const updatedCart = [...user.cart];
+      updatedCart[existingItemIndex] = {
+        ...updatedCart[existingItemIndex],
+        quantity: updatedCart[existingItemIndex].quantity + quantity,
+      };
 
-        updateUser({
-          cart: updatedCart,
-        });
-      } else {
-        const newCartItem = {
-          id: uuidv4(),
-          productId: product.id,
-          name: product.name,
-          price: product.price,
-          quantity,
-          imgUrl: product.imgUrl[0],
-        };
+      updateUser({
+        cart: updatedCart,
+      });
+    } else {
+      const newCartItem = {
+        id: uuidv4(),
+        productId: product.id,
+        name: product.name,
+        price: product.price,
+        quantity,
+        imgUrl: product.imgUrl[0],
+      };
 
-        updateUser({
-          cart: [...user.cart, newCartItem],
-        });
-      }
+      updateUser({
+        cart: [...user.cart, newCartItem],
+      });
     }
   }
 

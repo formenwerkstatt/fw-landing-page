@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/Common/Breadcrumb";
 import ProductSection from "@/components/Shop/ProductSection";
 import SectionTitle from "@/components/Common/SectionTitle";
 import Reviews from "@/components/Shop/Reviews";
+import { getProduct } from "@/app/actions/products";
 
 export default async function ProductDetailsPage({
   params,
@@ -13,7 +14,9 @@ export default async function ProductDetailsPage({
 }) {
   const { id } = params;
 
-  const product = await getDocument<Product>("products", id);
+  // const product = await getDocument<Product>("products", id);
+  const product = await getProduct(id);
+
   if (!product) {
     redirect("/error");
   }
@@ -31,7 +34,6 @@ export default async function ProductDetailsPage({
       <SectionTitle
         title={product.name}
         paragraph={product.description}
-        width="full"
         center
       />
 
