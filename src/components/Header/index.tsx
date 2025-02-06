@@ -246,7 +246,7 @@ export default function Header() {
                   </li>
                 ))}
 
-                {/* <li>
+                <li>
                   <Link
                     className={cn(
                       `flex rounded-lg p-2 text-xl lg:mr-0 lg:inline-flex lg:px-4 lg:py-4`,
@@ -259,7 +259,7 @@ export default function Header() {
                   </Link>
                 </li>
 
-                <li>
+                {/* <li>
                   <Link
                     className={cn(
                       `flex items-center rounded-lg p-2 text-xl lg:mr-0 lg:inline-flex lg:px-4 lg:py-4`,

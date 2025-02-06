@@ -9,6 +9,7 @@ export async function getProducts(): Promise<Product[]> {
   console.dir(data, { depth: null });
   return data.products.map((p: ShopifyProduct) => ({
     id: p.id,
+    var_id: p.variants[0].id,
     name: p.title,
     description: p.body_html,
     price: parseFloat(p.variants[0].price),
@@ -27,6 +28,7 @@ export async function getProduct(id: string): Promise<Product> {
   const p = data.product;
   return {
     id: p.id,
+    var_id: p.variants[0].id,
     name: p.title,
     description: p.body_html,
     price: parseFloat(p.variants[0].price),

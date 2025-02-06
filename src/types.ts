@@ -53,6 +53,7 @@ type Ad = {
 
 export type Product = {
   id: string;
+  var_id: string;
   name: string;
   description: string;
   price: number;

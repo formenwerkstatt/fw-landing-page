@@ -1,8 +1,7 @@
-import { getCollection } from "@/app/actions";
 import { getProducts } from "@/app/actions/products";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import ProductCard from "@/components/Shop/ProductCard";
-
+import { Product } from "@/types";
 
 export default async function ShopPage() {
   // const products = await getCollection<Product>("products");

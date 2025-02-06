@@ -1,11 +1,10 @@
 "use client";
 import { addDocument, getCollection } from "@/app/actions";
-import { createOrder } from "@/app/actions/orders";
 import { useUser } from "@/app/providers";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import OrderHistory from "@/components/Shop/OrderHistory";
+import ProceedToCheckout from "@/components/Shop/ProceedToCheckout";
 import QuantityCounter from "@/components/Shop/QuantityCounter";
-import { createCheckoutUrl } from "@/lib/shopify";
 import { CartItem, Order } from "@/types";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
@@ -35,19 +34,6 @@ export default function Checkout() {
       .toFixed(2),
   );
 
-  const handleCheckout = async () => {
-    if (user?.cart.length < 1) return;
-
-    try {
-      const checkoutUrl = await createCheckoutUrl(user.cart);
-      window.location.href = checkoutUrl;
-    } catch (error) {
-      console.error("Checkout error:", error);
-    } finally {
-      console.log("Checkout done");
-    }
-  };
-
   async function handleAddOrder(formData: any) {
     if (!user) return null;
     if (window.confirm("Do you confirm the payment?")) {
@@ -63,10 +49,10 @@ export default function Checkout() {
         items: user.cart,
       };
 
-      // const addedOrder = await addDocument("orders", newOrder);
-      const addedOrder = await createOrder(newOrder as Order);
+      const addedOrder = await addDocument("orders", newOrder);
+      // const addedOrder = await createOrder(newOrder as Order);
 
-      setOrders((prev) => [...prev, addedOrder]);
+      setOrders((prev) => [...prev, addedOrder as Order]);
 
       updateUser({
         cart: [],
@@ -188,19 +174,8 @@ export default function Checkout() {
             <h2 className=" text-2xl font-bold">Total</h2>
 
             <p className=" text-3xl font-semibold">{totalPrice} €</p>
-            <p>
-              MvSt. inkl. <br />
-              <span className="font-semibold">
-                {(totalPrice * 1.19).toFixed(2)} €
-              </span>
-            </p>
-            {/* <Checkout /> */}
-            <button
-              onClick={handleCheckout}
-              className="flex bg-primary text-white"
-            >
-              Proceed to Checkout
-            </button>
+
+            <ProceedToCheckout />
           </div>
         )}
       </section>
