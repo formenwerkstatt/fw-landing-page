@@ -3,7 +3,6 @@ import { addDocument, getCollection } from "@/app/actions";
 import { useUser } from "@/app/providers";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import OrderHistory from "@/components/Shop/OrderHistory";
-import ProceedToCheckout from "@/components/Shop/ProceedToCheckout";
 import QuantityCounter from "@/components/Shop/QuantityCounter";
 import { CartItem, Order } from "@/types";
 import { cn } from "@/utils/cn";
@@ -175,7 +174,6 @@ export default function Checkout() {
 
             <p className=" text-3xl font-semibold">{totalPrice} €</p>
 
-            <ProceedToCheckout />
           </div>
         )}
       </section>
