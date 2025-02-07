@@ -5,6 +5,7 @@ import { useScopedI18n } from "@/locales/client";
 import SingleService from "./SingleService";
 import { cn } from "@/utils/cn";
 import HomeArticle from "../HomeArticle";
+import useHomeArticle from "@/data/useHomeArticle";
 
 const Services = () => {
   const servicesData = useServicesData();
@@ -31,7 +32,7 @@ const Services = () => {
         ))}
       </section>
 
-      <HomeArticle />
+      <HomeArticle scope={'homeArticle'} />
 
       <div className="absolute left-0 top-0 z-[-1] scale-[-1] opacity-30 lg:opacity-100">
         <svg

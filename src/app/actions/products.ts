@@ -6,7 +6,7 @@ import { Product, ShopifyProduct } from "@/types";
 export async function getProducts(): Promise<Product[]> {
   const data = await shopifyFetch({ endpoint: "products.json" });
 
-  console.dir(data, { depth: null });
+  // console.dir(data, { depth: null });
   return data.products.map((p: ShopifyProduct) => ({
     id: p.id,
     var_id: p.variants[0].id,

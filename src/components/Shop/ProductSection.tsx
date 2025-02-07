@@ -11,7 +11,7 @@ import BuyButtonPlate from "./BuyButtonPlate";
 export default function ProductSection({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1);
 
-  const { user, updateUser, isUpdating } = useUser();
+  const { user, updateUser } = useUser();
 
   function handleAddToCart(product: Product) {
     if (!user) return;
@@ -60,23 +60,23 @@ export default function ProductSection({ product }: { product: Product }) {
           <h2 className="mb-4 text-3xl font-bold">{product.name}</h2>
           <p className="mb-4 text-lg">{product.description}</p>
 
-          <p className="text-lg">
+          {/* <p className="text-lg">
             <span className="font-semibold">Stock: </span>
             {product.stock < 10 ? "Contact us for availability" : "In Stock"}
-          </p>
+          </p> */}
 
           <div className="mt-8 flex items-center justify-between py-4">
-          <QuantityCounter
+            {/* <QuantityCounter
             setQuantity={setQuantity}
             quantity={quantity}
             isUpdating={isUpdating}
-          />
-          <p className=" text-right text-3xl font-semibold ">
-            {product.price} €
-          </p>
-        </div>
-        <BuyButtonPlate />
-        {/* <button
+            /> */}
+            <BuyButtonPlate />
+            <p className=" text-right text-4xl font-semibold ">
+              {product.price.toFixed(2)} €
+            </p>
+          </div>
+          {/* <button
           onClick={() => handleAddToCart(product)}
           className={cn(
             "rounded-lg bg-primary px-6 py-3 text-xl font-semibold text-white transition duration-300 hover:bg-blue-600",

@@ -1,45 +1,51 @@
 import { useScopedI18n } from "@/locales/client";
 import { Article } from "@/types";
 
-const useHomeArticle = (): Article => {
-  const t = useScopedI18n("homeArticle");
+export default function useHomeArticle(scope: any, nested?: any): Article {
+  const scopedT = useScopedI18n(nested ? `${scope}.${nested}` : scope);
 
-  return {
-    title: t("title"),
-    introduction: t("introduction"),
-    sections: [
-      {
-        title: t("sections.0.title"),
-        list: [
-          t("sections.0.list.0"),
-          t("sections.0.list.1"),
-          t("sections.0.list.2"),
-          t("sections.0.list.3"),
-          t("sections.0.list.4"),
-        ],
-      },
-      {
-        title: t("sections.1.title"),
-        list: [
-          t("sections.1.list.0"),
-          t("sections.1.list.1"),
-          t("sections.1.list.2"),
-          t("sections.1.list.3"),
-        ],
-      },
-      {
-        title: t("sections.2.title"),
-        list: [
-          t("sections.2.list.0"),
-          t("sections.2.list.1"),
-          t("sections.2.list.2"),
-          t("sections.2.list.3"),
-        ],
-      },
-    ],
-    benefits: [t("benefits.0"), t("benefits.1"), t("benefits.2")],
-    callToAction: t("callToAction"),
+  const getSafeTranslation = (key: any) => {
+    const translation = scopedT(key, { returnObjects: false });
+    return translation === key ? "" : translation;
   };
-};
 
-export default useHomeArticle;
+  const generateSections = () => {
+    const sections: Array<{ title: string; list: string[] }> = [];
+    let sectionIndex = 0;
+    while (true) {
+      const sectionTitleKey = `sections.${sectionIndex}.title`;
+      const sectionTitle = getSafeTranslation(sectionTitleKey);
+      if (!sectionTitle && sectionIndex > 0) break;
+      sections.push({
+        title: sectionTitle,
+        list: generateList(`sections.${sectionIndex}.list`),
+      });
+      sectionIndex++;
+    }
+    return sections;
+  };
+
+  const generateList = (key: any) => {
+    const benefits: string[] = [];
+    let benefitIndex = 0;
+    while (true) {
+      const benefitKey = `${key}.${benefitIndex}`;
+      const benefit = getSafeTranslation(benefitKey);
+      if (!benefit && benefitIndex > 0) break;
+      benefits.push(benefit);
+      benefitIndex++;
+    }
+    return benefits;
+  };
+
+  const article = {
+    title: getSafeTranslation("title"),
+    introduction: getSafeTranslation("introduction"),
+    sections: generateSections(),
+    benefits: generateList("benefits"),
+  };
+
+  console.log("Article:", JSON.stringify(article, null, 2)); // Debugging line
+
+  return article;
+}

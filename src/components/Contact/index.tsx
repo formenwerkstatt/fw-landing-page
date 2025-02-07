@@ -25,7 +25,7 @@ export default async function Contact() {
         title="info@formenwerkstatt.de"
         paragraph={t2("cta")}
         list={[t2("ctaList.0"), t2("ctaList.1"), t2("ctaList.2")]}
-        src=""
+        src="/images/macro-03.png"
         center
       />
     </>

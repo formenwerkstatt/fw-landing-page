@@ -437,4 +437,81 @@ export default {
       },
     ],
   },
+
+  shop: {
+    title:
+      "Hochwertige Handwerkskunst jetzt noch näher",
+    introduction:
+      "Seit über 30 Jahren steht Formenwerkstatt für Präzision und höchste Qualität in der Metallbearbeitung und Werkzeugherstellung. Mit unserem Online-Shop bringen wir diese Expertise jetzt direkt zu dir. Egal ob individuell anpassbare Produkte wie CreativePlate oder hochwertige Kunststoffkomponenten - hier erhältst du deutsche Handwerkskunst bequem nach Hause geliefert.",
+    sections: [
+      {
+        title: "Deutsche Ingenieurskunst für dich",
+        list: [
+          "Präzise gefertigte Produkte aus unserer modernen Werkstatt",
+          "Hergestellt mit modernster CNC-Technologie",
+          "Jahrzehntelange Erfahrung in der Metall- und Kunststoffverarbeitung",
+        ],
+      },
+      {
+        title: "Einfach und bequem einkaufen",
+        list: [
+          "Sicherer und unkomplizierter Bestellprozess",
+          "Schneller und zuverlässiger Versand innerhalb Deutschlands",
+          "Verschiedene Zahlungsmöglichkeiten für maximale Flexibilität",
+        ],
+      },
+      {
+        title: "Mehr als nur ein Shop",
+        list: [
+          "Exklusive Produkte direkt aus der Werkstatt",
+          "Persönlicher Support direkt vom Hersteller",
+          "Regelmäßige Updates und neue Produktveröffentlichungen",
+        ],
+      },
+    ],
+    benefits: [
+      "Hochwertige Handwerkskunst direkt vom Hersteller",
+      "Individuelle Produkte für jeden Bedarf",
+      "Einfaches und angenehmes Einkaufserlebnis mit erstklassigem Service",
+    ],
+  },
+
+  products: {
+    "Creative Plate": {
+      title: "CreativePlate - Die personalisierbare Kennzeichenhalterung",
+      introduction:
+        "Zeige deinen Stil mit CreativePlate - der Kennzeichenhalterung, die es dir ermöglicht, dein Auto individuell zu gestalten. Entwickelt und gefertigt von Formenwerkstatt, bietet CreativePlate 24 austauschbare Slots, in die du Buchstaben, Zahlen, Symbole oder Emojis einsetzen kannst. Hergestellt in Deutschland mit höchster Präzision, ist sie langlebig und lässt sich jederzeit mühelos anpassen.",
+      sections: [
+        {
+          title: "Für deine Kreativität gemacht",
+          list: [
+            "24 austauschbare Slots für grenzenlose Personalisierung",
+            "Große Auswahl an Sticker-Sets mit Buchstaben, Zahlen und Symbolen",
+            "Schneller Wechsel für ein stets neues Design",
+          ],
+        },
+        {
+          title: "Hochwertige Verarbeitung",
+          list: [
+            "Gefertigt in Deutschland aus robustem, langlebigem Kunststoff",
+            "Präzise gefertigte Formen für eine perfekte Passform und ein elegantes Design",
+            "UV-beständige Sticker, die ihre Farben behalten",
+          ],
+        },
+        {
+          title: "Flexible Bestellmöglichkeiten",
+          list: [
+            "Wähle zwischen der Halterung allein oder verschiedenen Sticker-Sets",
+            "Komplett-Sets mit allem, was du brauchst",
+            "Langlebig und kosteneffizient",
+          ],
+        },
+      ],
+      benefits: [
+        "Verleihe deinem Auto eine individuelle Note",
+        "Einfache Anpassung und jederzeit veränderbar",
+        "Hochwertige Materialien sorgen für lange Haltbarkeit",
+      ],
+    },
+  },
 } as const;

@@ -71,7 +71,7 @@ const REVIEWS = [
   },
 ];
 
-export default function Reviews({ product }: { product: Product }) {
+export default function Reviews() {
   return (
     <Swiper
       slidesPerView={4}
@@ -115,7 +115,7 @@ export default function Reviews({ product }: { product: Product }) {
               <p className="text-lg font-semibold">{review.userName}</p>
 
               <div className="flex items-center ">
-                <p className='text-lg mr-4'>{review.rating}/5</p>
+                <p className="mr-4 text-lg">{review.rating}/5</p>
                 {[1, 2, 3, 4, 5].map((star) => (
                   <div key={star} className="relative">
                     <div className="text-xl text-gray-300">★</div>

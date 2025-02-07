@@ -3,30 +3,43 @@ import { cn } from "@/utils/cn";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function ProductCard({ product }: { product: Product }) {
+export default async function ProductCard({
+  product,
+  comingSoon,
+}: {
+  product: Product;
+  comingSoon?: boolean;
+}) {
   return (
     <Link
-      href={`/shop/product/${product.id}`}
+      href={comingSoon ? "" : `/shop/product/${product.id}`}
+      scroll={!comingSoon}
       className={cn(
-        "flex flex-col overflow-hidden rounded-xl",
+        "relative flex flex-col overflow-hidden rounded-xl",
         "bg-white dark:bg-gray-dark",
         "shadow-lg dark:shadow-none",
-        "hover:scale-105 hover:shadow-xl",
+
+        comingSoon ? "cursor-default" : "hover:scale-105 hover:shadow-xl",
         "animate-pop-in",
         "transition duration-300",
       )}
     >
+      {comingSoon && (
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-primary/40">
+          <p className="text-3xl font-bold text-white">Coming Soon</p>
+        </div>
+      )}
       <div className="relative h-96 w-full ">
         <Image
           src={product.imgUrl[0]}
           alt={product.description}
           fill
-          sizes="33vw"
+          sizes="50vw"
           className="w-full object-cover"
         />
       </div>
 
-      <div className={cn("flex justify-between p-4")}>
+      {!comingSoon && <div className={cn("flex justify-between p-4 text-center")}>
         <div className="mr-12 flex-grow">
           <h3 className="line-clamp-1 text-xl font-bold text-black dark:text-white ">
             {product.name}
@@ -36,12 +49,12 @@ export default async function ProductCard({ product }: { product: Product }) {
           </p>
         </div>
 
-        <div className="hidden flex-col justify-between text-right lg:flex">
+        {/* <div className="hidden flex-col justify-between text-right lg:flex">
           <p className="whitespace-nowrap  text-xl font-bold ">
             {product.price}€
           </p>
-        </div>
-      </div>
+        </div> */}
+      </div>}
     </Link>
   );
 }

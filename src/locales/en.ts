@@ -435,4 +435,81 @@ export default {
       },
     ],
   },
+
+  shop: {
+    title:
+      "Quality Craftsmanship, Now Closer Than Ever",
+    introduction:
+      "For over 30 years, Formenwerkstatt has been a trusted name in precision engineering and mold-making. Now, we're bringing our expertise directly to you with our online shop. Whether you're looking for customizable products like CreativePlate or high-quality plastic components, we make it easier than ever to get premium, made-in-Germany craftsmanship delivered to your door.",
+    sections: [
+      {
+        title: "German Engineering at Your Fingertips",
+        list: [
+          "Precision-crafted products made in our modern workshop",
+          "Designed and manufactured using state-of-the-art technology",
+          "Decades of experience in CNC machining and plastic molding",
+        ],
+      },
+      {
+        title: "Shop with Ease",
+        list: [
+          "Simple and secure online ordering process",
+          "Fast and reliable shipping within Germany",
+          "Various payment options for your convenience",
+        ],
+      },
+      {
+        title: "More Than Just a Store",
+        list: [
+          "Exclusive access to innovative, workshop-made products",
+          "Direct support from the experts behind the production",
+          "Regular updates and new product releases",
+        ],
+      },
+    ],
+    benefits: [
+      "Experience top-tier craftsmanship without the middleman",
+      "Find unique, customizable products tailored to your needs",
+      "Enjoy a seamless shopping experience backed by expert service",
+    ],
+  },
+
+  products: {
+    "Creative Plate": {
+      title: "CreativePlate - The Customizable License Plate Holder",
+      introduction:
+        "Express yourself with CreativePlate, the license plate holder that lets you personalize your car like never before. Designed and manufactured by Formenwerkstatt, CreativePlate features 24 customizable slots where you can add letters, numbers, symbols, or emojis to create a look that's uniquely yours. Made in Germany with precision engineering, it's built to last and easy to update whenever you want a fresh style.",
+      sections: [
+        {
+          title: "Designed for Personalization",
+          list: [
+            "24 interchangeable slots for endless customization",
+            "Wide range of sticker packs with letters, numbers, and emojis",
+            "Easy to swap and update your design anytime",
+          ],
+        },
+        {
+          title: "High-Quality Craftsmanship",
+          list: [
+            "Manufactured in Germany using durable, high-grade plastic",
+            "Precision-made molds ensure a perfect fit and sleek design",
+            "UV-resistant stickers that stay vibrant and last",
+          ],
+        },
+        {
+          title: "Flexible Purchase Options",
+          list: [
+            "Buy just the plate or select from various sticker packs",
+            "Bundle options available for a complete customization kit",
+            "Affordable and designed for long-term use",
+          ],
+        },
+      ],
+      benefits: [
+        "Stand out with a custom look that reflects your personality",
+        "Easily update and modify your plate without hassle",
+        "Built with top-quality materials for long-lasting durability",
+      ],
+    },
+  },
 } as const;

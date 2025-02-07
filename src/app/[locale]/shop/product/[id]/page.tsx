@@ -1,11 +1,10 @@
-import { Product } from "@/types";
-import { getDocument } from "@/app/actions";
 import { redirect } from "next/navigation";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import ProductSection from "@/components/Shop/ProductSection";
-import SectionTitle from "@/components/Common/SectionTitle";
 import Reviews from "@/components/Shop/Reviews";
 import { getProduct } from "@/app/actions/products";
+import HomeArticle from "@/components/HomeArticle";
+import { getI18n, getScopedI18n } from "@/locales/server";
 
 export default async function ProductDetailsPage({
   params,
@@ -31,11 +30,7 @@ export default async function ProductDetailsPage({
 
       <ProductSection product={product} />
 
-      <SectionTitle
-        title={product.name}
-        paragraph={product.description}
-        center
-      />
+      <HomeArticle scope={"products"} nested={product.name} />
 
       <section className="container mb-8">
         <h3 className="mb-4 text-2xl font-semibold">
@@ -43,7 +38,7 @@ export default async function ProductDetailsPage({
         </h3>
       </section>
 
-      <Reviews product={product} />
+      <Reviews />
     </>
   );
 }

@@ -7,10 +7,7 @@ declare global {
 }
 
 export default function BuyButtonPlate() {
-
-
   useEffect(() => {
-
     // Function to load Shopify Buy SDK script
     const loadShopifyScript = () => {
       const scriptURL =
@@ -48,9 +45,13 @@ export default function BuyButtonPlate() {
                     },
                   },
                   button: {
+                    width: "calc(500%)",
+                    "margin-inline": "auto",
                     "font-family": "Montserrat, sans-serif",
+                    "font-size": "20px",
+                    "font-weight": "bold",
                     ":hover": {
-                      "background-color": "#004a95",
+                      "background-color": "#2563eb",
                     },
                     "background-color": "#0052a5",
                     ":focus": {
@@ -61,8 +62,8 @@ export default function BuyButtonPlate() {
                 },
                 contents: {
                   img: false,
-                  button: false,
-                  buttonWithQuantity: true,
+                  button: true,
+                  buttonWithQuantity: false,
                   title: false,
                   price: false,
                 },
@@ -98,7 +99,7 @@ export default function BuyButtonPlate() {
                   button: {
                     "font-family": "Montserrat, sans-serif",
                     ":hover": {
-                      "background-color": "#004a95",
+                      "background-color": "#2563eb",
                     },
                     "background-color": "#0052a5",
                     ":focus": {
@@ -117,7 +118,7 @@ export default function BuyButtonPlate() {
                   button: {
                     "font-family": "Montserrat, sans-serif",
                     ":hover": {
-                      "background-color": "#004a95",
+                      "background-color": "#2563eb",
                     },
                     "background-color": "#0052a5",
                     ":focus": {
@@ -138,7 +139,7 @@ export default function BuyButtonPlate() {
                     "font-family": "Montserrat, sans-serif",
                     "background-color": "#0052a5",
                     ":hover": {
-                      "background-color": "#004a95",
+                      "background-color": "#2563eb",
                     },
                     ":focus": {
                       "background-color": "#004a95",
@@ -168,7 +169,6 @@ export default function BuyButtonPlate() {
       if (script) {
         script.remove();
       }
-
     };
   }, []);
 

@@ -32,7 +32,7 @@ export type Article = {
   introduction: string;
   sections: bulletList[];
   benefits: string[];
-  callToAction: string;
+
 };
 
 export type Jobs = {
