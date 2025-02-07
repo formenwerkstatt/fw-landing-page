@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import ProductSection from "@/components/Shop/ProductSection";
 import Reviews from "@/components/Shop/Reviews";
-import { getProduct } from "@/app/actions/products";
+import { getProduct } from "@/app/actions/shopify-actions";
 import HomeArticle from "@/components/HomeArticle";
 import { getI18n, getScopedI18n } from "@/locales/server";
 

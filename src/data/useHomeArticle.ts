@@ -45,7 +45,6 @@ export default function useHomeArticle(scope: any, nested?: any): Article {
     benefits: generateList("benefits"),
   };
 
-  console.log("Article:", JSON.stringify(article, null, 2)); // Debugging line
 
   return article;
 }

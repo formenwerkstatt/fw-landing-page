@@ -31,7 +31,10 @@
     "src/components/Hero/InteractiveBanner.tsx",
     "src/components/Hero/ThreeFiber.tsx",
     "src/app/[locale]/admin/mockData.js",
-    "src/app/actions/index.ts"
-, "src/lib/shopify.ts", "src/app/actions/products.ts", "src/data/useHomeArticle.ts"  ],
+    "src/app/actions/index.ts",
+    "src/lib/shopify.ts",
+    "src/app/actions/shopify-actions.ts",
+    "src/data/useHomeArticle.ts"
+  ],
   "exclude": ["node_modules"]
 }

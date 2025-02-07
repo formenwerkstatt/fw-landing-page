@@ -1,9 +1,8 @@
-import { getProducts } from "@/app/actions/products";
+import { getProducts } from "@/app/actions/shopify-actions";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import HomeArticle from "@/components/HomeArticle";
 import ProductCard from "@/components/Shop/ProductCard";
-import { getI18n, getScopedI18n } from "@/locales/server";
-import { Article } from "@/types";
+
 // import { Product } from "@/types";
 
 const CreativeCap = {
@@ -15,6 +14,12 @@ const CreativeCap = {
   imgUrl: ["/images/macro-03.png"],
   stock: 0,
 };
+
+const SHOP_IMAGES = [
+  "/images/shop/computer.svg",
+  "/images/shop/shopping-cart.svg",
+  "/images/shop/headset.svg",
+];
 
 export default async function ShopPage() {
   // const products = await getCollection<Product>("products");
@@ -38,7 +43,7 @@ export default async function ShopPage() {
         </section>
       )}
 
-      <HomeArticle scope={"shop"} />
+      <HomeArticle scope={"shop"} images={SHOP_IMAGES} />
     </>
   );
 }
