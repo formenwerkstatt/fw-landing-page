@@ -5,7 +5,6 @@ import useHomeArticle from "@/data/useHomeArticle";
 import Image from "next/image";
 import ImageSection from "../Common/ImageSection";
 import { useScopedI18n } from "@/locales/client";
-import { cn } from "@/utils/cn";
 
 export default function HomeArticle({
   scope,
@@ -13,7 +12,7 @@ export default function HomeArticle({
   images = [
     "/images/shop/settings-wrench.svg",
     "/images/shop/laptop-portable.svg",
-    "/images/shop/settings-configuration.jpg",
+    "/images/shop/settings-configuration.svg",
   ],
 }: {
   scope: string;
