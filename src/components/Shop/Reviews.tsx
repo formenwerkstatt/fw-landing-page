@@ -4,69 +4,68 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "@/styles/index.css";
 import { Pagination, Autoplay } from "swiper/modules";
-import { Product } from "@/types";
 import { cn } from "@/utils/cn";
 import dateToLocale from "@/utils/dateToLocale";
 
 const REVIEWS = [
   {
-    userName: "John Doe",
+    userName: "Johannes Müller",
     rating: 5,
-    text: "Excellent quality and craftsmanship!",
+    text: "Ausgezeichnete Qualität und Handwerkskunst!",
     createdAt: dateToLocale(new Date()),
   },
   {
-    userName: "Jane Smith",
+    userName: "Jana Schmidt",
     rating: 4,
-    text: "Very sturdy and well-made.",
+    text: "Sehr robust und gut verarbeitet.",
     createdAt: dateToLocale(new Date()),
   },
   {
-    userName: "Mike Johnson",
+    userName: "Michael Weber",
     rating: 5,
-    text: "Perfect for my workshop needs.",
+    text: "Perfekt für die Bedürfnisse meiner Werkstatt.",
     createdAt: dateToLocale(new Date()),
   },
   {
-    userName: "Emily Davis",
+    userName: "Emma Fischer",
     rating: 4,
-    text: "Great product, but a bit expensive.",
+    text: "Großartiges Produkt, aber etwas teuer.",
     createdAt: dateToLocale(new Date()),
   },
   {
-    userName: "Chris Brown",
+    userName: "Christian Braun",
     rating: 5,
-    text: "Highly recommend this workbench.",
+    text: "Ich empfehle diese Werkbank sehr.",
     createdAt: dateToLocale(new Date()),
   },
   {
-    userName: "Patricia Wilson",
+    userName: "Patricia Wagner",
     rating: 3,
-    text: "Good quality, but had some minor issues.",
+    text: "Gute Qualität, aber mit kleinen Problemen.",
     createdAt: dateToLocale(new Date()),
   },
   {
-    userName: "Robert Taylor",
+    userName: "Robert Schneider",
     rating: 4,
-    text: "Solid construction and easy to assemble.",
+    text: "Solide Konstruktion und einfach zu montieren.",
     createdAt: dateToLocale(new Date()),
   },
   {
-    userName: "Linda Anderson",
+    userName: "Linda Becker",
     rating: 5,
-    text: "Exceeded my expectations!",
+    text: "Hat meine Erwartungen übertroffen!",
     createdAt: dateToLocale(new Date()),
   },
   {
-    userName: "James Thomas",
+    userName: "Jakob Thomas",
     rating: 4,
-    text: "Very functional and well-designed.",
+    text: "Sehr funktional und gut durchdacht.",
     createdAt: dateToLocale(new Date()),
   },
   {
-    userName: "Barbara Jackson",
+    userName: "Barbara Hoffmann",
     rating: 5,
-    text: "Fantastic product, worth every penny.",
+    text: "Fantastisches Produkt, jeden Cent wert.",
     createdAt: dateToLocale(new Date()),
   },
 ];
