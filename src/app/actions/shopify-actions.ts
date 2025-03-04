@@ -1,69 +1,155 @@
 "use server";
 
-import { shopifyFetch } from "@/lib/shopify";
-import { Product, ShopifyProduct } from "@/types";
+import { adminClient } from "@/lib/shopify-gql";
+import {
+  GET_PRODUCT,
+  GET_PRODUCTS,
+  GET_ORDER,
+  GET_ORDERS,
+} from "@/lib/shopify-queries";
+import { Product } from "@/types";
 
 export async function getProducts(): Promise<Product[]> {
-  const data = await shopifyFetch({ endpoint: "products.json" });
+  const data = (await adminClient.request(GET_PRODUCTS)) as {
+    products: { edges: any[] };
+  };
 
-  return data.products.map((p: ShopifyProduct) => ({
-    id: p.id,
-    var_id: p.variants[0].id,
-    name: p.title,
-    description: p.body_html,
-    price: parseFloat(p.variants[0].price),
-    stock: p.variants[0].inventory_quantity,
-    imgUrl: p.images.map((img) => img.src),
-    createdAt: new Date().toISOString(),
-  }));
+  return data.products.edges.map((edge: any) => {
+    const p = edge.node;
+    const defaultVariant = p.variants.edges[0].node;
+    
+    // Extract all variants
+    const variants = p.variants.edges.map((variantEdge: any) => {
+      const v = variantEdge.node;
+      return {
+        id: v.id.split("/").pop() || v.id,
+        title: v.title || "Default",
+        price: parseFloat(v.price),
+        stock: v.inventoryQuantity || 0,
+        isDefault: v === defaultVariant
+      };
+    });
+
+    // Extract video URLs from media
+    const videoUrls = p.media?.edges
+      .filter((mediaEdge: any) => {
+        const mediaType = mediaEdge.node.mediaContentType;
+        return mediaType === "VIDEO" || mediaType === "EXTERNAL_VIDEO";
+      })
+      .map((mediaEdge: any) => {
+        const mediaNode = mediaEdge.node;
+        if (mediaNode.mediaContentType === "VIDEO") {
+          return mediaNode.sources?.[0]?.url || mediaNode.originalSource?.url;
+        } else if (mediaNode.mediaContentType === "EXTERNAL_VIDEO") {
+          return mediaNode.embedUrl;
+        }
+        return null;
+      })
+      .filter(Boolean);
+
+    return {
+      id: p.id.split("/").pop() || p.id,
+      var_id: defaultVariant.id.split("/").pop() || defaultVariant.id,
+      name: p.title,
+      description: p.description,
+      price: parseFloat(defaultVariant.price),
+      stock: defaultVariant.inventoryQuantity || 0,
+      imgUrl: p.images.edges.map((img: any) => img.node.url),
+      videoUrl: videoUrls,
+      variants: variants,
+      createdAt: p.createdAt,
+      // Detect if it's a bundle based on product tags or title
+      isBundle: p.title.toLowerCase().includes("bundle") || p.tags?.includes("bundle")
+    };
+  });
 }
 
 export async function getProduct(id: string): Promise<Product> {
-  const data = await shopifyFetch({
-    endpoint: `products/${id}.json`,
-    cache: "no-store",
-  });
+  const formattedId = id.includes("gid://")
+    ? id
+    : `gid://shopify/Product/${id}`;
+
+  const data = (await adminClient.request(GET_PRODUCT, {
+    id: formattedId,
+  })) as { product: any };
 
   const p = data.product;
+  const defaultVariant = p.variants.edges[0].node;
+  
+  // Extract all variants
+  const variants = p.variants.edges.map((variantEdge: any) => {
+    const v = variantEdge.node;
+    return {
+      id: v.id.split("/").pop() || v.id,
+      title: v.title || "Default",
+      price: parseFloat(v.price),
+      stock: v.inventoryQuantity || 0,
+      isDefault: v === defaultVariant
+    };
+  });
+
+  const videoUrls = p.media?.edges
+    .filter((mediaEdge: any) => {
+      const mediaType = mediaEdge.node.mediaContentType;
+      return mediaType === "VIDEO" || mediaType === "EXTERNAL_VIDEO";
+    })
+    .map((mediaEdge: any) => {
+      const mediaNode = mediaEdge.node;
+      if (mediaNode.mediaContentType === "VIDEO") {
+        return mediaNode.sources?.[0]?.url || mediaNode.originalSource?.url;
+      } else if (mediaNode.mediaContentType === "EXTERNAL_VIDEO") {
+        return mediaNode.embedUrl;
+      }
+      return null;
+    })
+    .filter(Boolean);
+
   return {
-    id: p.id,
-    var_id: p.variants[0].id,
+    id: p.id.split("/").pop() || p.id,
+    var_id: defaultVariant.id.split("/").pop() || defaultVariant.id,
     name: p.title,
-    description: p.body_html,
-    price: parseFloat(p.variants[0].price),
-    stock: p.variants[0].inventory_quantity,
-    imgUrl: p.images.map((img: any) => img.src),
-    createdAt: new Date().toISOString(),
+    description: p.description,
+    price: parseFloat(defaultVariant.price),
+    stock: defaultVariant.inventoryQuantity || 0,
+    imgUrl: p.images.edges.map((img: any) => img.node.url),
+    videoUrl: videoUrls,
+    variants: variants,
+    createdAt: p.createdAt,
+    // Detect if it's a bundle based on product tags or title
+    isBundle: p.title.toLowerCase().includes("bundle") || p.tags?.includes("bundle")
   };
 }
 
 export async function getOrderDB(id: string) {
-  const data = await shopifyFetch({
-    endpoint: `orders/${id}.json`,
-    cache: "no-store",
-  });
+  // Format ID properly for GraphQL
+  const formattedId = id.includes("gid://") ? id : `gid://shopify/Order/${id}`;
+
+  const data = (await adminClient.request(GET_ORDER, { id: formattedId })) as {
+    order: any;
+  };
   return data.order;
 }
 
 export async function getOrdersDB() {
-  const data = await shopifyFetch({
-    endpoint: "orders.json",
-    cache: "no-store",
-  });
-  return data.orders;
+  const data = (await adminClient.request(GET_ORDERS)) as {
+    orders: { edges: any[] };
+  };
+  return data.orders.edges.map((edge: any) => edge.node);
 }
 
-export async function getProductsDB(): Promise<Product[]> {
-  const data = await shopifyFetch({ endpoint: "products.json" });
-
-  return data.products;
+export async function getProductsDB(): Promise<any[]> {
+  const data = (await adminClient.request(GET_PRODUCTS)) as {
+    products: { edges: any[] };
+  };
+  return data.products.edges.map((edge: any) => edge.node);
 }
 
-export async function getProductDB(id: string): Promise<Product> {
-  const data = await shopifyFetch({
-    endpoint: `products/${id}.json`,
-    cache: "no-store",
-  });
-
+export async function getProductDB(id: string): Promise<any> {
+  const formattedId = id.includes("gid://")
+    ? id
+    : `gid://shopify/Product/${id}`;
+  const data = (await adminClient.request(GET_PRODUCT, {
+    id: formattedId,
+  })) as { product: any };
   return data.product;
 }

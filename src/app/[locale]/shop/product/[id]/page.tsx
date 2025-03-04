@@ -30,6 +30,7 @@ export default async function ProductDetailsPage({
 
       <ProductSection product={product} />
 
+
       <HomeArticle scope={"products"} nested={product.name} />
 
       <section className="container mb-8">

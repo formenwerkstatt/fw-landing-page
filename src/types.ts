@@ -32,7 +32,6 @@ export type Article = {
   introduction: string;
   sections: bulletList[];
   benefits: string[];
-
 };
 
 export type Jobs = {
@@ -53,29 +52,27 @@ type Ad = {
 
 export type Product = {
   id: string;
-  var_id: string;
+  var_id: string; // Keep for backward compatibility
   name: string;
   description: string;
   price: number;
   imgUrl: string[];
+  videoUrl?: string[];
   stock: number;
   createdAt?: string;
+  // Add these new fields
+  variants?: ProductVariant[];
+  isBundle?: boolean;
 };
 
-export interface ShopifyProduct {
+export type ProductVariant = {
   id: string;
   title: string;
-  body_html: string;
-  vendor: string;
-  product_type: string;
-  created_at: string;
-  variants: {
-    id: string;
-    price: string;
-    inventory_quantity: number;
-  }[];
-  images: { src: string }[];
-}
+  price: number;
+  stock: number;
+  isDefault?: boolean;
+};
+
 
 export type Review = {
   userName: string;

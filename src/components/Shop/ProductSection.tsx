@@ -3,52 +3,22 @@ import { Product } from "@/types";
 import { cn } from "@/utils/cn";
 import Gallery from "../Common/Gallery";
 import BuyButtonPlate from "./BuyButtonPlate";
-import { useUser } from "@/app/providers";
-import { useState } from "react";
 import { useCurrentLocale } from "@/locales/client";
+import { useState } from "react";
 
 export default function ProductSection({ product }: { product: Product }) {
-  // const [quantity, setQuantity] = useState(1);
-
-  // const { user, updateUser } = useUser();
-
-  // function handleAddToCart(product: Product) {
-  //   if (!user) return;
-
-  //   const existingItemIndex = user.cart.findIndex(
-  //     (item) => item.productId === product.id,
-  //   );
-
-  //   if (existingItemIndex !== -1) {
-  //     const updatedCart = [...user.cart];
-  //     updatedCart[existingItemIndex] = {
-  //       ...updatedCart[existingItemIndex],
-  //       quantity: updatedCart[existingItemIndex].quantity + quantity,
-  //     };
-
-  //     updateUser({
-  //       cart: updatedCart,
-  //     });
-  //   } else {
-  //     const newCartItem = {
-  //       id: product.var_id,
-  //       productId: product.id,
-  //       name: product.name,
-  //       price: product.price,
-  //       quantity,
-  //       imgUrl: product.imgUrl[0],
-  //     };
-
-  //     updateUser({
-  //       cart: [...user.cart, newCartItem],
-  //     });
-  //   }
-  // }
+  const [selectedVariant, setSelectedVariant] = useState(
+    product.variants?.find((v) => v.isDefault) || product.variants?.[0],
+  );
 
   const descDE = product.description.slice().split("The")[0];
   const descEN = product.description.slice().split("The")[1];
 
   const locale = useCurrentLocale();
+
+  const mediaItems = product.videoUrl
+    ? product.videoUrl?.concat(product.imgUrl)
+    : product.imgUrl;
 
   return (
     <>
@@ -58,9 +28,9 @@ export default function ProductSection({ product }: { product: Product }) {
           "grid grid-cols-none grid-rows-[1fr_1.2fr] gap-8 lg:grid-cols-[1.5fr_1fr] lg:grid-rows-none",
         )}
       >
-        <Gallery images={product.imgUrl} showBg={false} autoplay={false} />
+        <Gallery images={mediaItems} showBg={false} autoplay={false} />
 
-        <div className="flex min-h-[55vh] flex-col justify-between rounded-lg bg-gray-light p-6 shadow-lg dark:bg-gray-dark">
+        <div className="flex flex-col justify-between  rounded-lg bg-gray-light p-6 shadow-lg dark:bg-gray-dark">
           <h2 className="mb-4 text-3xl font-bold">{product.name}</h2>
           <p className="mb-4 text-lg">{locale === "de" ? descDE : descEN}</p>
 
@@ -69,27 +39,36 @@ export default function ProductSection({ product }: { product: Product }) {
             {product.stock < 10 ? "Contact us for availability" : "In Stock"}
           </p> */}
 
-          <div className="mt-8 flex items-center justify-between py-4">
-            {/* <QuantityCounter
-            setQuantity={setQuantity}
-            quantity={quantity}
-            isUpdating={isUpdating}
-            /> */}
-            <BuyButtonPlate />
+          {product.variants && product.variants.length > 1 && (
+            
+      
+              <div className="flex flex-wrap justify-evenly gap-2">
+                {product.variants.map((variant) => (
+                  <button
+                    key={variant.id}
+                    onClick={() => setSelectedVariant(variant)}
+                    className={`rounded-md border px-4 py-2 ${
+                      selectedVariant?.id === variant.id
+                        ? "border-blue-500 bg-blue-500 text-white"
+                        : "border-gray-300 bg-white text-gray-800 hover:border-blue-500"
+                    }`}
+                  >
+                    {variant.title}
+                  </button>
+                ))}
+              </div>
+            
+          )}
+
+          <div className="flex items-center justify-evenly">
+            <BuyButtonPlate
+              productId={product.id}
+              variantId={selectedVariant?.id}
+            />
             <p className=" text-right text-4xl font-semibold ">
-              {product.price.toFixed(2)} €
+            {(selectedVariant?.price || product.price).toFixed(2)} €
             </p>
           </div>
-          {/* <button
-          onClick={() => handleAddToCart(product)}
-          className={cn(
-            "rounded-lg bg-primary px-6 py-3 text-xl font-semibold text-white transition duration-300 hover:bg-blue-600",
-            isUpdating && "pointer-events-none cursor-wait bg-gray-200",
-          )}
-          disabled={isUpdating}
-        >
-          Add to Cart
-        </button> */}
         </div>
       </section>
     </>

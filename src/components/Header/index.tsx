@@ -258,21 +258,7 @@ export default function Header() {
                     Shop
                   </Link>
                 </li>
-
-                {/* <li>
-                  <Link
-                    className={cn(
-                      `flex items-center rounded-lg p-2 text-xl lg:mr-0 lg:inline-flex lg:px-4 lg:py-4`,
-                      "transition duration-300 hover:bg-primary/10 hover:text-primary",
-                      cleanPathname === "/shop/checkout" && "bg-primary/10 ",
-                    )}
-                    href="/shop/checkout"
-                  >
-                    <TiShoppingCart />
-                    {user.cart.length > 0 ? user.cart.length : 0}
-                  </Link>
-                </li> */}
-
+               
                 {/* Language Selector inside navbar for small screens */}
                 <li className="flex items-center justify-end lg:hidden">
                   <LanguageSelector

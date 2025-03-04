@@ -26,6 +26,16 @@ export default function Gallery({
   const [selectedImage, setSelectedImage] = React.useState<string>("");
   const swiperRef = useRef<SwiperType | null>(null);
 
+  const pauseAllVideos = () => {
+    // Find all videos in the swiper and pause them
+    const videos = document.querySelectorAll(".mySwiper video");
+    videos.forEach((video) => {
+      if (video instanceof HTMLVideoElement) {
+        video.pause();
+      }
+    });
+  };
+
   // Close modal on escape key press
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
@@ -78,24 +88,42 @@ export default function Gallery({
         modules={[Autoplay, Pagination, Navigation]}
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         className="mySwiper"
+        onSlideChange={pauseAllVideos}
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+        }}
       >
         {images.map((image, index) => (
           <SwiperSlide key={`${image}-${index}`}>
-            <button
-              onClick={() => {
-                setSelectedImage(image);
-                setIsImageModalOpen(true);
-              }}
-              className="relative size-full"
-            >
-              <Image
-                src={image}
-                alt={`Gallery image ${index + 1}`}
-                fill
-                sizes="50vw"
-                className="object-cover"
-              />
-            </button>
+            {image.includes(".mp4") ? (
+              <div className="relative aspect-video w-full overflow-hidden rounded-lg shadow-lg">
+                <video
+                  className="h-full w-full object-cover"
+                  controls
+                  playsInline
+                  preload="metadata"
+                >
+                  <source src={image} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            ) : (
+              <button
+                onClick={() => {
+                  setSelectedImage(image);
+                  setIsImageModalOpen(true);
+                }}
+                className="relative size-full"
+              >
+                <Image
+                  src={image}
+                  alt={`Gallery image ${index + 1}`}
+                  fill
+                  sizes="50vw"
+                  className="object-cover"
+                />
+              </button>
+            )}
           </SwiperSlide>
         ))}
         {autoplay && (
