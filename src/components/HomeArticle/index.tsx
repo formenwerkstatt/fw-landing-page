@@ -54,6 +54,7 @@ export default function HomeArticle({
 
             <Image
               src={`${index === 1 ? images[1] : index === 2 ? images[2] : images[0]}`}
+              className="w-48 md:w-96"
               width={350}
               height={300}
               alt={section.title + " image"}

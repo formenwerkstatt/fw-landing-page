@@ -29,7 +29,7 @@ export default async function ProductCard({
           <p className="text-3xl font-bold text-white">Coming Soon</p>
         </div>
       )}
-      <div className="relative h-96 w-full ">
+      <div className="relative h-48 md:h-96 w-full ">
         <Image
           src={product.imgUrl[0]}
           alt={product.description}
@@ -40,7 +40,7 @@ export default async function ProductCard({
       </div>
 
       {!comingSoon && <div className={cn("flex justify-between p-4 text-center")}>
-        <div className="mr-12 flex-grow">
+        <div className=" flex-grow">
           <h3 className="line-clamp-1 text-xl font-bold text-black dark:text-white ">
             {product.name}
           </h3>

@@ -25,7 +25,7 @@ export default function ProductSection({ product }: { product: Product }) {
       <section
         className={cn(
           "container mb-24 px-0",
-          "grid grid-cols-none grid-rows-[1fr_1.2fr] gap-8 lg:grid-cols-[1.5fr_1fr] lg:grid-rows-none",
+          "grid grid-cols-1 gap-8 lg:grid-cols-[1.5fr_1fr]",
         )}
       >
         <Gallery images={mediaItems} showBg={false} autoplay={false} />
@@ -40,34 +40,31 @@ export default function ProductSection({ product }: { product: Product }) {
           </p> */}
 
           {product.variants && product.variants.length > 1 && (
-            
-      
-              <div className="flex flex-wrap justify-evenly gap-2">
-                {product.variants.map((variant) => (
-                  <button
-                    key={variant.id}
-                    onClick={() => setSelectedVariant(variant)}
-                    className={`rounded-md border px-4 py-2 ${
-                      selectedVariant?.id === variant.id
-                        ? "border-blue-500 bg-blue-500 text-white"
-                        : "border-gray-300 bg-white text-gray-800 hover:border-blue-500"
-                    }`}
-                  >
-                    {variant.title}
-                  </button>
-                ))}
-              </div>
-            
+            <div className="my-8 flex flex-wrap justify-evenly gap-2">
+              {product.variants.map((variant) => (
+                <button
+                  key={variant.id}
+                  onClick={() => setSelectedVariant(variant)}
+                  className={`rounded-md border px-4 py-2 ${
+                    selectedVariant?.id === variant.id
+                      ? "border-blue-500 bg-blue-500 text-white"
+                      : "border-gray-300 bg-white text-gray-800 hover:border-blue-500"
+                  }`}
+                >
+                  {variant.title}
+                </button>
+              ))}
+            </div>
           )}
 
-          <div className="flex items-center justify-evenly">
+          <div className="flex flex-col items-center justify-evenly">
+            <p className=" text-right text-4xl font-semibold ">
+              {(selectedVariant?.price || product.price).toFixed(2)} €
+            </p>
             <BuyButtonPlate
               productId={product.id}
               variantId={selectedVariant?.id}
             />
-            <p className=" text-right text-4xl font-semibold ">
-            {(selectedVariant?.price || product.price).toFixed(2)} €
-            </p>
           </div>
         </div>
       </section>

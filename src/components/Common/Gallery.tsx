@@ -119,7 +119,7 @@ export default function Gallery({
                   src={image}
                   alt={`Gallery image ${index + 1}`}
                   fill
-                  sizes="50vw"
+                  sizes='100vw'
                   className="object-cover"
                 />
               </button>
