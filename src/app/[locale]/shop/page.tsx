@@ -11,7 +11,7 @@ const CreativeCap = {
   name: "Creative Cap",
   description: "Coming soon!",
   price: NaN,
-  imgUrl: ["/images/shop/bottlecaps.jpg"],
+  imgUrl: ["/images/shop/bottlecaps.JPG"],
   stock: 0,
 };
 
