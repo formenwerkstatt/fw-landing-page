@@ -30,8 +30,15 @@ export default async function ProductDetailsPage({
 
       <ProductSection product={product} />
 
-
-      <HomeArticle scope={"products"} nested={product.name} />
+      <HomeArticle
+        scope={"products"}
+        nested={product.name}
+        images={[
+          "/images/shop/settings-wrench.svg",
+          "/images/shop/Flag_of_Germany.svg",
+          "/images/shop/settings-configuration.svg",
+        ]}
+      />
 
       <section className="container mb-8">
         <h3 className="mb-4 text-2xl font-semibold">

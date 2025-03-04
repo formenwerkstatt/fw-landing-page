@@ -11,12 +11,12 @@ const CreativeCap = {
   name: "Creative Cap",
   description: "Coming soon!",
   price: NaN,
-  imgUrl: ["/images/macro-03.png"],
+  imgUrl: ["/images/shop/bottlecaps.jpg"],
   stock: 0,
 };
 
 const SHOP_IMAGES = [
-  "/images/shop/computer.svg",
+  "/images/shop/Flag_of_Germany.svg",
   "/images/shop/shopping-cart.svg",
   "/images/shop/headset.svg",
 ];

@@ -25,7 +25,7 @@ export default async function ProductCard({
       )}
     >
       {comingSoon && (
-        <div className="absolute inset-0 z-10 flex items-center justify-center bg-primary/40">
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-primary/60">
           <p className="text-3xl font-bold text-white">Coming Soon</p>
         </div>
       )}

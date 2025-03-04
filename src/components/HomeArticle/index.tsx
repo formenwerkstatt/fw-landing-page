@@ -35,11 +35,11 @@ export default function HomeArticle({
         {article.sections.map((section, index) => (
           <li
             key={section.title}
-            className={`flex w-full flex-wrap items-center justify-center gap-8 ${
+            className={`flex w-full flex-wrap items-center justify-evenly gap-8 ${
               index % 2 === 0 ? "flex-row" : "flex-row-reverse"
             }`}
           >
-            <aside className="flex-1 text-center">
+            <aside className=" ">
               <h4 className="mb-4 text-2xl font-bold text-black dark:text-white">
                 {section.title}
               </h4>
@@ -54,7 +54,7 @@ export default function HomeArticle({
 
             <Image
               src={`${index === 1 ? images[1] : index === 2 ? images[2] : images[0]}`}
-              className="w-48 md:w-96"
+              className="w-48 md:w-72"
               width={350}
               height={300}
               alt={section.title + " image"}
