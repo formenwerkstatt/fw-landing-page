@@ -2,9 +2,9 @@ import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: `Shop | Products for daily life etc.`,
+    title: `Shop | Produkte von Formenwerkstatt`,
     description:
-      "Finden Sie Ihren Traumjob bei Formenwerkstatt. Erreichen Sie uns fŭr die Beste Preis und schnellste Lieferung aus dem Odenwald.",
+      "Entdecken Sie hochwertige Produkte im Formenwerkstatt Online-Shop. Handgefertigte Designobjekte, Wohnaccessoires und Formgebungslösungen mit besonderer Qualität und einzigartigem Stil.",
     alternates: {
       canonical: "https://www.formenwerkstatt.de/shop",
     },

@@ -40,27 +40,36 @@ export default function ProductSection({ product }: { product: Product }) {
           </p> */}
 
           {product.variants && product.variants.length > 1 && (
-            <div className="my-8 flex flex-wrap justify-evenly gap-2">
+            <div className="my-8 flex flex-col justify-evenly gap-2">
               {product.variants.map((variant) => (
                 <button
                   key={variant.id}
                   onClick={() => setSelectedVariant(variant)}
-                  className={`rounded-md border px-4 py-2 ${
-                    selectedVariant?.id === variant.id
-                      ? "border-blue-500 bg-blue-500 text-white"
-                      : "border-gray-300 bg-white text-gray-800 hover:border-blue-500"
-                  }`}
+                  disabled={variant.stock === 0}
+                  className={cn(
+                    "rounded-md px-4 py-2",
+                    variant.stock === 0
+                      ? "cursor-not-allowed bg-gray-300 text-gray-500"
+                      : "cursor-pointer border border-transparent bg-gray-200 text-gray-dark hover:border-blue-500",
+                    selectedVariant?.id === variant.id &&
+                      "border-none bg-primary text-white",
+                  )}
                 >
-                  {variant.title}
+                  {variant.title} {variant.stock === 0 && "(nicht lieferbar)"}
                 </button>
               ))}
             </div>
           )}
 
           <div className="flex flex-col items-center justify-evenly">
-            <p className=" text-right text-4xl font-semibold ">
-              {(selectedVariant?.price || product.price).toFixed(2)} €
-            </p>
+            <div className="text-center">
+              <p className=" text-4xl font-semibold ">
+                {(selectedVariant?.price || product.price).toFixed(2)} €{" "}
+                <span className="text-sm font-normal text-gray-500">
+                  inkl. MwSt.
+                </span>
+              </p>
+            </div>
             <BuyButtonPlate
               productId={product.id}
               variantId={selectedVariant?.id}
