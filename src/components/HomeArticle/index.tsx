@@ -63,7 +63,7 @@ export default function HomeArticle({
         ))}
       </ul>
 
-      <ul className=" grid gap-4 text-center lg:my-24 lg:grid-cols-3 lg:gap-36">
+      <ul className=" my-24 grid gap-4 text-center lg:grid-cols-3 lg:gap-36">
         {article.benefits.map((item) => {
           return (
             <li

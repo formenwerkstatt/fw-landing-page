@@ -17,6 +17,7 @@ module.exports = {
 const fetchDynamicPaths = async () => {
   const dynamicData = [
     "/contact",
+    "/error",
     "/jobs",
     "/shop",
     "/impressum",

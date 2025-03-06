@@ -68,7 +68,7 @@ export default function Footer() {
             <h3 className="text-xl font-bold text-black dark:text-white">
               Support
             </h3>
-            <ul className="space-y-4">
+            <ul className="space-y-2">
               <li>
                 <Link
                   href="/contact"
@@ -99,6 +99,30 @@ export default function Footer() {
                   className="text-base text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                 >
                   Impressum
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/agb"
+                  className="text-base text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+                >
+                  AGB
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/widerrufsrecht"
+                  className="text-base text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+                >
+                  Widerrufsrecht
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/versandinfo"
+                  className="text-base text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+                >
+                  Versandinfo
                 </Link>
               </li>
             </ul>
