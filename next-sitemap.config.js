@@ -18,6 +18,11 @@ const fetchDynamicPaths = async () => {
   const dynamicData = [
     "/contact",
     "/jobs",
+    "/shop",
+    "/impressum",
+    "/datenschutz",
+    "/agb",
+    "/widerrufsrecht",
     "/about",
     "/services/beratung-und-design",
     "/services/werkzeugherstellung",

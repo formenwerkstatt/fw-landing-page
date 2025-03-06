@@ -35,11 +35,11 @@ export default function HomeArticle({
         {article.sections.map((section, index) => (
           <li
             key={section.title}
-            className={`flex w-full flex-wrap items-center justify-evenly gap-8 ${
+            className={`flex w-full items-center justify-evenly gap-8 ${
               index % 2 === 0 ? "flex-row" : "flex-row-reverse"
             }`}
           >
-            <aside className=" ">
+            <aside className="max-w-3xl">
               <h4 className="mb-4 text-2xl font-bold text-black dark:text-white">
                 {section.title}
               </h4>

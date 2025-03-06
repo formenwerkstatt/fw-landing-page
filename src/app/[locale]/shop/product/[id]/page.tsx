@@ -40,11 +40,7 @@ export default async function ProductDetailsPage({
         ]}
       />
 
-      <section className="container mb-8">
-        <h3 className="mb-4 text-2xl font-semibold">
-          Reviews for {product.name}
-        </h3>
-      </section>
+   
 
       <Reviews />
     </>
