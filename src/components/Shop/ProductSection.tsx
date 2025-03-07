@@ -4,12 +4,17 @@ import { cn } from "@/utils/cn";
 import Gallery from "../Common/Gallery";
 import BuyButtonPlate from "./BuyButtonPlate";
 import { useCurrentLocale } from "@/locales/client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function ProductSection({ product }: { product: Product }) {
   const [selectedVariant, setSelectedVariant] = useState(
     product.variants?.find((v) => v.isDefault) || product.variants?.[0],
   );
+
+  const [hoveredVariant, setHoveredVariant] = useState<any>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [showTooltip, setShowTooltip] = useState(false);
 
   const descDE = product.description.slice().split("The")[0];
   const descEN = product.description.slice().split("The")[1];
@@ -19,6 +24,15 @@ export default function ProductSection({ product }: { product: Product }) {
   const mediaItems = product.videoUrl
     ? product.videoUrl?.concat(product.imgUrl)
     : product.imgUrl;
+
+  useEffect(() => {
+    if (hoveredVariant) {
+      const timer = setTimeout(() => setShowTooltip(true), 100);
+      return () => clearTimeout(timer);
+    } else {
+      setShowTooltip(false);
+    }
+  }, [hoveredVariant]);
 
   return (
     <>
@@ -40,14 +54,19 @@ export default function ProductSection({ product }: { product: Product }) {
           </p> */}
 
           {product.variants && product.variants.length > 1 && (
-            <div className="my-8 flex flex-col justify-evenly gap-2">
+            <div className="my-8 grid grid-cols-3 gap-2">
               {product.variants.map((variant) => (
                 <button
                   key={variant.id}
                   onClick={() => setSelectedVariant(variant)}
+                  onMouseEnter={() => setHoveredVariant(variant)}
+                  onMouseLeave={() => setHoveredVariant(null)}
+                  onMouseMove={(e) =>
+                    setMousePosition({ x: e.clientX, y: e.clientY })
+                  }
                   disabled={variant.stock === 0}
                   className={cn(
-                    "rounded-md px-4 py-2",
+                    "relative rounded-md px-4 py-2",
                     variant.stock === 0
                       ? "cursor-not-allowed bg-gray-300 text-gray-500"
                       : "cursor-pointer border border-transparent bg-gray-200 text-gray-dark hover:border-blue-500",
@@ -55,7 +74,13 @@ export default function ProductSection({ product }: { product: Product }) {
                       "border-none bg-primary text-white",
                   )}
                 >
-                  {variant.title} {variant.stock === 0 && "(nicht lieferbar)"}
+                  {variant.title}{" "}
+                  {variant.stock === 0 && (
+                    <>
+                      <br />
+                      {"(nicht lieferbar)"}
+                    </>
+                  )}
                 </button>
               ))}
             </div>
@@ -77,6 +102,30 @@ export default function ProductSection({ product }: { product: Product }) {
           </div>
         </div>
       </section>
+
+      {/* Image Tooltip */}
+      <div
+        className={`pointer-events-none fixed z-50 rounded-md shadow-lg transition-opacity duration-300 ${
+          hoveredVariant ? "visible opacity-100" : "invisible opacity-0"
+        }`}
+        style={{
+          left: `${mousePosition.x}px`,
+          top: `${mousePosition.y - 60}px`,
+          maxWidth: "200px",
+          transform: "translate(-10%, -50%)",
+        }}
+      >
+        {hoveredVariant && (
+          <Image
+            src={hoveredVariant.imageUrl || product.imgUrl[0]}
+            alt={hoveredVariant.title || "Product variant"}
+            width={200}
+            height={200}
+            className="h-auto w-full rounded-md border border-gray-200 object-cover"
+            priority
+          />
+        )}
+      </div>
     </>
   );
 }

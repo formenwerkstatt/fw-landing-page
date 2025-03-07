@@ -1,24 +1,66 @@
 "use client";
-import { lazy, useState, Suspense } from "react";
+import { lazy, useState, Suspense, useRef } from "react";
 import { cn } from "@/utils/cn";
 import { useI18n } from "@/locales/client";
 import Loading from "../Common/Loading";
 import Image from "next/image";
 import ControlButton from "./ControlButton";
 import Link from "next/link";
+import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperType } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "swiper/css/effect-fade";
+import { Autoplay, Pagination, Navigation, EffectFade } from "swiper/modules";
 
 const ThreeFiber = lazy(() => import("./ThreeFiber"));
+
+// Define hero background images
+const heroImages = [
+  {
+    id: 1,
+    image: "/images/gallery/edm-frasen.png",
+    alt: "Manufacturing Excellence",
+  },
+  {
+    id: 2,
+    image: "/images/gallery/macro-sparks.jpg",
+    alt: "Precision Engineering",
+  },
+  {
+    id: 3,
+    image: "/images/gallery/macro-part-04.jpg",
+    alt: "Quality Manufacturing",
+  },
+];
 
 export default function InteractiveBanner() {
   const [isOverlayVisible, setIsOverlayVisible] = useState<boolean>(true);
   const [isHelpVisible, setIsHelpVisible] = useState<boolean>(false);
+  const progressCircle = useRef<SVGSVGElement | null>(null);
+  const progressContent = useRef<HTMLSpanElement | null>(null);
 
   const t = useI18n();
+
+  const onAutoplayTimeLeft = (
+    _s: SwiperType,
+    time: number,
+    progress: number,
+  ): void => {
+    if (progressCircle.current && progressContent.current) {
+      progressCircle.current.style.setProperty(
+        "--progress",
+        String(1 - progress),
+      );
+      progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
+    }
+  };
 
   return (
     <div
       className={cn(
-        "relative h-[80dvh] w-full overflow-hidden",
+        "relative min-h-[150vh] w-full overflow-hidden md:min-h-[100vh]",
         "bg-gradient-to-b from-slate-300 via-transparent to-slate-400",
       )}
     >
@@ -31,22 +73,46 @@ export default function InteractiveBanner() {
             "animate-fade-in",
           )}
         >
-          {/* Full-width image container */}
+          {/* Swiper showcase section */}
           <div className="absolute inset-0 w-full">
-            <Image
-              src="/images/beratung.png"
-              alt= "Beratung und Consulting für CNC-Fertigung"
-              fill
-              className="object-cover opacity-30"
-              priority
-              sizes="100vw"
-            />
+            <Swiper
+              spaceBetween={0}
+              centeredSlides={true}
+              effect="fade"
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: false,
+              }}
+              pagination={{
+                clickable: true,
+              }}
+              navigation={false}
+              loop={true}
+              modules={[Autoplay, Pagination, Navigation, EffectFade]}
+              onAutoplayTimeLeft={onAutoplayTimeLeft}
+              className="h-full w-full opacity-25"
+            >
+              {heroImages.map((item) => (
+                <SwiperSlide key={item.id}>
+                  <div className="relative h-full w-full">
+                    <Image
+                      src={item.image}
+                      alt={item.alt}
+                      fill
+                      className="object-cover"
+                      priority
+                      sizes="100vw"
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
 
           {/* Content overlay */}
           <div
             className={cn(
-              "relative z-50 w-full py-12",
+              "relative z-50 w-full py-8 md:py-12",
               "bg-gradient-to-t from-transparent via-primary/40 to-transparent",
             )}
           >
@@ -63,76 +129,151 @@ export default function InteractiveBanner() {
               <p
                 className={cn(
                   "mx-auto max-w-2xl",
-                  "hidden text-xl text-gray-light md:block md:text-2xl",
+                  "text-sm text-gray-light md:text-xl lg:text-2xl",
                   "animate-stagger-in",
                 )}
               >
                 {t("landingDescription")}
               </p>
 
-              <div
-                className={cn(
-                  "mt-8 flex flex-col items-center justify-center gap-4 md:flex-row",
-                  "animate-slide-in-left",
-                )}
-              >
-                <Link
-                  href="mailto:info@formenwerkstatt.de"
-                  className="group rounded-lg bg-blue-500 px-6 py-3 text-lg font-semibold text-gray-light transition-all duration-300 hover:bg-blue-700"
-                  aria-label="Send us an email"
+              {/* Main CTA Cards */}
+              <div className="mt-8 grid animate-fade-in grid-cols-1 gap-6  md:grid-cols-[1.25fr_1fr]">
+                {/* Shop Online Card */}
+                {/* <div
+                  className={cn(
+                    "transform rounded-lg bg-gradient-to-br from-orange-600 to-orange-800 p-4 text-center text-white",
+                    "shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl md:p-6",
+                  )}
                 >
-                  <span className="flex items-center gap-2">
-                    <svg
-                      className="h-5 w-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      />
-                    </svg>
-                    info@formenwerkstatt.de
-                  </span>
-                </Link>
-                <Link
-                  href="tel:+4906164913017"
-                  className="group rounded-lg bg-green-500 px-6 py-3 text-lg font-semibold text-gray-light transition-all duration-300 hover:bg-green-700"
-                  aria-label="Call us now"
+                  <svg
+                    className="mx-auto mb-4 h-10 w-10"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                    />
+                  </svg>
+                  <h3 className="mb-2 text-xl font-bold">Shop Online</h3>
+                  <p className="mb-4 text-sm opacity-90">
+                    Browse our quality products and order online
+                  </p>
+                  <Link
+                    href="/shop"
+                    className="inline-block rounded-full bg-white px-5 py-2 text-sm font-semibold text-orange-700 hover:bg-gray-100"
+                  >
+                    Visit Shop
+                  </Link>
+                </div> */}
+
+                {/* Contact Us Card */}
+                <div
+                  className={cn(
+                    "transform rounded-lg bg-gradient-to-br from-blue-600 to-blue-800 p-6 text-center text-white opacity-80",
+                    "shadow-lg transition-all duration-300 hover:scale-105 hover:opacity-100 hover:shadow-xl md:px-12 md:py-8",
+                    "flex flex-col justify-between ",
+                  )}
                 >
-                  <span className="flex items-center gap-2">
-                    <svg
-                      className="h-5 w-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
+                  <svg
+                    className="mx-auto mb-4 h-10 w-10"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                  <h3 className="mb-2 text-xl font-bold">
+                    {t("contact.title")}
+                  </h3>
+                  <p className="mb-4 text-sm opacity-90">{t("contact.cta")}</p>
+                  <div className="flex flex-wrap items-center justify-center gap-2">
+                    <Link
+                      href="mailto:info@formenwerkstatt.de"
+                      className={cn(
+                        "max-w-max rounded-xl bg-gray-200",
+                        "px-5 py-2 text-sm font-semibold text-primary hover:bg-gray-100",
+                      )}
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                      />
-                    </svg>
-                    +49 (0) 6164-913017
-                  </span>
-                </Link>
+                      info@formenwerkstatt.de
+                    </Link>
+                    <Link
+                      href="tel:+4906164913017"
+                      className={cn(
+                        "max-w-max rounded-xl bg-gray-200",
+                        "px-5 py-2 text-sm font-semibold text-primary hover:bg-gray-100",
+                      )}
+                    >
+                      +49 (0) 6164-913017
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Find Us Card */}
+                <div
+                  className={cn(
+                    "transform rounded-lg bg-gradient-to-br from-green-600 to-green-800 p-6 text-center text-white opacity-80",
+                    " shadow-lg transition-all duration-300 hover:scale-105 hover:opacity-100 hover:shadow-xl md:px-12 md:py-6",
+                    "flex flex-col items-center justify-between",
+                  )}
+                >
+                  <svg
+                    className="mx-auto mb-4 h-10 w-10"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </svg>
+                  <h3 className="mb-2 text-xl font-bold">
+                    {t("findUs.title")}
+                  </h3>
+                  <p className="mb-4 text-sm opacity-90">
+                    {t("findUs.description")}
+                  </p>
+                  <Link
+                    href="/contact"
+                    className={cn(
+                      "max-w-max rounded-xl bg-gray-200",
+                      "px-5 py-2 text-sm font-semibold text-green-700 hover:bg-gray-100",
+                    )}
+                  >
+                    {t("findUs.cta")}
+                  </Link>
+                </div>
               </div>
 
+              {/* 3D demo button */}
               <button
                 onClick={() => setIsOverlayVisible(false)}
                 className={cn(
-                  "mt-8 rounded-lg bg-gray-light/50 px-6 py-3",
-                  "text-lg font-semibold text-gray-dark",
+                  "mt-8 rounded-lg bg-gray-light/50 px-6 py-2",
+                  "text-sm font-semibold text-gray-dark",
                   "transition-all duration-300 hover:bg-white",
                   "animate-slide-in-right",
                 )}
                 aria-label="View 3D Demo"
               >
-                3D Demo
+                Try 3D Demo
               </button>
             </div>
           </div>

@@ -9,6 +9,12 @@ export default {
 
   details: "View Details",
 
+  findUs: {
+    title: "Find Us",
+    description: "Visit our workshop and showroom in Reichelsheim, Odenwald.",
+    cta:"Get Directions",
+  },
+
   menu: {
     home: "Home",
     about: "About Us",
@@ -352,6 +358,7 @@ export default {
 
   contact: {
     title: "Contact Us",
+    cta: "Questions or custom orders? Reach out directly!",
     paragraph:
       "We'd love to hear from you! Whether you have a question, need a quote, or want to discuss a new project, don't hesitate to reach out to us.",
     phone: "Phone",
@@ -437,8 +444,7 @@ export default {
   },
 
   shop: {
-    title:
-      "Quality Craftsmanship, Now Closer Than Ever",
+    title: "Quality Craftsmanship, Now Closer Than Ever",
     introduction:
       "For over 30 years, Formenwerkstatt has been a trusted name in precision engineering and mold-making. Now, we're bringing our expertise directly to you with our online shop. Whether you're looking for customizable products like CreativePlate or high-quality plastic components, we make it easier than ever to get premium, made-in-Germany craftsmanship delivered to your door.",
     sections: [

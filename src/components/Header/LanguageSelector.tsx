@@ -30,7 +30,7 @@ export default function LanguageSelector({
       </button>
       <button
         className={cn(
-          "rounded-sm px-4 py-2 text-sm font-medium",
+          "rounded-md px-4 py-2 text-sm font-medium",
           locale === "de"
             ? "bg-primary text-white"
             : "text-dark hover:bg-opacity-90 dark:text-white",

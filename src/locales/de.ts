@@ -10,6 +10,13 @@ export default {
 
   details: "Details Anzeigen",
 
+  findUs: {
+    title: "Finden Sie Uns",
+    description:
+      "Besuchen Sie unsere Werkstatt und unseren Ausstellungsraum in Reichelsheim im Odenwald.",
+    cta: "Wegbeschreibung",
+  },
+
   menu: {
     home: "Startseite",
     about: "Über Uns",
@@ -354,6 +361,7 @@ export default {
 
   contact: {
     title: "Kontakt",
+    cta: "Fragen oder individuelle Bestellungen? Wenden Sie sich direkt an uns!",
     paragraph:
       "Wir würden uns freuen, von Ihnen zu hören! Ob Sie eine Frage haben, ein Angebot benötigen oder ein neues Projekt besprechen möchten, zögern Sie nicht, uns zu kontaktieren.",
     phone: "Telefon",
@@ -439,8 +447,7 @@ export default {
   },
 
   shop: {
-    title:
-      "Hochwertige Handwerkskunst jetzt noch näher",
+    title: "Hochwertige Handwerkskunst jetzt noch näher",
     introduction:
       "Seit über 30 Jahren steht Formenwerkstatt für Präzision und höchste Qualität in der Metallbearbeitung und Werkzeugherstellung. Mit unserem Online-Shop bringen wir diese Expertise jetzt direkt zu dir. Egal ob individuell anpassbare Produkte wie CreativePlate oder hochwertige Kunststoffkomponenten - hier erhältst du deutsche Handwerkskunst bequem nach Hause geliefert.",
     sections: [

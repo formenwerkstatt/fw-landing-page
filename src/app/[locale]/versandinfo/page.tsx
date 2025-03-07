@@ -52,10 +52,10 @@ export default function Versand() {
           </p>
           <ul className="list-inside list-disc pl-4">
             <li className="text-base !leading-relaxed text-body-color">
-              Deutschland: 4,95 € (Standard)
+              Deutschland: 6,25€ (Standard)
             </li>
             <li className="text-base !leading-relaxed text-body-color">
-              EU-Länder: 9,95 € (Standard)
+              EU-Länder: 11,95 € (Standard)
             </li>
           </ul>
           <p className="text-base !leading-relaxed text-body-color">
