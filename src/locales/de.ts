@@ -487,7 +487,7 @@ export default {
     "Creative Plate": {
       title: "CreativePlate - Die personalisierbare Kennzeichenhalterung",
       introduction:
-        "Zeige deinen Stil mit CreativePlate - der Kennzeichenhalterung, die es dir ermöglicht, dein Auto individuell zu gestalten. Entwickelt und gefertigt von Formenwerkstatt, bietet CreativePlate 24 austauschbare Slots, in die du Buchstaben, Zahlen, Symbole oder Emojis einsetzen kannst. Hergestellt in Deutschland mit höchster Präzision, ist sie langlebig und lässt sich jederzeit mühelos anpassen.",
+        "Drücke dich aus mit CreativePlate, dem individuell gestaltbaren Kennzeichenhalter, mit dem du dein Auto wie nie zuvor personalisieren kannst. Entwickelt und gefertigt von Formenwerkstatt, bietet CreativePlate 24 anpassbare Steckplätze für Buchstaben, Zahlen, Symbole oder Emojis - für ein Design, das so einzigartig ist wie du selbst. Made in Germany mit präziser Ingenieurskunst, besteht es aus hochwertigem, UV-beständigem Kunststoff, der waschstraßenfest, frostbeständig und zu 100 % recycelbar ist. Dank seines flexiblen Designs passt es sich sowohl geraden als auch gebogenen Oberflächen an und ist kompatibel mit EU-Standard-Kennzeichen (52 x 11 cm, nicht für Österreich) sowie für die meisten Fahrzeugtypen geeignet.",
       sections: [
         {
           title: "Für deine Kreativität gemacht",
@@ -498,7 +498,7 @@ export default {
           ],
         },
         {
-          title: "Hochwertige Verarbeitung",
+          title: "Made in Germany",
           list: [
             "Gefertigt in Deutschland aus robustem, langlebigem Kunststoff",
             "Präzise gefertigte Formen für eine perfekte Passform und ein elegantes Design",
@@ -515,9 +515,9 @@ export default {
         },
       ],
       benefits: [
-        "Verleihe deinem Auto eine individuelle Note",
-        "Einfache Anpassung und jederzeit veränderbar",
-        "Hochwertige Materialien sorgen für lange Haltbarkeit",
+        "Made in Germany",
+        "14-tägigem Rückgaberecht",
+        "Langlebig & Stilvoll",
       ],
     },
   },

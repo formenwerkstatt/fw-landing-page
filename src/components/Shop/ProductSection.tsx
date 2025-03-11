@@ -4,8 +4,9 @@ import { cn } from "@/utils/cn";
 import Gallery from "../Common/Gallery";
 import BuyButtonPlate from "./BuyButtonPlate";
 import { useCurrentLocale } from "@/locales/client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+import { ImageIcon } from "lucide-react";
 
 export default function ProductSection({ product }: { product: Product }) {
   const [selectedVariant, setSelectedVariant] = useState(
@@ -15,6 +16,13 @@ export default function ProductSection({ product }: { product: Product }) {
   const [hoveredVariant, setHoveredVariant] = useState<any>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [showTooltip, setShowTooltip] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [activePreviewVariant, setActivePreviewVariant] = useState<any>(null);
+
+  // Detect touch device on component mount
+  useEffect(() => {
+    setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
+  }, []);
 
   const descDE = product.description.slice().split("The")[0];
   const descEN = product.description.slice().split("The")[1];
@@ -44,24 +52,36 @@ export default function ProductSection({ product }: { product: Product }) {
       >
         <Gallery images={mediaItems} showBg={false} autoplay={false} />
 
-        <div className="flex flex-col justify-between  rounded-lg bg-gray-light p-6 shadow-lg dark:bg-gray-dark">
-          <h2 className="mb-4 text-3xl font-bold">{product.name}</h2>
-          <p className="mb-4 text-lg">{locale === "de" ? descDE : descEN}</p>
+        <div className="flex flex-col justify-between gap-8 rounded-lg bg-gray-light p-6 shadow-lg dark:bg-gray-dark">
+          <h2 className=" text-3xl font-bold">{product.name}</h2>
+          <p className="text-lg">{locale === "de" ? descDE : descEN}</p>
 
-          {/* <p className="text-lg">
-            <span className="font-semibold">Stock: </span>
-            {product.stock < 10 ? "Contact us for availability" : "In Stock"}
-          </p> */}
+          <p className="text-center text-lg">
+            {locale === "en" ? "Size" : "Größe"}: 52x11 cm
+          </p>
 
           {product.variants && product.variants.length > 1 && (
-            <div className="my-8 grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-2">
               {product.variants.map((variant) => (
                 <button
                   key={variant.id}
-                  onClick={() => setSelectedVariant(variant)}
-                  onMouseEnter={() => setHoveredVariant(variant)}
-                  onMouseLeave={() => setHoveredVariant(null)}
+                  onClick={() => {
+                    setSelectedVariant(variant);
+                    // For touch devices, toggle preview
+                    if (isTouchDevice) {
+                      setActivePreviewVariant(
+                        activePreviewVariant?.id === variant.id
+                          ? null
+                          : variant,
+                      );
+                    }
+                  }}
+                  onMouseEnter={() =>
+                    !isTouchDevice && setHoveredVariant(variant)
+                  }
+                  onMouseLeave={() => !isTouchDevice && setHoveredVariant(null)}
                   onMouseMove={(e) =>
+                    !isTouchDevice &&
                     setMousePosition({ x: e.clientX, y: e.clientY })
                   }
                   disabled={variant.stock === 0}
@@ -72,6 +92,10 @@ export default function ProductSection({ product }: { product: Product }) {
                       : "cursor-pointer border border-transparent bg-gray-200 text-gray-dark hover:border-blue-500",
                     selectedVariant?.id === variant.id &&
                       "border-none bg-primary text-white",
+                    // Highlight active preview on mobile
+                    isTouchDevice &&
+                      activePreviewVariant?.id === variant.id &&
+                      "ring-2 ring-blue-400",
                   )}
                 >
                   {variant.title}{" "}
@@ -81,8 +105,39 @@ export default function ProductSection({ product }: { product: Product }) {
                       {"(nicht lieferbar)"}
                     </>
                   )}
+                  {/* Small indicator that variant has image */}
+                  {variant.imageUrl && isTouchDevice && (
+                    <span className="ml-1 text-xs">
+                      <ImageIcon />
+                    </span>
+                  )}
                 </button>
               ))}
+            </div>
+          )}
+
+          {/* Mobile variant preview */}
+          {isTouchDevice && activePreviewVariant?.imageUrl && (
+            <div className="mt-2 rounded-lg border border-gray-200 p-2 text-center">
+              <p className="mb-1 text-sm font-medium">
+                {activePreviewVariant.title}
+              </p>
+              <div className="relative mx-auto h-48 w-full max-w-xs overflow-hidden rounded">
+                <Image
+                  src={activePreviewVariant.imageUrl}
+                  alt={activePreviewVariant.title}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 300px"
+                  priority
+                />
+              </div>
+              <button
+                onClick={() => setActivePreviewVariant(null)}
+                className="mt-2 text-sm text-blue-500"
+              >
+                {locale === "en" ? "Close preview" : "Vorschau schließen"}
+              </button>
             </div>
           )}
 
@@ -103,29 +158,33 @@ export default function ProductSection({ product }: { product: Product }) {
         </div>
       </section>
 
-      {/* Image Tooltip */}
-      <div
-        className={`pointer-events-none fixed z-50 rounded-md shadow-lg transition-opacity duration-300 ${
-          hoveredVariant ? "visible opacity-100" : "invisible opacity-0"
-        }`}
-        style={{
-          left: `${mousePosition.x}px`,
-          top: `${mousePosition.y - 60}px`,
-          maxWidth: "200px",
-          transform: "translate(-10%, -50%)",
-        }}
-      >
-        {hoveredVariant && (
-          <Image
-            src={hoveredVariant.imageUrl || product.imgUrl[0]}
-            alt={hoveredVariant.title || "Product variant"}
-            width={200}
-            height={200}
-            className="h-auto w-full rounded-md border border-gray-200 object-cover"
-            priority
-          />
-        )}
-      </div>
+      {/* Desktop tooltip */}
+      {!isTouchDevice && showTooltip && (
+        <div
+          className={`pointer-events-none fixed z-50 rounded-md shadow-lg transition-opacity duration-300 ${
+            hoveredVariant ? "visible opacity-100" : "invisible opacity-0"
+          }`}
+          style={{
+            left: `${mousePosition.x}px`,
+            top: `${mousePosition.y + 30}px`,
+            maxWidth: "300px",
+            transform: "translate(0%, 0%)",
+          }}
+        >
+          {hoveredVariant && (
+            <div className="p-2 shadow-md bg-white rounded-md">
+              <Image
+                src={hoveredVariant.imageUrl}
+                alt={hoveredVariant.title}
+                width={200}
+                height={200}
+                className="h-auto w-full rounded-md border border-gray-200 object-cover"
+                priority
+              />
+            </div>
+          )}
+        </div>
+      )}
     </>
   );
 }

@@ -17,7 +17,7 @@ export async function getProducts(): Promise<Product[]> {
   return data.products.edges.map((edge: any) => {
     const p = edge.node;
     const defaultVariant = p.variants.edges[0].node;
-    
+
     // Extract all variants
     const variants = p.variants.edges.map((variantEdge: any) => {
       const v = variantEdge.node;
@@ -26,11 +26,13 @@ export async function getProducts(): Promise<Product[]> {
         title: v.title || "Default",
         price: parseFloat(v.price),
         stock: v.inventoryQuantity || 0,
-        isDefault: v === defaultVariant
+        isDefault: v === defaultVariant,
+        imageUrl: v.image?.url || null // Add the variant image URL
       };
     });
 
-    // Extract video URLs from media
+    // Extract video URLs from media with duplicate prevention
+    const videoSet = new Set();
     const videoUrls = p.media?.edges
       .filter((mediaEdge: any) => {
         const mediaType = mediaEdge.node.mediaContentType;
@@ -38,14 +40,20 @@ export async function getProducts(): Promise<Product[]> {
       })
       .map((mediaEdge: any) => {
         const mediaNode = mediaEdge.node;
+        let url = null;
         if (mediaNode.mediaContentType === "VIDEO") {
-          return mediaNode.sources?.[0]?.url || mediaNode.originalSource?.url;
+          url = mediaNode.sources?.[0]?.url || mediaNode.originalSource?.url;
         } else if (mediaNode.mediaContentType === "EXTERNAL_VIDEO") {
-          return mediaNode.embedUrl;
+          url = mediaNode.embedUrl;
         }
-        return null;
+        return url;
       })
-      .filter(Boolean);
+      .filter(url => {
+        if (!url) return false;
+        if (videoSet.has(url)) return false;
+        videoSet.add(url);
+        return true;
+      });
 
     return {
       id: p.id.split("/").pop() || p.id,
@@ -58,8 +66,8 @@ export async function getProducts(): Promise<Product[]> {
       videoUrl: videoUrls,
       variants: variants,
       createdAt: p.createdAt,
-      // Detect if it's a bundle based on product tags or title
-      isBundle: p.title.toLowerCase().includes("bundle") || p.tags?.includes("bundle")
+      isBundle:
+        p.title.toLowerCase().includes("bundle") || p.tags?.includes("bundle"),
     };
   });
 }
@@ -75,7 +83,7 @@ export async function getProduct(id: string): Promise<Product> {
 
   const p = data.product;
   const defaultVariant = p.variants.edges[0].node;
-  
+
   // Extract all variants
   const variants = p.variants.edges.map((variantEdge: any) => {
     const v = variantEdge.node;
@@ -84,10 +92,13 @@ export async function getProduct(id: string): Promise<Product> {
       title: v.title || "Default",
       price: parseFloat(v.price),
       stock: v.inventoryQuantity || 0,
-      isDefault: v === defaultVariant
+      isDefault: v === defaultVariant,
+      imageUrl: v.image?.url || null // Add the variant image URL
     };
   });
 
+  // Extract video URLs with duplicate prevention
+  const videoSet = new Set();
   const videoUrls = p.media?.edges
     .filter((mediaEdge: any) => {
       const mediaType = mediaEdge.node.mediaContentType;
@@ -95,14 +106,20 @@ export async function getProduct(id: string): Promise<Product> {
     })
     .map((mediaEdge: any) => {
       const mediaNode = mediaEdge.node;
+      let url = null;
       if (mediaNode.mediaContentType === "VIDEO") {
-        return mediaNode.sources?.[0]?.url || mediaNode.originalSource?.url;
+        url = mediaNode.sources?.[0]?.url || mediaNode.originalSource?.url;
       } else if (mediaNode.mediaContentType === "EXTERNAL_VIDEO") {
-        return mediaNode.embedUrl;
+        url = mediaNode.embedUrl;
       }
-      return null;
+      return url;
     })
-    .filter(Boolean);
+    .filter(url => {
+      if (!url) return false;
+      if (videoSet.has(url)) return false;
+      videoSet.add(url);
+      return true;
+    });
 
   return {
     id: p.id.split("/").pop() || p.id,
@@ -115,8 +132,8 @@ export async function getProduct(id: string): Promise<Product> {
     videoUrl: videoUrls,
     variants: variants,
     createdAt: p.createdAt,
-    // Detect if it's a bundle based on product tags or title
-    isBundle: p.title.toLowerCase().includes("bundle") || p.tags?.includes("bundle")
+    isBundle:
+      p.title.toLowerCase().includes("bundle") || p.tags?.includes("bundle"),
   };
 }
 

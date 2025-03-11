@@ -12,7 +12,7 @@ export default {
   findUs: {
     title: "Find Us",
     description: "Visit our workshop and showroom in Reichelsheim, Odenwald.",
-    cta:"Get Directions",
+    cta: "Get Directions",
   },
 
   menu: {
@@ -484,7 +484,7 @@ export default {
     "Creative Plate": {
       title: "CreativePlate - The Customizable License Plate Holder",
       introduction:
-        "Express yourself with CreativePlate, the license plate holder that lets you personalize your car like never before. Designed and manufactured by Formenwerkstatt, CreativePlate features 24 customizable slots where you can add letters, numbers, symbols, or emojis to create a look that's uniquely yours. Made in Germany with precision engineering, it's built to last and easy to update whenever you want a fresh style.",
+        "Express yourself with CreativePlate, the customizable license plate holder that lets you add a personal touch to your car like never before. Designed and manufactured by Formenwerkstatt, CreativePlate features 24 customizable slots for letters, numbers, symbols, or emojis—allowing you to create a look that's truly unique. Made in Germany with precision engineering, it is crafted from high-quality, UV-resistant plastic that is car wash-proof, frost-proof, and 100% recyclable. Its flexible design adapts to both straight and curved surfaces, making it compatible with EU standard number plates (52 x 11 cm, excluding Austria) and suitable for most vehicle types.",
       sections: [
         {
           title: "Designed for Personalization",
@@ -495,7 +495,7 @@ export default {
           ],
         },
         {
-          title: "High-Quality Craftsmanship",
+          title: "Made in Germany",
           list: [
             "Manufactured in Germany using durable, high-grade plastic",
             "Precision-made molds ensure a perfect fit and sleek design",
@@ -512,9 +512,9 @@ export default {
         },
       ],
       benefits: [
-        "Stand out with a custom look that reflects your personality",
-        "Easily update and modify your plate without hassle",
-        "Built with top-quality materials for long-lasting durability",
+        "Made in Germany",
+        "14-day return policy",
+        "Durable and Stylish"
       ],
     },
   },

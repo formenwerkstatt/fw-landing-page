@@ -13,6 +13,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import { Autoplay, Pagination, Navigation, EffectFade } from "swiper/modules";
+import { Mail, MapPin, PhoneCall } from "lucide-react";
 
 const ThreeFiber = lazy(() => import("./ThreeFiber"));
 
@@ -174,92 +175,70 @@ export default function InteractiveBanner() {
                 <div
                   className={cn(
                     "transform rounded-lg bg-gradient-to-br from-blue-600 to-blue-800 p-6 text-center text-white opacity-80",
-                    "shadow-lg transition-all duration-300 hover:scale-105 hover:opacity-100 hover:shadow-xl md:px-12 md:py-8",
-                    "flex flex-col justify-between ",
+                    "shadow-lg transition-all duration-300 hover:scale-105 hover:opacity-100 hover:shadow-xl md:px-12 md:py-6",
+                    "flex flex-col items-center justify-between",
                   )}
                 >
-                  <svg
-                    className="mx-auto mb-4 h-10 w-10"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
+                  <Mail className="h-10 w-10" />
                   <h3 className="mb-2 text-xl font-bold">
                     {t("contact.title")}
                   </h3>
                   <p className="mb-4 text-sm opacity-90">{t("contact.cta")}</p>
-                  <div className="flex flex-wrap items-center justify-center gap-2">
+                  <div className="flex w-full flex-col gap-3">
                     <Link
                       href="mailto:info@formenwerkstatt.de"
                       className={cn(
-                        "max-w-max rounded-xl bg-gray-200",
-                        "px-5 py-2 text-sm font-semibold text-primary hover:bg-gray-100",
+                        "rounded-full bg-white/20 px-4 py-2 backdrop-blur-sm",
+                        "text-sm font-semibold text-white",
+                        "border border-white/30",
+                        "inline-flex items-center justify-center gap-2 transition-all",
+                        "hover:bg-white/30 hover:shadow-md"
                       )}
                     >
-                      info@formenwerkstatt.de
+                      <Mail className="h-4 w-4" /> info@formenwerkstatt.de
                     </Link>
                     <Link
                       href="tel:+4906164913017"
                       className={cn(
-                        "max-w-max rounded-xl bg-gray-200",
-                        "px-5 py-2 text-sm font-semibold text-primary hover:bg-gray-100",
+                        "rounded-full bg-white/20 px-4 py-2 backdrop-blur-sm",
+                        "text-sm font-semibold text-white",
+                        "border border-white/30",
+                        "inline-flex items-center justify-center gap-2 transition-all",
+                        "hover:bg-white/30 hover:shadow-md"
                       )}
                     >
-                      +49 (0) 6164-913017
+                      <PhoneCall className="h-4 w-4" /> +49 (0) 6164-913017
                     </Link>
                   </div>
                 </div>
 
                 {/* Find Us Card */}
-                <div
+                <Link
+                  href="/contact"
                   className={cn(
                     "transform rounded-lg bg-gradient-to-br from-green-600 to-green-800 p-6 text-center text-white opacity-80",
                     " shadow-lg transition-all duration-300 hover:scale-105 hover:opacity-100 hover:shadow-xl md:px-12 md:py-6",
                     "flex flex-col items-center justify-between",
                   )}
                 >
-                  <svg
-                    className="mx-auto mb-4 h-10 w-10"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
+                  <MapPin className="h-10 w-10" />
                   <h3 className="mb-2 text-xl font-bold">
                     {t("findUs.title")}
                   </h3>
                   <p className="mb-4 text-sm opacity-90">
                     {t("findUs.description")}
                   </p>
-                  <Link
-                    href="/contact"
+                  <p
                     className={cn(
-                      "max-w-max rounded-xl bg-gray-200",
-                      "px-5 py-2 text-sm font-semibold text-green-700 hover:bg-gray-100",
+                      "rounded-full bg-white/20 px-4 py-2 backdrop-blur-sm",
+                      "text-lg font-semibold text-white",
+                      "border border-white/30",
+                      "mt-2 inline-block",
                     )}
                   >
                     {t("findUs.cta")}
-                  </Link>
-                </div>
+                  </p>
+                </Link>
               </div>
 
               {/* 3D demo button */}

@@ -52,7 +52,7 @@ type Ad = {
 
 export type Product = {
   id: string;
-  var_id: string; // Keep for backward compatibility
+  var_id: string; 
   name: string;
   description: string;
   price: number;
@@ -60,7 +60,6 @@ export type Product = {
   videoUrl?: string[];
   stock: number;
   createdAt?: string;
-  // Add these new fields
   variants?: ProductVariant[];
   isBundle?: boolean;
 };
@@ -70,7 +69,8 @@ export type ProductVariant = {
   title: string;
   price: number;
   stock: number;
-  isDefault?: boolean;
+  isDefault: boolean;
+  imageUrl?: string | null;
 };
 
 

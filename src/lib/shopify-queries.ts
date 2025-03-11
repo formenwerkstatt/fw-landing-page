@@ -49,6 +49,10 @@ export const GET_PRODUCTS = gql`
                 price
                 inventoryQuantity
                 availableForSale
+                image {
+                  url
+                  altText
+                }
               }
             }
           }
@@ -105,13 +109,16 @@ export const GET_PRODUCT = gql`
             price
             inventoryQuantity
             availableForSale
+            image {
+              url
+              altText
+            }
           }
         }
       }
     }
   }
 `;
-
 // Query to get orders
 export const GET_ORDERS = gql`
   query GetOrders($first: Int = 50) {

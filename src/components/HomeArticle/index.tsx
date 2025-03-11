@@ -5,6 +5,7 @@ import useHomeArticle from "@/data/useHomeArticle";
 import Image from "next/image";
 import ImageSection from "../Common/ImageSection";
 import { useScopedI18n } from "@/locales/client";
+import { cn } from "@/utils/cn";
 
 export default function HomeArticle({
   scope,
@@ -31,6 +32,24 @@ export default function HomeArticle({
         isHomepage
         center
       />
+
+      <ul className=" my-24 grid gap-4 text-center lg:grid-cols-3 lg:gap-36">
+        {article.benefits.map((item) => {
+          return (
+            <li
+              className={cn(
+                "flex items-center justify-center rounded-3xl bg-white px-16 py-12 text-2xl",
+                "shadow-md dark:bg-gray-dark",
+                "transition duration-300 hover:scale-105 hover:shadow-xl",
+              )}
+              key={item}
+            >
+              <p>{item}</p>
+            </li>
+          );
+        })}
+      </ul>
+
       <ul className="mb-24 flex flex-wrap gap-12 ">
         {article.sections.map((section, index) => (
           <li
@@ -61,19 +80,6 @@ export default function HomeArticle({
             />
           </li>
         ))}
-      </ul>
-
-      <ul className=" my-24 grid gap-4 text-center lg:grid-cols-3 lg:gap-36">
-        {article.benefits.map((item) => {
-          return (
-            <li
-              className="flex items-center justify-center rounded-3xl bg-white px-12 py-8 text-xl shadow-md dark:bg-gray-dark"
-              key={item}
-            >
-              <p>{item}</p>
-            </li>
-          );
-        })}
       </ul>
 
       <ImageSection
