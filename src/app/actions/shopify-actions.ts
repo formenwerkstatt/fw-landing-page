@@ -48,7 +48,7 @@ export async function getProducts(): Promise<Product[]> {
         }
         return url;
       })
-      .filter(url => {
+      .filter((url: string | null) => {
         if (!url) return false;
         if (videoSet.has(url)) return false;
         videoSet.add(url);
@@ -114,7 +114,7 @@ export async function getProduct(id: string): Promise<Product> {
       }
       return url;
     })
-    .filter(url => {
+    .filter((url: string | null) => {
       if (!url) return false;
       if (videoSet.has(url)) return false;
       videoSet.add(url);
