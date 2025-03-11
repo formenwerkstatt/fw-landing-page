@@ -138,7 +138,7 @@ export default function InteractiveBanner() {
               </p>
 
               {/* Main CTA Cards */}
-              <div className="mt-8 grid animate-fade-in grid-cols-1 gap-6  md:grid-cols-[1.25fr_1fr]">
+              <div className="mt-8 grid animate-fade-in grid-cols-1 gap-6  md:grid-cols-2">
                 {/* Shop Online Card */}
                 {/* <div
                   className={cn(
