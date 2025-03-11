@@ -6,7 +6,6 @@ import BuyButtonPlate from "./BuyButtonPlate";
 import { useCurrentLocale } from "@/locales/client";
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import { ImageIcon } from "lucide-react";
 
 export default function ProductSection({ product }: { product: Product }) {
   const [selectedVariant, setSelectedVariant] = useState(
@@ -95,7 +94,7 @@ export default function ProductSection({ product }: { product: Product }) {
                     // Highlight active preview on mobile
                     isTouchDevice &&
                       activePreviewVariant?.id === variant.id &&
-                      "ring-2 ring-blue-400",
+                      "ring-2 ring-blue-400 flex items-center justify-center",
                   )}
                 >
                   {variant.title}{" "}
@@ -104,12 +103,6 @@ export default function ProductSection({ product }: { product: Product }) {
                       <br />
                       {"(nicht lieferbar)"}
                     </>
-                  )}
-                  {/* Small indicator that variant has image */}
-                  {variant.imageUrl && isTouchDevice && (
-                    <span className="ml-1 text-xs">
-                      <ImageIcon />
-                    </span>
                   )}
                 </button>
               ))}
