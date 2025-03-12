@@ -139,38 +139,6 @@ export default function InteractiveBanner() {
 
               {/* Main CTA Cards */}
               <div className="mt-8 grid animate-fade-in grid-cols-1 gap-6  md:grid-cols-2">
-                {/* Shop Online Card */}
-                {/* <div
-                  className={cn(
-                    "transform rounded-lg bg-gradient-to-br from-orange-600 to-orange-800 p-4 text-center text-white",
-                    "shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl md:p-6",
-                  )}
-                >
-                  <svg
-                    className="mx-auto mb-4 h-10 w-10"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                    />
-                  </svg>
-                  <h3 className="mb-2 text-xl font-bold">Shop Online</h3>
-                  <p className="mb-4 text-sm opacity-90">
-                    Browse our quality products and order online
-                  </p>
-                  <Link
-                    href="/shop"
-                    className="inline-block rounded-full bg-white px-5 py-2 text-sm font-semibold text-orange-700 hover:bg-gray-100"
-                  >
-                    Visit Shop
-                  </Link>
-                </div> */}
-
                 {/* Contact Us Card */}
                 <div
                   className={cn(
@@ -243,7 +211,10 @@ export default function InteractiveBanner() {
 
               {/* 3D demo button */}
               <button
-                onClick={() => setIsOverlayVisible(false)}
+                onClick={() => {
+                  setIsOverlayVisible(false);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
                 className={cn(
                   "mt-8 rounded-lg bg-gray-light/50 px-6 py-2",
                   "text-sm font-semibold text-gray-dark",
@@ -259,7 +230,7 @@ export default function InteractiveBanner() {
         </div>
       ) : (
         <Suspense fallback={<Loading />}>
-          <div className="relative mt-[80px] h-[calc(100vh-80px)] w-full">
+          <div className="relative mt-[80px] h-[calc(100svh-80px)] w-full">
             <ThreeFiber />
             {isHelpVisible && (
               <div
