@@ -28,7 +28,6 @@ export default function Header() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const navbarRef = useRef<HTMLDivElement>(null);
 
-  
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -39,24 +38,24 @@ export default function Header() {
         setOpenSubmenuIndex(null);
       }
     };
-    
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  
+
   useEffect(() => {
     handleResize();
     window.addEventListener("resize", handleResize);
     window.addEventListener("scroll", handleStickyNavbar);
-    
+
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleStickyNavbar);
     };
   }, []);
-  
+
   if (!user) return null;
 
   const handleStickyNavbar = () => {
@@ -172,7 +171,7 @@ export default function Header() {
                         }}
                         href={menuItem.path}
                         className={cn(
-                          `flex rounded-lg p-2 text-xl lg:mr-0 lg:inline-flex lg:px-4 lg:py-4`,
+                          `flex rounded-lg py-2 text-xl lg:mr-0 lg:inline-flex lg:px-4 lg:py-4`,
                           "transition duration-300 hover:bg-primary/10 hover:text-primary",
                           cleanPathname === menuItem.path && "bg-primary/10 ",
                         )}
@@ -196,7 +195,7 @@ export default function Header() {
                         </button>
                         <div
                           className={cn(
-                            `mt-4 w-[60dvw] max-w-max rounded-sm bg-white dark:bg-dark `,
+                            `max-w-max rounded-sm bg-white dark:bg-dark `,
                             `lg:absolute lg:rounded-lg lg:px-4 lg:py-2 lg:shadow-lg`,
                             openSubmenuIndex === index
                               ? "flex  flex-col lg:flex-row  lg:gap-4"
@@ -249,7 +248,7 @@ export default function Header() {
                 <li>
                   <Link
                     className={cn(
-                      `flex rounded-lg p-2 text-xl lg:mr-0 lg:inline-flex lg:px-4 lg:py-4`,
+                      `flex rounded-lg py-2 text-xl lg:mr-0 lg:inline-flex lg:px-4 lg:py-4`,
                       "transition duration-300 hover:bg-primary/10 hover:text-primary",
                       cleanPathname === "/shop" && "bg-primary/10 ",
                     )}
@@ -258,7 +257,7 @@ export default function Header() {
                     Shop
                   </Link>
                 </li>
-               
+
                 {/* Language Selector inside navbar for small screens */}
                 <li className="flex items-center justify-end lg:hidden">
                   <LanguageSelector
