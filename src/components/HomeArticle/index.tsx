@@ -33,12 +33,12 @@ export default function HomeArticle({
         center
       />
 
-      <ul className=" my-24 grid gap-4 text-center lg:grid-cols-3 lg:gap-36">
+      <ul className=" my-24 grid gap-4 text-center lg:grid-cols-3 lg:gap-12">
         {article.benefits.map((item) => {
           return (
             <li
               className={cn(
-                "flex items-center justify-center rounded-3xl bg-white px-16 py-12 text-2xl",
+                "flex items-center justify-center rounded-3xl bg-white px-16 py-12 text-lg md:text-2xl",
                 "shadow-md dark:bg-gray-dark",
                 "transition duration-300 hover:scale-105 hover:shadow-xl",
               )}
@@ -54,7 +54,7 @@ export default function HomeArticle({
         {article.sections.map((section, index) => (
           <li
             key={section.title}
-            className={`flex w-full items-center justify-evenly gap-8 ${
+            className={`flex w-full flex-wrap items-center justify-evenly gap-8 ${
               index % 2 === 0 ? "flex-row" : "flex-row-reverse"
             }`}
           >

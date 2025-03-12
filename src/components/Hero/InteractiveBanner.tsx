@@ -192,7 +192,7 @@ export default function InteractiveBanner() {
                         "text-sm font-semibold text-white",
                         "border border-white/30",
                         "inline-flex items-center justify-center gap-2 transition-all",
-                        "hover:bg-white/30 hover:shadow-md"
+                        "hover:bg-white/30 hover:shadow-md",
                       )}
                     >
                       <Mail className="h-4 w-4" /> info@formenwerkstatt.de
@@ -204,7 +204,7 @@ export default function InteractiveBanner() {
                         "text-sm font-semibold text-white",
                         "border border-white/30",
                         "inline-flex items-center justify-center gap-2 transition-all",
-                        "hover:bg-white/30 hover:shadow-md"
+                        "hover:bg-white/30 hover:shadow-md",
                       )}
                     >
                       <PhoneCall className="h-4 w-4" /> +49 (0) 6164-913017
@@ -259,31 +259,33 @@ export default function InteractiveBanner() {
         </div>
       ) : (
         <Suspense fallback={<Loading />}>
-          <ThreeFiber />
-          {isHelpVisible && (
-            <div
-              className={cn(
-                "absolute bottom-[10%] right-4",
-                "w-[200px] rounded-lg bg-white p-4 shadow-lg",
-                "text-balance text-center text-black",
-                "animate-fade-in",
-              )}
-            >
-              <p>{t("help")}</p>
-            </div>
-          )}
-          <ControlButton
-            className="absolute right-4 top-4 size-10"
-            text="X"
-            handleClick={() => setIsOverlayVisible(true)}
-            aria-label="Close 3D Demo"
-          />
-          <ControlButton
-            className="absolute bottom-4 right-4 size-10"
-            text="?"
-            handleClick={() => setIsHelpVisible(!isHelpVisible)}
-            aria-label="Show Help"
-          />
+          <div className="relative mt-[80px] h-[calc(100vh-80px)] w-full">
+            <ThreeFiber />
+            {isHelpVisible && (
+              <div
+                className={cn(
+                  "absolute bottom-[10%] right-4",
+                  "w-[200px] rounded-lg bg-white p-4 shadow-lg",
+                  "text-balance text-center text-black",
+                  "animate-fade-in",
+                )}
+              >
+                <p>{t("help")}</p>
+              </div>
+            )}
+            <ControlButton
+              className="absolute right-4 top-4 size-10"
+              text="X"
+              handleClick={() => setIsOverlayVisible(true)}
+              aria-label="Close 3D Demo"
+            />
+            <ControlButton
+              className="absolute bottom-4 right-4 size-10"
+              text="?"
+              handleClick={() => setIsHelpVisible(!isHelpVisible)}
+              aria-label="Show Help"
+            />
+          </div>
         </Suspense>
       )}
     </div>
