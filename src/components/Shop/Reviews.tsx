@@ -72,15 +72,15 @@ export default function Reviews() {
         spaceBetween={30}
         breakpoints={{
           300: {
-            slidesPerView: 1.2,
+            slidesPerView: 1.5,
             spaceBetween: 20,
           },
           640: {
-            slidesPerView: 2.4,
+            slidesPerView: 2,
             spaceBetween: 30,
           },
           1200: {
-            slidesPerView: 3.5,
+            slidesPerView: 3.3,
             spaceBetween: 40,
           },
         }}
@@ -89,7 +89,7 @@ export default function Reviews() {
         }}
         centeredSlides={true}
         autoplay={{
-          delay: 1500,
+          delay: 5000,
           disableOnInteraction: false,
         }}
         loop={true}

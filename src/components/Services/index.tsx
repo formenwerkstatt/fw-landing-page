@@ -5,7 +5,6 @@ import { useScopedI18n } from "@/locales/client";
 import SingleService from "./SingleService";
 import { cn } from "@/utils/cn";
 import HomeArticle from "../HomeArticle";
-import useHomeArticle from "@/data/useHomeArticle";
 
 const Services = () => {
   const servicesData = useServicesData();

@@ -1,9 +1,7 @@
 import ContactCard from "./ContactCard";
-
 import { getScopedI18n } from "@/locales/server";
 import { cn } from "@/utils/cn";
-import ImageSection from "../Common/ImageSection";
-import MapComponent from "../Google/MapComponent";
+import HomeArticle from "../HomeArticle";
 
 export default async function Contact() {
   const t2 = await getScopedI18n("about");
@@ -21,13 +19,7 @@ export default async function Contact() {
           />
         </div>
       </div>
-      <ImageSection
-        title="info@formenwerkstatt.de"
-        paragraph={t2("cta")}
-        list={[t2("ctaList.0"), t2("ctaList.1"), t2("ctaList.2")]}
-        src="/images/macro-03.png"
-        center
-      />
+      <HomeArticle scope={"homeArticle"} />
     </>
   );
 }
