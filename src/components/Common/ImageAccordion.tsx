@@ -7,7 +7,7 @@ const persons = [
     id: "1",
     url: "/images/bektas.png",
     name: "Bektas Isik",
-    role: "Geschäfftsführer",
+    role: "Geschäftsführer",
   },
   {
     id: "2",
@@ -19,13 +19,13 @@ const persons = [
     id: "3",
     url: "/images/huseyin.png",
     name: "Huseyin Isik",
-    role: "Geschäfftsführer",
+    role: "Geschäftsführer",
   },
 ];
 
 export default function ImageAccordion() {
   return (
-    <article className="group mx-auto mb-10 mt-3 flex justify-center gap-2 max-md:flex-col">
+    <article className="group mx-auto mb-12 mt-6 flex justify-center gap-2 max-md:flex-col">
       {persons.map((person) => {
         return (
           <article
