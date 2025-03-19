@@ -21,6 +21,7 @@ const fetchDynamicPaths = async () => {
     "/jobs",
     "/shop",
     "/impressum",
+    "/sustainability",
     "/datenschutz",
     "/agb",
     "/widerrufsrecht",
