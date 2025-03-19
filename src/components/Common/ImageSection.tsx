@@ -1,5 +1,6 @@
 import Image from "next/image";
 import SectionTitle from "./SectionTitle";
+import { cn } from "@/utils/cn";
 
 interface ImageSectionProps {
   title: string;
@@ -7,6 +8,7 @@ interface ImageSectionProps {
   list: string[];
   src: string;
   center?: boolean;
+  sustain?: boolean;
 }
 
 const checkIcon = (
@@ -28,12 +30,12 @@ export default function ImageSection({
   list,
   src,
   center = false,
+  sustain = false,
 }: ImageSectionProps) {
   return (
     <section id="service-info-1">
-      
       <div className="container">
-        <div className="border-b border-body-color/[.15] pb-16 dark:border-white/[.15] md:pb-20 lg:pb-28">
+        <div className="border-b border-body-color/[.15] pb-16 dark:border-white/[.15] ">
           <div className="-mx-4 flex flex-wrap items-center">
             <div className={` px-4  ${src ? "lg:w-1/2" : "w-full"}`}>
               <SectionTitle
@@ -58,11 +60,21 @@ export default function ImageSection({
 
             {src && (
               <div className=" w-full px-12 lg:w-1/2">
-                <div className="relative mx-auto aspect-square w-full  lg:mr-0">
+                <div
+                  className={cn(
+                    "relative mx-auto aspect-square w-full lg:mr-0",
+                    sustain &&
+                      "rounded-full bg-gradient-to-t from-lime-600/80 via-lime-600/10 to-lime-600/5",
+                  )}
+                >
                   <Image
-                    className="rounded-br-[10%] rounded-tl-[10%] object-cover"
+                    className={cn(
+                      sustain
+                        ? "object-contain"
+                        : "rounded-br-[10%] rounded-tl-[10%] object-cover",
+                    )}
                     src={src}
-                    alt="descriptive-image"
+                    alt={`${title}-image`}
                     fill
                   />
                 </div>

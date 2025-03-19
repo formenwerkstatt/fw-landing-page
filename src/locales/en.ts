@@ -1,3 +1,6 @@
+import Sustainability from "@/app/[locale]/sustainability/page";
+import de from "./de";
+
 export default {
   slogan: "We bring your ideas to life",
   landingDescription: "Contact us for the best prices and fastest delivery at:",
@@ -514,8 +517,67 @@ export default {
       benefits: [
         "Made in Germany",
         "14-day return policy",
-        "Durable and Stylish"
+        "Durable and Stylish",
       ],
     },
+  },
+
+  sustain: {
+    title: "Sustainability",
+    description: "Responsible. Resource-Efficient. Future-Oriented.",
+    hero: {
+      title: "Sustainability in Every Step",
+      description:
+        "At Formenwerkstatt, we combine craftsmanship with environmental responsibility. From repairing and reconditioning tools to resource-efficient manufacturing – we actively reduce waste, conserve resources, and extend the lifespan of tools. Our mission: high-quality solutions that are as sustainable as they are cost-effective.",
+      list: [
+        "Waste reduction & resource conservation",
+        "Sustainable tool repair & production",
+        "Long-lasting partnerships for a greener future",
+      ],
+    },
+  },
+
+  sustainArticle: {
+    title: "Sustainability in Toolmaking",
+    introduction:
+      "At Formenwerkstatt, sustainability is more than a trend - it's a commitment. Through resource-saving practices and innovative technologies, we help businesses reduce waste, extend the lifecycle of tools, and minimize environmental impact without compromising on quality or performance.",
+    sections: [
+      {
+        title: "Sustainable Tool Repair",
+        list: [
+          "Repairing instead of replacing reduces waste and saves valuable resources.",
+          "Lower CO₂ Footprint: Repairs require significantly less energy and material than manufacturing new tools.",
+          "Waste Reduction: We help prevent valuable materials from ending up as scrap.",
+          "Eco-Friendly Processes: From laser welding to precision machining - all optimized for sustainability.",
+          "Lifecycle Extension: Regular repairs can extend a tool's service life by years.",
+        ],
+      },
+      {
+        title: "Eco-Conscious Tool Manufacturing",
+        list: [
+          "Our tool production focuses on resource-efficient processes and durable results.",
+          "Smart Design: We create tools that are robust, easy to maintain, and repair-friendly.",
+          "Efficient Production: State-of-the-art machines and technologies minimize material waste and energy usage.",
+          "Sustainable Materials: We source high-quality materials with a focus on longevity and recyclability.",
+          "Future-Proof Solutions: Our tools are designed for circular use through repair and reconditioning.",
+        ],
+      },
+      {
+        title: "Supporting a Greener Future",
+        list: [
+          "We go beyond toolmaking by implementing eco-friendly practices across our operations.",
+          "Energy-Efficient Workshop: Our machinery and processes are optimized to reduce energy consumption.",
+          "Resource Management: Waste separation and recycling are an integral part of our workflow.",
+          "Eco-Coatings & Treatments: We use modern surface treatments that are durable and environmentally friendly.",
+        ],
+      },
+    ],
+    benefits: [
+      "Sustainable Commitment",
+      "Cost-Effective & Green",
+      "Partnership for the Planet",
+    ],
+    callToAction:
+      "Join us in shaping a sustainable future - contact us today to learn more about our eco-friendly solutions!",
   },
 } as const;

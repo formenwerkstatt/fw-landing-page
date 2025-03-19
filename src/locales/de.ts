@@ -52,7 +52,7 @@ export default {
           "Wir fertigen Werkzeuge, die individuell auf Ihre Anforderungen abgestimmt sind. Mit modernster Technik liefern wir Präzision und Innovation.",
           "Individuelles Design: Mit CAD-Software wie Siemens NX oder SolidWorks entwickeln wir maßgeschneiderte Lösungen.",
           "Fortschrittliche Fertigung: CNC-Fräsen, Drehen, Senkerodieren und Polieren sorgen für optimale Ergebnisse.",
-          "Nachhaltigkeit im Fokus: Werkzeuge können repariert, nachgeschärft oder beschichtet werden, um ihre Lebensdauer zu verlängern.",
+          "Sustainability im Fokus: Werkzeuge können repariert, nachgeschärft oder beschichtet werden, um ihre Lebensdauer zu verlängern.",
         ],
       },
       {
@@ -520,5 +520,64 @@ export default {
         "Langlebig & Stilvoll",
       ],
     },
+  },
+
+  sustain: {
+    title: "Sustainability",
+    description: "Verantwortungsvoll. Ressourcenschonend. Zukunftsorientiert.",
+    hero: {
+      title: "Sustainability bei jedem Schritt",
+      description:
+        "Bei Formenwerkstatt verbinden wir Handwerkskunst mit Umweltverantwortung. Von der Reparatur und Aufbereitung von Werkzeugen bis hin zur ressourceneffizienten Fertigung - wir reduzieren aktiv Abfall, schonen Ressourcen und verlängern die Lebensdauer von Werkzeugen. Unsere Mission: Hochwertige Lösungen, die sustainable und kosteneffizient sind.",
+      list: [
+        "Abfallvermeidung & Ressourcenschonung",
+        "Sustainable Werkzeugreparatur & -herstellung",
+        "Partnerschaften für eine grünere Zukunft",
+      ],
+    },
+  },
+
+  sustainArticle: {
+    title: "Sustainability im Werkzeugbau",
+    introduction:
+      "Bei Formenwerkstatt ist Sustainability kein Trend, sondern ein fester Bestandteil unserer Unternehmensphilosophie. Mit ressourcenschonenden Verfahren und innovativen Technologien helfen wir Unternehmen, Abfall zu reduzieren, die Lebensdauer von Werkzeugen zu verlängern und die Umweltbelastung zu minimieren - ohne Kompromisse bei Qualität und Leistung.",
+    sections: [
+      {
+        title: "Sustainable Werkzeugreparatur",
+        list: [
+          "Reparieren statt ersetzen - so sparen Sie Ressourcen und vermeiden Abfall.",
+          "Geringerer CO₂-Fußabdruck: Reparaturen verbrauchen deutlich weniger Energie und Materialien als die Neuproduktion.",
+          "Abfallvermeidung: Wir sorgen dafür, dass wertvolle Materialien nicht im Schrott landen.",
+          "Umweltfreundliche Prozesse: Von der Laserauftragschweißung bis zur Präzisionsbearbeitung - alles optimiert für Sustainability.",
+          "Lebensdauer verlängern: Durch regelmäßige Reparaturen bleibt Ihr Werkzeug über Jahre einsatzbereit.",
+        ],
+      },
+      {
+        title: "Umweltbewusste Werkzeugherstellung",
+        list: [
+          "Unsere Werkzeugproduktion ist auf ressourceneffiziente Prozesse und langlebige Ergebnisse ausgelegt.",
+          "Durchdachtes Design: Wir entwickeln robuste, wartungs- und reparaturfreundliche Werkzeuge.",
+          "Effiziente Fertigung: Modernste Maschinen und Technologien minimieren Materialverschnitt und Energieverbrauch.",
+          "Sustainable Materialien: Wir verwenden hochwertige Werkstoffe mit Fokus auf Langlebigkeit und Recyclingfähigkeit.",
+          "Zukunftsfähige Lösungen: Unsere Werkzeuge sind auf eine zirkuläre Nutzung durch Reparatur und Aufbereitung ausgelegt.",
+        ],
+      },
+      {
+        title: "Für eine grünere Zukunft",
+        list: [
+          "Wir gehen über die Werkzeugfertigung hinaus und setzen in allen Bereichen auf umweltfreundliche Praktiken.",
+          "Energieeffiziente Werkstatt: Unsere Maschinen und Prozesse sind auf minimalen Energieverbrauch optimiert.",
+          "Ressourcenmanagement: Abfalltrennung und Recycling sind fester Bestandteil unseres Alltags.",
+          "Öko-Beschichtungen & Behandlungen: Moderne Oberflächenbehandlungen, die langlebig und umweltfreundlich sind.",
+        ],
+      },
+    ],
+    benefits: [
+      "Sustainable Engagement",
+      "Kosteneffizient & umweltfreundlich",
+      "Partnerschaft für die Umwelt",
+    ],
+    callToAction:
+      "Gestalten Sie mit uns eine Sustainable Zukunft - kontaktieren Sie uns und erfahren Sie mehr über unsere umweltfreundlichen Lösungen!",
   },
 } as const;

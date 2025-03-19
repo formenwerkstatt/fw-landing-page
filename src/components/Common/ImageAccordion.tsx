@@ -23,10 +23,10 @@ const persons = [
   },
 ];
 
-export default function ImageAccordion() {
+export default function ImageAccordion({ images = persons, sustain = false }) {
   return (
     <article className="group mx-auto mb-12 mt-6 flex justify-center gap-2 max-md:flex-col">
-      {persons.map((person) => {
+      {images.map((person) => {
         return (
           <article
             key={person.id}
@@ -60,11 +60,11 @@ export default function ImageAccordion() {
             </div>
 
             {person.url ? (
-              <div className="h-96 w-full md:h-[50dvh]">
+              <div className="relative h-96 w-full md:h-[50dvh]">
                 <Image
                   src={person.url}
                   fill
-                  style={{ objectFit: "cover" }}
+                  style={{ objectFit: `${sustain ? "contain" : "cover"}` }}
                   alt={`picture of ${person.name} ${person.role}`}
                 />
               </div>
