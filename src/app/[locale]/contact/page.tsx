@@ -3,6 +3,7 @@ import Contact from "@/components/Contact";
 import { Metadata } from "next";
 import { getScopedI18n } from "@/locales/server";
 import MapComponent from "@/components/Google/MapComponent";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: `Kontakt | Erreichen Sie uns bei Fragen oder Anregungen`,
@@ -28,6 +29,13 @@ const ContactPage = async () => {
 
   return (
     <>
+      <Script id="contact-conversion-tracking" strategy="afterInteractive">
+        {`
+          gtag('event', 'ads_conversion_Request_quote_1', {
+            // <event_parameters>
+          });
+        `}
+      </Script>
       <Breadcrumb pageName={t("title")} description={t("paragraph")} />
 
       <section className="relative bg-gray-light py-16 pb-12 dark:bg-bg-color-dark">
