@@ -8,16 +8,6 @@ const I18nMiddleware = createI18nMiddleware({
 });
 
 export function middleware(request: NextRequest) {
-  // Handle not-found and error routes specially
-  if (request.nextUrl.pathname === '/error' || request.nextUrl.pathname === '/_not-found') {
-    const response = NextResponse.rewrite(new URL(`/de${request.nextUrl.pathname}`, request.url));
-    // Add security headers
-    response.headers.set("X-Content-Type-Options", "nosniff");
-    response.headers.set("X-Frame-Options", "DENY");
-    response.headers.set("X-XSS-Protection", "1; mode=block");
-    return response;
-  }
-
   // Regular i18n middleware
   const response = I18nMiddleware(request);
   
@@ -33,7 +23,5 @@ export const config = {
   matcher: [
     // Match all pathnames except those starting with:
     "/((?!api|static|.*\\..*|_next|favicon.ico|robots.txt).*)",
-    // Match all pathnames including /error and /_not-found
-    "/(error|_not-found)"
   ],
 };
