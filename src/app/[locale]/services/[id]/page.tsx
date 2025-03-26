@@ -4,13 +4,12 @@ import ParallelGallery from "@/components/Services/ParallelGallery";
 import SharePost from "@/components/Services/SharePost";
 import SubserviceContent from "@/components/Services/SubserviceContent";
 import useServicesData from "@/data/useServiceData";
-import { useParams, useRouter } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import SwiperRelatedPosts from "./SwiperRelatedPosts";
 import { useScopedI18n } from "@/locales/client";
 
 export default function ServicePage() {
   const { id } = useParams();
-  const router = useRouter();
   const serviceData = useServicesData();
   const t = useScopedI18n("menu");
 
@@ -20,8 +19,7 @@ export default function ServicePage() {
   );
 
   if (!subservice) {
-    router.push("/error");
-    return null;
+  notFound();
   }
 
   const { title, description, iconName } = subservice;

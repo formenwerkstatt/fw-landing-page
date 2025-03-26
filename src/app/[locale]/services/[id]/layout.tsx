@@ -20,7 +20,7 @@ export async function generateMetadata({
     title: `${str} | Dienstleitung von Formenwerkstatt`,
     description: `${str} | Dienstleitung von Formenwerkstatt. Erreichen Sie uns fŭr die Beste Preis und schnellste Lieferung aus dem Odenwald.`,
     alternates: {
-      canonical: `https://www.formenwerkstatt.de/services/${str}`,
+      canonical: `https://formenwerkstatt.de/services/${str}`,
     },
     robots: {
       index: true,

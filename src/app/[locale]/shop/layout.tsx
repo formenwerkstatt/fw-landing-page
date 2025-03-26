@@ -6,7 +6,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description:
       "Entdecken Sie hochwertige Produkte im Formenwerkstatt Online-Shop. Handgefertigte Designobjekte, Wohnaccessoires und Formgebungslösungen mit besonderer Qualität und einzigartigem Stil.",
     alternates: {
-      canonical: "https://www.formenwerkstatt.de/shop",
+      canonical: "https://formenwerkstatt.de/shop",
     },
     robots: {
       index: true,

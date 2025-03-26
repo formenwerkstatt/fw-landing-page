@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: `Datenschutz | Formenwerkstatt`,
   description: "Datenschutzerklärung | Formenwerkstatt",
   alternates: {
-    canonical: "https://www.formenwerkstatt.de/datenschutz",
+    canonical: "https://formenwerkstatt.de/datenschutz",
   },
   robots: {
     index: true,

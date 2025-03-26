@@ -10,7 +10,7 @@ export async function generateMetadata({
     description:
       "Finden Sie Ihren Traumjob bei Formenwerkstatt. Erreichen Sie uns fŭr die Beste Preis und schnellste Lieferung aus dem Odenwald.",
     alternates: {
-      canonical: "https://www.formenwerkstatt.de/jobs",
+      canonical: "https://formenwerkstatt.de/jobs",
     },
     robots: {
       index: true,

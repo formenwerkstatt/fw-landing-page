@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Error | Formenwerkstatt",
   description: "Sorry, an unexpected error occurred at Formenwerkstatt.",
   alternates: {
-    canonical: "https://www.formenwerkstatt.de/error",
+    canonical: "https://formenwerkstatt.de/404",
   },
   robots: {
     index: false,

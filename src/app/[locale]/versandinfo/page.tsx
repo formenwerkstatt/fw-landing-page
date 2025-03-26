@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: `Versandinformationen | Formenwerkstatt`,
   description: "Versand- und Lieferinformationen | Formenwerkstatt",
   alternates: {
-    canonical: "https://www.formenwerkstatt.de/versand",
+    canonical: "https://formenwerkstatt.de/versand",
   },
   robots: {
     index: true,

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Ihr Experte für Werkzeugreparatur, Drahterodieren und Werkzeugherstellung in Reichelsheim. Beste preis und schnellste lieferung aus dem Odenwald.",
   alternates: {
-    canonical: "https://www.formenwerkstatt.de/",
+    canonical: "https://formenwerkstatt.de/",
   },
   robots: {
     index: true,

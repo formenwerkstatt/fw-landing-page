@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: `Widerrufsrecht | Formenwerkstatt`,
   description: "Widerrufsrecht | Formenwerkstatt",
   alternates: {
-    canonical: "https://www.formenwerkstatt.de/widerrufsrecht",
+    canonical: "https://formenwerkstatt.de/widerrufsrecht",
   },
   robots: {
     index: true,

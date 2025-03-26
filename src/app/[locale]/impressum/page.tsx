@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: `Impressum | Formenwerkstatt`,
   description: "Impressum | Info von Formenwerkstatt",
   alternates: {
-    canonical: "https://www.formenwerkstatt.de/impressum",
+    canonical: "https://formenwerkstatt.de/impressum",
   },
   robots: {
     index: true,

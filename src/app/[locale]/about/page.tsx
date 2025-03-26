@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description:
     "Erfahren Sie mehr über das Unternehmen Formenwerkstatt. Erreichen Sie uns fŭr die Beste Preis und schnellste Lieferung aus dem Odenwald.",
   alternates: {
-    canonical: "https://www.formenwerkstatt.de/about",
+    canonical: "https://formenwerkstatt.de/about",
   },
   robots: {
     index: true,

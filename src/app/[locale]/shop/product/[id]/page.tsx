@@ -21,7 +21,7 @@ export async function generateMetadata({
     description:
       "Die Creative Plate ist eine anpassbare Kennzeichenhalterung, die es Ihnen ermöglicht, Ihr Autokennzeichen individuell zu gestalten.",
     alternates: {
-      canonical: `https://www.formenwerkstatt.de/shop/product/${id}`,
+      canonical: `https://formenwerkstatt.de/shop/product/${id}`,
     },
     robots: {
       index: true,

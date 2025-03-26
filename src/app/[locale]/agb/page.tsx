@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: `Allgemeine Geschäftsbedingungen | Formenwerkstatt`,
   description: "Allgemeine Geschäftsbedingungen | Formenwerkstatt",
   alternates: {
-    canonical: "https://www.formenwerkstatt.de/agb",
+    canonical: "https://formenwerkstatt.de/agb",
   },
   robots: {
     index: true,

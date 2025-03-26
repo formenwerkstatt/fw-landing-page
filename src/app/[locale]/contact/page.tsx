@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: `Kontakt | Erreichen Sie uns bei Fragen oder Anregungen`,
   description: "Wie kann man Formenwerkstatt erreichen? Erreichen Sie uns fŭr die Beste Preis und schnellste Lieferung aus dem Odenwald.",
   alternates: {
-    canonical: "https://www.formenwerkstatt.de/contact",
+    canonical: "https://formenwerkstatt.de/contact",
   },
   robots: {
     index: true,

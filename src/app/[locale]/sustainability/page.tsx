@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description:
     "Learn about Formenwerkstatt's commitment to sustainability and environmental responsibility. Discover our eco-friendly practices, green initiatives, and how we're working toward a more sustainable future.",
   alternates: {
-    canonical: "https://www.formenwerkstatt.de/sustainability",
+    canonical: "https://formenwerkstatt.de/sustainability",
   },
   robots: {
     index: true,

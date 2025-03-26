@@ -4,7 +4,7 @@ module.exports = {
   changefreq: "daily",
   priority: 0.7,
   exclude: ["/404", "/500"], // Exclude non-essential pages
-  additionalPaths: async (config) => {
+  additionalPaths: async () => {
     // This function will dynamically add paths
     const dynamicPaths = await fetchDynamicPaths();
     return dynamicPaths.map((path) => ({
