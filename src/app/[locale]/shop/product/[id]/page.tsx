@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import ProductSection from "@/components/Shop/ProductSection";
 import Reviews from "@/components/Shop/Reviews";
@@ -49,7 +49,7 @@ export default async function ProductDetailsPage({
   const product = await getProduct(id);
 
   if (!product) {
-    redirect("/error");
+    notFound();
   }
 
   return (

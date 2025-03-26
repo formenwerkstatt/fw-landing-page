@@ -19,7 +19,7 @@ export default function ServicePage() {
   );
 
   if (!subservice) {
-  notFound();
+    notFound();
   }
 
   const { title, description, iconName } = subservice;
