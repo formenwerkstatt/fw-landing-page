@@ -263,7 +263,7 @@ const useServicesData = (): Services[] => {
         {
           title: t("reparatur.subServices.0.title"),
           description: t("reparatur.subServices.0.description"),
-          path: "/werkzeug-reparatur",
+          path: "/werkzeugreparatur",
           iconName: "repair",
           paragraph: t("reparatur.subServices.0.paragraph"),
           nestedList: [
