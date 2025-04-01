@@ -39,7 +39,7 @@ const fetchDynamicPaths = async () => {
     "/services/flachschleifen",
     "/services/optimierung",
     "/services/uberholung",
-    "/services/werkzeug-reparatur",
+    "/services/werkzeugreparatur",
   ];
   return dynamicData.map((slug) => `https://formenwerkstatt.de${slug}`);
 };
