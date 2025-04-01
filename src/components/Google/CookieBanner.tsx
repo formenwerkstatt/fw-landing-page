@@ -6,14 +6,40 @@ import { useI18n } from "@/locales/client";
 
 export default function CookieBanner() {
   const [cookieConsent, setCookieConsent] = useState<boolean | null>(null);
-
   const t = useI18n();
 
+  // Load initial consent from localStorage
   useEffect(() => {
     const storedCookieConsent = getLocalStorage("cookie_consent", null);
     setCookieConsent(storedCookieConsent);
+    
+    // Apply stored consent immediately if available
+    if (storedCookieConsent !== null) {
+      const applyStoredConsent = () => {
+        if (typeof window !== "undefined" && window.gtag) {
+          const consentValue = storedCookieConsent ? "granted" : "denied";
+          try {
+            window.gtag("consent", "update", {
+              analytics_storage: consentValue,
+              ad_storage: consentValue,
+              ad_user_data: consentValue,
+              ad_personalization: consentValue,
+            });
+            console.log("Applied stored consent on initial load");
+          } catch (error) {
+            console.error("Error applying stored consent:", error);
+          }
+        } else {
+          // If GA isn't ready yet, retry after a short delay
+          setTimeout(applyStoredConsent, 1000);
+        }
+      };
+      
+      applyStoredConsent();
+    }
   }, []);
 
+  // Update consent when user makes a choice
   useEffect(() => {
     if (cookieConsent !== null) {
       const newValue = cookieConsent ? "granted" : "denied";
@@ -39,7 +65,7 @@ export default function CookieBanner() {
     }
   }, [cookieConsent]);
 
-  if (cookieConsent !== null) return null; //If some animations would be added to the component delete this and use CSS to hide
+  if (cookieConsent !== null) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 w-full bg-gray-dark p-4 shadow-lg">
