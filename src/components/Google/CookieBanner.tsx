@@ -9,7 +9,7 @@ export default function CookieBanner() {
   const t = useI18n();
 
   const waitForGtag = (callback: () => void) => {
-    if (typeof window !== "undefined" && window.gtag) {
+    if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
       callback();
     } else {
       setTimeout(() => waitForGtag(callback), 50);
