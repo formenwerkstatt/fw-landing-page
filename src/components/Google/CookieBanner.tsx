@@ -8,44 +8,40 @@ export default function CookieBanner() {
   const [cookieConsent, setCookieConsent] = useState<boolean | null>(null);
   const t = useI18n();
 
-  // Load initial consent from localStorage
+  const waitForGtag = (callback: () => void) => {
+    if (typeof window !== "undefined" && window.gtag) {
+      callback();
+    } else {
+      setTimeout(() => waitForGtag(callback), 50);
+    }
+  };
+
   useEffect(() => {
     const storedCookieConsent = getLocalStorage("cookie_consent", null);
     setCookieConsent(storedCookieConsent);
-    
-    // Apply stored consent immediately if available
+
     if (storedCookieConsent !== null) {
-      const applyStoredConsent = () => {
-        if (typeof window !== "undefined" && window.gtag) {
-          const consentValue = storedCookieConsent ? "granted" : "denied";
-          try {
-            window.gtag("consent", "update", {
-              analytics_storage: consentValue,
-              ad_storage: consentValue,
-              ad_user_data: consentValue,
-              ad_personalization: consentValue,
-            });
-            console.log("Applied stored consent on initial load");
-          } catch (error) {
-            console.error("Error applying stored consent:", error);
-          }
-        } else {
-          // If GA isn't ready yet, retry after a short delay
-          setTimeout(applyStoredConsent, 1000);
+      waitForGtag(() => {
+        const consentValue = storedCookieConsent ? "granted" : "denied";
+        try {
+          window.gtag("consent", "update", {
+            analytics_storage: consentValue,
+            ad_storage: consentValue,
+            ad_user_data: consentValue,
+            ad_personalization: consentValue,
+          });
+          console.log("Applied stored consent on initial load");
+        } catch (error) {
+          console.error("Error applying stored consent:", error);
         }
-      };
-      
-      applyStoredConsent();
+      });
     }
   }, []);
 
-  // Update consent when user makes a choice
   useEffect(() => {
     if (cookieConsent !== null) {
-      const newValue = cookieConsent ? "granted" : "denied";
-
-      // Check if gtag is available
-      if (typeof window !== "undefined" && window.gtag) {
+      waitForGtag(() => {
+        const newValue = cookieConsent ? "granted" : "denied";
         try {
           window.gtag("consent", "update", {
             analytics_storage: newValue,
@@ -57,10 +53,7 @@ export default function CookieBanner() {
         } catch (error) {
           console.error("Error updating gtag consent:", error);
         }
-      } else {
-        console.warn("Google Analytics not initialized yet");
-      }
-
+      });
       setLocalStorage("cookie_consent", cookieConsent);
     }
   }, [cookieConsent]);
