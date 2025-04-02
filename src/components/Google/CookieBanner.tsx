@@ -9,7 +9,10 @@ export default function CookieBanner() {
   const t = useI18n();
 
   const waitForGtag = (callback: () => void) => {
-    if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
+    if (
+      typeof window !== "undefined" &&
+      typeof (window as any).gtag === "function"
+    ) {
       callback();
     } else {
       setTimeout(() => waitForGtag(callback), 50);
@@ -38,22 +41,46 @@ export default function CookieBanner() {
     }
   }, []);
 
+  // In your CookieBanner component, improve the consent update logic:
+
   useEffect(() => {
     if (cookieConsent !== null) {
-      waitForGtag(() => {
-        const newValue = cookieConsent ? "granted" : "denied";
-        try {
-          window.gtag("consent", "update", {
-            analytics_storage: newValue,
-            ad_storage: newValue,
-            ad_user_data: newValue,
-            ad_personalization: newValue,
-          });
-          console.log("Successfully updated gtag consent");
-        } catch (error) {
-          console.error("Error updating gtag consent:", error);
+      const newValue = cookieConsent ? "granted" : "denied";
+
+      // Function to update consent when gtag is available
+      const updateConsent = () => {
+        if (typeof window !== "undefined" && window.gtag) {
+          try {
+            window.gtag("consent", "update", {
+              analytics_storage: newValue,
+              ad_storage: newValue,
+              ad_user_data: newValue,
+              ad_personalization: newValue,
+            });
+            console.log("Successfully updated gtag consent");
+            return true; // Success
+          } catch (error) {
+            console.error("Error updating gtag consent:", error);
+            return false; // Failed
+          }
         }
-      });
+        return false; // gtag not available
+      };
+
+      // Try updating consent immediately
+      if (!updateConsent()) {
+        // If fails, retry a few times with increasing delays
+        const retryIntervals = [100, 500, 1000, 2000];
+        retryIntervals.forEach((delay, index) => {
+          setTimeout(() => {
+            if (updateConsent()) {
+              console.log(`Consent updated on retry ${index + 1}`);
+            }
+          }, delay);
+        });
+      }
+
+      // Always update local storage
       setLocalStorage("cookie_consent", cookieConsent);
     }
   }, [cookieConsent]);

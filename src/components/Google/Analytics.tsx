@@ -33,19 +33,21 @@ export default function GoogleAnalytics({ GA_MEASUREMENT_ID }: { GA_MEASUREMENT_
           __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', '${GA_MEASUREMENT_ID}', {
-              page_path: window.location.pathname,
-              cookie_flags: 'SameSite=None;Secure'
-            });
             
-            // Initialize consent mode
+            // Initialize consent mode FIRST
             gtag('consent', 'default', {
               'analytics_storage': 'denied',
               'ad_storage': 'denied',
               'ad_user_data': 'denied',
-              'ad_personalization': 'denied'
+              'ad_personalization': 'denied',
+              'region': ['DE', 'AT', 'CH', 'GB', 'ES', 'FR', 'IT', 'BE', 'DK', 'GR', 'IE', 'NL', 'PT', 'SE']
+            });
+            
+            // THEN initialize analytics
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}', {
+              page_path: window.location.pathname,
+              cookie_flags: 'SameSite=None;Secure'
             });
           `,
         }}
@@ -54,14 +56,10 @@ export default function GoogleAnalytics({ GA_MEASUREMENT_ID }: { GA_MEASUREMENT_
   );
 }
 
-// Add this type declaration at the top of your file or in a separate .d.ts file
+// Type declaration
 declare global {
   interface Window {
-    gtag: (
-      command: string,
-      action: string,
-      params?: Record<string, any>
-    ) => void;
+    gtag: (command: string, action: string, params?: Record<string, any>) => void;
     dataLayer: any[];
   }
 }
