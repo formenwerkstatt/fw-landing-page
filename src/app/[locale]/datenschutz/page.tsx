@@ -128,7 +128,7 @@ export default function Datenschutz() {
             .
           </p>
 
-          <h2 className=" my-4 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl ">
+          {/* <h2 className=" my-4 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl ">
             5. Shopify & Zahlungsabwicklung
           </h2>
           <p className="text-base !leading-relaxed text-body-color">
@@ -177,10 +177,10 @@ export default function Datenschutz() {
             erforderlichen Daten werden entsprechend der gesetzlichen
             Aufbewahrungsfristen (in der Regel 10 Jahre für steuerrelevante
             Unterlagen) gespeichert.
-          </p>
+          </p> */}
 
           <h2 className=" my-4 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl ">
-            6. Ihre Rechte nach DSGVO
+            5. Ihre Rechte nach DSGVO
           </h2>
           <p className="text-base !leading-relaxed text-body-color">
             Sie haben das Recht auf:
@@ -217,7 +217,7 @@ export default function Datenschutz() {
           </p>
 
           <h2 className=" my-4 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl ">
-            7. Kontakt & Verantwortliche Stelle
+            6. Kontakt & Verantwortliche Stelle
           </h2>
           <p className="text-base !leading-relaxed text-body-color">
             <strong>Formenwerkstatt GmbH</strong>
@@ -234,7 +234,7 @@ export default function Datenschutz() {
           </p>
 
           <p className="mt-12 text-base !leading-relaxed text-body-color">
-            <strong>Letzte Aktualisierung:</strong> 06.03.2024
+            <strong>Letzte Aktualisierung:</strong> 12.05.2025
           </p>
         </div>
       </section>

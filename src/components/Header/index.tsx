@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 import { FaChevronDown } from "react-icons/fa";
-import { TiShoppingCart } from "react-icons/ti";
 import ThemeToggler from "./ThemeToggler";
 import { useChangeLocale, useCurrentLocale } from "@/locales/client";
 import useMenuData from "@/data/useMenuData";
@@ -246,7 +245,7 @@ export default function Header() {
                   </li>
                 ))}
 
-                <li>
+                {/* <li>
                   <Link
                     className={cn(
                       `flex rounded-lg py-2 text-xl lg:mr-0 lg:inline-flex lg:px-4 lg:py-4`,
@@ -257,7 +256,7 @@ export default function Header() {
                   >
                     Shop
                   </Link>
-                </li>
+                </li> */}
 
                 {/* Language Selector inside navbar for small screens */}
                 <li className="flex items-center justify-end lg:hidden">
