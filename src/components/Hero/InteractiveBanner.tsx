@@ -65,7 +65,7 @@ export default function InteractiveBanner() {
         "bg-gradient-to-b from-slate-300 via-transparent to-slate-400",
       )}
     >
-      {isOverlayVisible ? (
+      {isOverlayVisible && (
         <div
           className={cn(
             "absolute inset-0 z-10",
@@ -209,7 +209,7 @@ export default function InteractiveBanner() {
                 </Link>
               </div>
 
-              {/* 3D demo button */}
+              {/* 3D demo button
               <button
                 onClick={() => {
                   setIsOverlayVisible(false);
@@ -224,41 +224,42 @@ export default function InteractiveBanner() {
                 aria-label="View 3D Demo"
               >
                 Try 3D Demo
-              </button>
+              </button> */}
             </div>
           </div>
-        </div>
-      ) : (
-        <Suspense fallback={<Loading />}>
-          <div className="relative mt-[80px] h-[calc(100svh-80px)] w-full">
-            <ThreeFiber />
-            {isHelpVisible && (
-              <div
-                className={cn(
-                  "absolute bottom-[10%] right-4",
-                  "w-[200px] rounded-lg bg-white p-4 shadow-lg",
-                  "text-balance text-center text-black",
-                  "animate-fade-in",
-                )}
-              >
-                <p>{t("help")}</p>
-              </div>
-            )}
-            <ControlButton
-              className="absolute right-4 top-4 size-10"
-              text="X"
-              handleClick={() => setIsOverlayVisible(true)}
-              aria-label="Close 3D Demo"
-            />
-            <ControlButton
-              className="absolute bottom-4 right-4 size-10"
-              text="?"
-              handleClick={() => setIsHelpVisible(!isHelpVisible)}
-              aria-label="Show Help"
-            />
-          </div>
-        </Suspense>
-      )}
+        </div>)
+      // ) : (
+      //   <Suspense fallback={<Loading />}>
+      //     <div className="relative mt-[80px] h-[calc(100svh-80px)] w-full">
+      //       <ThreeFiber />
+      //       {isHelpVisible && (
+      //         <div
+      //           className={cn(
+      //             "absolute bottom-[10%] right-4",
+      //             "w-[200px] rounded-lg bg-white p-4 shadow-lg",
+      //             "text-balance text-center text-black",
+      //             "animate-fade-in",
+      //           )}
+      //         >
+      //           <p>{t("help")}</p>
+      //         </div>
+      //       )}
+      //       <ControlButton
+      //         className="absolute right-4 top-4 size-10"
+      //         text="X"
+      //         handleClick={() => setIsOverlayVisible(true)}
+      //         aria-label="Close 3D Demo"
+      //       />
+      //       <ControlButton
+      //         className="absolute bottom-4 right-4 size-10"
+      //         text="?"
+      //         handleClick={() => setIsHelpVisible(!isHelpVisible)}
+      //         aria-label="Show Help"
+      //       />
+      //     </div>
+      //   </Suspense>
+      // )
+      }
     </div>
   );
 }
