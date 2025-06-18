@@ -5,6 +5,7 @@ import { ReactElement, Suspense } from "react";
 import { Providers } from "./providers";
 import { getCurrentLocale } from "@/locales/server";
 import GoogleAnalytics from "@/components/Google/Analytics";
+import { setStaticParamsLocale } from "next-international/server";
 
 const titillium = Titillium_Web({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -14,10 +15,10 @@ export default async function RootLayout({
   children: ReactElement<any>;
 }) {
   const locale = await getCurrentLocale();
-
+  setStaticParamsLocale(locale || 'de');
 
   return (
-    <html lang={locale} suppressHydrationWarning={true}>
+    <html lang={locale || "de"} suppressHydrationWarning={true}>
       <head />
       <body className={`bg-[#FCFCFC] dark:bg-black ${titillium.className}`}>
         <Suspense fallback={null}>
