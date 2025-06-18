@@ -32,11 +32,11 @@ export default function Versand() {
           <h2 className="my-4 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl">
             VERSANDOPTIONEN
           </h2>
-          <p className="text-base !leading-relaxed text-body-color">
+          <p className="text-base leading-relaxed! text-body-color">
             Formenwerkstatt bietet folgende Versandmethoden an:
           </p>
           <ul className="list-inside list-disc pl-4">
-            <li className="text-base !leading-relaxed text-body-color">
+            <li className="text-base leading-relaxed! text-body-color">
               Standardversand (2-4 Werktage)
             </li>
          
@@ -45,20 +45,20 @@ export default function Versand() {
           <h2 className="my-4 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl">
             VERSANDKOSTEN
           </h2>
-          <p className="text-base !leading-relaxed text-body-color">
+          <p className="text-base leading-relaxed! text-body-color">
             Die Versandkosten werden beim Checkout basierend auf Ihrem Standort,
             dem Gewicht der Bestellung und der gewählten Versandmethode
             berechnet:
           </p>
           <ul className="list-inside list-disc pl-4">
-            <li className="text-base !leading-relaxed text-body-color">
+            <li className="text-base leading-relaxed! text-body-color">
               Deutschland: 6,25€ (Standard)
             </li>
-            <li className="text-base !leading-relaxed text-body-color">
+            <li className="text-base leading-relaxed! text-body-color">
               EU-Länder: 11,95 € (Standard)
             </li>
           </ul>
-          <p className="text-base !leading-relaxed text-body-color">
+          <p className="text-base leading-relaxed! text-body-color">
             Bei Bestellungen über 75 € ist der Standardversand innerhalb
             Deutschlands kostenlos.
           </p>
@@ -66,7 +66,7 @@ export default function Versand() {
           <h2 className="my-4 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl">
             AUFTRAGSBEARBEITUNG
           </h2>
-          <p className="text-base !leading-relaxed text-body-color">
+          <p className="text-base leading-relaxed! text-body-color">
             Bestellungen werden in der Regel innerhalb von 1-2 Werktagen nach
             Zahlungsbestätigung bearbeitet. Sie erhalten eine E-Mail mit Ihrer
             Sendungsverfolgung, sobald Ihre Bestellung versandt wurde. Bitte
@@ -77,13 +77,13 @@ export default function Versand() {
           <h2 className="my-4 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl">
             LIEFERZEITEN
           </h2>
-          <p className="text-base !leading-relaxed text-body-color">
+          <p className="text-base leading-relaxed! text-body-color">
             Die geschätzten Lieferzeiten beginnen, sobald Ihre Bestellung
             versandt wurde. Bitte beachten Sie, dass es sich hierbei nur um
             Schätzungen handelt und die tatsächlichen Lieferzeiten je nach
             Faktoren außerhalb unserer Kontrolle variieren können.
           </p>
-          <p className="text-base !leading-relaxed text-body-color">
+          <p className="text-base leading-relaxed! text-body-color">
             Für Lieferungen innerhalb Deutschlands werden Bestellungen, die an
             Werktagen vor 14:00 Uhr versendet werden, in der Regel innerhalb von
             2-4 Werktagen mit dem Standardversand zugestellt.
@@ -92,7 +92,7 @@ export default function Versand() {
           <h2 className="my-4 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl">
             SENDUNGSVERFOLGUNG
           </h2>
-          <p className="text-base !leading-relaxed text-body-color">
+          <p className="text-base leading-relaxed! text-body-color">
             Sobald Ihre Bestellung verschickt wurde, erhalten Sie eine E-Mail
             mit Informationen zur Sendungsverfolgung. Sie können Ihre Bestellung
             auch verfolgen, indem Sie sich in Ihr Konto auf unserer Website
@@ -109,7 +109,7 @@ export default function Versand() {
           <h2 className="my-4 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl">
             VERSANDBESCHRÄNKUNGEN
           </h2>
-          <p className="text-base !leading-relaxed text-body-color">
+          <p className="text-base leading-relaxed! text-body-color">
             Wir versenden derzeit nur nach Deutschland und in EU-Länder. Bei
             Fragen zum Versand an Ihren Standort wenden Sie sich bitte an unser
             Kundendienstteam.
@@ -118,7 +118,7 @@ export default function Versand() {
           <h2 className="my-4 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl">
             LIEFERPROBLEME
           </h2>
-          <p className="text-base !leading-relaxed text-body-color">
+          <p className="text-base leading-relaxed! text-body-color">
             Wenn Sie Ihre Bestellung nicht innerhalb des erwarteten Zeitrahmens
             erhalten haben oder wenn es Probleme mit Ihrer Lieferung gibt,
             kontaktieren Sie uns bitte innerhalb von 7 Tagen nach dem
@@ -133,7 +133,7 @@ export default function Versand() {
             und so schnell wie möglich lösen.
           </p>
 
-          <p className="mt-12 text-base !leading-relaxed text-body-color">
+          <p className="mt-12 text-base leading-relaxed! text-body-color">
             <strong>Letzte Aktualisierung:</strong> 06.03.2025
           </p>
         </div>

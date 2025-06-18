@@ -2,15 +2,16 @@ import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import ProductSection from "@/components/Shop/ProductSection";
 import Reviews from "@/components/Shop/Reviews";
-import { getProduct } from "@/app/actions/shopify-actions";
+import { getProduct } from "@/ARCHIVE/actions/shopify-actions";
 import HomeArticle from "@/components/HomeArticle";
 import { Metadata } from "next";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { id: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ id: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const { id } = params;
   const product = await getProduct(id);
 
@@ -38,11 +39,12 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProductDetailsPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function ProductDetailsPage(
+  props: {
+    params: Promise<{ id: string }>;
+  }
+) {
+  const params = await props.params;
   const { id } = params;
 
   // const product = await getDocument<Product>("products", id);

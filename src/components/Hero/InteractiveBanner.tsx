@@ -61,8 +61,8 @@ export default function InteractiveBanner() {
   return (
     <div
       className={cn(
-        "relative min-h-[150vh] w-full overflow-hidden md:min-h-[100vh]",
-        "bg-gradient-to-b from-slate-300 via-transparent to-slate-400",
+        "relative min-h-[150vh] w-full overflow-hidden md:min-h-screen",
+        "bg-linear-to-b from-slate-300 via-transparent to-slate-400",
       )}
     >
       {isOverlayVisible && (
@@ -114,7 +114,7 @@ export default function InteractiveBanner() {
           <div
             className={cn(
               "relative z-50 w-full py-8 md:py-12",
-              "bg-gradient-to-t from-transparent via-primary/40 to-transparent",
+              "bg-linear-to-t from-transparent via-primary/40 to-transparent",
             )}
           >
             <div className="container mx-auto px-4 text-center">
@@ -142,7 +142,7 @@ export default function InteractiveBanner() {
                 {/* Contact Us Card */}
                 <div
                   className={cn(
-                    "transform rounded-lg bg-gradient-to-br from-blue-600 to-blue-800 p-6 text-center text-white opacity-80",
+                    "transform rounded-lg bg-linear-to-br from-blue-600 to-blue-800 p-6 text-center text-white opacity-80",
                     "shadow-lg transition-all duration-300 hover:scale-105 hover:opacity-100 hover:shadow-xl md:px-12 md:py-6",
                     "flex flex-col items-center justify-between",
                   )}
@@ -156,7 +156,7 @@ export default function InteractiveBanner() {
                     <Link
                       href="mailto:info@formenwerkstatt.de"
                       className={cn(
-                        "rounded-full bg-white/20 px-4 py-2 backdrop-blur-sm",
+                        "rounded-full bg-white/20 px-4 py-2 backdrop-blur-xs",
                         "text-sm font-semibold text-white",
                         "border border-white/30",
                         "inline-flex items-center justify-center gap-2 transition-all",
@@ -168,7 +168,7 @@ export default function InteractiveBanner() {
                     <Link
                       href="tel:+4906164913017"
                       className={cn(
-                        "rounded-full bg-white/20 px-4 py-2 backdrop-blur-sm",
+                        "rounded-full bg-white/20 px-4 py-2 backdrop-blur-xs",
                         "text-sm font-semibold text-white",
                         "border border-white/30",
                         "inline-flex items-center justify-center gap-2 transition-all",
@@ -184,7 +184,7 @@ export default function InteractiveBanner() {
                 <Link
                   href="/contact"
                   className={cn(
-                    "transform rounded-lg bg-gradient-to-br from-green-600 to-green-800 p-6 text-center text-white opacity-80",
+                    "transform rounded-lg bg-linear-to-br from-green-600 to-green-800 p-6 text-center text-white opacity-80",
                     " shadow-lg transition-all duration-300 hover:scale-105 hover:opacity-100 hover:shadow-xl md:px-12 md:py-6",
                     "flex flex-col items-center justify-between",
                   )}
@@ -198,7 +198,7 @@ export default function InteractiveBanner() {
                   </p>
                   <p
                     className={cn(
-                      "rounded-full bg-white/20 px-4 py-2 backdrop-blur-sm",
+                      "rounded-full bg-white/20 px-4 py-2 backdrop-blur-xs",
                       "text-lg font-semibold text-white",
                       "border border-white/30",
                       "mt-2 inline-block",

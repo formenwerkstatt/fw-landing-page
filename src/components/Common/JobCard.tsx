@@ -11,11 +11,11 @@ export default function JobCard({
   slug: string;
 }) {
   return (
-    <div className="group relative overflow-hidden rounded-sm bg-white shadow-two duration-300 hover:shadow-three dark:bg-dark dark:hover:shadow-gray-dark">
+    <div className="group relative overflow-hidden rounded-xs bg-white shadow-two duration-300 hover:shadow-three dark:bg-dark dark:hover:shadow-gray-dark">
       {/* Main Content */}
       <div className="relative">
         {/* Image */}
-        <div className="relative block aspect-[5/4] w-full">
+        <div className="relative block aspect-5/4 w-full">
           <Image
             src={""}
             alt="image"

@@ -115,7 +115,7 @@ export default function ProductSection({ product }: { product: Product }) {
               <p className="mb-1 text-sm font-medium">
                 {activePreviewVariant.title}
               </p>
-              <div className="relative mx-auto h-48 w-full max-w-xs overflow-hidden rounded">
+              <div className="relative mx-auto h-48 w-full max-w-xs overflow-hidden rounded-sm">
                 <Image
                   src={activePreviewVariant.imageUrl}
                   alt={activePreviewVariant.title}

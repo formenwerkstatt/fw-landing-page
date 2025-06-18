@@ -44,7 +44,7 @@ export default function CheckoutForm({
   }, [setConfirmOrder]);
 
   return (
-    <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50 p-4">
+    <div className="fixed inset-0 z-999 flex items-center justify-center bg-black bg-opacity-50 p-4">
       <form
         ref={formRef}
         onSubmit={(e) => {
@@ -73,7 +73,7 @@ export default function CheckoutForm({
                 </label>
                 <input
                   type="text"
-                  className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                  className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-hidden focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                   required
                   value={formData.firstName}
                   onChange={(e) =>
@@ -87,7 +87,7 @@ export default function CheckoutForm({
                 </label>
                 <input
                   type="text"
-                  className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                  className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-hidden focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                   required
                   value={formData.lastName}
                   onChange={(e) =>
@@ -102,7 +102,7 @@ export default function CheckoutForm({
               </label>
               <input
                 type="email"
-                className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-hidden focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                 required
                 value={formData.email}
                 onChange={(e) =>
@@ -116,7 +116,7 @@ export default function CheckoutForm({
               </label>
               <input
                 type="tel"
-                className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-hidden focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                 required
                 value={formData.phone}
                 onChange={(e) =>
@@ -144,7 +144,7 @@ export default function CheckoutForm({
                 pattern="\d*"
                 maxLength={16}
                 placeholder="1234 5678 9012 3456"
-                className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-hidden focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                 required
               />
             </div>
@@ -157,7 +157,7 @@ export default function CheckoutForm({
                   type="text"
                   placeholder="MM/YY"
                   maxLength={5}
-                  className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                  className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-hidden focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                   required
                 />
               </div>
@@ -169,7 +169,7 @@ export default function CheckoutForm({
                   type="password"
                   maxLength={4}
                   placeholder="***"
-                  className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                  className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-hidden focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                   required
                 />
               </div>
@@ -193,7 +193,7 @@ export default function CheckoutForm({
               </label>
               <input
                 type="text"
-                className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-hidden focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                 required
                 value={formData.streetAddress}
                 onChange={(e) =>
@@ -208,7 +208,7 @@ export default function CheckoutForm({
                 </label>
                 <input
                   type="text"
-                  className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                  className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-hidden focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                   required
                   value={formData.city}
                   onChange={(e) =>
@@ -222,7 +222,7 @@ export default function CheckoutForm({
                 </label>
                 <input
                   type="text"
-                  className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                  className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-hidden focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                   required
                   value={formData.postalCode}
                   onChange={(e) =>
@@ -238,13 +238,13 @@ export default function CheckoutForm({
           <button
             type="button"
             onClick={() => setConfirmOrder(false)}
-            className="flex items-center justify-center gap-2 rounded-lg bg-red-500 px-4 py-2 text-white shadow-md transition hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400"
+            className="flex items-center justify-center gap-2 rounded-lg bg-red-500 px-4 py-2 text-white shadow-md transition hover:bg-red-600 focus:outline-hidden focus:ring-2 focus:ring-red-400"
           >
             <X size={18} /> Cancel
           </button>
           <button
             type="submit"
-            className="flex items-center justify-center gap-2 rounded-lg bg-blue-500 px-4 py-2 text-white shadow-md transition hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="flex items-center justify-center gap-2 rounded-lg bg-blue-500 px-4 py-2 text-white shadow-md transition hover:bg-blue-600 focus:outline-hidden focus:ring-2 focus:ring-blue-400"
           >
             <Send size={18} /> Pay Now
           </button>

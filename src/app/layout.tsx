@@ -12,13 +12,13 @@ const titillium = Titillium_Web({ subsets: ["latin"], weight: ["400", "700"] });
 export default async function RootLayout({
   children,
 }: {
-  children: ReactElement;
+  children: ReactElement<any>;
 }) {
   const locale = await getCurrentLocale();
 
 
   return (
-    <html lang={locale} suppressHydrationWarning={false}>
+    <html lang={locale} suppressHydrationWarning={true}>
       <head />
       <body className={`bg-[#FCFCFC] dark:bg-black ${titillium.className}`}>
         <Suspense fallback={null}>

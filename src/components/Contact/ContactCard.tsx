@@ -8,7 +8,7 @@ export default function ContactCard() {
   const t = useScopedI18n("contact");
 
   return (
-    <aside className="relative z-10 h-full rounded-sm bg-white p-8 shadow-two dark:bg-gray-dark dark:shadow-none ">
+    <aside className="relative z-10 h-full rounded-xs bg-white p-8 shadow-two dark:bg-gray-dark dark:shadow-none ">
       <h3 className="mb-4 text-2xl font-bold text-black dark:text-white">
         Formen Werkstatt
       </h3>

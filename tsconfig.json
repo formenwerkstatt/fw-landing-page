@@ -1,9 +1,15 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     },
     "allowJs": true,
     "skipLibCheck": true,
@@ -21,7 +27,8 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "target": "ES2017"
   },
   "include": [
     "next-env.d.ts",
@@ -31,10 +38,12 @@
     "src/components/Hero/InteractiveBanner.tsx",
     "src/components/Hero/ThreeFiber.tsx",
     "src/app/[locale]/admin/mockData.js",
-    "src/app/actions/firebase-actions.ts",
+    "src/ARCHIVE/actions/firebase-actions.ts",
     "src/lib/shopify.ts",
-    "src/app/actions/shopify-actions.ts",
+    "src/ARCHIVE/actions/shopify-actions.ts",
     "src/data/useHomeArticle.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

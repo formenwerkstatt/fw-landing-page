@@ -6,8 +6,8 @@ export default function StaticBanner() {
   return (
     <div
       className={cn(
-        "m-auto h-[100dvh] w-full py-12",
-        "bg-gradient-to-t from-transparent via-primary/40 to-transparent",
+        "m-auto h-dvh w-full py-12",
+        "bg-linear-to-t from-transparent via-primary/40 to-transparent",
         "flex flex-col items-center justify-center",
       )}
     >

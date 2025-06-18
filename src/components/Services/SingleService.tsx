@@ -35,7 +35,7 @@ export default function SingleService({ service }: { service: Services }) {
     <div
       ref={serviceRef}
       className={cn(
-        "group relative overflow-hidden rounded-sm bg-white shadow-one duration-300 hover:shadow-two dark:bg-dark",
+        "group relative overflow-hidden rounded-xs bg-white shadow-one duration-300 hover:shadow-two dark:bg-dark",
         "translate-y-10 opacity-0 transition-all duration-700",
         isVisible && "translate-y-0 cursor-pointer opacity-100",
       )}
@@ -63,7 +63,7 @@ export default function SingleService({ service }: { service: Services }) {
 
         <div
           className={cn(
-            "absolute bg-gradient-to-r from-slate-950 to-transparent p-6",
+            "absolute bg-linear-to-r from-slate-950 to-transparent p-6",
             "transition-all duration-700",
             isVisible && "animate-slide-in-left",
           )}
@@ -78,7 +78,7 @@ export default function SingleService({ service }: { service: Services }) {
         <div
           className={cn(
             "absolute right-0 top-2/3 w-1/2  rounded-xl px-6 py-6",
-            "bg-gradient-to-r from-primary/95 to-transparent",
+            "bg-linear-to-r from-primary/95 to-transparent",
             isVisible && "animate-slide-in-right transition-all duration-1000",
           )}
         >

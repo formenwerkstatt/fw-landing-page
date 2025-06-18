@@ -44,7 +44,7 @@ export default async function Sustainability() {
       >
         <div
           className={cn(
-            "absolute left-0 right-0 top-0 z-[1] h-[90dvh] w-full opacity-25",
+            "absolute left-0 right-0 top-0 z-1 h-[90dvh] w-full opacity-25",
             "bg-[url(/video/shape.svg)] bg-cover bg-center bg-no-repeat",
           )}
         ></div>

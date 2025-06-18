@@ -23,7 +23,7 @@ const SectionTitle = ({
       >
         <h2
           className={cn(
-            "mb-4  font-bold !leading-tight text-black dark:text-white",
+            "mb-4  font-bold leading-tight! text-black dark:text-white",
             isHomepage ? "text-2xl lg:text-4xl" : "text-xl md:text-2xl",
           )}
         >
@@ -31,7 +31,7 @@ const SectionTitle = ({
         </h2>
         <p
           className={cn(
-            " !leading-relaxed text-body-color ",
+            " leading-relaxed! text-body-color ",
             isHomepage ? "text-lg md:text-xl" : "text-base md:text-lg",
           )}
         >

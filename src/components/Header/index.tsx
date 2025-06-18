@@ -94,7 +94,7 @@ export default function Header() {
     <header
       className={`left-0 top-0 z-40 flex w-full items-center ${
         sticky
-          ? "fixed z-[9999] bg-white !bg-opacity-80 shadow-sticky backdrop-blur-sm transition dark:bg-gray-dark dark:shadow-sticky-dark"
+          ? "fixed z-9999 bg-white !bg-opacity-80 shadow-sticky backdrop-blur-xs transition dark:bg-gray-dark dark:shadow-sticky-dark"
           : "absolute bg-transparent"
       }`}
     >
@@ -141,8 +141,8 @@ export default function Header() {
             <nav
               id="navbarCollapse"
               className={cn(
-                `navbar absolute right-0 rounded border-[.5px] border-body-color/50 bg-white px-6 py-4 duration-300`,
-                `dark:border-body-color/20 dark:bg-dark lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100`,
+                `navbar absolute right-0 rounded-sm border-[.5px] border-body-color/50 bg-white px-6 py-4 duration-300`,
+                `dark:border-body-color/20 dark:bg-dark lg:visible lg:static lg:w-auto lg:border-none lg:bg-transparent! lg:p-0 lg:opacity-100`,
                 `${
                   navbarOpen && isSmallScreen
                     ? "visibility top-[70%] w-full opacity-100"
@@ -195,7 +195,7 @@ export default function Header() {
                         </button>
                         <div
                           className={cn(
-                            `max-w-max rounded-sm bg-white dark:bg-dark `,
+                            `max-w-max rounded-xs bg-white dark:bg-dark `,
                             `lg:absolute lg:rounded-lg lg:px-4 lg:py-2 lg:shadow-lg`,
                             openSubmenuIndex === index
                               ? "flex  flex-col lg:flex-row  lg:gap-4"

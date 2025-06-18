@@ -35,7 +35,7 @@ export default function ImageSection({
   return (
     <section id="service-info-1">
       <div className="container">
-        <div className="border-b border-body-color/[.15] pb-16 dark:border-white/[.15] ">
+        <div className="border-b border-body-color/15 pb-16 dark:border-white/15 ">
           <div className="-mx-4 flex flex-wrap items-center">
             <div className={` px-4  ${src ? "lg:w-1/2" : "w-full"}`}>
               <SectionTitle
@@ -64,7 +64,7 @@ export default function ImageSection({
                   className={cn(
                     "relative mx-auto aspect-square w-full lg:mr-0",
                     sustain &&
-                      "rounded-full bg-gradient-to-t from-lime-600/80 via-lime-600/10 to-lime-600/5",
+                      "rounded-full bg-linear-to-t from-lime-600/80 via-lime-600/10 to-lime-600/5",
                   )}
                 >
                   <Image

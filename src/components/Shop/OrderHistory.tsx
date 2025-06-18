@@ -75,7 +75,7 @@ export default function OrderHistory({ orders }: { orders: Order[] }) {
                         key={product.productId}
                         className="flex items-center gap-4"
                       >
-                        <div className="relative h-16 w-16 flex-shrink-0">
+                        <div className="relative h-16 w-16 shrink-0">
                           <Image
                             src={product.imgUrl}
                             alt={product.name}

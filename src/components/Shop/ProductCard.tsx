@@ -40,7 +40,7 @@ export default async function ProductCard({
       </div>
 
       {!comingSoon && <div className={cn("flex justify-between p-4 text-center")}>
-        <div className=" flex-grow">
+        <div className=" grow">
           <h3 className="line-clamp-1 text-xl font-bold text-black dark:text-white ">
             {product.name}
           </h3>

@@ -1,4 +1,4 @@
-import { getProducts } from "@/app/actions/shopify-actions";
+import { getProducts } from "@/ARCHIVE/actions/shopify-actions";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import HomeArticle from "@/components/HomeArticle";
 import ProductCard from "@/components/Shop/ProductCard";

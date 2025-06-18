@@ -32,10 +32,10 @@ export default function ImageAccordion({ images = persons, sustain = false }) {
             key={person.id}
             className={cn(
               "group/article relative w-full overflow-hidden rounded-xl transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.15)]",
-              "before:absolute before:inset-x-0 before:bottom-0 before:h-1/3 before:bg-gradient-to-t before:from-black/50 before:transition-opacity",
-              "after:absolute after:inset-0 after:rounded-lg after:bg-white/30 after:opacity-0 after:backdrop-blur after:transition-all",
-              "focus-within:ring focus-within:ring-indigo-300 focus-within:before:opacity-100",
-              "md:before:opacity-0 md:hover:before:opacity-100 md:group-focus-within:[&:not(:focus-within):not(:hover)]:w-[20%] md:group-focus-within:[&:not(:focus-within):not(:hover)]:after:opacity-100 md:group-hover:[&:not(:hover)]:w-[20%] md:group-hover:[&:not(:hover)]:after:opacity-100",
+              "before:absolute before:inset-x-0 before:bottom-0 before:h-1/3 before:bg-linear-to-t before:from-black/50 before:transition-opacity",
+              "after:absolute after:inset-0 after:rounded-lg after:bg-white/30 after:opacity-0 after:backdrop-blur-sm after:transition-all",
+              "focus-within:ring-3 focus-within:ring-indigo-300 focus-within:before:opacity-100",
+              "md:before:opacity-0 md:hover:before:opacity-100 md:[&:not(:focus-within):not(:hover)]:group-focus-within:w-[20%] md:[&:not(:focus-within):not(:hover)]:group-focus-within:after:opacity-100 md:not-[&:hover]:group-hover:w-[20%] md:not-[&:hover]:group-hover:after:opacity-100",
             )}
           >
             <div className="absolute inset-0 z-10 flex  flex-col justify-end p-3 text-white">
@@ -69,7 +69,7 @@ export default function ImageAccordion({ images = persons, sustain = false }) {
                 />
               </div>
             ) : (
-              <div className="w-full bg-gradient-to-b from-primary/25 md:h-[50dvh]">
+              <div className="w-full bg-linear-to-b from-primary/25 md:h-[50dvh]">
                 <BsPersonFill className="m-auto size-full text-gray-dark/10 dark:text-gray-light/10" />
               </div>
             )}
