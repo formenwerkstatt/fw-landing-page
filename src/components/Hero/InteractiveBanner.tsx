@@ -1,10 +1,8 @@
 "use client";
-import { lazy, useState, Suspense, useRef } from "react";
+import { useRef } from "react";
 import { cn } from "@/utils/cn";
 import { useI18n } from "@/locales/client";
-import Loading from "../Common/Loading";
 import Image from "next/image";
-import ControlButton from "./ControlButton";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
@@ -14,8 +12,6 @@ import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import { Autoplay, Pagination, Navigation, EffectFade } from "swiper/modules";
 import { Mail, MapPin, PhoneCall } from "lucide-react";
-
-const ThreeFiber = lazy(() => import("./ThreeFiber"));
 
 // Define hero background images
 const heroImages = [
@@ -37,8 +33,6 @@ const heroImages = [
 ];
 
 export default function InteractiveBanner() {
-  const [isOverlayVisible, setIsOverlayVisible] = useState<boolean>(true);
-  const [isHelpVisible, setIsHelpVisible] = useState<boolean>(false);
   const progressCircle = useRef<SVGSVGElement | null>(null);
   const progressContent = useRef<HTMLSpanElement | null>(null);
 
@@ -65,201 +59,147 @@ export default function InteractiveBanner() {
         "bg-linear-to-b from-slate-300 via-transparent to-slate-400",
       )}
     >
-      {isOverlayVisible && (
+      <div
+        className={cn(
+          "absolute inset-0 z-10",
+          "flex flex-col items-center justify-center",
+          "bg-gray-400/50 dark:bg-black/50",
+          "animate-fade-in",
+        )}
+      >
+        {/* Swiper showcase section */}
+        <div className="absolute inset-0 w-full">
+          <Swiper
+            spaceBetween={0}
+            centeredSlides={true}
+            effect="fade"
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={false}
+            loop={true}
+            modules={[Autoplay, Pagination, Navigation, EffectFade]}
+            onAutoplayTimeLeft={onAutoplayTimeLeft}
+            className="h-full w-full opacity-25"
+          >
+            {heroImages.map((item) => (
+              <SwiperSlide key={item.id}>
+                <div className="relative h-full w-full">
+                  <Image
+                    src={item.image}
+                    alt={item.alt}
+                    fill
+                    className="object-cover"
+                    priority
+                    sizes="100vw"
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* Content overlay */}
         <div
           className={cn(
-            "absolute inset-0 z-10",
-            "flex flex-col items-center justify-center",
-            "bg-gray-400/50 dark:bg-black/50",
-            "animate-fade-in",
+            "relative z-50 w-full py-8 md:py-12",
+            "bg-linear-to-t from-transparent via-primary/40 to-transparent",
           )}
         >
-          {/* Swiper showcase section */}
-          <div className="absolute inset-0 w-full">
-            <Swiper
-              spaceBetween={0}
-              centeredSlides={true}
-              effect="fade"
-              autoplay={{
-                delay: 5000,
-                disableOnInteraction: false,
-              }}
-              pagination={{
-                clickable: true,
-              }}
-              navigation={false}
-              loop={true}
-              modules={[Autoplay, Pagination, Navigation, EffectFade]}
-              onAutoplayTimeLeft={onAutoplayTimeLeft}
-              className="h-full w-full opacity-25"
+          <div className="container mx-auto px-4 text-center">
+            <h1
+              className={cn(
+                "mb-4 text-gray-light",
+                "text-3xl font-bold md:text-6xl",
+                "animate-pop-in",
+              )}
             >
-              {heroImages.map((item) => (
-                <SwiperSlide key={item.id}>
-                  <div className="relative h-full w-full">
-                    <Image
-                      src={item.image}
-                      alt={item.alt}
-                      fill
-                      className="object-cover"
-                      priority
-                      sizes="100vw"
-                    />
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
+              {t("slogan")}
+            </h1>
+            <p
+              className={cn(
+                "mx-auto max-w-2xl",
+                "text-sm text-gray-light md:text-xl lg:text-2xl",
+                "animate-stagger-in",
+              )}
+            >
+              {t("landingDescription")}
+            </p>
 
-          {/* Content overlay */}
-          <div
-            className={cn(
-              "relative z-50 w-full py-8 md:py-12",
-              "bg-linear-to-t from-transparent via-primary/40 to-transparent",
-            )}
-          >
-            <div className="container mx-auto px-4 text-center">
-              <h1
+            {/* Main CTA Cards */}
+            <div className="mt-8 grid animate-fade-in grid-cols-1 gap-6  md:grid-cols-2">
+              {/* Contact Us Card */}
+              <div
                 className={cn(
-                  "mb-4 text-gray-light",
-                  "text-3xl font-bold md:text-6xl",
-                  "animate-pop-in",
+                  "transform rounded-lg bg-linear-to-br from-blue-600 to-blue-800 p-6 text-center text-white opacity-80",
+                  "shadow-lg transition-all duration-300 hover:scale-105 hover:opacity-100 hover:shadow-xl md:px-12 md:py-6",
+                  "flex flex-col items-center justify-between",
                 )}
               >
-                {t("slogan")}
-              </h1>
-              <p
-                className={cn(
-                  "mx-auto max-w-2xl",
-                  "text-sm text-gray-light md:text-xl lg:text-2xl",
-                  "animate-stagger-in",
-                )}
-              >
-                {t("landingDescription")}
-              </p>
-
-              {/* Main CTA Cards */}
-              <div className="mt-8 grid animate-fade-in grid-cols-1 gap-6  md:grid-cols-2">
-                {/* Contact Us Card */}
-                <div
-                  className={cn(
-                    "transform rounded-lg bg-linear-to-br from-blue-600 to-blue-800 p-6 text-center text-white opacity-80",
-                    "shadow-lg transition-all duration-300 hover:scale-105 hover:opacity-100 hover:shadow-xl md:px-12 md:py-6",
-                    "flex flex-col items-center justify-between",
-                  )}
-                >
-                  <Mail className="h-10 w-10" />
-                  <h3 className="mb-2 text-xl font-bold">
-                    {t("contact.title")}
-                  </h3>
-                  <p className="mb-4 text-sm opacity-90">{t("contact.cta")}</p>
-                  <div className="flex w-full flex-col gap-3">
-                    <Link
-                      href="mailto:info@formenwerkstatt.de"
-                      className={cn(
-                        "rounded-full bg-white/20 px-4 py-2 backdrop-blur-xs",
-                        "text-sm font-semibold text-white",
-                        "border border-white/30",
-                        "inline-flex items-center justify-center gap-2 transition-all",
-                        "hover:bg-white/30 hover:shadow-md",
-                      )}
-                    >
-                      <Mail className="h-4 w-4" /> info@formenwerkstatt.de
-                    </Link>
-                    <Link
-                      href="tel:+4906164913017"
-                      className={cn(
-                        "rounded-full bg-white/20 px-4 py-2 backdrop-blur-xs",
-                        "text-sm font-semibold text-white",
-                        "border border-white/30",
-                        "inline-flex items-center justify-center gap-2 transition-all",
-                        "hover:bg-white/30 hover:shadow-md",
-                      )}
-                    >
-                      <PhoneCall className="h-4 w-4" /> +49 (0) 6164-913017
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Find Us Card */}
-                <Link
-                  href="/contact"
-                  className={cn(
-                    "transform rounded-lg bg-linear-to-br from-green-600 to-green-800 p-6 text-center text-white opacity-80",
-                    " shadow-lg transition-all duration-300 hover:scale-105 hover:opacity-100 hover:shadow-xl md:px-12 md:py-6",
-                    "flex flex-col items-center justify-between",
-                  )}
-                >
-                  <MapPin className="h-10 w-10" />
-                  <h3 className="mb-2 text-xl font-bold">
-                    {t("findUs.title")}
-                  </h3>
-                  <p className="mb-4 text-sm opacity-90">
-                    {t("findUs.description")}
-                  </p>
-                  <p
+                <Mail className="h-10 w-10" />
+                <h3 className="mb-2 text-xl font-bold">{t("contact.title")}</h3>
+                <p className="mb-4 text-sm opacity-90">{t("contact.cta")}</p>
+                <div className="flex w-full flex-col gap-3">
+                  <Link
+                    href="mailto:info@formenwerkstatt.de"
                     className={cn(
                       "rounded-full bg-white/20 px-4 py-2 backdrop-blur-xs",
-                      "text-lg font-semibold text-white",
+                      "text-sm font-semibold text-white",
                       "border border-white/30",
-                      "mt-2 inline-block",
+                      "inline-flex items-center justify-center gap-2 transition-all",
+                      "hover:bg-white/30 hover:shadow-md",
                     )}
                   >
-                    {t("findUs.cta")}
-                  </p>
-                </Link>
+                    <Mail className="h-4 w-4" /> info@formenwerkstatt.de
+                  </Link>
+                  <Link
+                    href="tel:+4906164913017"
+                    className={cn(
+                      "rounded-full bg-white/20 px-4 py-2 backdrop-blur-xs",
+                      "text-sm font-semibold text-white",
+                      "border border-white/30",
+                      "inline-flex items-center justify-center gap-2 transition-all",
+                      "hover:bg-white/30 hover:shadow-md",
+                    )}
+                  >
+                    <PhoneCall className="h-4 w-4" /> +49 (0) 6164-913017
+                  </Link>
+                </div>
               </div>
 
-              {/* 3D demo button
-              <button
-                onClick={() => {
-                  setIsOverlayVisible(false);
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                }}
+              {/* Find Us Card */}
+              <Link
+                href="/contact"
                 className={cn(
-                  "mt-8 rounded-lg bg-gray-light/50 px-6 py-2",
-                  "text-sm font-semibold text-gray-dark",
-                  "transition-all duration-300 hover:bg-white",
-                  "animate-slide-in-right",
+                  "transform rounded-lg bg-linear-to-br from-green-600 to-green-800 p-6 text-center text-white opacity-80",
+                  " shadow-lg transition-all duration-300 hover:scale-105 hover:opacity-100 hover:shadow-xl md:px-12 md:py-6",
+                  "flex flex-col items-center justify-between",
                 )}
-                aria-label="View 3D Demo"
               >
-                Try 3D Demo
-              </button> */}
+                <MapPin className="h-10 w-10" />
+                <h3 className="mb-2 text-xl font-bold">{t("findUs.title")}</h3>
+                <p className="mb-4 text-sm opacity-90">
+                  {t("findUs.description")}
+                </p>
+                <p
+                  className={cn(
+                    "rounded-full bg-white/20 px-4 py-2 backdrop-blur-xs",
+                    "text-lg font-semibold text-white",
+                    "border border-white/30",
+                    "mt-2 inline-block",
+                  )}
+                >
+                  {t("findUs.cta")}
+                </p>
+              </Link>
             </div>
           </div>
-        </div>)
-      // ) : (
-      //   <Suspense fallback={<Loading />}>
-      //     <div className="relative mt-[80px] h-[calc(100svh-80px)] w-full">
-      //       <ThreeFiber />
-      //       {isHelpVisible && (
-      //         <div
-      //           className={cn(
-      //             "absolute bottom-[10%] right-4",
-      //             "w-[200px] rounded-lg bg-white p-4 shadow-lg",
-      //             "text-balance text-center text-black",
-      //             "animate-fade-in",
-      //           )}
-      //         >
-      //           <p>{t("help")}</p>
-      //         </div>
-      //       )}
-      //       <ControlButton
-      //         className="absolute right-4 top-4 size-10"
-      //         text="X"
-      //         handleClick={() => setIsOverlayVisible(true)}
-      //         aria-label="Close 3D Demo"
-      //       />
-      //       <ControlButton
-      //         className="absolute bottom-4 right-4 size-10"
-      //         text="?"
-      //         handleClick={() => setIsHelpVisible(!isHelpVisible)}
-      //         aria-label="Show Help"
-      //       />
-      //     </div>
-      //   </Suspense>
-      // )
-      }
+        </div>
+      </div>
     </div>
   );
 }

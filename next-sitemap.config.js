@@ -23,7 +23,7 @@ const fetchDynamicPaths = async () => {
     "/impressum",
     "/sustainability",
     "/datenschutz",
-    // "/agb",
+    "/agb",
     // "/widerrufsrecht",
     "/about",
     "/services/beratung-und-design",

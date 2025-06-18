@@ -1,7 +1,6 @@
 import { Titillium_Web } from "next/font/google";
 import "node_modules/react-modal-video/css/modal-video.css";
 import "@/styles/index.css";
-import "leaflet/dist/leaflet.css";
 import { ReactElement, Suspense } from "react";
 import { Providers } from "./providers";
 import { getCurrentLocale } from "@/locales/server";
