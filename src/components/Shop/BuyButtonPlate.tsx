@@ -8,10 +8,9 @@ declare global {
 }
 
 const DOMAIN =
-  process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN || "ts0s5z-h1.myshopify.com";
+  process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN ;
 const STOREFRONT_TOKEN =
-  process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN ||
-  "3cf196462d484d391604160b6d241929";
+  process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN
 const SCRIPT_URL =
   "https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js";
 

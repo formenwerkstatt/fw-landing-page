@@ -101,7 +101,7 @@ export default function Footer() {
                   Impressum
                 </Link>
               </li>
-              {/* <li>
+              <li>
                 <Link
                   href="/agb"
                   className="text-base text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
@@ -109,7 +109,7 @@ export default function Footer() {
                   AGB
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   href="/widerrufsrecht"
                   className="text-base text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
@@ -124,7 +124,7 @@ export default function Footer() {
                 >
                   Versandinfo
                 </Link>
-              </li> */}
+              </li>  */}
             </ul>
           </div>
         </div>
