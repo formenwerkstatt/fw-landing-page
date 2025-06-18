@@ -14,11 +14,18 @@ export default async function RootLayout({
 }: {
   children: ReactElement<any>;
 }) {
-  const locale = await getCurrentLocale();
-  setStaticParamsLocale(locale || 'de');
+  let locale;
+  try {
+    locale = await getCurrentLocale();
+  } catch (error) {
+    // Fallback to default locale if getCurrentLocale fails
+    locale = 'de';
+  }
+  
+  setStaticParamsLocale(locale);
 
   return (
-    <html lang={locale || "de"} suppressHydrationWarning={true}>
+    <html lang={locale} suppressHydrationWarning={true}>
       <head />
       <body className={`bg-[#FCFCFC] dark:bg-black ${titillium.className}`}>
         <Suspense fallback={null}>

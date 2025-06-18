@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function NotFound() {
+export default function NotFound() {
   setStaticParamsLocale("de");
 
   return (
