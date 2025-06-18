@@ -1,10 +1,6 @@
 import { Metadata } from "next";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   return {
     title: `Jobs | Finden Sie Ihren Traumjob bei Formenwerkstatt`,
     description:
